@@ -1,4 +1,4 @@
-<img src="Deployment-1.0.PNG" alt="Deployment" style="width:304px;height:228px;">
+<img src="Deployment-1.1.PNG" alt="Deployment" style="width:304px;height:228px;">
 
 Aplikation Server : ??
 
