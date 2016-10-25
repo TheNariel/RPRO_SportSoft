@@ -2,4 +2,4 @@
 |---|---|
 Uživatel | zákazník nebo majitel|
 Sportoviště | typ kurtu|
-Kurt | fyzický prostor|
+Kurt | konkrétní kurt pro sport|
