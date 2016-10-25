@@ -8,7 +8,7 @@ Majitel je přihlášen. Aplikace zobrazí již existující sportoviště.
 - 1. Majitel zvolí možnost vytvoření nového sportoviště.
 - 2. Aplikace zobrazí formulář pro vytvoření nového sportoviště.
 - 3. Majitel vyplní informace o sportovišti do formuláře.
-- 4. Majitel potvrdí vytvoření nového sportoviště.
+- 4. Majitel potvrdí údaje.
 - 5. Aplikace informace uloží.
 - 6. Aplikace zobrazí seznam sportovišť.
 
@@ -22,8 +22,8 @@ Majitel je přihlášen. Aplikace zobrazí již existující kurty dle zvolenéh
 - 1. Majitel zvolí možnost vytvoření nového kurtu.
 - 2. Aplikace zobrazí formulář pro vytvoření nového kurtu.
 - 3. Majitel vyplní informace o kurtu do formuláře.
-- 4. Majitel přiřadí kurtu ceník.
-- 5. Majitel potvrdí vytvoření nového kurtu.
+- 4. Majitel přiřadí kurtu ceník nebo vytvoří nový ceník.
+- 5. Majitel potvrdí údaje.
 - 6. Aplikace informace uloží.
 - 7. Apikace zobrazí seznam kurtů.
 
