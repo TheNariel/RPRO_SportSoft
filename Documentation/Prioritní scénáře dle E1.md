@@ -5,7 +5,7 @@
 Majitel je přihlášen. Aplikace zobrazí již existující sportoviště.
 
 <b>Basic Flow:</b>
-- 1. Majitel zvolí možnost vytvoření novéhu sportoviště.
+- 1. Majitel zvolí možnost vytvoření nového sportoviště.
 - 2. Aplikace zobrazí formulář pro vytvoření nového sportoviště.
 - 3. Majitel vyplní informace o sportovišti do formuláře.
 - 4. Majitel potvrdí vytvoření nového sportoviště.
