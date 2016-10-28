@@ -1,3 +1,16 @@
+<h3>UC1 - Ověření uživatele: Přihlášení uživatele</h3>
+<b>Actor</b>: Majitel, zákazník
+
+<b>Preconditions</b>
+Uživatel je má zobrazenu úvodní webovou stránku.
+
+<b>Basic Flow</b>
+- 1. Uživatel zadá jméno a heslo.
+- 2. Uživatel potvrdí možnost přihlášení.
+- 3. Aplikace ověří uživatelské údaje.
+- 4. Aplikace uživatele přihlásí.
+- 5. Aplikace zobrazí stránku dle přihlášeného uživatele.
+
 <h3>UC4 – Správa sportovišť: Vytvoření nového sportoviště </h3>
 <b>Actor</b>: Majitel  
 
