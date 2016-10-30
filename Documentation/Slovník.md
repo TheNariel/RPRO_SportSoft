@@ -1,5 +1,5 @@
 |Pojem| Definice|
 |---|---|
 Uživatel | zákazník nebo majitel|
-Sportoviště | typ kurtu|
-Kurt | konkrétní kurt pro sport|
+Sportoviště(Sports) | typ kurtu|
+Kurt(court) | konkrétní kurt pro sport|
