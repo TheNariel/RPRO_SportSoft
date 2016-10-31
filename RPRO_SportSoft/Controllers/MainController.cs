@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,11 +9,13 @@ namespace RPRO_SportSoft.Controllers
 {
     public class MainController : Controller
     {
+        DataClasses1DataContext db = new DataClasses1DataContext();
         // 
         // GET: /HelloWorld/ 
 
         public ActionResult Index()
         {
+            
             return View();
         }
 

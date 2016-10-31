@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SportSoftDb" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\SportSoftDb.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SportSoftDbConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Courts" Member="Courts">
+    <Type Name="Court">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Sports_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Sport_Court" Member="Sport" ThisKey="Sports_Id" OtherKey="Id" Type="Sport" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sports" Member="Sports">
+    <Type Name="Sport">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Association Name="Sport_Court" Member="Courts" ThisKey="Id" OtherKey="Sports_Id" Type="Court" />
+    </Type>
+  </Table>
+</Database>
