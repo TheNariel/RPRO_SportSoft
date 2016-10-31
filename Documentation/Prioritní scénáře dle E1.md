@@ -2,7 +2,7 @@
 <b>Actor</b>: Majitel, zákazník
 
 <b>Preconditions</b>
-Uživatel je má zobrazenu úvodní webovou stránku.
+Uživatel má zobrazenu úvodní webovou stránku.
 
 <b>Basic Flow</b>
 - 1. Uživatel zadá jméno a heslo.
