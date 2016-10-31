@@ -1,0 +1,33 @@
+﻿@model IEnumerable<RPRO_SportSoft.Court>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<p>
+    
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+       <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete","Courts", new { id=item.Id }, null)
+            @Html.ActionLink("Create New", "Create", "Courts", new { sport = item.Sports_Id }, null)
+        </td>
+    </tr>
+}
+
+</table>

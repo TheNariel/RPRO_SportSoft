@@ -1,0 +1,21 @@
+﻿@model RPRO_SportSoft.Court
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+<h4>Court</h4>
+<hr />
+@using (Html.BeginForm("Create", "Courts", FormMethod.Post))
+{
+    <p>
+        Nazev Kurtu: @Html.TextBox("CourtName") <br />
+        <input type="submit" value="Create" />
+    </p>
+} 
+
+
+
+

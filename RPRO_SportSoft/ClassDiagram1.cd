@@ -1,31 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="RPRO_SportSoft.Models.Sportoviste">
-    <Position X="5.75" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Sportoviste.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="RPRO_SportSoft.Models.SportSoftDBContext">
-    <Position X="5.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\SportSoftDBContext.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="RPRO_SportSoft.Controllers.MainController">
     <Position X="1" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <HashCode>AAAAgAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>Controllers\MainController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="RPRO_SportSoft.Controllers.SportovistesController">
+  <Class Name="RPRO_SportSoft.Controllers.CoutrsController">
     <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
-      <FileName>Controllers\SportovistesController.cs</FileName>
+      <HashCode>AAAAAAAAAAARAAAAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\CoutrsController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
