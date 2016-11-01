@@ -66,7 +66,7 @@ Majitel je přihlášen a má zobrazenu úvodní stránku.
 - 7. Aplikace informace uloží.
 - 8. Aplikace zobrazí přehled ceníků.
 
-<h3>UC5 - Správa ceníku: Změna majitelem</h3>
+<h3>UC5 - Správa ceníku: Změna ceníku</h3>
 <b>Actor</b>: Majitel
 
 <b>Preconditions</b>
@@ -80,7 +80,7 @@ Majitel je přihlášen a má zobrazenu úvodní stránku.
 - 5. Majitel zvolí možnost správy ceníku.
 - 6. Aplikace zobrazí formulář pro správu.
 - 7. Majitel upraví informace.
-- 8. Majitel potvrdí možnost uložení upraveného ceníku.
+- 8. Majitel potvrdí uložení upraveného ceníku.
 - 9. Aplikace informace uloží.
 - 10. Aplikace zobrazí přehled ceníků.
 
@@ -88,12 +88,14 @@ Majitel je přihlášen a má zobrazenu úvodní stránku.
 <b>Actor</b>: Majitel, zákazník
 
 <b>Preconditions</b>
-Uživatel je přihlášen a má zobrazeny kurty dle zvoleného sportoviště.
+Uživatel je přihlášen a má zobrazenou úvodní stránku.
 
 <b>Basic Flow</b>
-- 1. Uživatel zvolí čas, který chce rezervovat.
-- 2. Uživatel vybere kurt.
-- 3. Uživatel potvrdí rezervaci.
-- 4. Aplikace uloží rezervaci.
-- 5. Aplikace odešle potvrzení rezervace na e-mail uživatele.
-- 6. Aplikace zobrazí přehled rezervací uživatele.
+- 1. Uživatel vybere dané sportoviště.
+- 2. Aplikace zobrazí kurty pro dané sportoviště.
+- 3. Uživatel zvolí čas, který chce rezervovat.
+- 4. Uživatel vybere kurt.
+- 5. Uživatel potvrdí rezervaci.
+- 6. Aplikace uloží rezervaci.
+- 7. Aplikace odešle potvrzení rezervace na e-mail uživatele.
+- 8. Aplikace zobrazí přehled rezervací uživatele.
