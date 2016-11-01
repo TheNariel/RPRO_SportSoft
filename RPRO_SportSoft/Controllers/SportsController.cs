@@ -12,6 +12,7 @@ namespace RPRO_SportSoft.Controllers
         // GET: Sports
         public ActionResult Index()
         {
+           
             return View(db.Sports.ToList());
             
         }
