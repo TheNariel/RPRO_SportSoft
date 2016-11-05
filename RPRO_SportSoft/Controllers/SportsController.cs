@@ -1,55 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using RPRO_SportSoft.Application;
+using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace RPRO_SportSoft.Controllers
 {
     public class SportsController : Controller
     {
-        DataClasses1DataContext db = new DataClasses1DataContext();
+        SportsApp app = new SportsApp();
         // GET: Sports
         public ActionResult Index()
         {
            
-            return View(db.Sports.ToList());
+            return View(app.getList());
             
         }
         // GET: Sports/Details/5
         public ActionResult Details(int? id)
         {
-            var item = db.Courts.Where(Court => Court.Sports_Id == id);
+          
 
-            return View(item.ToList());
+            return View();
         }
         // GET: Sports/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new SportB(null, true));
         }
 
         // POST: Sports/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "Id,Name")] Sport s)
+        public ActionResult Create(String SportName)
         {
             try
             {
-                db.Sports.InsertOnSubmit(s);
-                db.SubmitChanges();
+                if (app.Add(SportName))
+                {
+                    return RedirectToAction("Index");
+                }
+                else {
+                    
+                    return View(new SportB(SportName, false));
+                }
 
-                return RedirectToAction("Index");
+                
             }
             catch
             {
-                return View();
+                return View(new SportB(SportName, true));
             }
         }
 
         // GET: Sports/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(db.Sports.Where(Sport => Sport.Id == id).Single());
+            return View(app.get(id));
         }
 
         // POST: Sports/Delete/5
@@ -58,9 +63,7 @@ namespace RPRO_SportSoft.Controllers
         {
             try
             {
-                var item = db.Sports.Where(Sport => Sport.Id == id).Single();
-               db.Sports.DeleteOnSubmit(item);
-                db.SubmitChanges();
+                app.delete(id);
                 return RedirectToAction("Index");
             }
             catch
