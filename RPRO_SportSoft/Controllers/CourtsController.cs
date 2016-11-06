@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPRO_SportSoft.Application;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,13 +9,8 @@ namespace RPRO_SportSoft.Controllers
 {
     public class CourtsController : Controller
     {
-        DataClasses1DataContext db = new DataClasses1DataContext();
-        int s;
-        // GET: Courts
-        public ActionResult Index()
-        {
-            return View(db.Courts.ToList());
-        }
+        CourtApp app = new CourtApp();
+
 
         // GET: Courts/Details/5
         public ActionResult Details(int id)
@@ -25,28 +21,31 @@ namespace RPRO_SportSoft.Controllers
         // GET: Courts/Create
         public ActionResult Create(int sport)
         {
-           this.s = sport;
-            return View();
+            CourtB c = new CourtB("", sport,true);
+            return View(c);
         }
 
         // POST: Courts/Create
         [HttpPost]
-        public ActionResult Create(String CourtName)
+        public ActionResult Create(String CourtName,int Id)
         {
             try
             {
-                Court k = new Court();
-                k.Name = CourtName;
-                k.Sports_Id = s;
-                db.Courts.InsertOnSubmit(k);
-                db.SubmitChanges();
+                if (app.Add(CourtName,Id))
+                {
+                    return RedirectToAction("Details", "Sports", new { id = Id });
+                }
+                else
+                {
+                    CourtB c = new CourtB("CourtName", Id, false);
+                    return View(c);
+                }
                
-                return RedirectToAction("Details", "Sports" ,new { id = s });
             }
             catch(System.Data.SqlClient.SqlException e )
             {
                 e.ToString();
-                return View();
+                return View(Id);
             }
         }
 
@@ -55,20 +54,19 @@ namespace RPRO_SportSoft.Controllers
         // GET: Courts/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(db.Courts.Where(Court => Court.Id == id).Single());
+            return View(app.get(id));
         }
 
         // POST: Courts/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
+            int sport=0;
             try
             {
-                var item = db.Courts.Where(Court => Court.Id == id).Single();
-                db.Courts.DeleteOnSubmit(item);
-                db.SubmitChanges();
+               sport= app.delete(id);
 
-                return RedirectToAction("Index","Main");
+                return RedirectToAction("Details", "Sports", new { id = sport });
             }
             catch
             {

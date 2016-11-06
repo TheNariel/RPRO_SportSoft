@@ -16,11 +16,10 @@ namespace RPRO_SportSoft.Controllers
             
         }
         // GET: Sports/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-          
-
-            return View();
+            CourtListP CourtList = new CourtListP(id, app.getCourts(id));
+            return View(CourtList);
         }
         // GET: Sports/Create
         public ActionResult Create()

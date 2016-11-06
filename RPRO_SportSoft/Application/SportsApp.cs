@@ -48,17 +48,11 @@ namespace RPRO_SportSoft.Application
         {
             return db.Sports.ToList();
         }
+        public IEnumerable<Court> getCourts(int id)
+        {
+            return db.Courts.Where(Court => Court.Sports_Id == id).ToList();
+        }
 
     }
 
       }
-public class SportB
-{
-    public Boolean boo;
-    public String sport;
-    public SportB(String s, Boolean b)
-    {
-        this.boo = b;
-        this.sport = s;
-    }
-}
