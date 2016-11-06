@@ -44,6 +44,10 @@ namespace RPRO_SportSoft.Application
         {
             return db.Sports.Where(Sport => Sport.Id == id).Single();
         }
+        public String getName(int id)
+        {
+            return db.Sports.Where(Sport => Sport.Id == id).Single().Name;
+        }
         public IEnumerable<Sport> getList()
         {
             return db.Sports.ToList();
