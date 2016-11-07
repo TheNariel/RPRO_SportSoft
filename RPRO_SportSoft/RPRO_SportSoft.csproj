@@ -121,17 +121,19 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Sportovistes\Create.cshtml" />
-    <Content Include="Views\Sportovistes\Delete.cshtml" />
-    <Content Include="Views\Sportovistes\Details.cshtml" />
-    <Content Include="Views\Sportovistes\Edit.cshtml" />
-    <Content Include="Views\Sportovistes\Index.cshtml" />
+    <Content Include="Views\Sports\Create.cshtml" />
+    <Content Include="Views\Sports\Delete.cshtml" />
+    <Content Include="Views\Sports\Index.cshtml" />
     <Content Include="Views\Main\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\AdditionClasses.cs" />
+    <Compile Include="Application\CourtApp.cs" />
+    <Compile Include="Application\SportsApp.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CourtsController.cs" />
     <Compile Include="Controllers\MainController.cs" />
-    <Compile Include="Controllers\SportovistesController.cs" />
+    <Compile Include="Controllers\SportsController.cs" />
     <Compile Include="DataClasses1.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -152,6 +154,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Sports\Details.cshtml" />
+    <Content Include="Views\Courts\Delete.cshtml" />
+    <Content Include="Views\Courts\Index.cshtml" />
+    <Content Include="Views\Courts\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

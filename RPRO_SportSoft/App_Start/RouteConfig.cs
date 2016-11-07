@@ -18,7 +18,8 @@ namespace RPRO_SportSoft
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Main", action = "Index", id = UrlParameter.Optional }
             );
-                    
+           
+
         }
     }
 }

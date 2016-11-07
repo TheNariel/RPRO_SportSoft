@@ -1,0 +1,23 @@
+﻿@model SportB
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Vytroření sportoviště</h2>
+@if (!Model.boo)
+{
+    <text>Tento sport již existuje</text>
+}
+@using (Html.BeginForm("Create", "Sports", FormMethod.Post))
+{
+    <p>
+        Nazev Sportoviste: @Html.TextBox("SportName") <br />
+        <input type="submit" value="Create" />
+    </p>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
