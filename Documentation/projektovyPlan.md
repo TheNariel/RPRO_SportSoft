@@ -8,7 +8,7 @@
 18. 10. 2016||		Milník LCO|	Splněno
 |18.10. - 25.10. 2016|E1|Implementace funkce vytvoření sportoviště, rozpis tří prioritních scénářů|Splněno
 |25.10. - 1.11.2016|E2|Implementace funkce vytvoření kurtu, rozepsání prioritních scénářů|Splněno
-|1.11. - 8.11.2016|E3|Rozšíření o aplikační vrstvu, kontrola "Přidání kurtu" vzhledem ke sportovišti|Splněno
+|1.11. - 8.11.2016|E3|Rozšíření o aplikační vrstvu, kontrola "Přidání kurtu" vzhledem ke sportovišti|
 |||
 |||
 |||
