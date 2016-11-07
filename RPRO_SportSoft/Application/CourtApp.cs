@@ -29,7 +29,7 @@ namespace RPRO_SportSoft.Application
         }
         public Boolean checkIfTaken(String n)
         {
-            return db.Sports.Where(Court => Court.Name == n).Any();
+            return db.Courts.Where(Court => Court.Name == n).Any();
 
         }
         public int delete(int id)

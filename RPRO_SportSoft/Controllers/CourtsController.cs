@@ -37,7 +37,7 @@ namespace RPRO_SportSoft.Controllers
                 }
                 else
                 {
-                    CourtB c = new CourtB("CourtName", Id, false);
+                    CourtB c = new CourtB(CourtName, Id, false);
                     return View(c);
                 }
                
