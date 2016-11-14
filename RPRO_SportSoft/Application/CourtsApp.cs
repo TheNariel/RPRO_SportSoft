@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RPRO_SportSoft.Application
 {
-    public class CourtApp
+    public class CourtsApp
     {
         DataClasses1DataContext db = new DataClasses1DataContext();
         public Boolean Add(String n,int S_Id)

@@ -128,7 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\AdditionClasses.cs" />
-    <Compile Include="Application\CourtApp.cs" />
+    <Compile Include="Application\CourtsApp.cs" />
     <Compile Include="Application\SportsApp.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CourtsController.cs" />
@@ -188,7 +188,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>64395</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

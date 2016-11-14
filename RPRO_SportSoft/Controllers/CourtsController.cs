@@ -9,7 +9,7 @@ namespace RPRO_SportSoft.Controllers
 {
     public class CourtsController : Controller
     {
-        CourtApp app = new CourtApp();
+        CourtsApp app = new CourtsApp();
 
 
         // GET: Courts/Details/5
