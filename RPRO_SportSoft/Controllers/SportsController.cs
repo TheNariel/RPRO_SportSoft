@@ -12,19 +12,21 @@ namespace RPRO_SportSoft.Controllers
         public ActionResult Index()
         {
            
-            return View(app.getList());
+            return View(app.GetList());
             
         }
         // GET: Sports/Details/5
         public ActionResult Details(int id)
         {
-            CourtListP CourtList = new CourtListP(id,app.getName(id), app.getCourts(id));
+            CourtListP CourtList = new CourtListP(id,app.GetName(id), app.GetCourts(id));
             return View(CourtList);
         }
         // GET: Sports/Create
         public ActionResult Create()
         {
-            return View(new SportB(null, true));
+            Sport s = new Sport();
+            s.Name = "";
+            return View(s);
         }
 
         // POST: Sports/Create
@@ -35,25 +37,31 @@ namespace RPRO_SportSoft.Controllers
             {
                 if (app.Add(SportName))
                 {
+                  
                     return RedirectToAction("Index");
                 }
                 else {
-                    
-                    return View(new SportB(SportName, false));
+                      ViewBag.MessageCreate = "Sportoviště s tímto názvem již existuje";
+                    Sport s = new Sport();
+                    s.Name = SportName;
+                    return View(s);
                 }
 
                 
             }
             catch
             {
-                return View(new SportB(SportName, true));
+                Sport s = new Sport();
+                s.Name = SportName;
+                ViewBag.MessageCreate = "Sportoviště se nepovedlo vytvořit";
+                return View(s);
             }
         }
 
         // GET: Sports/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(app.get(id));
+            return View(app.Get(id));
         }
 
         // POST: Sports/Delete/5
@@ -62,20 +70,20 @@ namespace RPRO_SportSoft.Controllers
         {
             try
             {
-                app.delete(id);
+                app.Delete(id);
                 return RedirectToAction("Index");
             }
             catch
             {
                 ViewBag.MyMessageToUser = "Toto sportoviště nelze odstranit, protože obsahuje kurty.";
-                return View(app.get(id));
+                return View(app.Get(id));
 
 
             }
         }
         public ActionResult Edit(int id)
         {
-            return View(app.get(id));
+            return View(app.Get(id));
         }
         [HttpPost]
         public ActionResult Edit(int id, String SportName)
@@ -89,7 +97,7 @@ namespace RPRO_SportSoft.Controllers
                 }
                 else {
                     ViewBag.MyMessageToUser = "Název musí být unikátní.";
-                    return View(app.get(id));
+                    return View(app.Get(id));
                 }
                 
                 
@@ -97,7 +105,7 @@ namespace RPRO_SportSoft.Controllers
             catch
             {
                 ViewBag.MyMessageToUser = "Toto sportoviště nelze editovat.";
-                return View(app.get(id));
+                return View(app.Get(id));
 
 
             }

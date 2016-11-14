@@ -1,0 +1,22 @@
+﻿@model RPRO_SportSoft.Court
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+@ViewBag.MessageEditCourt
+@using (Html.BeginForm("Edit", "Courts", FormMethod.Post))
+{
+    <p>
+        @Html.Hidden("Id", Model.Id) <br />
+        @Html.Hidden("Sports_Id", Model.Sports_Id) <br />
+        Název kurtu: @Html.TextBox("CourtName", Model.Name) <br />
+        <input type="submit" value="Vytvořit" />
+    </p>
+} 
+
+<div>
+    @Html.ActionLink("Zpet", "Details","Sports", new { id = Model.Sports_Id },null)
+</div>

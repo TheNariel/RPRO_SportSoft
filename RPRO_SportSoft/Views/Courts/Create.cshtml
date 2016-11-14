@@ -1,4 +1,4 @@
-﻿@model CourtB
+﻿@model Court
 
 @{
     ViewBag.Title = "Create";
@@ -6,17 +6,18 @@
 }
 
 <h2>Vytvoření kurtu</h2>
+@ViewBag.MessageCreateCourt
 <h4>Kurt</h4>
 <hr />
 @using (Html.BeginForm("Create", "Courts",FormMethod.Post))
 {
     <p>
-        @Html.Hidden("Id",Model.sport) <br />
-        Název kurtu: @Html.TextBox("CourtName") <br />
+        @Html.Hidden("Id",Model.Sports_Id) <br />
+        Název kurtu: @Html.TextBox("CourtName", Model.Name) <br />
         <input type="submit" value="Vytvořit" />
     </p>
 } 
-@Html.ActionLink("Zpět", "Details", "Sports", new { id = Model.sport }, null)
+@Html.ActionLink("Zpět", "Details", "Sports", new { id = Model.Sports_Id }, null)
 
 
 
