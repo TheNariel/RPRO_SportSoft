@@ -61,16 +61,25 @@ namespace RPRO_SportSoft.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            int sport=0;
+            int sport=app.getSportId(id);
             try
             {
-               sport= app.delete(id);
+                if (app.delete(id))
+                {
+                 return RedirectToAction("Details", "Sports", new { id = sport });
+                }
+                else
+                {
+                    ViewBag.MyMessageToUser = "Nelze smazat kurt, který byl použit.";
+                    return View(app.get(id));
+                }
 
-                return RedirectToAction("Details", "Sports", new { id = sport });
+               
             }
             catch
             {
-                return View();
+                ViewBag.MyMessageToUser = "Nelze smazat kurt";
+                return View(app.get(id));
             }
         }
     }

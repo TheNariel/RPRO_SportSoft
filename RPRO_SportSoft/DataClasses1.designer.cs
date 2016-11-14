@@ -36,6 +36,9 @@ namespace RPRO_SportSoft
     partial void InsertSport(Sport instance);
     partial void UpdateSport(Sport instance);
     partial void DeleteSport(Sport instance);
+    partial void InsertReservation(Reservation instance);
+    partial void UpdateReservation(Reservation instance);
+    partial void DeleteReservation(Reservation instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -83,6 +86,14 @@ namespace RPRO_SportSoft
 				return this.GetTable<Sport>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Reservation> Reservations
+		{
+			get
+			{
+				return this.GetTable<Reservation>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Courts")]
@@ -96,6 +107,8 @@ namespace RPRO_SportSoft
 		private string _Name;
 		
 		private int _Sports_Id;
+		
+		private EntitySet<Reservation> _Reservations;
 		
 		private EntityRef<Sport> _Sport;
 		
@@ -113,6 +126,7 @@ namespace RPRO_SportSoft
 		
 		public Court()
 		{
+			this._Reservations = new EntitySet<Reservation>(new Action<Reservation>(this.attach_Reservations), new Action<Reservation>(this.detach_Reservations));
 			this._Sport = default(EntityRef<Sport>);
 			OnCreated();
 		}
@@ -181,6 +195,19 @@ namespace RPRO_SportSoft
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Court_Reservation", Storage="_Reservations", ThisKey="Id", OtherKey="Courts_Id")]
+		public EntitySet<Reservation> Reservations
+		{
+			get
+			{
+				return this._Reservations;
+			}
+			set
+			{
+				this._Reservations.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sport_Court", Storage="_Sport", ThisKey="Sports_Id", OtherKey="Id", IsForeignKey=true)]
 		public Sport Sport
 		{
@@ -233,6 +260,18 @@ namespace RPRO_SportSoft
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Reservations(Reservation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Court = this;
+		}
+		
+		private void detach_Reservations(Reservation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Court = null;
 		}
 	}
 	
@@ -347,6 +386,181 @@ namespace RPRO_SportSoft
 		{
 			this.SendPropertyChanging();
 			entity.Sport = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Reservation")]
+	public partial class Reservation : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _Courts_Id;
+		
+		private System.Nullable<System.DateTime> _DateReservation;
+		
+		private System.Nullable<System.TimeSpan> _TimeReservation;
+		
+		private EntityRef<Court> _Court;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCourts_IdChanging(int value);
+    partial void OnCourts_IdChanged();
+    partial void OnDateReservationChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateReservationChanged();
+    partial void OnTimeReservationChanging(System.Nullable<System.TimeSpan> value);
+    partial void OnTimeReservationChanged();
+    #endregion
+		
+		public Reservation()
+		{
+			this._Court = default(EntityRef<Court>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Courts_Id", DbType="Int NOT NULL")]
+		public int Courts_Id
+		{
+			get
+			{
+				return this._Courts_Id;
+			}
+			set
+			{
+				if ((this._Courts_Id != value))
+				{
+					if (this._Court.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCourts_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Courts_Id = value;
+					this.SendPropertyChanged("Courts_Id");
+					this.OnCourts_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateReservation", DbType="Date")]
+		public System.Nullable<System.DateTime> DateReservation
+		{
+			get
+			{
+				return this._DateReservation;
+			}
+			set
+			{
+				if ((this._DateReservation != value))
+				{
+					this.OnDateReservationChanging(value);
+					this.SendPropertyChanging();
+					this._DateReservation = value;
+					this.SendPropertyChanged("DateReservation");
+					this.OnDateReservationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeReservation", DbType="Time")]
+		public System.Nullable<System.TimeSpan> TimeReservation
+		{
+			get
+			{
+				return this._TimeReservation;
+			}
+			set
+			{
+				if ((this._TimeReservation != value))
+				{
+					this.OnTimeReservationChanging(value);
+					this.SendPropertyChanging();
+					this._TimeReservation = value;
+					this.SendPropertyChanged("TimeReservation");
+					this.OnTimeReservationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Court_Reservation", Storage="_Court", ThisKey="Courts_Id", OtherKey="Id", IsForeignKey=true)]
+		public Court Court
+		{
+			get
+			{
+				return this._Court.Entity;
+			}
+			set
+			{
+				Court previousValue = this._Court.Entity;
+				if (((previousValue != value) 
+							|| (this._Court.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Court.Entity = null;
+						previousValue.Reservations.Remove(this);
+					}
+					this._Court.Entity = value;
+					if ((value != null))
+					{
+						value.Reservations.Add(this);
+						this._Courts_Id = value.Id;
+					}
+					else
+					{
+						this._Courts_Id = default(int);
+					}
+					this.SendPropertyChanged("Court");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
