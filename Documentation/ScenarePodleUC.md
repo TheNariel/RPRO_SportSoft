@@ -32,6 +32,7 @@
 |	Přidání sportoviště majitelem | 5
 |	Smazání sportoviště majitelem | 4
 |	Změna parametrů kurtu majitelem | 4
+|	Změna parametrů sportoviště majitelem | 4
 
 <br>
 
