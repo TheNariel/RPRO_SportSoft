@@ -9,18 +9,7 @@ namespace RPRO_SportSoft.Application
     {
     }
 }
-public class CourtB
-{
-    public Boolean boo;
-    public String court;
-    public int sport;
-    public CourtB(String c,int s)
-    {
-        
-        this.sport = s;
-        this.court = c;
-    }
-}
+
 public class CourtListP
 {
    
