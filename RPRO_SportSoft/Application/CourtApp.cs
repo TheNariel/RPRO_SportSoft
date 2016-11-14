@@ -32,18 +32,34 @@ namespace RPRO_SportSoft.Application
             return db.Courts.Where(Court => Court.Name == n).Any();
 
         }
-        public int delete(int id)
+        public bool delete(int id)
         {
-            int ret;
-            var item = db.Courts.Where(Court => Court.Id == id).Single();
-            ret = item.Sports_Id;
-            db.Courts.DeleteOnSubmit(item);
-            db.SubmitChanges();
+            bool ret = true;
+            if (!CheckForRegistration(id))
+            {
+                var item = db.Courts.Where(Court => Court.Id == id).Single();
+                db.Courts.DeleteOnSubmit(item);
+                db.SubmitChanges();
+            }
+            else {
+                ret = false;
+            }
+            
             return ret;
         }
+
+        private bool CheckForRegistration(int id)
+        {
+            return  db.Reservations.Where(Reservation => Reservation.Courts_Id == id).Any();
+        }
+
         public Court get(int id)
         {
             return db.Courts.Where(Court => Court.Id == id).Single();
+        }
+
+        public int getSportId(int id) {
+            return db.Courts.Where(Court => Court.Id == id).Single().Sports_Id;
         }
     }
 }

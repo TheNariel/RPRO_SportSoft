@@ -5,6 +5,7 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
       <Column Name="Sports_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Court_Reservation" Member="Reservations" ThisKey="Id" OtherKey="Courts_Id" Type="Reservation" />
       <Association Name="Sport_Court" Member="Sport" ThisKey="Sports_Id" OtherKey="Id" Type="Sport" IsForeignKey="true" />
     </Type>
   </Table>
@@ -13,6 +14,15 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
       <Association Name="Sport_Court" Member="Courts" ThisKey="Id" OtherKey="Sports_Id" Type="Court" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reservation" Member="Reservations">
+    <Type Name="Reservation">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Courts_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DateReservation" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TimeReservation" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Association Name="Court_Reservation" Member="Court" ThisKey="Courts_Id" OtherKey="Id" Type="Court" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
