@@ -56,6 +56,22 @@ namespace RPRO_SportSoft.Application
         {
             return db.Courts.Where(Court => Court.Sports_Id == id).ToList();
         }
+        public Boolean Edit(int id,String SportName)
+        {
+            Boolean ret;
+            if (!checkIfTaken(SportName))
+            {
+                var obj = db.Sports.Single(x => x.Id == id);
+                obj.Name = SportName;
+                db.SubmitChanges();
+                ret = true;
+            }
+            else
+            {
+                ret = false;
+            }
+            return ret;
+        }
 
     }
 

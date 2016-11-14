@@ -67,7 +67,39 @@ namespace RPRO_SportSoft.Controllers
             }
             catch
             {
-                return View();
+                ViewBag.MyMessageToUser = "Toto sportoviště nelze odstranit, protože obsahuje kurty.";
+                return View(app.get(id));
+
+
+            }
+        }
+        public ActionResult Edit(int id)
+        {
+            return View(app.get(id));
+        }
+        [HttpPost]
+        public ActionResult Edit(int id, String SportName)
+        {
+            try
+            {
+                if (app.Edit(id, SportName))
+                {
+
+                    return RedirectToAction("Index");
+                }
+                else {
+                    ViewBag.MyMessageToUser = "Název musí být unikátní.";
+                    return View(app.get(id));
+                }
+                
+                
+            }
+            catch
+            {
+                ViewBag.MyMessageToUser = "Toto sportoviště nelze editovat.";
+                return View(app.get(id));
+
+
             }
         }
     }

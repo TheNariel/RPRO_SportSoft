@@ -158,6 +158,7 @@
     <Content Include="Views\Courts\Delete.cshtml" />
     <Content Include="Views\Courts\Index.cshtml" />
     <Content Include="Views\Courts\Create.cshtml" />
+    <Content Include="Views\Sports\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -6,7 +6,7 @@
 }
 
 <h2>Smazání sportoviště</h2>
-
+@ViewBag.MyMessageToUser
 <h3>Opravdu chcete vymazat toto sportoviště?</h3>
 <div>
     <h4>Sportoviště</h4>
@@ -22,12 +22,15 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+    @Html.ActionLink("Zpět na výpis", "Index")
+    @if(ViewBag.MyMessageToUser == null) { 
+        using (Html.BeginForm()) {
+           @*@Html.AntiForgeryToken()*@
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Vymazat" class="btn btn-default" /> |
-            @Html.ActionLink("Zpět na výpis", "Index")
-        </div>
+           <div class="form-actions no-color">
+               <input type="submit" value="Vymazat" class="btn btn-default" /> |
+            
+          </div>
+        }
     }
 </div>
