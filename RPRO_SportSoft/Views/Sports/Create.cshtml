@@ -13,11 +13,11 @@
 @using (Html.BeginForm("Create", "Sports", FormMethod.Post))
 {
     <p>
-        Nazev Sportoviste: @Html.TextBox("SportName") <br />
-        <input type="submit" value="Create" />
+        Název sportoviště: @Html.TextBox("SportName") <br />
+        <input type="submit" value="Vytvořit" />
     </p>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Zpět na výpis", "Index")
 </div>

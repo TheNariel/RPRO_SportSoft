@@ -5,10 +5,10 @@
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
-    <h2>Sportoviště</h2>
-    @Html.ActionLink("Main", "Index", "Main")
+    <h2>Seznam sportovišť</h2>
+    @Html.ActionLink("Zpět na hlavní stránku", "Index", "Main")
     <p>
-        @Html.ActionLink("Create New", "Create", new { boo = true, sport = "" })
+        @Html.ActionLink("Vytvořit nové sportoviště", "Create", new { boo = true, sport = "" })
     </p>
     <table class="table">
         <tr>
@@ -28,7 +28,7 @@
                 <td>
                   @*  @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
                @Html.ActionLink("Kurty", "Details", new { id = item.Id }) |
-               @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+               @Html.ActionLink("Vymazat", "Delete", new { id = item.Id })
             </td>
         </tr>
    

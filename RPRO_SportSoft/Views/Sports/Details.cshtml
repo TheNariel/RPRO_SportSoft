@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detail sportoviště</h2>
 <h2>
     @Html.DisplayFor(modelItem => Model.sportText)
 </h2>
@@ -18,7 +18,7 @@
         </th>
         <th></th>
     </tr>
-    @Html.ActionLink("Create New", "Create", "Courts", new { sport = Model.sport }, null)
+    @Html.ActionLink("Vytvořit nový kurt", "Create", "Courts", new { sport = Model.sport }, null)
     @foreach (var item in Model.list)
     {
         <tr>
@@ -26,11 +26,11 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.ActionLink("Delete", "Delete", "Courts", new { id = item.Id }, null)
+                @Html.ActionLink("Vymazat", "Delete", "Courts", new { id = item.Id }, null)
 
             </td>
         </tr>
     }
 
 </table>
-@Html.ActionLink("Back", "Index", "Sports")
+@Html.ActionLink("Zpět", "Index", "Sports")

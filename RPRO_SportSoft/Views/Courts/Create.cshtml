@@ -5,18 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Vytvoření kurtu</h2>
 <h4>Kurt</h4>
 <hr />
 @using (Html.BeginForm("Create", "Courts",FormMethod.Post))
 {
     <p>
         @Html.Hidden("Id",Model.sport) <br />
-        Nazev Kurtu: @Html.TextBox("CourtName") <br />
-        <input type="submit" value="Create" />
+        Název kurtu: @Html.TextBox("CourtName") <br />
+        <input type="submit" value="Vytvořit" />
     </p>
 } 
-@Html.ActionLink("Back", "Details", "Sports", new { id = Model.sport }, null)
+@Html.ActionLink("Zpět", "Details", "Sports", new { id = Model.sport }, null)
 
 
 
