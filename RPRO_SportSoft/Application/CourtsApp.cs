@@ -11,7 +11,7 @@ namespace RPRO_SportSoft.Application
         public Boolean Add(String n,int S_Id)
         {
             Boolean ret;
-            if (!checkIfTaken(n))
+            if (!CheckIfTaken(n))
             {
                 Court c = new Court();
                 c.Name = n;
@@ -27,12 +27,30 @@ namespace RPRO_SportSoft.Application
             return ret;
 
         }
-        public Boolean checkIfTaken(String n)
+        public Boolean Edit(int id,String n, int S_Id)
+        {
+            Boolean ret;
+            if (!CheckIfTaken(n))
+            {
+                var obj = db.Courts.Single(x => x.Id == id);
+                obj.Sports_Id = S_Id;
+                obj.Name = n;
+                db.SubmitChanges();
+                ret = true;
+            }
+            else
+            {
+                ret = false;
+            }
+            return ret;
+
+        }
+        public Boolean CheckIfTaken(String n)
         {
             return db.Courts.Where(Court => Court.Name == n).Any();
 
         }
-        public bool delete(int id)
+        public bool Delete(int id)
         {
             bool ret = true;
             if (!CheckForRegistration(id))
@@ -53,12 +71,12 @@ namespace RPRO_SportSoft.Application
             return  db.Reservations.Where(Reservation => Reservation.Courts_Id == id).Any();
         }
 
-        public Court get(int id)
+        public Court Get(int id)
         {
             return db.Courts.Where(Court => Court.Id == id).Single();
         }
 
-        public int getSportId(int id) {
+        public int GetSportId(int id) {
             return db.Courts.Where(Court => Court.Id == id).Single().Sports_Id;
         }
     }

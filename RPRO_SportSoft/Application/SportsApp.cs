@@ -12,7 +12,7 @@ namespace RPRO_SportSoft.Application
         public  Boolean Add(String n)
         {
             Boolean ret;
-            if (!checkIfTaken(n))
+            if (!CheckIfTaken(n))
             {
                 Sport s = new Sport();
                 s.Name = n;
@@ -24,42 +24,40 @@ namespace RPRO_SportSoft.Application
                 ret = false;
             }
 
-
-
             return ret; 
 
         }
-        public Boolean checkIfTaken(String n)
+        public Boolean CheckIfTaken(String n)
         {
            return db.Sports.Where(Sport => Sport.Name == n).Any();
 
         }
-        public void delete(int id)
+        public void Delete(int id)
         {
             var item = db.Sports.Where(Sport => Sport.Id == id).Single();
             db.Sports.DeleteOnSubmit(item);
             db.SubmitChanges();
         }
-        public Sport get(int id)
+        public Sport Get(int id)
         {
             return db.Sports.Where(Sport => Sport.Id == id).Single();
         }
-        public String getName(int id)
+        public String GetName(int id)
         {
             return db.Sports.Where(Sport => Sport.Id == id).Single().Name;
         }
-        public IEnumerable<Sport> getList()
+        public IEnumerable<Sport> GetList()
         {
             return db.Sports.ToList();
         }
-        public IEnumerable<Court> getCourts(int id)
+        public IEnumerable<Court> GetCourts(int id)
         {
             return db.Courts.Where(Court => Court.Sports_Id == id).ToList();
         }
         public Boolean Edit(int id,String SportName)
         {
             Boolean ret;
-            if (!checkIfTaken(SportName))
+            if (!CheckIfTaken(SportName))
             {
                 var obj = db.Sports.Single(x => x.Id == id);
                 obj.Name = SportName;

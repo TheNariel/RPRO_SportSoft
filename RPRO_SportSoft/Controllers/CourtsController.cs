@@ -21,7 +21,8 @@ namespace RPRO_SportSoft.Controllers
         // GET: Courts/Create
         public ActionResult Create(int sport)
         {
-            CourtB c = new CourtB("", sport,true);
+            Court c = new Court();
+            c.Sports_Id = sport;
             return View(c);
         }
 
@@ -37,15 +38,22 @@ namespace RPRO_SportSoft.Controllers
                 }
                 else
                 {
-                    CourtB c = new CourtB(CourtName, Id, false);
+                    ViewBag.MyMessageToUser = "Kurt s tímto názvem již existuje.";
+                    Court c = new Court();
+                    c.Name = CourtName;
+                    c.Sports_Id = Id;
                     return View(c);
                 }
                
             }
             catch(System.Data.SqlClient.SqlException e )
             {
+                ViewBag.MyMessageToUser = "Nelze přidat kurt";
                 e.ToString();
-                return View(Id);
+                Court c = new Court();
+                c.Name = CourtName;
+                c.Sports_Id = Id;
+                return View(c);
             }
         }
 
@@ -54,24 +62,24 @@ namespace RPRO_SportSoft.Controllers
         // GET: Courts/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(app.get(id));
+            return View(app.Get(id));
         }
 
         // POST: Courts/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            int sport=app.getSportId(id);
+            int sport=app.GetSportId(id);
             try
             {
-                if (app.delete(id))
+                if (app.Delete(id))
                 {
                  return RedirectToAction("Details", "Sports", new { id = sport });
                 }
                 else
                 {
                     ViewBag.MyMessageToUser = "Nelze smazat kurt, který byl použit.";
-                    return View(app.get(id));
+                    return View(app.Get(id));
                 }
 
                
@@ -79,7 +87,38 @@ namespace RPRO_SportSoft.Controllers
             catch
             {
                 ViewBag.MyMessageToUser = "Nelze smazat kurt";
-                return View(app.get(id));
+                return View(app.Get(id));
+            }
+        }
+
+        public ActionResult Edit(int id)
+        {
+            return View(app.Get(id));
+        }
+
+        // POST: Courts/Delete/5
+        [HttpPost]
+        public ActionResult Edit(int Id, String CourtName,int Sports_Id)
+        {
+            int sport = app.GetSportId(Id);
+            try
+            {
+                if (app.Edit(Id, CourtName, Sports_Id))
+                {
+                    return RedirectToAction("Details", "Sports", new { id = Sports_Id });
+                }
+                else
+                {
+                    ViewBag.MessageEditCourt = "Kurt s tímto názvem již existuje.";
+                    return View(app.Get(Id));
+                }
+
+
+            }
+            catch
+            {
+                ViewBag.MessageEditCourt = "Nelze smazat změnit";
+                return View(app.Get(Id));
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿@model SportB
+﻿@model Sport
 
 @{
     ViewBag.Title = "Create";
@@ -6,14 +6,11 @@
 }
 
 <h2>Vytroření sportoviště</h2>
-@if (!Model.boo)
-{
-    <text>Tento sport již existuje</text>
-}
+@ViewBag.MessageCreate
 @using (Html.BeginForm("Create", "Sports", FormMethod.Post))
 {
     <p>
-        Název sportoviště: @Html.TextBox("SportName") <br />
+        Název sportoviště: @Html.TextBox("SportName",Model.Name) <br />
         <input type="submit" value="Vytvořit" />
     </p>
 }
