@@ -13,5 +13,5 @@ Zákazník se bude moci do systému přihlásit a rezervovat si kurty, či rezer
 Majitel bude moci spravovat kurty, rezervovat je či rezervace rušit.
 
 <b>Účastníci:</b>
-	- majitel sportoviště
-	- SportSoft
+- majitel sportoviště
+- SportSoft
