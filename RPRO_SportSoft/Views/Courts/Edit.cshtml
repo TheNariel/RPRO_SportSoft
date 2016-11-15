@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Upravit</h2>
 @ViewBag.MessageEditCourt
 @using (Html.BeginForm("Edit", "Courts", FormMethod.Post))
 {
@@ -13,10 +13,10 @@
         @Html.Hidden("Id", Model.Id) <br />
         @Html.Hidden("Sports_Id", Model.Sports_Id) <br />
         Název kurtu: @Html.TextBox("CourtName", Model.Name) <br />
-        <input type="submit" value="Vytvořit" />
+        <input type="submit" value="Uložit změny" />
     </p>
 } 
 
 <div>
-    @Html.ActionLink("Zpet", "Details","Sports", new { id = Model.Sports_Id },null)
+    @Html.ActionLink("Zpět na výpis", "Details","Sports", new { id = Model.Sports_Id },null)
 </div>
