@@ -52,7 +52,7 @@ Uživatel je přihlášen a je na úvodní stránce.
 <b>Basic Flow</b>
 - 1. Uživatel vybere možnost správy účtu.
 - 2. Aplikace zobrazí stránku pro správu účtu.
-- 3. Uživatele vybere možnost změny hesla.
+- 3. Uživatel vybere možnost změny hesla.
 - 4. Aplikace zobrazí formulář pro změnu hesla.
 - 5. Uživatel vyplní staré heslo, nové heslo a potvrzení nového hesla.
 - 6. Uživatel potvrdí formulář pro změnu hesla.
