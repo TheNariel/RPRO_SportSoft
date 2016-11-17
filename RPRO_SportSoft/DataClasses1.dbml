@@ -25,4 +25,10 @@
       <Association Name="Court_Reservation" Member="Court" ThisKey="Courts_Id" OtherKey="Id" Type="Court" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.User" Member="Users">
+    <Type Name="User">
+      <Column Name="Email" Type="System.String" DbType="VarChar(1) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

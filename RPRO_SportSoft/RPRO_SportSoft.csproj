@@ -128,12 +128,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\AdditionClasses.cs" />
+    <Compile Include="Application\UsersApp.cs" />
     <Compile Include="Application\CourtsApp.cs" />
     <Compile Include="Application\SportsApp.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CourtsController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\SportsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DataClasses1.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -160,6 +162,8 @@
     <Content Include="Views\Courts\Create.cshtml" />
     <Content Include="Views\Sports\Edit.cshtml" />
     <Content Include="Views\Courts\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -177,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\UsersApp\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

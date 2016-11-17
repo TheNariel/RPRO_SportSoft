@@ -1,0 +1,21 @@
+﻿@model User
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Registrace </h2>
+@ViewBag.MessageCreate
+@using (Html.BeginForm("Create", "Users", FormMethod.Post))
+{
+    <p>
+        Email: @Html.TextBox("UserEmail", Model.Email) <br />
+        Heslo: @Html.Password("UserPass", Model.Password)<br />
+        <input type="submit" value="Registrovat" />
+    </p>
+}
+
+<div>
+    @Html.ActionLink("Zpět na přihlášení", "Index")
+</div>

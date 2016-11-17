@@ -14,7 +14,7 @@
         <elementListCompartment Id="8170386e-68ef-445c-81a4-36760a479a23" absoluteBounds="4.515, 1.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.0625 : 2.31899251302083); (5.0625 : 3.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.0625 : 2.31899251302083); (5.0625 : 3.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClasses1DataContext/Sport/Sport_Court" />
       <nodes>
         <classShapeMoniker Id="00c4115e-2e2a-452c-9354-e8e49fe277c0" />
@@ -34,5 +34,11 @@
         <classShapeMoniker Id="c6d1b888-480f-40df-8ee6-642df67cda82" />
       </nodes>
     </associationConnector>
+    <classShape Id="678ba39d-f26c-4722-abe5-05a091ab824a" absoluteBounds="2.125, 5, 2, 1.1939925130208327">
+      <DataClassMoniker Name="/DataClasses1DataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a19e325e-e9fe-469d-ac87-44aa2685f5f9" absoluteBounds="2.14, 5.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
