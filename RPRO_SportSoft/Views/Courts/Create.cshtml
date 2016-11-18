@@ -15,7 +15,7 @@
     
     <p>
         @Html.Hidden("Id",Model.Sports_Id) <br />
-        Název kurtu: @Html.TextBox(("CourtName"), Model.Name, new { @class = "form-control", placeholder = "", required = "required" }) <br />
+        Název kurtu: @Html.TextBox(("CourtName"), Model.Name, new { @class = "form-control", onkeyup = "this.value = this.value.replace(/[^a-z,A-Z,_,á-ž,0-9]/, '')", placeholder = "", required = "required" }) <br />
         <input type="submit" value="Vytvořit"/>
 
     </p>
