@@ -70,7 +70,9 @@ namespace RPRO_SportSoft.Controllers
             else
             {
                 ViewBag.MessageLogin = "Špatně zadaný email nebo heslo! Zkuste to znovu.";
-                return View();
+                User u = new User();
+                u.Email = "";
+                return View(u);
             }
         }
         // GET: Users/Edit/5

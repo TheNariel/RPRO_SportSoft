@@ -35,10 +35,15 @@ namespace RPRO_SportSoft.Application
         }
         public Boolean Login(String email, String password)
         {
-            if (db.Users.Where(User => User.Email == email && User.Password == password).Any())
+            if (CheckIfTaken(email))
             {
-                return true;
+                if (db.Users.Where(User => User.Email == email && User.Password == password).Any())
+                {
+                    return true;
+                }
+                else return false;
             }
+           
             else return false;
 
 
