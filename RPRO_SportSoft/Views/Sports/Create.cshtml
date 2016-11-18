@@ -10,7 +10,7 @@
 @using (Html.BeginForm("Create", "Sports", FormMethod.Post))
 {
     <p>
-        Název sportoviště: @Html.TextBox("SportName",Model.Name) <br />
+        Název sportoviště: @Html.TextBox("SportName",Model.Name, new { @class = "form-control", placeholder = "", required = "required" }) <br />
         <input type="submit" value="Vytvořit" />
     </p>
 }

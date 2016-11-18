@@ -12,10 +12,12 @@
 <hr />
 @using (Html.BeginForm("Create", "Courts",FormMethod.Post))
 {
+    
     <p>
         @Html.Hidden("Id",Model.Sports_Id) <br />
-        Název kurtu: @Html.TextBox("CourtName", Model.Name) <br />
-        <input type="submit" value="Vytvořit" />
+        Název kurtu: @Html.TextBox(("CourtName"), Model.Name, new { @class = "form-control", placeholder = "", required = "required" }) <br />
+        <input type="submit" value="Vytvořit"/>
+
     </p>
 } 
 @Html.ActionLink("Zpět", "Details", "Sports", new { id = Model.Sports_Id }, null)
