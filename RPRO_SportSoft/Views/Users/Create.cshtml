@@ -10,8 +10,8 @@
 @using (Html.BeginForm("Create", "Users", FormMethod.Post))
 {
     <p>
-        Email: @Html.TextBox("UserEmail", Model.Email) <br />
-        Heslo: @Html.Password("UserPass", Model.Password)<br />
+        Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email", type = "email", placeholder = "jmeno@domena.com", required = "required" }) <br />
+        Heslo: @Html.Password("UserPass", Model.Password, new { @class = "password", required = "required"})<br />
         <input type="submit" value="Registrovat" />
     </p>
 }
