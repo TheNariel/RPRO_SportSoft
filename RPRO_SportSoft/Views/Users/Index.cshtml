@@ -3,8 +3,9 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@ViewBag.MessageLogin
+
 <h2>Přihlášení</h2>
+@ViewBag.MessageLogin
 @using (Html.BeginForm("Index", "Users", FormMethod.Post))
 {
     <p>
