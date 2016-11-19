@@ -6,31 +6,36 @@
 }
 
 <h2>Smazání sportoviště</h2>
-@ViewBag.MyMessageToUser
-<h3>Opravdu chcete vymazat sportoviště @Html.DisplayFor(model => model.Name)?</h3>
+@ViewBag.MyMessageToUser 
+
 <div>
-    @*<h4>Sportoviště</h4>*@
-    @*<hr />*@
+    @*<h4>Sportoviště</h4>
+    <hr />
     <dl class="dl-horizontal">
         <dt>
-            @*@Html.DisplayNameFor(model => model.Name)*@
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
-            @*@Html.DisplayFor(model => model.Name)*@
+            @Html.DisplayFor(model => model.Name)
         </dd>
 
-    </dl>
-
+    </dl>*@
     
-    @if(ViewBag.MyMessageToUser == null) { 
-        using (Html.BeginForm()) {
-           @*@Html.AntiForgeryToken()*@
+    @if (ViewBag.MyMessageToUser == null)
+    {
+        <h3>Opravdu chcete vymazat sportoviště @Html.DisplayFor(model => model.Name)?</h3>
+        using (Html.BeginForm())
+        {
+           @Html.AntiForgeryToken()
 
-           <div class="form-actions no-color">
-               <input type="submit" value="Vymazat" class="btn btn-default" /> |
-               @Html.ActionLink("Zpět na výpis", "Index")
-          </div>
+           
+               <input type="submit" value="Vymazat" class="btn btn-default" /> 
+              
+          
         }
+        
     }
 </div>
+</br>
+@Html.ActionLink("Zpět na výpis", "Index")
