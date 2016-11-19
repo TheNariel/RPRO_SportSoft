@@ -7,7 +7,7 @@
 
 <h2>Smazání kurtu</h2>
 
-<h3>Opravdu chcete vymazat kurt @Html.DisplayFor(model => model.Name)?</h3>
+@*<h3>Opravdu chcete vymazat kurt @Html.DisplayFor(model => model.Name)?</h3>*@
 <div>
     @*<h4>Kurt</h4>*@
     @ViewBag.MyMessageToUser
@@ -23,12 +23,19 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+@if (ViewBag.MyMessageToUser == null)
+{
+    <h3>Opravdu chcete vymazat kurt @Html.DisplayFor(model => model.Name)?</h3>
+
+     using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Vymazat" class="btn btn-default" /> |
-            @Html.ActionLink("Zpět na výpis", "Index","Sports")
+            <input type="submit" value="Vymazat" class="btn btn-default" />
+           
         </div>
     }
+    }
 </div>
+</br>
+@Html.ActionLink("Zpět na výpis", "Index", "Sports")
