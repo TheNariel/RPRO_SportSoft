@@ -5,32 +5,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detail sportoviště</h2>
-<h2>
-    @Html.DisplayFor(modelItem => Model.sportText)
-</h2>
+<h2>Kurty sportoviště:  @Html.DisplayFor(modelItem => Model.sportText)</h2>
+
 <p>
 </p>
 <table class="table">
-    <tr>
-        <th>
-            Název
-        </th>
-        <th></th>
-    </tr>
-    @Html.ActionLink("Vytvořit nový kurt", "Create", "Courts", new { sport = Model.sport }, null)
+
+    
     @foreach (var item in Model.list)
     {
+        <tr>
+        </tr>
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.ActionLink("Vymazat", "Delete", "Courts", new { id = item.Id }, null)
                 @Html.ActionLink("Upravit", "Edit", "Courts", new { id = item.Id }, null)
+                @Html.ActionLink("Vymazat", "Delete", "Courts", new { id = item.Id }, null)
             </td>
         </tr>
     }
 
 </table>
-@Html.ActionLink("Zpět", "Index", "Sports")
+</br>
+<p>
+    @Html.ActionLink("Vytvořit nový kurt", "Create", "Courts", new { sport = Model.sport }, null)
+</p>
+    @Html.ActionLink("Zpět", "Index", "Sports")

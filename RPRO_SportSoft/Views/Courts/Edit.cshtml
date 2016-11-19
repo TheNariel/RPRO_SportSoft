@@ -5,13 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Upravit</h2>
+<h2>Upravit kurt</h2>
 @ViewBag.MessageEditCourt
 @using (Html.BeginForm("Edit", "Courts", FormMethod.Post))
 {
     <p>
-        @Html.Hidden("Id", Model.Id) <br />
-        @Html.Hidden("Sports_Id", Model.Sports_Id) <br />
+        @Html.Hidden("Id", Model.Id) 
+        @Html.Hidden("Sports_Id", Model.Sports_Id) 
         Název kurtu: @Html.TextBox("CourtName", Model.Name,  new { @class = "form-control", type = "text", onkeyup = "this.value = this.value.replace(/[^a-z,A-Z,_,á-ž,0-9]/, '')", placeholder = "", required = "required"}) <br />
         <input type="submit" value="Uložit změny" />
     </p>

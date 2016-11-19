@@ -5,22 +5,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Upravit</h2>
-
+<h2>Upravit sportoviště</h2>
+@ViewBag.MyMessageToUser
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Sport</h4>
-        @ViewBag.MyMessageToUser
-        <hr />
+        @*<h4>Sport</h4>*@
+        
+        @*<hr />*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
             <div class="col-md-10">
-                Název sportoviště: @Html.TextBox("SportName", Model.Name, new { @class = "form-control", type = "text", onkeyup = "this.value = this.value.replace(/[^a-z,A-Z,_,á-ž,0-9]/, '')", placeholder = "", required = "required" })
+                @*Název sportoviště:*@ @Html.TextBox("SportName", Model.Name, new { @class = "form-control", type = "text", onkeyup = "this.value = this.value.replace(/[^a-z,A-Z,_,á-ž,0-9]/, '')", placeholder = "", required = "required" })
                 
               
             </div>

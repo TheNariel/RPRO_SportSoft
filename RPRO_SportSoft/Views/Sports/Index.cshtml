@@ -6,14 +6,12 @@
     }
 
     <h2>Seznam sportovišť</h2>
-    @Html.ActionLink("Zpět na hlavní stránku", "Index", "Main")
-    <p>
-        @Html.ActionLink("Vytvořit nové sportoviště", "Create", new { boo = true, sport = "" })
-    </p>
+    
+
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @*@Html.DisplayNameFor(model => model.Name)*@
             </th>
             <th></th>
         </tr>
@@ -36,4 +34,9 @@
 }
 
     </table>
+</br>
+<p>
+    @Html.ActionLink("Vytvořit nové sportoviště", "Create", new { boo = true, sport = "" })
+</p>
+@Html.ActionLink("Zpět na hlavní stránku", "Index", "Main")
 @ViewBag.MessageLogin
