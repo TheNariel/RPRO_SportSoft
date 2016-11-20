@@ -11,7 +11,7 @@ namespace RPRO_SportSoft.Controllers
     {
         CourtsApp app = new CourtsApp();
 
-
+        //
         // GET: Courts/Details/5
         public ActionResult Details(int id)
         {

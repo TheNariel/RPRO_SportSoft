@@ -1,19 +1,22 @@
 ﻿@model User
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Přihlášení</h2>
-@ViewBag.MessageLogin
-@using (Html.BeginForm("Index", "Main", FormMethod.Post))
+<h2>Registrace </h2>
+@ViewBag.MessageCreate
+@using (Html.BeginForm("Create", "Main", FormMethod.Post))
 {
     <p>
         Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email", type = "email", placeholder = "jmeno@domena.com", required = "required" }) <br />
         Heslo: @Html.Password("UserPass", Model.Password, new { @class = "password", required = "required" })<br />
-        <input type="submit" value="Přihlásit" />
+
+        <input type="submit" value="Registrovat" />
     </p>
 }
 </br>
-
-@Html.ActionLink("Registrace", "Create", "Main")
+<div>
+    @Html.ActionLink("Zpět na přihlášení", "Index")
+</div>
