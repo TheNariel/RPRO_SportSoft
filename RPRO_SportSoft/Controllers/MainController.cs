@@ -1,4 +1,4 @@
-﻿
+﻿using RPRO_SportSoft.Application;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,22 +9,65 @@ namespace RPRO_SportSoft.Controllers
 {
     public class MainController : Controller
     {
-        DataClasses1DataContext db = new DataClasses1DataContext();
-        // 
-        // GET: /HelloWorld/ 
+        UsersApp app = new UsersApp();
+        
 
         public ActionResult Index()
         {
-            
-            return View();
+            User u = new User();
+            u.Email = "";
+            return View(u);
         }
-
-        // 
-        // GET: /HelloWorld/Welcome/ 
-
-        public string Welcome()
+        // GET: Main/Create
+        public ActionResult Create()
         {
-            return "This is the Welcome action method...";
+            User u = new User();
+            u.Email = "";
+            return View(u);
+        }
+        // POST: Main/Create
+        [HttpPost]
+        public ActionResult Create(String UserEmail, String UserPass)
+        {
+            try
+            {
+                if (app.Add(UserEmail, UserPass))
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.MessageCreate = "Uživatel s tímto emailem již existuje";
+                    User u = new User();
+                    u.Email = "";
+                    return View(u);
+                }
+
+
+            }
+            catch
+            {
+                ViewBag.MessageCreate = "Uživatele se nepovedlo vytvořit";
+                User u = new User();
+                u.Email = "";
+                return View(u);
+            }
+        }
+        // POST: Main/Index
+        [HttpPost]
+        public ActionResult Index(String UserEmail, String UserPass)
+        {
+            if (app.Login(UserEmail, UserPass))
+            {
+                return RedirectToAction("Index", "Sports");
+            }
+            else
+            {
+                ViewBag.MessageLogin = "Špatně zadaný email nebo heslo! Zkuste to znovu.";
+                User u = new User();
+                u.Email = "";
+                return View(u);
+            }
         }
     }
 }
