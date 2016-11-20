@@ -11,7 +11,7 @@ namespace RPRO_SportSoft.Application
         public Boolean Add(String n,int S_Id)
         {
             Boolean ret;
-            if (!CheckIfTaken(n))
+            if (!CheckIfTaken(n, S_Id))
             {
                 Court c = new Court();
                 c.Name = n;
@@ -30,7 +30,7 @@ namespace RPRO_SportSoft.Application
         public Boolean Edit(int id,String n, int S_Id)
         {
             Boolean ret;
-            if (!CheckIfTaken(n))
+            if (!CheckIfTaken(n, S_Id))
             {
                 var obj = db.Courts.Single(x => x.Id == id);
                 obj.Sports_Id = S_Id;
@@ -45,9 +45,9 @@ namespace RPRO_SportSoft.Application
             return ret;
 
         }
-        public Boolean CheckIfTaken(String n)
+        public Boolean CheckIfTaken(String n, int S_Id)
         {
-            return db.Courts.Where(Court => Court.Name == n).Any();
+            return db.Courts.Where(Court => Court.Name == n && Court.Sports_Id == S_Id).Any();
 
         }
         public bool Delete(int id)
