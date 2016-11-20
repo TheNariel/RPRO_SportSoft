@@ -51,8 +51,29 @@
 <body>
     <div class="main">
         @RenderBody()
+        <br />
+        @{
+            String log = "";
+            String login = Session["Logged"].ToString();
+            if (!login.Equals(""))
+            {
+                log = "Přihlášen: " + Session["Logged"].ToString();
+                @log.ToString()
+                <br />
+                @Html.ActionLink("Odhlásit", "Index", "Main")
+                
+            }
+            else
+            {
+                log = "Nepřihlášen";
+                @log.ToString()
 
+            }
+        }
+        
+                
     </div>
+   
     <p>&copy; @DateTime.Now.Year - RPRO_SportSoft ASP.NET Application</p>
     <p> Microsoft .NET Framework Version:4.0.30319; ASP.NET Version:4.6.1073.0</p>
 </body>

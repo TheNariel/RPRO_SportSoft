@@ -14,6 +14,7 @@ namespace RPRO_SportSoft.Controllers
 
         public ActionResult Index()
         {
+            Session["Logged"] = "";
             User u = new User();
             u.Email = "";
             return View(u);
@@ -59,6 +60,7 @@ namespace RPRO_SportSoft.Controllers
         {
             if (app.Login(UserEmail, UserPass))
             {
+                Session["Logged"] = UserEmail.ToString();
                 return RedirectToAction("Index", "Sports");
             }
             else
