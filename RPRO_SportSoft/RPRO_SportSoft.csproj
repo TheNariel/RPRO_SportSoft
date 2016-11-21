@@ -162,6 +162,7 @@
     <Content Include="Views\Sports\Edit.cshtml" />
     <Content Include="Views\Courts\Edit.cshtml" />
     <Content Include="Views\Main\Create.cshtml" />
+    <Content Include="Views\Shared\_LayoutForHost.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
