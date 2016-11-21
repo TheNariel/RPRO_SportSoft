@@ -14,12 +14,12 @@ public class CourtListP
 {
    
     public IEnumerable<RPRO_SportSoft.Court> list;
-    public String sportText;
-    public int sport;
+    public String sportName;
+    public int sportId;
     public CourtListP(int s, String sT, IEnumerable<RPRO_SportSoft.Court> l)
     {
-        this.sportText = sT;
+        this.sportName = sT;
         this.list = l;
-        this.sport = s;
+        this.sportId = s;
     }
 }
