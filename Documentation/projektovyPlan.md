@@ -10,7 +10,7 @@
 |25.10. - 1.11.2016|E2|Implementace funkce vytvoření kurtu, rozepsání prioritních scénářů|Splněno
 |1.11. - 8.11.2016|E3|Rozšíření o aplikační vrstvu, kontrola "Přidání kurtu" vzhledem ke sportovišti|Splněno
 |8.11. - 15.11.2016|E4|Vytvoření tabulky stavů scénářů, implementace editace a smazání kurtu a sportovišť|Splněno
-|15.11. - 22.11.2016|E5||
+|15.11. - 22.11.2016|E5|Implementace přihlášení, odhlášení a registrace. Ošetření vkládání prázdných řetězců do formulářů|
 ||||
 ||||
 <b>6. 12.</b>||		<b>Milník LCA</b>|	
