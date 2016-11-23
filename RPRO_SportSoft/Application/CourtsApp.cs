@@ -27,10 +27,10 @@ namespace RPRO_SportSoft.Application
             return ret;
 
         }
-        public Boolean Edit(int id,String n, int S_Id)
+        public Boolean Edit(int id, String n, int S_Id)
         {
             Boolean ret;
-            if (!CheckIfTaken(n, S_Id))
+            if (!CheckIfTakenEdit(n, S_Id, id))
             {
                 var obj = db.Courts.Single(x => x.Id == id);
                 obj.Sports_Id = S_Id;
@@ -50,6 +50,11 @@ namespace RPRO_SportSoft.Application
             return db.Courts.Where(Court => Court.Name == n && Court.Sports_Id == S_Id).Any();
 
         }
+
+        public Boolean CheckIfTakenEdit(String n, int S_Id, int id) {
+            return db.Courts.Where(Court => Court.Name == n && Court.Sports_Id == S_Id && Court.Id != id).Any();
+        }
+
         public bool Delete(int id)
         {
             bool ret = true;
