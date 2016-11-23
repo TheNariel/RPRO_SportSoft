@@ -1,0 +1,34 @@
+﻿@model RPRO_SportSoft.PriceList
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Vytvoření ceníku</h2>
+
+
+@ViewBag.MessageCreate
+@using (Html.BeginForm("Create", "PriceLists", FormMethod.Post))
+{
+    <p>
+        Datum začátku platnosti:
+        @Html.TextBox("Date", Model.Date.Date)<br />
+        Cena: @Html.TextBox("Price", Model.Price) <br />
+        <input type="submit" value="Vytvořit" />
+        <script>
+
+        (function SetDate() {
+
+        ("#datepicker").datepicker({
+            altField: "#alternate",
+            altFormat: "DD, d MM, yy"
+        });
+    });
+        </script>
+    </p>
+}
+
+<div>
+    @Html.ActionLink("Zpět na výpis", "Index")
+</div>

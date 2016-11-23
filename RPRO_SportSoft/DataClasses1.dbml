@@ -31,4 +31,11 @@
       <Column Name="Password" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.PriceLists" Member="PriceLists">
+    <Type Name="PriceList">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="false" />
+      <Column Name="Price" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>
