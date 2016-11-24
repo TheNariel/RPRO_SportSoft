@@ -69,7 +69,50 @@
 
             }
         }
-        
+
+     @* script na zamezení vkládání mezery na začátku *@
+        <script type="text/javascript">
+        <!--
+        function validateTextBox(eventRef, elementRef)
+        {
+        var functionReturn = true;
+        eventRef = (eventRef) ? eventRef : (window.event) ? window.event : (event) ? event : null;
+
+        if ( eventRef == null )
+         {
+          return false;
+         }
+
+       var keyCodeEntered = (eventRef.which) ? eventRef.which : (eventRef.keyCode) ? eventRef.keyCode : -1;
+
+       //alert(keyCodeEntered);
+       //alert(elementRef.value.length);
+
+       // If this is a space character (32) and this is the first character entered...
+      if ((keyCodeEntered == 32 || keyCodeEntered == 173) && (elementRef.value.length <= 0))
+      functionReturn = false;
+
+      if ( functionReturn == false )
+       {
+         if ( window.event )
+        {
+          // Internet Explorer...
+
+            window.event.cancelBubble = true;
+            window.event.returnValue = false;
+        }
+        else
+          {
+           // Firefox...
+
+           eventRef.preventDefault();
+           eventRef.stopPropagation();
+          }
+        }
+
+        return functionReturn;
+       }// -->
+        </script>
                 
     </div>
    
