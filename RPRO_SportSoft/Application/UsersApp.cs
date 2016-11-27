@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 namespace RPRO_SportSoft.Application
 {
@@ -15,7 +16,9 @@ namespace RPRO_SportSoft.Application
             {
                 User u = new User();
                 u.Email = e;
-                u.Password = p;
+                String salt = CreateSalt(); 
+                u.Password = CreatePasswordHash(p, salt);
+                u.Salt = salt;
                 db.Users.InsertOnSubmit(u);
                 db.SubmitChanges();
                 ret = true;
@@ -33,11 +36,13 @@ namespace RPRO_SportSoft.Application
             return db.Users.Where(User => User.Email == e).Any();
 
         }
+
         public Boolean Login(String email, String password)
         {
             if (CheckIfTaken(email))
             {
-                if (db.Users.Where(User => User.Email == email && User.Password == password).Any())
+                User u = db.Users.Where(User => User.Email == email).First();
+                if (u.Password.Equals(CreatePasswordHash(password, u.Salt)))
                 {
                     return true;
                 }
@@ -45,9 +50,21 @@ namespace RPRO_SportSoft.Application
             }
            
             else return false;
+        }
 
+        private static String CreateSalt()
+        {
+            var rng = new System.Security.Cryptography.RNGCryptoServiceProvider();
+            var buff = new byte[5];
+            rng.GetBytes(buff);
+            return Convert.ToBase64String(buff);
+        }
+        private static String CreatePasswordHash(String input, String salt)
+        {
+            string saltAndPwd = String.Concat(input, salt);
+            string hashedPwd = FormsAuthentication.HashPasswordForStoringInConfigFile(saltAndPwd, "sha1");
 
-            
+            return hashedPwd;
         }
     }
 }

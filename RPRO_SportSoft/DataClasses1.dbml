@@ -5,7 +5,7 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
       <Column Name="Sports_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Member="PriceLists_Id" Type="System.Int32" CanBeNull="false" />
+      <Column Name="PriceLists_Id" Type="System.Int32" CanBeNull="false" />
       <Association Name="Court_Reservation" Member="Reservations" ThisKey="Id" OtherKey="Courts_Id" Type="Reservation" />
       <Association Name="Sport_Court" Member="Sport" ThisKey="Sports_Id" OtherKey="Id" Type="Sport" IsForeignKey="true" />
       <Association Name="PriceList_Court" Member="PriceList" ThisKey="PriceLists_Id" OtherKey="Id" Type="PriceList" IsForeignKey="true" />
@@ -31,6 +31,7 @@
     <Type Name="User">
       <Column Name="Email" Type="System.String" DbType="VarChar(1) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Password" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Salt" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.PriceLists" Member="PriceLists">
