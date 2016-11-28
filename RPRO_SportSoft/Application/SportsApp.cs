@@ -27,7 +27,7 @@ namespace RPRO_SportSoft.Application
             return ret; 
 
         }
-        public Boolean CheckIfTaken(String n)
+        private Boolean CheckIfTaken(String n)
         {
            return db.Sports.Where(Sport => Sport.Name == n).Any();
 

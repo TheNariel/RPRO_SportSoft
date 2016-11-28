@@ -47,7 +47,7 @@ namespace RPRO_SportSoft.Application
             return ret;
 
         }
-        public Boolean CheckIfTaken(String n, int S_Id)
+        private Boolean CheckIfTaken(String n, int S_Id)
         {
             return db.Courts.Where(Court => Court.Name == n && Court.Sports_Id == S_Id).Any();
 
