@@ -42,6 +42,39 @@ Uživatel je přihlášen a má zobrazenu jakoukoli stránku aplikace.
 - 3. Aplikace zobrazí úvodní stránku.
 
 <hr />
+<h3>UC2 - Správa uživatelů: reaktivace zákazníka</h3>
+<b>Actor</b>: Majitel
+
+<b>Preconditions</b>
+Majitel je přihlášen a má zobrazenu úvodní webovou stránku. 
+
+<b>Basic Flow</b>
+- 1. Majitel vybere možnost správy užvatelů.
+- 2. Aplikace zobrazí seznam uživatelů.
+- 3. Majitel zvolí uživatele, kterého chce reaktivovat.
+- 4. Majitel potvrdí reaktivaci.
+- 5. Aplikace uživatele reaktivuje.
+- 6. Aplikace zobrazí seznam uživatelů.
+
+<b>Alternative Flow</b>
+- 4a. Zvolený uživatel je aktivní, aplikace zahlásí chybu.
+
+<h3>UC2 - Správa uživatelů: deaktivace zákazníka</h3>
+<b>Actor</b>: Majitel
+
+<b>Preconditions</b>
+Majitel je přihlášen a má zobrazenu úvodní webovou stránku. 
+
+<b>Basic Flow</b>
+- 1. Majitel vybere možnost správy užvatelů.
+- 2. Aplikace zobrazí seznam uživatelů.
+- 3. Majitel zvolí uživatele, kterého chce deaktivovat.
+- 4. Majitel potvrdí deaktivaci.
+- 5. Aplikace uživatele deaktivuje.
+- 6. Aplikace zobrazí seznam uživatelů.
+
+<b>Alternative Flow</b>
+- 4a. Zvolený uživatel není aktivní, aplikace zahlásí chybu.
 
 <h3>UC2 - Správa uživatelů: Změna hesla uživatele</h3>
 <b>Actor</b>: Majitel, zákazník
@@ -140,6 +173,16 @@ Majitel je přihlášen. Aplikace zobrazí již existující sportoviště.
 
 <hr />
 
+<h3>UC5 - Správa ceníků: zobrazení ceníku majiteli</h3>
+<b>Actor</b>: Majitel
+
+<b>Preconditions</b>
+Majitel je přihlášen a má zobrazenu úvodní webovou stránku. 
+
+<b>Basic Flow</b>
+- 1. Majitel vybere možnost správy ceníků.
+- 2. Aplikace zobrazí seznam ceníků.
+
 <h3>UC5 - Správa ceníku: Vytvoření ceníku majitelem</h3>
 <b>Actor</b>: Majitel
 
@@ -192,6 +235,7 @@ Majitel je přihlášen a má zobrazenu úvodní stránku.
 - 9. Aplikace informace uloží.
 - 10. Aplikace zobrazí přehled ceníků.
 
+
 <hr />
 
 <h3>UC6 - Rezervace: Rezervace kurtu uživatelem</h3>
@@ -209,3 +253,48 @@ Uživatel je přihlášen a má zobrazenou úvodní stránku.
 - 6. Aplikace uloží rezervaci.
 - 7. Aplikace odešle potvrzení rezervace na e-mail uživatele.
 - 8. Aplikace zobrazí přehled rezervací uživatele.
+
+<h3>UC6 - Rezervace: zobrazení historie rezervací uživatelem</h3>
+<b>Actor</b>: Uživatel
+
+<b>Preconditions</b>
+Uživatel je přihlášen a má zobrazenu úvodní webovou stránku. 
+
+<b>Basic Flow</b>
+- 1. Uživatel vybere možnost zobrazení historie rezervací.
+- 2. Aplikace zobrazí seznam uživatelových rezervací.
+
+<h3>UC6 - Rezervace: Opakovaná rezervace uživatelem</h3>
+<b>Actor</b>: Uživatel
+
+<b>Preconditions</b>
+Uživatel je přihlášen a má zobrazenu úvodní webovou stránku. 
+
+<b>Basic Flow</b>
+- 1. Uživatel vybere dané sportoviště.
+- 2. Aplikace zobrazí kurty pro dané sportoviště.
+- 3. Uživatel zvolí čas, který chce rezervovat.
+- 4. Uživatel zvolí počet týdnů opakované rezervace.
+- 5. Uživatel vybere kurt.
+- 6. Uživatel potvrdí rezervaci.
+- 7. Aplikace uloží rezervaci.
+- 8. Aplikace odešle potvrzení rezevací na e-mail uživatele.
+- 9. Aplikace zobrazí přehled rezervací uživatele.
+
+<h3>UC6 - Rezervace: zrušení rezervace uživatelem</h3>
+<b>Actor</b>: Uživatel
+
+<b>Preconditions</b>
+Uživatel je přihlášen a má zobrazenu úvodní webovou stránku. 
+
+<b>Basic Flow</b>
+- 1. Uživatel zvolí možnost zobrazení historie rezervací.
+- 2. Aplikace zobrazí uživatelové rezervace.
+- 3. Uživatel zvolí rezervaci, kterou chce zrušit.
+- 4. Uživatel potvrdí zrušení rezervace.
+- 5. Aplikace zruší rezervaci.
+- 6. Aplikace odešle potvrzení o zrušení rezevace na e-mail uživatele.
+- 7. Aplikace zobrazí přehled rezervací uživatele.
+
+<b>Alternative Flow</b>
+- 4a. Zvolená rezervace nejde zrušit, aplikace zobrazí chybovou hlášku.
