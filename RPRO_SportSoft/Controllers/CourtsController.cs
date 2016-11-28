@@ -138,9 +138,29 @@ namespace RPRO_SportSoft.Controllers
         }
 
         [HttpPost]
-        public ActionResult Reservation(int id, DateTime date) {
-            appR.Add(id, date);
-            return RedirectToAction("Sports/Detail");
+        public ActionResult Reservation(int id, DateTime date)
+        {
+            try
+            {
+                if (appR.Add(id, date))
+                {
+                    return RedirectToAction("IndexR");
+                }
+                else
+                {
+                    ViewBag.MyMessageToUser = "Tento kurt je již v daný čas rezervován.";
+                    Reservation r = new Reservation();
+                    return View(r);
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException e)
+            {
+                ViewBag.MyMessageToUser = "Nelze rezervovat kurt.";
+                e.ToString();
+                Reservation r = new Reservation();
+                return View(r);
+            }
         }
 
         // GET: PriceLists

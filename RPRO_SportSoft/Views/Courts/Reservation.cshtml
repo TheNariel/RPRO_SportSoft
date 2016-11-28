@@ -6,12 +6,12 @@
 }
 
 <h2>Rezervace kurtu</h2>
-
+@ViewBag.MyMessageToUser
 @using (Html.BeginForm("Reservation", "Courts", FormMethod.Post))
 {
     <p>
         Datum a čas rezervace:
-        @Html.TextBox("date", Model.DateTime.Date)
+        @Html.TextBox("date", Model.DateTime)
         
         <input type="submit" value="Rezervovat" />
 

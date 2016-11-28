@@ -26,15 +26,30 @@ namespace RPRO_SportSoft.Application
 
         public Boolean Add(int court_id, DateTime date)
         {
-            Reservation r = new Reservation();
+            Boolean check;
+            if (!CheckIfTakenReservation(court_id, date))
+            {
+                Reservation r = new Reservation();
 
-            r.Courts_Id = court_id;
-            r.DateTime = date.Date;
+                r.Courts_Id = court_id;
+                r.DateTime = date;
 
-            db.Reservations.InsertOnSubmit(r);
-            db.SubmitChanges();
+                db.Reservations.InsertOnSubmit(r);
+                db.SubmitChanges();
 
-            return true;
+                check = true;
+            }
+            else
+            {
+                check = false;
+            }
+
+            return check;
+        }
+
+        public Boolean CheckIfTakenReservation(int id_court, DateTime date)
+        {
+            return db.Reservations.Where(Reservation => Reservation.Courts_Id == id_court && Reservation.DateTime == date).Any();
         }
     }
 }

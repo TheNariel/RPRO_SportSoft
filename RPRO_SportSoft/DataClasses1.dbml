@@ -33,11 +33,11 @@
       <Association Name="PriceList_Court" Member="Courts" ThisKey="Id" OtherKey="PriceLists_Id" Type="Court" />
     </Type>
   </Table>
-  <Table Name="dbo.Reservation" Member="Reservations">
+  <Table Name="dbo.Reservations" Member="Reservations">
     <Type Name="Reservation">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Courts_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DateTime" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="DateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="Court_Reservation" Member="Court" ThisKey="Courts_Id" OtherKey="Id" Type="Court" IsForeignKey="true" />
     </Type>
   </Table>

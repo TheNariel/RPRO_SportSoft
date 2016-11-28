@@ -33,24 +33,24 @@
         <elementListCompartment Id="0c9de236-75f6-49bf-8108-89aaadea9944" absoluteBounds="6.515, 4.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.5 : 4.5); (7.5 : 3.8124995); (5.625 : 3.8124995)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.5 : 4.5); (7.5 : 3.8124995); (5.625 : 3.8124995)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClasses1DataContext/PriceList/PriceList_Court" />
       <nodes>
         <classShapeMoniker Id="7c08c800-8bf6-4067-86c9-df7e89d37c4e" />
         <classShapeMoniker Id="39de8c41-8774-45e4-b04b-a91b34c44a15" />
       </nodes>
     </associationConnector>
-    <classShape Id="51a021fd-c93b-4044-969b-5ffc27d1b1b1" absoluteBounds="0.875, 1.25, 2, 1.3862939453125">
+    <classShape Id="26332291-4d07-4c23-aa48-25a9a1a1d99b" absoluteBounds="1.125, 1.25, 2, 1.3862939453125">
       <DataClassMoniker Name="/DataClasses1DataContext/Reservation" />
       <nestedChildShapes>
-        <elementListCompartment Id="f062f9d4-b099-4a6b-bfa0-5fa9844a6789" absoluteBounds="0.88999999999999968, 1.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="9b31d7b1-30bc-4282-a0fd-4ba10a445e4c" absoluteBounds="1.1400000000000001, 1.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.625 : 3.91429768880208); (1.875 : 3.91429768880208); (1.875 : 2.6362939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.625 : 3.125); (3.125 : 2.6362939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClasses1DataContext/Court/Court_Reservation" />
       <nodes>
         <classShapeMoniker Id="39de8c41-8774-45e4-b04b-a91b34c44a15" />
-        <classShapeMoniker Id="51a021fd-c93b-4044-969b-5ffc27d1b1b1" />
+        <classShapeMoniker Id="26332291-4d07-4c23-aa48-25a9a1a1d99b" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

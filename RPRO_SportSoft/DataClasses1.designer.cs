@@ -724,7 +724,7 @@ namespace RPRO_SportSoft
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Reservation")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Reservations")]
 	public partial class Reservation : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -800,7 +800,7 @@ namespace RPRO_SportSoft
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateTime", DbType="Date NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateTime", DbType="DateTime NOT NULL")]
 		public System.DateTime DateTime
 		{
 			get
