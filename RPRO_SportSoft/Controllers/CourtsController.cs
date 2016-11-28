@@ -142,5 +142,11 @@ namespace RPRO_SportSoft.Controllers
             appR.Add(id, date);
             return RedirectToAction("Sports/Detail");
         }
+
+        // GET: PriceLists
+        public ActionResult IndexR()
+        {
+            return View(appR.GetList());
+        }
     }
 }

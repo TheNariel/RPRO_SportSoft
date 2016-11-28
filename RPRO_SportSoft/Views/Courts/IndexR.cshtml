@@ -1,7 +1,34 @@
-﻿@model Court
+﻿@model IEnumerable<RPRO_SportSoft.Reservation>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Výpis rezervací</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Datum a čas
+        </th>
+        <th>
+            Kurt
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Courts_Id)
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.ActionLink("Zpět", "Index", "Sports")
