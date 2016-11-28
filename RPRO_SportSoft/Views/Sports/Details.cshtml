@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Kurty sportoviště:  @Html.DisplayFor(modelItem => Model.sportText)</h2>
+<h2>Kurty sportoviště:  @Html.DisplayFor(modelItem => Model.sportName)</h2>
 
 <p>
 </p>
@@ -29,8 +29,8 @@
     }
 
 </table>
-</br>
+<br />
 <p>
-    @Html.ActionLink("Vytvořit nový kurt", "Create", "Courts", new { sport = Model.sport }, null)
+    @Html.ActionLink("Vytvořit nový kurt", "Create", "Courts", new { sport = Model.sportId }, null)
 </p>
     @Html.ActionLink("Zpět", "Index", "Sports")

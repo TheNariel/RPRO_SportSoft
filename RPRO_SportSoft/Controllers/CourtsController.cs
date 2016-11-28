@@ -10,6 +10,7 @@ namespace RPRO_SportSoft.Controllers
     public class CourtsController : Controller
     {
         CourtsApp app = new CourtsApp();
+        ReservationsApp appR = new ReservationsApp();
 
         //
         // GET: Courts/Details/5
@@ -124,12 +125,14 @@ namespace RPRO_SportSoft.Controllers
         }
 
         public ActionResult Reservation(int id) {
-            return View();
+            Reservation r = new Reservation();            
+            return View(r);
         }
 
         [HttpPost]
-        public ActionResult Reservation(int id, String CourtName, String UserEmail) {
-            return View();
+        public ActionResult Reservation(int id, DateTime date) {
+            appR.Add(id, date);
+            return RedirectToAction("Sports/Detail");
         }
     }
 }

@@ -18,15 +18,6 @@
       <Association Name="Sport_Court" Member="Courts" ThisKey="Id" OtherKey="Sports_Id" Type="Court" />
     </Type>
   </Table>
-  <Table Name="dbo.Reservation" Member="Reservations">
-    <Type Name="Reservation">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Courts_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DateReservation" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="TimeReservation" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
-      <Association Name="Court_Reservation" Member="Court" ThisKey="Courts_Id" OtherKey="Id" Type="Court" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.User" Member="Users">
     <Type Name="User">
       <Column Name="Email" Type="System.String" DbType="VarChar(1) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -40,6 +31,14 @@
       <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="false" />
       <Column Name="Price" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
       <Association Name="PriceList_Court" Member="Courts" ThisKey="Id" OtherKey="PriceLists_Id" Type="Court" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reservation" Member="Reservations">
+    <Type Name="Reservation">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Courts_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DateTime" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Court_Reservation" Member="Court" ThisKey="Courts_Id" OtherKey="Id" Type="Court" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

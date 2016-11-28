@@ -36,15 +36,15 @@ namespace RPRO_SportSoft
     partial void InsertSport(Sport instance);
     partial void UpdateSport(Sport instance);
     partial void DeleteSport(Sport instance);
-    partial void InsertReservation(Reservation instance);
-    partial void UpdateReservation(Reservation instance);
-    partial void DeleteReservation(Reservation instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
     partial void InsertPriceList(PriceList instance);
     partial void UpdatePriceList(PriceList instance);
     partial void DeletePriceList(PriceList instance);
+    partial void InsertReservation(Reservation instance);
+    partial void UpdateReservation(Reservation instance);
+    partial void DeleteReservation(Reservation instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -93,14 +93,6 @@ namespace RPRO_SportSoft
 			}
 		}
 		
-		public System.Data.Linq.Table<Reservation> Reservations
-		{
-			get
-			{
-				return this.GetTable<Reservation>();
-			}
-		}
-		
 		public System.Data.Linq.Table<User> Users
 		{
 			get
@@ -114,6 +106,14 @@ namespace RPRO_SportSoft
 			get
 			{
 				return this.GetTable<PriceList>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Reservation> Reservations
+		{
+			get
+			{
+				return this.GetTable<Reservation>();
 			}
 		}
 	}
@@ -476,181 +476,6 @@ namespace RPRO_SportSoft
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Reservation")]
-	public partial class Reservation : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _Courts_Id;
-		
-		private System.Nullable<System.DateTime> _DateReservation;
-		
-		private System.Nullable<System.TimeSpan> _TimeReservation;
-		
-		private EntityRef<Court> _Court;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnCourts_IdChanging(int value);
-    partial void OnCourts_IdChanged();
-    partial void OnDateReservationChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateReservationChanged();
-    partial void OnTimeReservationChanging(System.Nullable<System.TimeSpan> value);
-    partial void OnTimeReservationChanged();
-    #endregion
-		
-		public Reservation()
-		{
-			this._Court = default(EntityRef<Court>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Courts_Id", DbType="Int NOT NULL")]
-		public int Courts_Id
-		{
-			get
-			{
-				return this._Courts_Id;
-			}
-			set
-			{
-				if ((this._Courts_Id != value))
-				{
-					if (this._Court.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCourts_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Courts_Id = value;
-					this.SendPropertyChanged("Courts_Id");
-					this.OnCourts_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateReservation", DbType="Date")]
-		public System.Nullable<System.DateTime> DateReservation
-		{
-			get
-			{
-				return this._DateReservation;
-			}
-			set
-			{
-				if ((this._DateReservation != value))
-				{
-					this.OnDateReservationChanging(value);
-					this.SendPropertyChanging();
-					this._DateReservation = value;
-					this.SendPropertyChanged("DateReservation");
-					this.OnDateReservationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeReservation", DbType="Time")]
-		public System.Nullable<System.TimeSpan> TimeReservation
-		{
-			get
-			{
-				return this._TimeReservation;
-			}
-			set
-			{
-				if ((this._TimeReservation != value))
-				{
-					this.OnTimeReservationChanging(value);
-					this.SendPropertyChanging();
-					this._TimeReservation = value;
-					this.SendPropertyChanged("TimeReservation");
-					this.OnTimeReservationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Court_Reservation", Storage="_Court", ThisKey="Courts_Id", OtherKey="Id", IsForeignKey=true)]
-		public Court Court
-		{
-			get
-			{
-				return this._Court.Entity;
-			}
-			set
-			{
-				Court previousValue = this._Court.Entity;
-				if (((previousValue != value) 
-							|| (this._Court.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Court.Entity = null;
-						previousValue.Reservations.Remove(this);
-					}
-					this._Court.Entity = value;
-					if ((value != null))
-					{
-						value.Reservations.Add(this);
-						this._Courts_Id = value.Id;
-					}
-					else
-					{
-						this._Courts_Id = default(int);
-					}
-					this.SendPropertyChanged("Court");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.User")]
 	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -896,6 +721,157 @@ namespace RPRO_SportSoft
 		{
 			this.SendPropertyChanging();
 			entity.PriceList = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Reservation")]
+	public partial class Reservation : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _Courts_Id;
+		
+		private System.DateTime _DateTime;
+		
+		private EntityRef<Court> _Court;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCourts_IdChanging(int value);
+    partial void OnCourts_IdChanged();
+    partial void OnDateTimeChanging(System.DateTime value);
+    partial void OnDateTimeChanged();
+    #endregion
+		
+		public Reservation()
+		{
+			this._Court = default(EntityRef<Court>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Courts_Id", DbType="Int NOT NULL")]
+		public int Courts_Id
+		{
+			get
+			{
+				return this._Courts_Id;
+			}
+			set
+			{
+				if ((this._Courts_Id != value))
+				{
+					if (this._Court.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCourts_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Courts_Id = value;
+					this.SendPropertyChanged("Courts_Id");
+					this.OnCourts_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateTime", DbType="Date NOT NULL")]
+		public System.DateTime DateTime
+		{
+			get
+			{
+				return this._DateTime;
+			}
+			set
+			{
+				if ((this._DateTime != value))
+				{
+					this.OnDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._DateTime = value;
+					this.SendPropertyChanged("DateTime");
+					this.OnDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Court_Reservation", Storage="_Court", ThisKey="Courts_Id", OtherKey="Id", IsForeignKey=true)]
+		public Court Court
+		{
+			get
+			{
+				return this._Court.Entity;
+			}
+			set
+			{
+				Court previousValue = this._Court.Entity;
+				if (((previousValue != value) 
+							|| (this._Court.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Court.Entity = null;
+						previousValue.Reservations.Remove(this);
+					}
+					this._Court.Entity = value;
+					if ((value != null))
+					{
+						value.Reservations.Add(this);
+						this._Courts_Id = value.Id;
+					}
+					else
+					{
+						this._Courts_Id = default(int);
+					}
+					this.SendPropertyChanged("Court");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
