@@ -1,5 +1,5 @@
 ﻿@model Court
-
+@using RPRO_SportSoft.Application;
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,7 +15,8 @@
     
     <p>
         @Html.Hidden("Id",Model.Sports_Id) <br />
-        Název kurtu: @Html.TextBox(("CourtName"), Model.Name, new { @class = "form-control", onkeyup = "this.value = this.value.replace(/[^a-z,A-Z,_,á-ž,0-9]/, '')", placeholder = "", required = "required" }) <br />
+        Název kurtu: @Html.TextBox(("CourtName"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
+        Cenník: @Html.DropDownList("Id_P",new SelectList(new PriceListsApp().GetListId()))
         <input type="submit" value="Vytvořit"/>
 
     </p>

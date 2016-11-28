@@ -32,6 +32,11 @@ namespace RPRO_SportSoft.Application
            return db.Sports.Where(Sport => Sport.Name == n).Any();
 
         }
+        public Boolean CheckIfTakenEdit(String n, int id)
+        {
+            return db.Sports.Where(Sport => Sport.Name == n && Sport.Id != id).Any();
+
+        }
         public void Delete(int id)
         {
             var item = db.Sports.Where(Sport => Sport.Id == id).Single();
@@ -57,7 +62,7 @@ namespace RPRO_SportSoft.Application
         public Boolean Edit(int id,String SportName)
         {
             Boolean ret;
-            if (!CheckIfTaken(SportName))
+            if (!CheckIfTakenEdit(SportName, id))
             {
                 var obj = db.Sports.Single(x => x.Id == id);
                 obj.Name = SportName;

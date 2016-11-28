@@ -117,6 +117,11 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -128,12 +133,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\AdditionClasses.cs" />
+    <Compile Include="Application\PriceListsApp.cs" />
     <Compile Include="Application\UsersApp.cs" />
     <Compile Include="Application\CourtsApp.cs" />
     <Compile Include="Application\SportsApp.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CourtsController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\PriceListsController.cs" />
     <Compile Include="Controllers\SportsController.cs" />
     <Compile Include="DataClasses1.designer.cs">
       <AutoGen>True</AutoGen>
@@ -163,6 +170,8 @@
     <Content Include="Views\Courts\Edit.cshtml" />
     <Content Include="Views\Main\Create.cshtml" />
     <Content Include="Views\Shared\_LayoutForHost.cshtml" />
+    <Content Include="Views\PriceLists\Index.cshtml" />
+    <Content Include="Views\PriceLists\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -179,7 +188,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="fonts\Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
