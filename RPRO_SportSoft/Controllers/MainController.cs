@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
@@ -73,22 +74,37 @@ namespace RPRO_SportSoft.Controllers
             }
         }
 
-        public void sendEmail()
+        public ActionResult sendEmail()
         {
-            SmtpClient smtpClient = new SmtpClient("mail.MyWebsiteDomainName.com", 25);
+            MailMessage msg = new MailMessage();
 
-            smtpClient.Credentials = new System.Net.NetworkCredential("info@MyWebsiteDomainName.com", "myIDPassword");
-            smtpClient.UseDefaultCredentials = true;
-            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtpClient.EnableSsl = true;
-            MailMessage mail = new MailMessage();
-
-            //Setting From , To and CC
-            mail.From = new MailAddress("info@MyWebsiteDomainName", "MyWeb Site");
-            mail.To.Add(new MailAddress("info@MyWebsiteDomainName"));
-            mail.CC.Add(new MailAddress("MyEmailID@gmail.com"));
-
-            smtpClient.Send(mail);
+            msg.From = new MailAddress("noreplysportsoft@gmail.com");
+            msg.To.Add("noreplysportsoft@gmail.com");
+            msg.Subject = "Hello world! " + DateTime.Now.ToString();
+            msg.Body = "hi to you ... :)";
+            SmtpClient client = new SmtpClient();
+            client.UseDefaultCredentials = true;
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+            client.EnableSsl = true;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.Credentials = new NetworkCredential("noreplysportsoft@gmail.com", "rpro2016");
+            client.Timeout = 20000;
+            try
+            {
+                client.Send(msg);
+                ViewBag.MessageEmail = "email odeslán";
+                return View();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.MessageEmail = "error:"+ex;
+                return View();
+            }
+            finally
+            {
+                msg.Dispose();
+            }
         }
     }
 }
