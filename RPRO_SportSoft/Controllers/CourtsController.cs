@@ -108,12 +108,12 @@ namespace RPRO_SportSoft.Controllers
 
         // POST: Courts/Delete/5
         [HttpPost]
-        public ActionResult Edit(int Id, String CourtName,int Sports_Id, int P_Id)
+        public ActionResult Edit(int Id, int Sports_Id, String CourtName, int Id_P)
         {
             int sport = app.GetSportId(Id);
             try
             {
-                if (app.Edit(Id, CourtName, Sports_Id, P_Id))
+                if (app.Edit(Id, CourtName, Sports_Id, Id_P))
                 {
                     return RedirectToAction("Details", "Sports", new { id = Sports_Id });
                 }
