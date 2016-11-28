@@ -73,7 +73,7 @@ namespace RPRO_SportSoft.Application
             return ret;
         }
 
-        private bool CheckForRegistration(int id)
+        public bool CheckForRegistration(int id)
         {
             return  db.Reservations.Where(Reservation => Reservation.Courts_Id == id).Any();
         }
