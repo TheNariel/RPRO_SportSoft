@@ -64,7 +64,15 @@ namespace RPRO_SportSoft.Controllers
         // GET: Courts/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(app.Get(id));
+            if (app.CheckForRegistration(id))
+            {
+                ViewBag.MyMessageToUser = "Nelze smazat kurt, který byl použit.";
+                return View(app.Get(id));
+            }
+            else {
+                return View(app.Get(id));
+            }
+            
         }
 
         // POST: Courts/Delete/5
