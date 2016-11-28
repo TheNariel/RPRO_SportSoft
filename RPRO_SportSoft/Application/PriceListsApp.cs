@@ -13,6 +13,16 @@ namespace RPRO_SportSoft.Application
         {
             return db.PriceLists.ToList();
         }
+        public List<int> GetListId()
+        {
+            List<int> a = new List<int>();
+            foreach (PriceList priceList in db.PriceLists.ToList())
+            {
+                a.Add(priceList.Id);
+            }
+            return a;
+        }
+       
         public Boolean Add(DateTime date, int price)
         {
             

@@ -130,9 +130,13 @@ namespace RPRO_SportSoft
 		
 		private int _Sports_Id;
 		
+		private int _PriceLists_Id;
+		
 		private EntitySet<Reservation> _Reservations;
 		
 		private EntityRef<Sport> _Sport;
+		
+		private EntityRef<PriceList> _PriceList;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -144,12 +148,15 @@ namespace RPRO_SportSoft
     partial void OnNameChanged();
     partial void OnSports_IdChanging(int value);
     partial void OnSports_IdChanged();
+    partial void OnPriceLists_IdChanging(int value);
+    partial void OnPriceLists_IdChanged();
     #endregion
 		
 		public Court()
 		{
 			this._Reservations = new EntitySet<Reservation>(new Action<Reservation>(this.attach_Reservations), new Action<Reservation>(this.detach_Reservations));
 			this._Sport = default(EntityRef<Sport>);
+			this._PriceList = default(EntityRef<PriceList>);
 			OnCreated();
 		}
 		
@@ -217,6 +224,30 @@ namespace RPRO_SportSoft
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PriceLists_Id")]
+		public int PriceLists_Id
+		{
+			get
+			{
+				return this._PriceLists_Id;
+			}
+			set
+			{
+				if ((this._PriceLists_Id != value))
+				{
+					if (this._PriceList.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPriceLists_IdChanging(value);
+					this.SendPropertyChanging();
+					this._PriceLists_Id = value;
+					this.SendPropertyChanged("PriceLists_Id");
+					this.OnPriceLists_IdChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Court_Reservation", Storage="_Reservations", ThisKey="Id", OtherKey="Courts_Id")]
 		public EntitySet<Reservation> Reservations
 		{
@@ -260,6 +291,40 @@ namespace RPRO_SportSoft
 						this._Sports_Id = default(int);
 					}
 					this.SendPropertyChanged("Sport");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PriceList_Court", Storage="_PriceList", ThisKey="PriceLists_Id", OtherKey="Id", IsForeignKey=true)]
+		public PriceList PriceList
+		{
+			get
+			{
+				return this._PriceList.Entity;
+			}
+			set
+			{
+				PriceList previousValue = this._PriceList.Entity;
+				if (((previousValue != value) 
+							|| (this._PriceList.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PriceList.Entity = null;
+						previousValue.Courts.Remove(this);
+					}
+					this._PriceList.Entity = value;
+					if ((value != null))
+					{
+						value.Courts.Add(this);
+						this._PriceLists_Id = value.Id;
+					}
+					else
+					{
+						this._PriceLists_Id = default(int);
+					}
+					this.SendPropertyChanged("PriceList");
 				}
 			}
 		}
@@ -596,6 +661,8 @@ namespace RPRO_SportSoft
 		
 		private string _Password;
 		
+		private string _Salt;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -604,6 +671,8 @@ namespace RPRO_SportSoft
     partial void OnEmailChanged();
     partial void OnPasswordChanging(string value);
     partial void OnPasswordChanged();
+    partial void OnSaltChanging(string value);
+    partial void OnSaltChanged();
     #endregion
 		
 		public User()
@@ -651,6 +720,26 @@ namespace RPRO_SportSoft
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Salt", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string Salt
+		{
+			get
+			{
+				return this._Salt;
+			}
+			set
+			{
+				if ((this._Salt != value))
+				{
+					this.OnSaltChanging(value);
+					this.SendPropertyChanging();
+					this._Salt = value;
+					this.SendPropertyChanged("Salt");
+					this.OnSaltChanged();
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -684,6 +773,8 @@ namespace RPRO_SportSoft
 		
 		private int _Price;
 		
+		private EntitySet<Court> _Courts;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -698,6 +789,7 @@ namespace RPRO_SportSoft
 		
 		public PriceList()
 		{
+			this._Courts = new EntitySet<Court>(new Action<Court>(this.attach_Courts), new Action<Court>(this.detach_Courts));
 			OnCreated();
 		}
 		
@@ -761,6 +853,19 @@ namespace RPRO_SportSoft
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PriceList_Court", Storage="_Courts", ThisKey="Id", OtherKey="PriceLists_Id")]
+		public EntitySet<Court> Courts
+		{
+			get
+			{
+				return this._Courts;
+			}
+			set
+			{
+				this._Courts.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -779,6 +884,18 @@ namespace RPRO_SportSoft
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Courts(Court entity)
+		{
+			this.SendPropertyChanging();
+			entity.PriceList = this;
+		}
+		
+		private void detach_Courts(Court entity)
+		{
+			this.SendPropertyChanging();
+			entity.PriceList = null;
 		}
 	}
 }

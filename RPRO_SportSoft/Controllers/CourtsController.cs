@@ -28,11 +28,12 @@ namespace RPRO_SportSoft.Controllers
 
         // POST: Courts/Create
         [HttpPost]
-        public ActionResult Create(String CourtName,int Id)
+        public ActionResult Create(String CourtName,int Id, int Id_P)
         {
+            
             try
             {
-                if (app.Add(CourtName,Id))
+                if (app.Add(CourtName,Id, Id_P))
                 {
                     return RedirectToAction("Details", "Sports", new { id = Id });
                 }
@@ -98,12 +99,12 @@ namespace RPRO_SportSoft.Controllers
 
         // POST: Courts/Delete/5
         [HttpPost]
-        public ActionResult Edit(int Id, String CourtName,int Sports_Id)
+        public ActionResult Edit(int Id, String CourtName,int Sports_Id, int P_Id)
         {
             int sport = app.GetSportId(Id);
             try
             {
-                if (app.Edit(Id, CourtName, Sports_Id))
+                if (app.Edit(Id, CourtName, Sports_Id, P_Id))
                 {
                     return RedirectToAction("Details", "Sports", new { id = Sports_Id });
                 }

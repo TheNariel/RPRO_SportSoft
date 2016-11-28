@@ -8,7 +8,7 @@ namespace RPRO_SportSoft.Application
     public class CourtsApp
     {
         DataClasses1DataContext db = new DataClasses1DataContext();
-        public Boolean Add(String n,int S_Id)
+        public Boolean Add(String n,int S_Id, int P_Id)
         {
             Boolean ret;
             if (!CheckIfTaken(n, S_Id))
@@ -16,6 +16,7 @@ namespace RPRO_SportSoft.Application
                 Court c = new Court();
                 c.Name = n;
                 c.Sports_Id = S_Id;
+                c.PriceLists_Id = P_Id;
                 db.Courts.InsertOnSubmit(c);
                 db.SubmitChanges();
                 ret = true;
@@ -27,7 +28,7 @@ namespace RPRO_SportSoft.Application
             return ret;
 
         }
-        public Boolean Edit(int id, String n, int S_Id)
+        public Boolean Edit(int id, String n, int S_Id, int P_Id)
         {
             Boolean ret;
             if (!CheckIfTakenEdit(n, S_Id, id))
@@ -35,6 +36,7 @@ namespace RPRO_SportSoft.Application
                 var obj = db.Courts.Single(x => x.Id == id);
                 obj.Sports_Id = S_Id;
                 obj.Name = n;
+                obj.PriceLists_Id = P_Id;
                 db.SubmitChanges();
                 ret = true;
             }
