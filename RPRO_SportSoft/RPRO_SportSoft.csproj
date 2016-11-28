@@ -172,6 +172,7 @@
     <Content Include="Views\Shared\_LayoutForHost.cshtml" />
     <Content Include="Views\PriceLists\Index.cshtml" />
     <Content Include="Views\PriceLists\Create.cshtml" />
+    <Content Include="Views\Courts\Reservation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -189,6 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="fonts\Models\" />
+    <Folder Include="Views\ReservatonsApp\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

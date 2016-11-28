@@ -130,5 +130,14 @@ namespace RPRO_SportSoft.Controllers
                 return View(app.Get(Id));
             }
         }
+
+        public ActionResult Reservation(int id) {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Reservation(int id, String CourtName, String UserEmail) {
+            return View();
+        }
     }
 }
