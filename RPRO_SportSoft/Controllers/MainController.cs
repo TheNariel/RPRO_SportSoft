@@ -74,7 +74,7 @@ namespace RPRO_SportSoft.Controllers
             }
         }
 
-        public ActionResult sendEmail()
+        public ActionResult SendEmail()
         {
             MailMessage msg = new MailMessage();
 
@@ -104,6 +104,7 @@ namespace RPRO_SportSoft.Controllers
             finally
             {
                 msg.Dispose();
+                return View();
             }
         }
     }
