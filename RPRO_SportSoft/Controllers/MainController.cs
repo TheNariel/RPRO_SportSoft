@@ -104,7 +104,7 @@ namespace RPRO_SportSoft.Controllers
             finally
             {
                 msg.Dispose();
-                return View();
+                
             }
         }
     }
