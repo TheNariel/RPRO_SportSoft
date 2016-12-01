@@ -4,6 +4,8 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
     <meta charset="utf-8" />
     <style type="text/css">
         body {
@@ -17,6 +19,16 @@
             border-style: solid;
             width: 250px;
         }
+
+        .title{
+               //border: 1px green solid;
+              // margin-top: 10px;
+            text-align: right;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 980px;
+        }
+
         .main {
             box-shadow: 0 0 60px #000033;
             margin-top: 20px;
@@ -49,10 +61,32 @@
     </style>
 </head>
 <body>
+    <div class="title">
+        @{
+            String log = "";
+            String login = Session["Logged"].ToString();
+            if (!login.Equals(""))
+            {
+                log = "Přihlášen: " + Session["Logged"].ToString();
+                @log.ToString()
+                <br />
+                @Html.ActionLink("Odhlásit", "Index", "Main")
+
+            }
+            else
+            {
+
+             Response.Redirect("http://localhost:64395/Main/Index");
+
+            }
+        }
+   </div>
+
+
     <div class="main">
         @RenderBody()
         <br />
-        @{
+        @*@{
             String log = "";
             String login = Session["Logged"].ToString();
             if (!login.Equals(""))
@@ -68,7 +102,7 @@
                 Response.Redirect("http://localhost:64395/Main/Index");
 
             }
-        }
+        }*@
 
      @* script na zamezení vkládání mezery na začátku *@
         <script type="text/javascript">

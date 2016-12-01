@@ -35,19 +35,33 @@ namespace RPRO_SportSoft.Controllers
         {
             try
             {
-                if (app.Add(SportName))
+                if (app.CheckForWhiteSpaces(SportName)) 
                 {
-                  
-                    return RedirectToAction("Index");
+                    if (app.Add(SportName))
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.MessageCreate = "Sportoviště s tímto názvem již existuje.";
+                        Sport s = new Sport();
+                        s.Name = SportName;
+                        return View(s);
+
+                    }
+
                 }
                 else {
-                      ViewBag.MessageCreate = "Sportoviště s tímto názvem již existuje";
+                    ViewBag.MessageCreate = "Musíte vyplnit název sportoviště.";
                     Sport s = new Sport();
                     s.Name = SportName;
                     return View(s);
                 }
 
-                
+
+
+
+
             }
             catch
             {
@@ -90,13 +104,21 @@ namespace RPRO_SportSoft.Controllers
         {
             try
             {
-                if (app.Edit(id, SportName))
-                {
+                if (app.CheckForWhiteSpaces(SportName)) {
 
-                    return RedirectToAction("Index");
+                    if (app.Edit(id, SportName))
+                    {
+
+                        return RedirectToAction("Index");
+                    }
+                    else {
+                        ViewBag.MyMessageToUser = "Název musí být unikátní.";
+                        return View(app.Get(id));
+                    }
+
                 }
                 else {
-                    ViewBag.MyMessageToUser = "Název musí být unikátní.";
+                    ViewBag.MyMessageToUser = "Musíte vyplnit název sportoviště.";
                     return View(app.Get(id));
                 }
                 

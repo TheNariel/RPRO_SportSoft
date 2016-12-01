@@ -34,17 +34,31 @@ namespace RPRO_SportSoft.Controllers
             
             try
             {
-                if (app.Add(CourtName,Id, Id_P))
+                if (app.CheckForWhiteSpaces(CourtName)) 
                 {
-                    return RedirectToAction("Details", "Sports", new { id = Id });
+                    if (app.Add(CourtName, Id, Id_P))
+                    {
+
+                        return RedirectToAction("Details", "Sports", new { id = Id });
+                    }
+                    else
+                    {
+                        ViewBag.MyMessageToUser = "Kurt s tímto názvem již existuje.";
+                        Court c = new Court();
+                        c.Name = CourtName;
+                        c.Sports_Id = Id;
+                        return View(c);
+                    }
+                    
                 }
                 else
                 {
-                    ViewBag.MyMessageToUser = "Kurt s tímto názvem již existuje.";
+                    ViewBag.MyMessageToUser = "Musíte vyplnit název kurtu.";
                     Court c = new Court();
                     c.Name = CourtName;
                     c.Sports_Id = Id;
                     return View(c);
+
                 }
                
             }
@@ -113,14 +127,23 @@ namespace RPRO_SportSoft.Controllers
             int sport = app.GetSportId(Id);
             try
             {
-                if (app.Edit(Id, CourtName, Sports_Id, Id_P))
-                {
-                    return RedirectToAction("Details", "Sports", new { id = Sports_Id });
+                if (app.CheckForWhiteSpaces(CourtName)) {
+
+                    if (app.Edit(Id, CourtName, Sports_Id, Id_P))
+                    {
+                        return RedirectToAction("Details", "Sports", new { id = Sports_Id });
+                    }
+                    else {
+                        ViewBag.MessageEditCourt = "Kurt s tímto názvem již existuje.";
+                        return View(app.Get(Id));
+                    }
+
                 }
                 else
                 {
-                    ViewBag.MessageEditCourt = "Kurt s tímto názvem již existuje.";
+                    ViewBag.MessageEditCourt = "Musíte vyplnit název kurtu.";
                     return View(app.Get(Id));
+
                 }
 
 

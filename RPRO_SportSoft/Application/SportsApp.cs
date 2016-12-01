@@ -14,11 +14,11 @@ namespace RPRO_SportSoft.Application
             Boolean ret;
             if (!CheckIfTaken(n))
             {
-                Sport s = new Sport();
-                s.Name = n;
-                db.Sports.InsertOnSubmit(s);
-                db.SubmitChanges();
-                ret = true;
+                    Sport s = new Sport();
+                    s.Name = n.Trim();
+                    db.Sports.InsertOnSubmit(s);
+                    db.SubmitChanges();
+                    ret = true;
             }
             else {
                 ret = false;
@@ -26,7 +26,21 @@ namespace RPRO_SportSoft.Application
 
             return ret; 
 
+
         }
+
+        public Boolean CheckForWhiteSpaces(String n) {
+            Sport s = new Sport();
+            s.Name = n.Trim();
+            if (!string.IsNullOrWhiteSpace(n))
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
         private Boolean CheckIfTaken(String n)
         {
            return db.Sports.Where(Sport => Sport.Name == n).Any();
@@ -65,7 +79,7 @@ namespace RPRO_SportSoft.Application
             if (!CheckIfTakenEdit(SportName, id))
             {
                 var obj = db.Sports.Single(x => x.Id == id);
-                obj.Name = SportName;
+                obj.Name = SportName.Trim();
                 db.SubmitChanges();
                 ret = true;
             }
