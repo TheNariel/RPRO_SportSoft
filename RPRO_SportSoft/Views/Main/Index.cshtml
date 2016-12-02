@@ -4,11 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
    // <link href="~/Content/bootstrap.min.css" rel="stylesheet">
 }
-
+</br>
 <h2>Tady bude úvodná stránka (s přehledem sportovišť nebo tak něco)</h2>
 
 @section Header {
     <section class="header">
+      <h4>Přihlášení:</h4>
       @ViewBag.MessageLogin
       @using (Html.BeginForm("Index", "Main", FormMethod.Post))
        {

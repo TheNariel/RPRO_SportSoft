@@ -53,6 +53,10 @@
             background-color: #e3e3e3;
             min-height: 500px;
         }
+
+        .navbar {
+            background-color: #000020;
+        }
         
         h2 {
             //text-align: center;
@@ -67,6 +71,33 @@
         }
 
       tr:nth-child(even){background-color: #c3c3c3}
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background-color: #000020;
+       }
+
+        li {
+            float: left;
+        }
+
+    li a {
+       display: block;
+       color: white;
+       text-align: center;
+       padding: 14px 16px;
+       text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+      background-color: #111;
+    }
+
+    .active {
+      background-color: #4CAF50;
+    }
 
 
     </style>
@@ -87,14 +118,37 @@
            }
            else
            {
-               <h4>Přihlášení:</h4>
-                   @RenderSection("Header", required: false)
+               if (IsSectionDefined("Header"))
+               {
+                  @RenderSection("Header")
+               }
+               else
+               {
+                   log = "Přihlášen: Nepřihlášený uživatel";
+                   @log.ToString()
+                   <br />
+                   @Html.ActionLink("Přihlásit", "Index", "Main")
+                <br />
                }
            }
+    }
 
    </div>
 
+
     <div class="main">
+
+        <div class="navbar">
+            <nav>
+                <ul>
+                    <li>@Html.ActionLink("Domů", "Index", "Main")</li>
+                    <li>@Html.ActionLink("Registrace", "Create", "Main")</li>
+                    <li>@Html.ActionLink("Ceníky", "Index", "PriceLists")</li>
+                    <li>@Html.ActionLink("Rezervace", "IndexR", "Courts")</li>
+                </ul>
+            </nav>
+        </div>
+
         @RenderBody()
         <br />
         @*@{
