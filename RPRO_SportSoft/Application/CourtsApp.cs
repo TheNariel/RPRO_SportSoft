@@ -35,7 +35,7 @@ namespace RPRO_SportSoft.Application
             {
                 var obj = db.Courts.Single(x => x.Id == id);
                 obj.Sports_Id = S_Id;
-                obj.Name = n;
+                obj.Name = n.Trim();
                 obj.PriceLists_Id = P_Id;
                 db.SubmitChanges();
                 ret = true;
