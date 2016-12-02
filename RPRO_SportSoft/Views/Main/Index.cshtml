@@ -1,20 +1,29 @@
 ﻿@model User
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutForHost.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   // <link href="~/Content/bootstrap.min.css" rel="stylesheet">
 }
 
-<h2>Přihlášení</h2>
-@ViewBag.MessageLogin
-@using (Html.BeginForm("Index", "Main", FormMethod.Post))
-{
-    <p>
-        Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email", type = "email", placeholder = "jmeno@domena.com", required = "required" }) <br />
-        Heslo: @Html.Password("UserPass", Model.Password, new { @class = "password", required = "required" })<br />
-        <input type="submit" value="Přihlásit" />
-    </p>
-}
+<h2>Tady bude úvodná stránka (s přehledem sportovišť nebo tak něco)</h2>
+
+@section Header {
+    <section class="header">
+      @ViewBag.MessageLogin
+      @using (Html.BeginForm("Index", "Main", FormMethod.Post))
+       {
+        <p>
+            Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email", type = "email", placeholder = "jmeno@domena.com", required = "required" }) <br />
+            Heslo: @Html.Password("UserPass", Model.Password, new { @class = "password", required = "required" })<br />
+            <input type="submit" value="Přihlásit" />
+        </p>
+        }
+        @Html.ActionLink("Registrace", "Create", "Main")
+        @Html.ActionLink("email", "sendEmail", "Main")
+    </section>
+    
+    }
+
+
 </br>
 
-@Html.ActionLink("Registrace", "Create", "Main")
-@Html.ActionLink("email", "sendEmail", "Main")

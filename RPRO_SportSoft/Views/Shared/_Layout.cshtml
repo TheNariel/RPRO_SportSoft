@@ -29,6 +29,17 @@
             max-width: 980px;
         }
 
+        .header {
+            background-color: #e3e3e3;
+            //margin-top: 60px;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 960px;
+            border: hidden;
+            border-radius: 7px;
+            padding: 10px;
+        }
+
         .main {
             box-shadow: 0 0 60px #000033;
             margin-top: 20px;
@@ -60,28 +71,28 @@
 
     </style>
 </head>
+
 <body>
-    <div class="title">
-        @{
-            String log = "";
-            String login = Session["Logged"].ToString();
-            if (!login.Equals(""))
-            {
-                log = "Přihlášen: " + Session["Logged"].ToString();
+    <div class="header">
+       @{
+           String log = "";
+           String login = Session["Logged"].ToString();
+           if (!login.Equals(""))
+           {
+               log = "Přihlášen: " + Session["Logged"].ToString();
                 @log.ToString()
                 <br />
                 @Html.ActionLink("Odhlásit", "Index", "Main")
 
-            }
-            else
-            {
+           }
+           else
+           {
+               <h4>Přihlášení:</h4>
+                   @RenderSection("Header", required: false)
+               }
+           }
 
-             Response.Redirect("http://localhost:64395/Main/Index");
-
-            }
-        }
    </div>
-
 
     <div class="main">
         @RenderBody()
