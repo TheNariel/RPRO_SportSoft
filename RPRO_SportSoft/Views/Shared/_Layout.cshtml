@@ -140,12 +140,23 @@
 
         <div class="navbar">
             <nav>
+                @{ 
+                    if (!login.Equals("")) {
                 <ul>
                     <li>@Html.ActionLink("Domů", "Index", "Main")</li>
                     <li>@Html.ActionLink("Registrace", "Create", "Main")</li>
                     <li>@Html.ActionLink("Ceníky", "Index", "PriceLists")</li>
                     <li>@Html.ActionLink("Rezervace", "IndexR", "Courts")</li>
                 </ul>
+                    }
+                    else
+                    {
+                        <ul>
+                            <li>@Html.ActionLink("Domů", "Index", "Main")</li>
+                            <li>@Html.ActionLink("Registrace", "Create", "Main")</li>
+                        </ul>
+                    }
+                }
             </nav>
         </div>
 
