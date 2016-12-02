@@ -14,7 +14,9 @@
         <th>
             Kurt
         </th>
-        <th></th>
+        <th>
+            Cena
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -25,6 +27,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Courts_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
             </td>
         </tr>
     }

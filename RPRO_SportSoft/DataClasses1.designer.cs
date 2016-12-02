@@ -45,6 +45,9 @@ namespace RPRO_SportSoft
     partial void InsertReservation(Reservation instance);
     partial void UpdateReservation(Reservation instance);
     partial void DeleteReservation(Reservation instance);
+    partial void InsertPriceLists_Courts(PriceLists_Courts instance);
+    partial void UpdatePriceLists_Courts(PriceLists_Courts instance);
+    partial void DeletePriceLists_Courts(PriceLists_Courts instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -116,6 +119,14 @@ namespace RPRO_SportSoft
 				return this.GetTable<Reservation>();
 			}
 		}
+		
+		public System.Data.Linq.Table<PriceLists_Courts> PriceLists_Courts
+		{
+			get
+			{
+				return this.GetTable<PriceLists_Courts>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Courts")]
@@ -130,13 +141,11 @@ namespace RPRO_SportSoft
 		
 		private int _Sports_Id;
 		
-		private int _PriceLists_Id;
-		
 		private EntitySet<Reservation> _Reservations;
 		
 		private EntityRef<Sport> _Sport;
 		
-		private EntityRef<PriceList> _PriceList;
+		private EntityRef<PriceLists_Courts> _PriceLists_Courts;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -148,15 +157,13 @@ namespace RPRO_SportSoft
     partial void OnNameChanged();
     partial void OnSports_IdChanging(int value);
     partial void OnSports_IdChanged();
-    partial void OnPriceLists_IdChanging(int value);
-    partial void OnPriceLists_IdChanged();
     #endregion
 		
 		public Court()
 		{
 			this._Reservations = new EntitySet<Reservation>(new Action<Reservation>(this.attach_Reservations), new Action<Reservation>(this.detach_Reservations));
 			this._Sport = default(EntityRef<Sport>);
-			this._PriceList = default(EntityRef<PriceList>);
+			this._PriceLists_Courts = default(EntityRef<PriceLists_Courts>);
 			OnCreated();
 		}
 		
@@ -171,6 +178,10 @@ namespace RPRO_SportSoft
 			{
 				if ((this._Id != value))
 				{
+					if (this._PriceLists_Courts.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnIdChanging(value);
 					this.SendPropertyChanging();
 					this._Id = value;
@@ -224,30 +235,6 @@ namespace RPRO_SportSoft
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PriceLists_Id")]
-		public int PriceLists_Id
-		{
-			get
-			{
-				return this._PriceLists_Id;
-			}
-			set
-			{
-				if ((this._PriceLists_Id != value))
-				{
-					if (this._PriceList.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPriceLists_IdChanging(value);
-					this.SendPropertyChanging();
-					this._PriceLists_Id = value;
-					this.SendPropertyChanged("PriceLists_Id");
-					this.OnPriceLists_IdChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Court_Reservation", Storage="_Reservations", ThisKey="Id", OtherKey="Courts_Id")]
 		public EntitySet<Reservation> Reservations
 		{
@@ -295,36 +282,36 @@ namespace RPRO_SportSoft
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PriceList_Court", Storage="_PriceList", ThisKey="PriceLists_Id", OtherKey="Id", IsForeignKey=true)]
-		public PriceList PriceList
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PriceLists_Courts_Court", Storage="_PriceLists_Courts", ThisKey="Id", OtherKey="Courts_Id", IsForeignKey=true)]
+		public PriceLists_Courts PriceLists_Courts
 		{
 			get
 			{
-				return this._PriceList.Entity;
+				return this._PriceLists_Courts.Entity;
 			}
 			set
 			{
-				PriceList previousValue = this._PriceList.Entity;
+				PriceLists_Courts previousValue = this._PriceLists_Courts.Entity;
 				if (((previousValue != value) 
-							|| (this._PriceList.HasLoadedOrAssignedValue == false)))
+							|| (this._PriceLists_Courts.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._PriceList.Entity = null;
+						this._PriceLists_Courts.Entity = null;
 						previousValue.Courts.Remove(this);
 					}
-					this._PriceList.Entity = value;
+					this._PriceLists_Courts.Entity = value;
 					if ((value != null))
 					{
 						value.Courts.Add(this);
-						this._PriceLists_Id = value.Id;
+						this._Id = value.Courts_Id;
 					}
 					else
 					{
-						this._PriceLists_Id = default(int);
+						this._Id = default(int);
 					}
-					this.SendPropertyChanged("PriceList");
+					this.SendPropertyChanged("PriceLists_Courts");
 				}
 			}
 		}
@@ -594,11 +581,11 @@ namespace RPRO_SportSoft
 		
 		private int _Id;
 		
-		private System.DateTime _Date;
-		
 		private int _Price;
 		
-		private EntitySet<Court> _Courts;
+		private string _Description;
+		
+		private EntityRef<PriceLists_Courts> _PriceLists_Courts;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -606,15 +593,15 @@ namespace RPRO_SportSoft
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnDateChanging(System.DateTime value);
-    partial void OnDateChanged();
     partial void OnPriceChanging(int value);
     partial void OnPriceChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
     #endregion
 		
 		public PriceList()
 		{
-			this._Courts = new EntitySet<Court>(new Action<Court>(this.attach_Courts), new Action<Court>(this.detach_Courts));
+			this._PriceLists_Courts = default(EntityRef<PriceLists_Courts>);
 			OnCreated();
 		}
 		
@@ -629,31 +616,15 @@ namespace RPRO_SportSoft
 			{
 				if ((this._Id != value))
 				{
+					if (this._PriceLists_Courts.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnIdChanging(value);
 					this.SendPropertyChanging();
 					this._Id = value;
 					this.SendPropertyChanged("Id");
 					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date")]
-		public System.DateTime Date
-		{
-			get
-			{
-				return this._Date;
-			}
-			set
-			{
-				if ((this._Date != value))
-				{
-					this.OnDateChanging(value);
-					this.SendPropertyChanging();
-					this._Date = value;
-					this.SendPropertyChanged("Date");
-					this.OnDateChanged();
 				}
 			}
 		}
@@ -678,16 +649,57 @@ namespace RPRO_SportSoft
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PriceList_Court", Storage="_Courts", ThisKey="Id", OtherKey="PriceLists_Id")]
-		public EntitySet<Court> Courts
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string Description
 		{
 			get
 			{
-				return this._Courts;
+				return this._Description;
 			}
 			set
 			{
-				this._Courts.Assign(value);
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PriceLists_Courts_PriceList", Storage="_PriceLists_Courts", ThisKey="Id", OtherKey="PriceLists_Id", IsForeignKey=true)]
+		public PriceLists_Courts PriceLists_Courts
+		{
+			get
+			{
+				return this._PriceLists_Courts.Entity;
+			}
+			set
+			{
+				PriceLists_Courts previousValue = this._PriceLists_Courts.Entity;
+				if (((previousValue != value) 
+							|| (this._PriceLists_Courts.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PriceLists_Courts.Entity = null;
+						previousValue.PriceLists.Remove(this);
+					}
+					this._PriceLists_Courts.Entity = value;
+					if ((value != null))
+					{
+						value.PriceLists.Add(this);
+						this._Id = value.PriceLists_Id;
+					}
+					else
+					{
+						this._Id = default(int);
+					}
+					this.SendPropertyChanged("PriceLists_Courts");
+				}
 			}
 		}
 		
@@ -710,18 +722,6 @@ namespace RPRO_SportSoft
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_Courts(Court entity)
-		{
-			this.SendPropertyChanging();
-			entity.PriceList = this;
-		}
-		
-		private void detach_Courts(Court entity)
-		{
-			this.SendPropertyChanging();
-			entity.PriceList = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Reservations")]
@@ -736,6 +736,8 @@ namespace RPRO_SportSoft
 		
 		private System.DateTime _DateTime;
 		
+		private int _Price;
+		
 		private EntityRef<Court> _Court;
 		
     #region Extensibility Method Definitions
@@ -748,6 +750,8 @@ namespace RPRO_SportSoft
     partial void OnCourts_IdChanged();
     partial void OnDateTimeChanging(System.DateTime value);
     partial void OnDateTimeChanged();
+    partial void OnPriceChanging(int value);
+    partial void OnPriceChanged();
     #endregion
 		
 		public Reservation()
@@ -820,6 +824,26 @@ namespace RPRO_SportSoft
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="INT NOT NULL")]
+		public int Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Court_Reservation", Storage="_Court", ThisKey="Courts_Id", OtherKey="Id", IsForeignKey=true)]
 		public Court Court
 		{
@@ -872,6 +896,196 @@ namespace RPRO_SportSoft
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PriceLists_Courts")]
+	public partial class PriceLists_Courts : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _PriceLists_Id;
+		
+		private int _Courts_Id;
+		
+		private System.DateTime _Date;
+		
+		private EntitySet<PriceList> _PriceLists;
+		
+		private EntitySet<Court> _Courts;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnPriceLists_IdChanging(int value);
+    partial void OnPriceLists_IdChanged();
+    partial void OnCourts_IdChanging(int value);
+    partial void OnCourts_IdChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    #endregion
+		
+		public PriceLists_Courts()
+		{
+			this._PriceLists = new EntitySet<PriceList>(new Action<PriceList>(this.attach_PriceLists), new Action<PriceList>(this.detach_PriceLists));
+			this._Courts = new EntitySet<Court>(new Action<Court>(this.attach_Courts), new Action<Court>(this.detach_Courts));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="PriceList_Id", Storage="_PriceLists_Id", DbType="Int NOT NULL")]
+		public int PriceLists_Id
+		{
+			get
+			{
+				return this._PriceLists_Id;
+			}
+			set
+			{
+				if ((this._PriceLists_Id != value))
+				{
+					this.OnPriceLists_IdChanging(value);
+					this.SendPropertyChanging();
+					this._PriceLists_Id = value;
+					this.SendPropertyChanged("PriceLists_Id");
+					this.OnPriceLists_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Courts_Id", DbType="Int NOT NULL")]
+		public int Courts_Id
+		{
+			get
+			{
+				return this._Courts_Id;
+			}
+			set
+			{
+				if ((this._Courts_Id != value))
+				{
+					this.OnCourts_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Courts_Id = value;
+					this.SendPropertyChanged("Courts_Id");
+					this.OnCourts_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PriceLists_Courts_PriceList", Storage="_PriceLists", ThisKey="PriceLists_Id", OtherKey="Id")]
+		public EntitySet<PriceList> PriceLists
+		{
+			get
+			{
+				return this._PriceLists;
+			}
+			set
+			{
+				this._PriceLists.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PriceLists_Courts_Court", Storage="_Courts", ThisKey="Courts_Id", OtherKey="Id")]
+		public EntitySet<Court> Courts
+		{
+			get
+			{
+				return this._Courts;
+			}
+			set
+			{
+				this._Courts.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_PriceLists(PriceList entity)
+		{
+			this.SendPropertyChanging();
+			entity.PriceLists_Courts = this;
+		}
+		
+		private void detach_PriceLists(PriceList entity)
+		{
+			this.SendPropertyChanging();
+			entity.PriceLists_Courts = null;
+		}
+		
+		private void attach_Courts(Court entity)
+		{
+			this.SendPropertyChanging();
+			entity.PriceLists_Courts = this;
+		}
+		
+		private void detach_Courts(Court entity)
+		{
+			this.SendPropertyChanging();
+			entity.PriceLists_Courts = null;
 		}
 	}
 }

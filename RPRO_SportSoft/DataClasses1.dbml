@@ -5,10 +5,9 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
       <Column Name="Sports_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PriceLists_Id" Type="System.Int32" CanBeNull="false" />
       <Association Name="Court_Reservation" Member="Reservations" ThisKey="Id" OtherKey="Courts_Id" Type="Reservation" />
       <Association Name="Sport_Court" Member="Sport" ThisKey="Sports_Id" OtherKey="Id" Type="Sport" IsForeignKey="true" />
-      <Association Name="PriceList_Court" Member="PriceList" ThisKey="PriceLists_Id" OtherKey="Id" Type="PriceList" IsForeignKey="true" />
+      <Association Name="PriceLists_Courts_Court" Member="PriceLists_Courts" ThisKey="Id" OtherKey="Courts_Id" Type="PriceLists_Courts" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Sports" Member="Sports">
@@ -28,9 +27,9 @@
   <Table Name="dbo.PriceLists" Member="PriceLists">
     <Type Name="PriceList">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="false" />
       <Column Name="Price" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
-      <Association Name="PriceList_Court" Member="Courts" ThisKey="Id" OtherKey="PriceLists_Id" Type="Court" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Association Name="PriceLists_Courts_PriceList" Member="PriceLists_Courts" ThisKey="Id" OtherKey="PriceLists_Id" Type="PriceLists_Courts" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Reservations" Member="Reservations">
@@ -38,7 +37,18 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Courts_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="DateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
       <Association Name="Court_Reservation" Member="Court" ThisKey="Courts_Id" OtherKey="Id" Type="Court" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PriceLists_Courts" Member="PriceLists_Courts">
+    <Type Name="PriceLists_Courts">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PriceList_Id" Member="PriceLists_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Courts_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="false" />
+      <Association Name="PriceLists_Courts_PriceList" Member="PriceLists" ThisKey="PriceLists_Id" OtherKey="Id" Type="PriceList" />
+      <Association Name="PriceLists_Courts_Court" Member="Courts" ThisKey="Courts_Id" OtherKey="Id" Type="Court" />
     </Type>
   </Table>
 </Database>

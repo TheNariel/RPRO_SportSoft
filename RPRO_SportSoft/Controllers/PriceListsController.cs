@@ -24,9 +24,9 @@ namespace RPRO_SportSoft.Controllers
         }
         // POST: PriceLists/Create
         [HttpPost]
-        public ActionResult Create(DateTime Date, int Price)
+        public ActionResult Create(String Description, int Price)
         {
-            app.Add(Date, Price);
+            app.Add(Description, Price);
             return RedirectToAction("Index");
         }
     }

@@ -23,11 +23,11 @@ namespace RPRO_SportSoft.Application
             return a;
         }
        
-        public Boolean Add(DateTime date, int price)
+        public Boolean Add(String description, int price)
         {
             
             PriceList pl = new PriceList();
-            pl.Date = date.Date;
+            pl.Description = description;
             pl.Price = price;
             db.PriceLists.InsertOnSubmit(pl);
             db.SubmitChanges();

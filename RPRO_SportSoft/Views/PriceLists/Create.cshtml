@@ -12,19 +12,13 @@
 @using (Html.BeginForm("Create", "PriceLists", FormMethod.Post))
 {
     <p>
-        Datum začátku platnosti:
-        @Html.TextBox("Date", Model.Date.Date)<br />
+        Popis:
+        @Html.TextBox("Description", Model.Description)<br />
         Cena: @Html.TextBox("Price", Model.Price) <br />
         <input type="submit" value="Vytvořit" />
         <script>
 
-        (function SetDate() {
-
-        ("#datepicker").datepicker({
-            altField: "#alternate",
-            altFormat: "DD, d MM, yy"
-        });
-    });
+       
         </script>
     </p>
 }

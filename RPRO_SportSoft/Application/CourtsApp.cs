@@ -16,9 +16,11 @@ namespace RPRO_SportSoft.Application
                 Court c = new Court();
                 c.Name = n.Trim();
                 c.Sports_Id = S_Id;
-                c.PriceLists_Id = P_Id;
                 db.Courts.InsertOnSubmit(c);
                 db.SubmitChanges();
+                
+                PriceLists_CourtsApp pc = new PriceLists_CourtsApp();
+                pc.Add(this.Get(n), P_Id);
                 ret = true;
             }
             else
@@ -36,8 +38,10 @@ namespace RPRO_SportSoft.Application
                 var obj = db.Courts.Single(x => x.Id == id);
                 obj.Sports_Id = S_Id;
                 obj.Name = n.Trim();
-                obj.PriceLists_Id = P_Id;
                 db.SubmitChanges();
+                PriceLists_CourtsApp pc = new PriceLists_CourtsApp();
+                pc.Add(this.Get(n), P_Id);
+
                 ret = true;
             }
             else
@@ -96,6 +100,10 @@ namespace RPRO_SportSoft.Application
         public Court Get(int id)
         {
             return db.Courts.Where(Court => Court.Id == id).Single();
+        }
+        public Court Get(String name)
+        {
+            return db.Courts.Where(Court => Court.Name == name).Single();
         }
 
         public int GetSportId(int id) {
