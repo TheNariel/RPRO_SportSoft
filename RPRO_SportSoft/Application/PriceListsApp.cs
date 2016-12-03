@@ -13,14 +13,19 @@ namespace RPRO_SportSoft.Application
         {
             return db.PriceLists.ToList();
         }
-        public List<int> GetListId()
+        public List<String> GetListDescrioptions()
         {
-            List<int> a = new List<int>();
+            List<String> a = new List<String>();
             foreach (PriceList priceList in db.PriceLists.ToList())
             {
-                a.Add(priceList.Id);
+                a.Add(priceList.Description);
             }
             return a;
+        }
+        public int GetId(String d)
+        {
+            PriceList p = db.PriceLists.Where(PriceList => PriceList.Description == d).First();
+            return p.Id;
         }
        
         public Boolean Add(String description, int price)

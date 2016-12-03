@@ -11,6 +11,7 @@ namespace RPRO_SportSoft.Controllers
     {
         CourtsApp app = new CourtsApp();
         ReservationsApp appR = new ReservationsApp();
+        PriceListsApp appPL = new PriceListsApp();
 
         //
         // GET: Courts/Details/5
@@ -29,9 +30,9 @@ namespace RPRO_SportSoft.Controllers
 
         // POST: Courts/Create
         [HttpPost]
-        public ActionResult Create(String CourtName,int Id, int Id_P)
+        public ActionResult Create(String CourtName,int Id, String De_P)
         {
-            
+            int Id_P = appPL.GetId(De_P);
             try
             {
                 if (app.CheckForWhiteSpaces(CourtName)) 
@@ -122,14 +123,15 @@ namespace RPRO_SportSoft.Controllers
 
         // POST: Courts/Delete/5
         [HttpPost]
-        public ActionResult Edit(int Id, int Sports_Id, String CourtName, int Id_P)
+        public ActionResult Edit(int Id, int Sports_Id, String CourtName, String De_P, DateTime date)
         {
+            int Id_P = appPL.GetId(De_P);
             int sport = app.GetSportId(Id);
             try
             {
                 if (app.CheckForWhiteSpaces(CourtName)) {
 
-                    if (app.Edit(Id, CourtName, Sports_Id, Id_P))
+                    if (app.Edit(Id, CourtName, Sports_Id, Id_P, date))
                     {
                         return RedirectToAction("Details", "Sports", new { id = Sports_Id });
                     }
