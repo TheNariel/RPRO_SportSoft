@@ -13,7 +13,8 @@
         @Html.Hidden("Id", Model.Id) 
         @Html.Hidden("Sports_Id", Model.Sports_Id) 
         Název kurtu: @Html.TextBox("CourtName", Model.Name,  new { @class = "form-control", type = "text", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required"}) <br />
-        Ceník: @Html.DropDownList("Id_P", new SelectList(new PriceListsApp().GetListId()))
+        Ceník: @Html.DropDownList("De_P", new SelectList(new PriceListsApp().GetListDescrioptions()))
+        Datum platnosti ceníku: @Html.TextBox("date",new DateTime())
         <input type="submit" value="Uložit změny" />
     </p>
 } 

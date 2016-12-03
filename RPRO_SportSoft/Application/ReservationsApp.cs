@@ -33,7 +33,7 @@ namespace RPRO_SportSoft.Application
 
                 r.Courts_Id = court_id;
                 r.DateTime = date;
-                r.Price = this.GetActualPrice(court_id);
+                r.Price = this.GetActualPrice(court_id, date);
                 db.Reservations.InsertOnSubmit(r);
                 db.SubmitChanges();
 
@@ -51,7 +51,7 @@ namespace RPRO_SportSoft.Application
         {
             return db.Reservations.Where(Reservation => Reservation.Courts_Id == id_court && Reservation.DateTime == date).Any();
         }
-        private int GetActualPrice(int id)
+        private int GetActualPrice(int id, DateTime date)
         {
             DateTime pom = new DateTime();
             pom.AddYears(0);
@@ -60,7 +60,7 @@ namespace RPRO_SportSoft.Application
             List<PriceLists_Courts> list = db.PriceLists_Courts.Where(PriceLists_Courts => PriceLists_Courts.Courts_Id == id).ToList();
             foreach (PriceLists_Courts pc in list)
             {
-                if (pc.Date <= DateTime.Now)
+                if (pc.Date <= date)
                 {
                     if (pc.Date >= pom)
                     {

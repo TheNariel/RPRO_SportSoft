@@ -30,7 +30,7 @@ namespace RPRO_SportSoft.Application
             return ret;
 
         }
-        public Boolean Edit(int id, String n, int S_Id, int P_Id)
+        public Boolean Edit(int id, String n, int S_Id, int P_Id, DateTime date)
         {
             Boolean ret;
             if (!CheckIfTakenEdit(n, S_Id, id))
@@ -40,7 +40,8 @@ namespace RPRO_SportSoft.Application
                 obj.Name = n.Trim();
                 db.SubmitChanges();
                 PriceLists_CourtsApp pc = new PriceLists_CourtsApp();
-                pc.Add(this.Get(n), P_Id);
+                Court c = this.Get(n);
+                pc.Add(c.Id, P_Id, date);
 
                 ret = true;
             }
@@ -83,6 +84,9 @@ namespace RPRO_SportSoft.Application
             {
                 var item = db.Courts.Where(Court => Court.Id == id).Single();
                 db.Courts.DeleteOnSubmit(item);
+                List<PriceLists_Courts> list = db.PriceLists_Courts.Where(PriceLists_Courts => PriceLists_Courts.Courts_Id == id).ToList();
+                db.PriceLists_Courts.DeleteAllOnSubmit(list);
+                
                 db.SubmitChanges();
             }
             else {
