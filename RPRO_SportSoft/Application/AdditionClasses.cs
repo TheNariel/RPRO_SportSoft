@@ -23,3 +23,19 @@ public class CourtListP
         this.sportId = s;
     }
 }
+public class Email
+{
+    public String From;
+    public String Host;
+    public int Port;
+    public String Login;
+    public String Pass;
+    public Email(String f, String h, int p, String l, String pss)
+    {
+        this.From = f;
+        this.Host = h;
+        this.Port = p;
+        this.Login = l;
+        this.Pass = pss;
+    }
+}

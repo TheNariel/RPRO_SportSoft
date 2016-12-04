@@ -1,6 +1,7 @@
 ﻿using RPRO_SportSoft.Application;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -67,7 +68,7 @@ namespace RPRO_SportSoft.Controllers
             }
             else
             {
-                ViewBag.MessageLogin = "Špatně zadaný email nebo heslo! Zkuste to znovu.";
+                ViewBag.MessageLogin = "Špatně zadaný email nebo heslo!  Zkuste to znovu.";
                 User u = new User();
                 u.Email = "";
                 return View(u);
@@ -76,36 +77,10 @@ namespace RPRO_SportSoft.Controllers
 
         public ActionResult SendEmail()
         {
-            MailMessage msg = new MailMessage();
+            EmailApp app = new EmailApp();
+            app.SendEmail();
 
-            msg.From = new MailAddress("noreplysportsoft@gmail.com");
-            msg.To.Add("noreplysportsoft@gmail.com");
-            msg.Subject = "Hello world! " + DateTime.Now.ToString();
-            msg.Body = "hi to you ... :)";
-            SmtpClient client = new SmtpClient();
-            client.UseDefaultCredentials = true;
-            client.Host = "smtp.gmail.com";
-            client.Port = 587;
-            client.EnableSsl = true;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.Credentials = new NetworkCredential("noreplysportsoft@gmail.com", "rpro2016");
-            client.Timeout = 20000;
-            try
-            {
-                client.Send(msg);
-                ViewBag.MessageEmail = "email odeslán";
-                return View();
-            }
-            catch (Exception ex)
-            {
-                ViewBag.MessageEmail = "error:"+ex;
-                return View();
-            }
-            finally
-            {
-                msg.Dispose();
-                
-            }
+            return View();
         }
     }
 }

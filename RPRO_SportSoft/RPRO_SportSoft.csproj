@@ -114,6 +114,7 @@
       <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Resource Include="Email.xml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -133,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\AdditionClasses.cs" />
+    <Compile Include="Application\EmailApp.cs" />
     <Compile Include="Application\PriceListsApp.cs" />
     <Compile Include="Application\PriceLists_CourtsApp.cs" />
     <Compile Include="Application\ReservationsApp.cs" />
@@ -153,6 +155,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -194,6 +201,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="fonts\Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
