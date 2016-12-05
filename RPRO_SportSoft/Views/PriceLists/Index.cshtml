@@ -6,10 +6,16 @@
 }
 
 <h2>Výpis ceníků</h2>
-
+@{
+    String r = Session["Role"].ToString();
+    if (r.Equals("Owner"))
+    {
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Vytvořit ceník", "Create")
 </p>
+    }
+}
+
 <table class="table">
     <tr>
         <th>
