@@ -9,6 +9,23 @@
 <h3>Obsazenost kurtů tohoto sportoviště</h3>
 <p>Vyberte datum: <input type="date" /></p>
 
+<table>
+    <thead>
+        <tr>
+            <td>
+            @foreach (var item in Model.list)
+            {
+                Html.DisplayFor(modelItem => item.Name);
+            }
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        
+
+    </tbody>
+</table>
+
 <table class="table">
     <tr>
     </tr>
