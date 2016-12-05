@@ -913,9 +913,9 @@ namespace RPRO_SportSoft
 		
 		private System.DateTime _Date;
 		
-		private EntitySet<PriceList> _PriceLists;
-		
 		private EntitySet<Court> _Courts;
+		
+		private EntitySet<PriceList> _PriceLists;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -933,8 +933,8 @@ namespace RPRO_SportSoft
 		
 		public PriceLists_Courts()
 		{
-			this._PriceLists = new EntitySet<PriceList>(new Action<PriceList>(this.attach_PriceLists), new Action<PriceList>(this.detach_PriceLists));
 			this._Courts = new EntitySet<Court>(new Action<Court>(this.attach_Courts), new Action<Court>(this.detach_Courts));
+			this._PriceLists = new EntitySet<PriceList>(new Action<PriceList>(this.attach_PriceLists), new Action<PriceList>(this.detach_PriceLists));
 			OnCreated();
 		}
 		
@@ -1018,19 +1018,6 @@ namespace RPRO_SportSoft
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PriceLists_Courts_PriceList", Storage="_PriceLists", ThisKey="PriceLists_Id", OtherKey="Id")]
-		public EntitySet<PriceList> PriceLists
-		{
-			get
-			{
-				return this._PriceLists;
-			}
-			set
-			{
-				this._PriceLists.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PriceLists_Courts_Court", Storage="_Courts", ThisKey="Courts_Id", OtherKey="Id")]
 		public EntitySet<Court> Courts
 		{
@@ -1041,6 +1028,19 @@ namespace RPRO_SportSoft
 			set
 			{
 				this._Courts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PriceLists_Courts_PriceList", Storage="_PriceLists", ThisKey="PriceLists_Id", OtherKey="Id")]
+		public EntitySet<PriceList> PriceLists
+		{
+			get
+			{
+				return this._PriceLists;
+			}
+			set
+			{
+				this._PriceLists.Assign(value);
 			}
 		}
 		
@@ -1064,18 +1064,6 @@ namespace RPRO_SportSoft
 			}
 		}
 		
-		private void attach_PriceLists(PriceList entity)
-		{
-			this.SendPropertyChanging();
-			entity.PriceLists_Courts = this;
-		}
-		
-		private void detach_PriceLists(PriceList entity)
-		{
-			this.SendPropertyChanging();
-			entity.PriceLists_Courts = null;
-		}
-		
 		private void attach_Courts(Court entity)
 		{
 			this.SendPropertyChanging();
@@ -1083,6 +1071,18 @@ namespace RPRO_SportSoft
 		}
 		
 		private void detach_Courts(Court entity)
+		{
+			this.SendPropertyChanging();
+			entity.PriceLists_Courts = null;
+		}
+		
+		private void attach_PriceLists(PriceList entity)
+		{
+			this.SendPropertyChanging();
+			entity.PriceLists_Courts = this;
+		}
+		
+		private void detach_PriceLists(PriceList entity)
 		{
 			this.SendPropertyChanging();
 			entity.PriceLists_Courts = null;

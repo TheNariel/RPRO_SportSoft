@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SportSoftDb" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\SportSoftDb.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SportSoftDbConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=rpro.database.windows.net;Initial Catalog=SportSoftDb;Integrated Security=False;User ID=SportSoft;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SportSoftDbAzure" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Courts" Member="Courts">
     <Type Name="Court">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -47,8 +47,8 @@
       <Column Name="PriceList_Id" Member="PriceLists_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Courts_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="false" />
-      <Association Name="PriceLists_Courts_PriceList" Member="PriceLists" ThisKey="PriceLists_Id" OtherKey="Id" Type="PriceList" />
       <Association Name="PriceLists_Courts_Court" Member="Courts" ThisKey="Courts_Id" OtherKey="Id" Type="Court" />
+      <Association Name="PriceLists_Courts_PriceList" Member="PriceLists" ThisKey="PriceLists_Id" OtherKey="Id" Type="PriceList" />
     </Type>
   </Table>
 </Database>
