@@ -188,7 +188,6 @@ namespace RPRO_SportSoft.Controllers
             }
         }
 
-        // GET: PriceLists
         public ActionResult IndexR()
         {
             return View(appR.GetList());

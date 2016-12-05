@@ -51,6 +51,7 @@ namespace RPRO_SportSoft.Application
         {
             return db.Reservations.Where(Reservation => Reservation.Courts_Id == id_court && Reservation.DateTime == date).Any();
         }
+
         private int GetActualPrice(int id, DateTime date)
         {
             DateTime pom = new DateTime();
