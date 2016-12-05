@@ -26,18 +26,26 @@
                 <td>
                   @*  @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
                @Html.ActionLink("Kurty", "Details", new { id = item.Id }) |
-               @Html.ActionLink("Upravit", "Edit", new { id = item.Id }) |
-               @Html.ActionLink("Vymazat", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-   
+@{
+    String role = Session["Role"].ToString();
+    if (role.Equals("Owner"))
+    {
+        @Html.ActionLink("Upravit", "Edit", new { id = item.Id }) 
+        String pom = " | ";
+        @pom.ToString();
+        @Html.ActionLink("Vymazat", "Delete", new { id = item.Id })
+    }
 }
+                </td>
+            </tr>
 
-    </table>
-<br />
-<p>
-    @Html.ActionLink("Vytvořit nové sportoviště", "Create", new { boo = true, sport = "" })
-</p>
+    }
 
-<br />
+        </table>
+    <br />
+    <p>
+        @Html.ActionLink("Vytvořit nové sportoviště", "Create", new { boo = true, sport = "" })
+    </p>
+
+    <br />
 

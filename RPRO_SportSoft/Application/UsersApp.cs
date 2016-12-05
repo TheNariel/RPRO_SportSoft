@@ -78,5 +78,9 @@ namespace RPRO_SportSoft.Application
 
             return hashedPwd;
         }
+        public User GetUser(String e)
+        {
+            return db.Users.Where(User => User.Email == e).First();
+        }
     }
 }
