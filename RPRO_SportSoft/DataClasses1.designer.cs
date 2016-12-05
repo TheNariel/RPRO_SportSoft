@@ -475,6 +475,8 @@ namespace RPRO_SportSoft
 		
 		private string _Salt;
 		
+		private string _Role;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -485,6 +487,8 @@ namespace RPRO_SportSoft
     partial void OnPasswordChanged();
     partial void OnSaltChanging(string value);
     partial void OnSaltChanged();
+    partial void OnRoleChanging(string value);
+    partial void OnRoleChanged();
     #endregion
 		
 		public User()
@@ -548,6 +552,26 @@ namespace RPRO_SportSoft
 					this._Salt = value;
 					this.SendPropertyChanged("Salt");
 					this.OnSaltChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string Role
+		{
+			get
+			{
+				return this._Role;
+			}
+			set
+			{
+				if ((this._Role != value))
+				{
+					this.OnRoleChanging(value);
+					this.SendPropertyChanging();
+					this._Role = value;
+					this.SendPropertyChanged("Role");
+					this.OnRoleChanged();
 				}
 			}
 		}

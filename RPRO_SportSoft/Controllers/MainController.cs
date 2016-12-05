@@ -31,11 +31,11 @@ namespace RPRO_SportSoft.Controllers
         }
         // POST: Main/Create
         [HttpPost]
-        public ActionResult Create(String UserEmail, String UserPass)
+        public ActionResult Create(String UserEmail, String UserPass, String UserRole)
         {
             try
             {
-                if (app.Add(UserEmail, UserPass))
+                if (app.Add(UserEmail, UserPass, UserRole))
                 {
                     return RedirectToAction("Index");
                 }

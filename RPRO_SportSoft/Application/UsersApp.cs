@@ -9,16 +9,28 @@ namespace RPRO_SportSoft.Application
     public class UsersApp
     {
         DataClasses1DataContext db = new DataClasses1DataContext();
-        public Boolean Add(String e, String p)
+        public Boolean Add(String e, String p, String r)
         {
             Boolean ret;
             if (!CheckIfTaken(e))
             {
                 User u = new User();
                 u.Email = e;
-                String salt = CreateSalt(); 
+                String salt = CreateSalt();
                 u.Password = CreatePasswordHash(p, salt);
                 u.Salt = salt;
+                if (r.Equals("Majitel"))
+                {
+                    u.Role = "Owner";
+                } else if (r.Equals("Zákazník"))
+                {
+                    u.Role = "Customer";
+                } else
+                {
+                    u.Role = "Undefined";
+                }
+
+
                 db.Users.InsertOnSubmit(u);
                 db.SubmitChanges();
                 ret = true;
