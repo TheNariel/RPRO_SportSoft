@@ -4,8 +4,9 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+
     <meta charset="utf-8" />
     <style type="text/css">
         body {
@@ -141,20 +142,27 @@
         <div class="navbar">
             <nav>
                 @{ 
-                    if (!login.Equals("")) {
-                <ul>
+                 <ul>
                     <li>@Html.ActionLink("Domů", "Index", "Sports")</li>
-                    <li>@Html.ActionLink("Registrace", "Create", "Main")</li>
-                    <li>@Html.ActionLink("Ceníky", "Index", "PriceLists")</li>
-                    <li>@Html.ActionLink("Rezervace", "IndexR", "Courts")</li>
+                    <li>@Html.ActionLink("Kontakt", "#", "#")</li>
+                    <li>@Html.ActionLink("Provozní řád", "#", "#")</li>
                 </ul>
+                    }
+            </nav>
+        </div>
+
+        <div class="user_menu">
+            <nav>
+                @{
+                    if (!login.Equals(""))
+                    {
+                        <ul>
+                            <li>@Html.ActionLink("Správa ceníků", "Index", "PriceLists")</li>
+                            <li>@Html.ActionLink("Správa rezervací", "IndexR", "Courts")</li>
+                        </ul>
                     }
                     else
                     {
-                        <ul>
-                            <li>@Html.ActionLink("Domů", "Index", "Main")</li>
-                            <li>@Html.ActionLink("Registrace", "Create", "Main")</li>
-                        </ul>
                     }
                 }
             </nav>
@@ -227,6 +235,5 @@
     </div>
    
     <p>&copy; @DateTime.Now.Year - RPRO_SportSoft ASP.NET Application</p>
-    <p> Microsoft .NET Framework Version:4.0.30319; ASP.NET Version:4.6.1073.0</p>
 </body>
 </html>
