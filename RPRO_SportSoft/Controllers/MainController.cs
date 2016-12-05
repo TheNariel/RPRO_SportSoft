@@ -84,5 +84,13 @@ namespace RPRO_SportSoft.Controllers
 
             return View();
         }
+        public ActionResult Contacts()
+        {
+            return View();
+        }
+        public ActionResult Rules()
+        {
+            return View();
+        }
     }
 }

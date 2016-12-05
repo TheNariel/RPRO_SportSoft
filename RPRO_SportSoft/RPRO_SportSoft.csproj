@@ -178,12 +178,13 @@
     <Content Include="Views\Sports\Edit.cshtml" />
     <Content Include="Views\Courts\Edit.cshtml" />
     <Content Include="Views\Main\Create.cshtml" />
-    <Content Include="Views\Shared\_LayoutForHost.cshtml" />
     <Content Include="Views\PriceLists\Index.cshtml" />
     <Content Include="Views\PriceLists\Create.cshtml" />
     <Content Include="Views\Courts\Reservation.cshtml" />
     <Content Include="Views\Courts\IndexR.cshtml" />
     <Content Include="Views\Main\sendEmail.cshtml" />
+    <Content Include="Views\Main\Contacts.cshtml" />
+    <Content Include="Views\Main\Rules.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
