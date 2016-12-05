@@ -92,5 +92,8 @@ namespace RPRO_SportSoft.Controllers
         {
             return View();
         }
+        public ActionResult Account() {
+            return View();
+        }
     }
 }

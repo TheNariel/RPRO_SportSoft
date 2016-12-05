@@ -114,7 +114,9 @@
       <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Resource Include="Email.xml" />
+    <Resource Include="Email.xml">
+      <SubType>Designer</SubType>
+    </Resource>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -185,6 +187,7 @@
     <Content Include="Views\Main\sendEmail.cshtml" />
     <Content Include="Views\Main\Contacts.cshtml" />
     <Content Include="Views\Main\Rules.cshtml" />
+    <Content Include="Views\Main\Account.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
