@@ -12,7 +12,7 @@
     <p>
         Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email", type = "email", placeholder = "jmeno@domena.com", required = "required" }) <br />
         Heslo: @Html.Password("UserPass", Model.Password, new { @class = "password", required = "required" })<br />
-        Role: @Html.DropDownList("UserRole", new SelectList( new List<String>(){"Zákazník", "Majitel"}))
+        Role: @Html.DropDownList("UserRole", new SelectList(new List<String>() { "Zákazník", "Majitel" }))<br />
             <input type="submit" value="Registrovat" />
 </p>
 }
