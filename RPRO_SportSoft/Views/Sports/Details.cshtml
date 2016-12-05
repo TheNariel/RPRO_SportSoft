@@ -34,8 +34,8 @@
     }
 }
 @{
-    String r = Session["Role"].ToString();
-    if (role.Equals("Customer") || role.Equals("Owner"))
+    String ro = Session["Role"].ToString();
+    if (ro.Equals("Customer") || role.Equals("Owner"))
     {
         @Html.ActionLink("Rezervovat", "Reservation", "Courts", new { id = item.Id}, null)
     }
