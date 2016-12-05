@@ -12,12 +12,14 @@
 <table>
     <thead>
         <tr>
-            <td>
+            
             @foreach (var item in Model.list)
             {
-                Html.DisplayFor(modelItem => item.Name);
+                <td>
+                    Html.DisplayFor(modelItem => item.Name);
+                </td> 
             }
-            </td>
+            
         </tr>
     </thead>
     <tbody>
