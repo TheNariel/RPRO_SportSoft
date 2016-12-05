@@ -144,15 +144,15 @@
                 @{ 
                  <ul>
                     <li>@Html.ActionLink("Domů", "Index", "Sports")</li>
-                    <li>@Html.ActionLink("Kontakt", "Contacts", "Main")</li>
-                    <li>@Html.ActionLink("Provozní řád", "Rules", "Main")</li>
+                     <li>@Html.ActionLink("Provozní řád", "Rules", "Main")</li>
+                     <li>@Html.ActionLink("Kontakt", "Contacts", "Main")</li>
+                    
                 </ul>
                     }
             </nav>
         </div>
 
         <div class="user_menu">
-            <nav>
                 @{
                     if (!login.Equals(""))
                     {
@@ -177,7 +177,6 @@
                                 {
                                 }
                             }
-            </nav>
         </div>
 
         @RenderBody()
