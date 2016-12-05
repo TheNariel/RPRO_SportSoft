@@ -17,3 +17,12 @@ textarea {
     max-width: 280px;
 }
 
+.user_menu {
+    background-color: cadetblue;
+    float: right;
+    border-radius: 5px;
+}
+.user_menu > li {
+  position: relative;
+  display: list-item;
+}
