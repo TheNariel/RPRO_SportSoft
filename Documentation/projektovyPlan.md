@@ -14,7 +14,7 @@
 |22.11. - 29.11.2016|E6|Implementace zasilání emailů, hashování hesel,rezervace a přidání ceníku|Splněno
 |29.11. - 6.12.2016|E7|Přidání rolí uživatelům, modul pro přihlášení, změna způsobu rezervace a přiřazování ceníku|Splněno
 |6.12. - 13.12.2016|E8|Úprava zadávání rezervací|
-<b>6. 12.</b>||		<b>Milník LCA</b>|	
+<b>13. 12.</b>||		<b>Milník LCA</b>|	
 ||||
 ||||
 ||||
