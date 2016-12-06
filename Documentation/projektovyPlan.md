@@ -11,8 +11,9 @@
 |1.11. - 8.11.2016|E3|Rozšíření o aplikační vrstvu, kontrola "Přidání kurtu" vzhledem ke sportovišti|Splněno
 |8.11. - 15.11.2016|E4|Vytvoření tabulky stavů scénářů, implementace editace a smazání kurtu a sportovišť|Splněno
 |15.11. - 22.11.2016|E5|Implementace přihlášení, odhlášení a registrace. Ošetření vkládání prázdných řetězců do formulářů|Splněno
-|22.11. - 29.11.2016|E6|Implementace zasilání emailů, hashování hesel,rezervace a přidání ceníku|
-||||
+|22.11. - 29.11.2016|E6|Implementace zasilání emailů, hashování hesel,rezervace a přidání ceníku|Splněno
+|29.11. - 6.12.2016|E7|Přidání rolí uživatelům, modul pro přihlášení, změna způsobu rezervace a přiřazování ceníku|Splněno
+|6.12. - 13.12.2016|E8|Úprava zadávání rezervací|
 <b>6. 12.</b>||		<b>Milník LCA</b>|	
 ||||
 ||||
