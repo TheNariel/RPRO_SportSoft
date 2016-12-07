@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SportSoftDb" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\SportSoftDb.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SportSoftDbConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=rpro.database.windows.net;Initial Catalog=SportSoftDb;Integrated Security=False;User ID=SportSoft;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SportSoftDbConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Courts" Member="Courts">
     <Type Name="Court">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -44,6 +44,13 @@
       <Association Name="PriceLists_Courts_PriceList" Member="PriceLists" ThisKey="PriceLists_Id" OtherKey="Id" Type="PriceList" />
     </Type>
   </Table>
+  <Table Name="dbo.Reservation_Time" Member="Reservation_Times">
+    <Type Name="Reservation_Time">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Time" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="Reservation_Time_Reservation" Member="Reservations" ThisKey="Id" OtherKey="Time_Id" Type="Reservation" />
+    </Type>
+  </Table>
   <Table Name="dbo.Reservations" Member="Reservations">
     <Type Name="Reservation">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -53,15 +60,8 @@
       <Column Name="Time_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="User_Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Court_Reservation" Member="Court" ThisKey="Courts_Id" OtherKey="Id" Type="Court" IsForeignKey="true" />
-      <Association Name="User_Reservation" Member="User" ThisKey="User_Email" OtherKey="Email" Type="User" IsForeignKey="true" />
       <Association Name="Reservation_Time_Reservation" Member="Reservation_Time" ThisKey="Time_Id" OtherKey="Id" Type="Reservation_Time" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Reservation_Time" Member="Reservation_Times">
-    <Type Name="Reservation_Time">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Time" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Association Name="Reservation_Time_Reservation" Member="Reservations" ThisKey="Id" OtherKey="Time_Id" Type="Reservation" />
+      <Association Name="User_Reservation" Member="User" ThisKey="User_Email" OtherKey="Email" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
