@@ -32,7 +32,7 @@ namespace RPRO_SportSoft.Application
                 Reservation r = new Reservation();
 
                 r.Courts_Id = court_id;
-                r.DateTime = date;
+                r.Date = date;
                 r.Price = this.GetActualPrice(court_id, date);
                 db.Reservations.InsertOnSubmit(r);
                 db.SubmitChanges();
@@ -49,7 +49,7 @@ namespace RPRO_SportSoft.Application
 
         public Boolean CheckIfTakenReservation(int id_court, DateTime date)
         {
-            return db.Reservations.Where(Reservation => Reservation.Courts_Id == id_court && Reservation.DateTime == date).Any();
+            return db.Reservations.Where(Reservation => Reservation.Courts_Id == id_court && Reservation.Date == date).Any();
         }
 
         private int GetActualPrice(int id, DateTime date)

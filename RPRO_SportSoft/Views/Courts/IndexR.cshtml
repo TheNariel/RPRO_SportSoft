@@ -9,7 +9,7 @@
 <table class="table">
     <tr>
         <th>
-            Datum a čas
+            Datum
         </th>
         <th>
             Kurt
@@ -17,19 +17,31 @@
         <th>
             Cena
         </th>
+        <th>
+            Čas
+        </th>
+        <th>
+            Zákazník
+        </th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.DateTime)
+                @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Courts_Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_Email)
             </td>
         </tr>
     }
