@@ -9,13 +9,19 @@
 <table class="table">
     <tr>
         <th>
-            Datum a čas
+            Datum
         </th>
         <th>
             Kurt
         </th>
         <th>
             Cena
+        </th>
+        <th>
+            Čas
+        </th>
+        <th>
+            Zákazník
         </th>
     </tr>
 
@@ -30,6 +36,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_Email)
             </td>
         </tr>
     }
