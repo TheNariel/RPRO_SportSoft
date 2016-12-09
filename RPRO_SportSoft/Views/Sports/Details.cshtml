@@ -6,9 +6,23 @@
 }
 
 <h2>Kurty sportoviště:  @Html.DisplayFor(modelItem => Model.sportName)</h2>
-<h3>Obsazenost kurtů tohoto sportoviště</h3>
-<p>Vyberte datum: <input type="date" /></p>
 
+@foreach (var item in Model.list)
+{
+    <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+    <table>
+        <thead>
+            <tr>
+                <td colspan="24">časy rezervace</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+
+            </tr>
+        </tbody>
+    </table>
+}
 
 
 <table class="table">

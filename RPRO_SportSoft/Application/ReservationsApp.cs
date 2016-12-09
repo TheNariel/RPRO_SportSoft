@@ -72,8 +72,9 @@ namespace RPRO_SportSoft.Application
             }
             PriceList pl = db.PriceLists.Where(PriceList => PriceList.Id == pomId).First();
             result = pl.Price;
-            return result;
-            
+            return result;   
         }
+
+
     }
 }
