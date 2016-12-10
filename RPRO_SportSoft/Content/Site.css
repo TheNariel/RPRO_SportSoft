@@ -1,4 +1,98 @@
-﻿
+﻿    body {
+    background-image: url(http://www.abilenecountryclub.com/Golf/Golf-Calendar/tennis3.aspx?width=2600&height=1347&ext=.jpg);
+    font-family: Verdana, Arial;
+    margin: 50px;
+
+    }
+
+    form {
+    padding: 10px;
+    border-style: solid;
+    width: 250px;
+    }
+
+    .title{
+    //border: 1px green solid;
+    // margin-top: 10px;
+    text-align: right;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 980px;
+    }
+
+    .header {
+    background-color: #e3e3e3;
+    //margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 960px;
+    border: hidden;
+    border-radius: 7px;
+    padding: 10px;
+    }
+
+    .main {
+    box-shadow: 0 0 60px #000033;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 960px;
+    padding: 10px;
+    padding-bottom:60px;
+    border-radius: 10px;
+    background-color: #e3e3e3;
+    min-height: 500px;
+    }
+
+    .navbar {
+    background-color: #000020;
+    }
+
+    h2 {
+    //text-align: center;
+    color: #000020;
+    // font-family: Arial;
+    // font-style: ;
+    }
+
+    th, td {
+    text-align: left;
+    padding: 6px;
+    }
+
+    tr:nth-child(even){background-color: #c3c3c3}
+
+    ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #000020;
+    }
+
+    li {
+    float: left;
+    }
+
+    li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+    background-color: #111;
+    }
+
+    .active {
+    background-color: #4CAF50;
+    }
+
+
+
+
 body {
     padding-top: 50px;
     padding-bottom: 20px;
