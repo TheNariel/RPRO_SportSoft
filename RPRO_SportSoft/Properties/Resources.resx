@@ -117,8 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Email" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Email.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="EFrom" xml:space="preserve">
+    <value>noreply@gmail.com</value>
+  </data>
+  <data name="EHost" xml:space="preserve">
+    <value>smtp.gmail.com</value>
+  </data>
+  <data name="ELogin" xml:space="preserve">
+    <value>noreplysportsoft@gmail.com</value>
+  </data>
+  <data name="EPass" xml:space="preserve">
+    <value>rpro2016</value>
+  </data>
+  <data name="EPort" xml:space="preserve">
+    <value>587</value>
+  </data>
+  <data name="ERegHead" xml:space="preserve">
+    <value>Váš účet </value>
+  </data>
+  <data name="ERegTail" xml:space="preserve">
+    <value>Byl uspěšně vytvořen. 
+Děkujeme.</value>
+  </data>
+  <data name="EResHead" xml:space="preserve">
+    <value>Vaše rezerace</value>
+  </data>
+  <data name="EResTail" xml:space="preserve">
+    <value>Byla uspěšně vytvořena. 
+Děkujeme.</value>
   </data>
 </root>

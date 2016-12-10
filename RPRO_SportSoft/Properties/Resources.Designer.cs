@@ -61,19 +61,85 @@ namespace RPRO_SportSoft.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot;?&gt;
-        ///&lt;Email&gt;
-        /// &lt;From&gt;noreplysportsoft@gmail.com&lt;/From&gt;
-        /// &lt;Host&gt;smtp.gmail.com&lt;/Host&gt;
-        /// &lt;Port&gt;587&lt;/Port&gt;
-        /// &lt;Login&gt;noreplysportsoft@gmail.com&lt;/Login&gt;
-        /// &lt;Pass&gt;rpro2016&lt;/Pass&gt;
-        ///&lt;/Email&gt;
-        ///.
+        ///   Looks up a localized string similar to noreply@gmail.com.
         /// </summary>
-        internal static string Email {
+        internal static string EFrom {
             get {
-                return ResourceManager.GetString("Email", resourceCulture);
+                return ResourceManager.GetString("EFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to smtp.gmail.com.
+        /// </summary>
+        internal static string EHost {
+            get {
+                return ResourceManager.GetString("EHost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to noreplysportsoft@gmail.com.
+        /// </summary>
+        internal static string ELogin {
+            get {
+                return ResourceManager.GetString("ELogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to rpro2016.
+        /// </summary>
+        internal static string EPass {
+            get {
+                return ResourceManager.GetString("EPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 587.
+        /// </summary>
+        internal static string EPort {
+            get {
+                return ResourceManager.GetString("EPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Váš účet .
+        /// </summary>
+        internal static string ERegHead {
+            get {
+                return ResourceManager.GetString("ERegHead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Byl uspěšně vytvořen. 
+        ///Děkujeme..
+        /// </summary>
+        internal static string ERegTail {
+            get {
+                return ResourceManager.GetString("ERegTail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vaše rezerace.
+        /// </summary>
+        internal static string EResHead {
+            get {
+                return ResourceManager.GetString("EResHead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Byla uspěšně vytvořena. 
+        ///Děkujeme..
+        /// </summary>
+        internal static string EResTail {
+            get {
+                return ResourceManager.GetString("EResTail", resourceCulture);
             }
         }
     }

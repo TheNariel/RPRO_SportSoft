@@ -38,6 +38,9 @@ namespace RPRO_SportSoft.Controllers
             {
                 if (app.Add(UserEmail, UserPass, UserRole))
                 {
+                    EmailApp Eapp = new EmailApp();
+                    String body = Properties.Resources.ERegHead + "\n" + UserEmail  +  "\n" + Properties.Resources.ERegTail;
+                    Eapp.SendEmail("Registrace", body);
                     return RedirectToAction("Index");
                 }
                 else
@@ -77,13 +80,7 @@ namespace RPRO_SportSoft.Controllers
             }
         }
 
-        public ActionResult SendEmail()
-        {
-            EmailApp app = new EmailApp();
-            app.SendEmail();
-
-            return View();
-        }
+       
         public ActionResult Contacts()
         {
             return View();

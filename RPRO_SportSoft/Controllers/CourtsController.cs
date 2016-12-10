@@ -169,6 +169,10 @@ namespace RPRO_SportSoft.Controllers
             {
                 if (appR.Add(id, date))
                 {
+                    EmailApp Eapp = new EmailApp();
+                    String body = Properties.Resources.EResHead + "\n" + app.Get(id).Name +"\n" + date + "\n" + Properties.Resources.EResTail;
+                    Eapp.SendEmail("Rezervace", body);
+
                     return RedirectToAction("IndexR");
                 }
                 else

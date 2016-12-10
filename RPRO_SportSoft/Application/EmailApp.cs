@@ -11,23 +11,23 @@ namespace RPRO_SportSoft.Application
 {
     public class EmailApp
     {
-        public void SendEmail()
+        public void SendEmail(String Sub,String Bod)
         {
-           Email E = SetEmailInfo();
+          
 
             MailMessage msg = new MailMessage();
 
-            msg.From = new MailAddress(E.From);
+            msg.From = new MailAddress(Properties.Resources.EFrom);
             msg.To.Add("noreplysportsoft@gmail.com");
-            msg.Subject = "H! " + DateTime.Now.ToString();
-            msg.Body = "hi ...";
+            msg.Subject = Sub;
+            msg.Body = Bod;
             SmtpClient client = new SmtpClient();
             client.UseDefaultCredentials = true;
-            client.Host = E.Host;
-            client.Port = E.Port;
+            client.Host = Properties.Resources.EHost;
+            client.Port = Int32.Parse(Properties.Resources.EPort);
             client.EnableSsl = true;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.Credentials = new NetworkCredential(E.Login,E.Pass);
+            client.Credentials = new NetworkCredential(Properties.Resources.ELogin, Properties.Resources.EPass);
             client.Timeout = 20000;
             try
             {
@@ -44,24 +44,6 @@ namespace RPRO_SportSoft.Application
 
             }
         }
-
-        public Email SetEmailInfo()
-        {
-            String from="", host = "", login = "", pass = "";
-            int port = 0;
-            XDocument settings = XDocument.Parse(Properties.Resources.Email);
-            IEnumerable<XElement> Sett = settings.Elements();
-            foreach (var S in Sett)
-            {
-                from = S.Element("From").Value;
-                host = S.Element("Host").Value;
-                port = Int32.Parse(S.Element("Port").Value);
-                login = S.Element("Login").Value;
-                pass = S.Element("Pass").Value;
-            }
-           
-            return new Email(from,host,port,login,pass);
-        }
-
     }
+
 }

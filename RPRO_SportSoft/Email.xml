@@ -1,8 +1,0 @@
-﻿<?xml version="1.0"?>
-<Email>
- <From>noreply@gmail.com</From>
- <Host>smtp.gmail.com</Host>
- <Port>587</Port>
- <Login>noreplysportsoft@gmail.com</Login>
- <Pass>rpro2016</Pass>
-</Email>
