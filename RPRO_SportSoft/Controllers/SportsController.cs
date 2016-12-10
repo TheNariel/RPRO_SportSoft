@@ -1,4 +1,5 @@
 ﻿using RPRO_SportSoft.Application;
+using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -9,18 +10,26 @@ namespace RPRO_SportSoft.Controllers
     {
         SportsApp app = new SportsApp();
         ReservationsApp appR = new ReservationsApp();
+
         // GET: Sports
         public ActionResult Index()
         {
             return View(app.GetList());
-            
         }
+
         // GET: Sports/Details/5
         public ActionResult Details(int id)
         {
-            CourtListP CourtList = new CourtListP(id,app.GetName(id), app.GetCourts(id));
+            List<int>[][] field;
+            List<Court> courts = app.GetCourts(id);
+            foreach (var c in courts) {
+                l = appR.GetReservations(c.Id, new DateTime(2016, 12, 15));
+            }
+            ViewBag.List = l;
+            CourtListP CourtList = new CourtListP(id, app.GetName(id), app.GetCourts(id));
             return View(CourtList);
         }
+
         // GET: Sports/Create
         public ActionResult Create()
         {
@@ -57,10 +66,6 @@ namespace RPRO_SportSoft.Controllers
                     s.Name = SportName;
                     return View(s);
                 }
-
-
-
-
 
             }
             catch

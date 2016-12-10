@@ -6,42 +6,47 @@
 }
 
 <h2>Kurty sportoviště:  @Html.DisplayFor(modelItem => Model.sportName)</h2>
+@foreach (var item in Model.list) {
+    <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+    foreach (var s in ViewBag.List)
+    {
+        @s
+    }
 
-
+}
 
 <table class="table">
-    <tr>
-    </tr>
+    <tr></tr>
 
-        @foreach (var item in Model.list)
-        {
+    @foreach (var item in Model.list)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-@{
-    String role = Session["Role"].ToString();
-    if (role.Equals("Owner"))
-    {
-        @Html.ActionLink("Upravit", "Edit", "Courts", new { id = item.Id }, null)
-        String pom = " | ";
-        @pom.ToString();
-        @Html.ActionLink("Vymazat", "Delete", "Courts", new { id = item.Id }, null)
-        @pom.ToString();
+                @{
+                    String role = Session["Role"].ToString();
+                    if (role.Equals("Owner"))
+                    {
+                        @Html.ActionLink("Upravit", "Edit", "Courts", new { id = item.Id }, null)
+                        String pom = " | ";
+                        @pom.ToString();
+                        @Html.ActionLink("Vymazat", "Delete", "Courts", new { id = item.Id }, null)
+                        @pom.ToString();
 
-    }
-}
-@{
-    String ro = Session["Role"].ToString();
-    if (ro.Equals("Customer") || role.Equals("Owner"))
-    {
-        @Html.ActionLink("Rezervovat", "Reservation", "Courts", new { id = item.Id}, null)
-    }
-}
+                    }
+                }
+                @{
+                    String ro = Session["Role"].ToString();
+                    if (ro.Equals("Customer") || role.Equals("Owner"))
+                    {
+                        @Html.ActionLink("Rezervovat", "Reservation", "Courts", new { id = item.Id }, null)
+                    }
+                }
             </td>
         </tr>
-    }
+                    }
 
 </table>
 <br />
@@ -49,9 +54,9 @@
     String r = Session["Role"].ToString();
     if (r.Equals("Owner"))
     {
-<p>
-    @Html.ActionLink("Vytvořit nový kurt", "Create", "Courts", new { sport = Model.sportId }, null)
-</p>
+        <p>
+            @Html.ActionLink("Vytvořit nový kurt", "Create", "Courts", new { sport = Model.sportId }, null)
+        </p>
     }
 }
 
