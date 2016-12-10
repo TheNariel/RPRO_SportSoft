@@ -20,12 +20,12 @@ namespace RPRO_SportSoft.Controllers
         // GET: Sports/Details/5
         public ActionResult Details(int id)
         {
-            List<int>[][] field;
-            List<Court> courts = app.GetCourts(id);
+            var Reservations = new Dictionary<string, List<int>>();
+            IEnumerable<Court> courts = app.GetCourts(id);
             foreach (var c in courts) {
-                l = appR.GetReservations(c.Id, new DateTime(2016, 12, 15));
-            }
-            ViewBag.List = l;
+                Reservations[c.Name] = appR.GetReservations(c.Id, new DateTime(2016, 12, 15));
+           }
+            ViewBag.Reservations = Reservations;
             CourtListP CourtList = new CourtListP(id, app.GetName(id), app.GetCourts(id));
             return View(CourtList);
         }
