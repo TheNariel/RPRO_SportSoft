@@ -8,10 +8,10 @@ namespace RPRO_SportSoft.Controllers
     public class SportsController : Controller
     {
         SportsApp app = new SportsApp();
+        ReservationsApp appR = new ReservationsApp();
         // GET: Sports
         public ActionResult Index()
         {
-           
             return View(app.GetList());
             
         }

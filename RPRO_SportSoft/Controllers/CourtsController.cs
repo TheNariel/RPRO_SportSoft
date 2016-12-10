@@ -196,5 +196,6 @@ namespace RPRO_SportSoft.Controllers
         {
             return View(appR.GetList());
         }
+
     }
 }
