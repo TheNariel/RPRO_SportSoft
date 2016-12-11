@@ -8,7 +8,7 @@
 <h2>Kurty sportoviště:  @Html.DisplayFor(modelItem => Model.sportName)</h2>
 @foreach (var item in Model.list) {
     <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
-    foreach (var s in ViewBag.List)
+    foreach (var s in ViewBag.Reservations)
     {
         @s
     }
