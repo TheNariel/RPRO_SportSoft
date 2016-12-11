@@ -6,7 +6,10 @@
     }
 
     <h2>Seznam sportovišť</h2>
-    
+    @{
+        String role = Session["Role"].ToString();
+        if (role.Equals("Owner"))
+        {
 
     <table class="table">
         <tr>
@@ -17,7 +20,7 @@
         </tr>
 
   @foreach (var item in Model)
-    {
+  {
 
             <tr>
                 <td>
@@ -25,24 +28,35 @@
                 </td>
                 <td>
                   @*  @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
-               @Html.ActionLink("Kurty", "Details", new { id = item.Id }) 
-@{
-    String role = Session["Role"].ToString();
-    if (role.Equals("Owner"))
-    {
-        String pom = " | ";
-        @pom.ToString();
+               @Html.ActionLink("Kurty", "Details", new { id = item.Id })
+                   
+
+         | 
         @Html.ActionLink("Upravit", "Edit", new { id = item.Id }) 
-        @pom.ToString();
+         | 
         @Html.ActionLink("Vymazat", "Delete", new { id = item.Id })
-    }
-}
+  
                 </td>
             </tr>
 
-    }
+  }
 
         </table>
+        }
+        else
+        {
+            
+                foreach (var item in Model)
+                {
+                <a href="@Url.Action("Details"), new { id = item.Id })">
+                    <img src="@Url.Content("http://calgolftech.com/wp-content/uploads/2015/04/shutterstock_158881226.jpg")" , alt=item.Name, width="200" height="200" />
+                </a>
+                }
+            
+        }
+    }
+
+
     <br />
 @{
     String r = Session["Role"].ToString();
@@ -54,4 +68,8 @@
     }
 }
     <br />
+
+
+   
+
 
