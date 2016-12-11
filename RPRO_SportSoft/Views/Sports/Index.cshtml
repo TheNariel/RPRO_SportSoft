@@ -48,7 +48,7 @@
             
                 foreach (var item in Model)
                 {
-                <a href="@Url.Action("Details"), new { id = item.Id })">
+                <a href="@Url.Action("Details", new { id = item.Id })">
                     <img src="@Url.Content("http://calgolftech.com/wp-content/uploads/2015/04/shutterstock_158881226.jpg")"  alt="@item.Name"  width="200" height="200" />
                 </a>
                 }
