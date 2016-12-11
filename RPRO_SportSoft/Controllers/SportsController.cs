@@ -22,10 +22,14 @@ namespace RPRO_SportSoft.Controllers
         {
             var Reservations = new Dictionary<string, List<int>>();
             IEnumerable<Court> courts = app.GetCourts(id);
+            List<string> times = appR.GetListOfTimeReservations();
+
             foreach (var c in courts) {
                 Reservations[c.Name] = appR.GetReservations(c.Id, new DateTime(2016, 12, 15));
            }
             ViewBag.Reservations = Reservations;
+            ViewBag.Times = times;
+
             CourtListP CourtList = new CourtListP(id, app.GetName(id), app.GetCourts(id));
             return View(CourtList);
         }
