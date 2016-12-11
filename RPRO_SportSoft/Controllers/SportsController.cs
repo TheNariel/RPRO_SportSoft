@@ -22,7 +22,7 @@ namespace RPRO_SportSoft.Controllers
         {
             var Reservations = new Dictionary<string, List<int>>();
             IEnumerable<Court> courts = app.GetCourts(id);
-            List<string> times = appR.GetListOfTimeReservations();
+            List<Reservation_Time> times = appR.GetListOfTimeReservations();
 
             foreach (var c in courts) {
                 Reservations[c.Name] = appR.GetReservations(c.Id, new DateTime(2016, 12, 15));
@@ -140,6 +140,13 @@ namespace RPRO_SportSoft.Controllers
 
 
             }
+        }
+
+        public ActionResult Reservation(String time,String sport)
+        {
+            ViewBag.Time = time;
+            ViewBag.Sport = sport;
+            return View();
         }
     }
 }

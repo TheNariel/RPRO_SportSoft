@@ -181,6 +181,7 @@
     <Content Include="Views\Main\Contacts.cshtml" />
     <Content Include="Views\Main\Rules.cshtml" />
     <Content Include="Views\Main\Account.cshtml" />
+    <Content Include="Views\Sports\Reservation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
