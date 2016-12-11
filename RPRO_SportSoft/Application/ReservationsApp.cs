@@ -76,7 +76,6 @@ namespace RPRO_SportSoft.Application
         }
 
 
-        //get reservation for specific court and date
         public List<int> GetReservations(int id_court, DateTime date) {
             List<Reservation> list = db.Reservations.Where(Reservations => Reservations.Courts_Id == id_court && Reservations.Date == date).ToList();
             List<int> listOfReservation = new List<int>();
@@ -87,7 +86,16 @@ namespace RPRO_SportSoft.Application
 
             return listOfReservation;
         }
-        
 
+        public List<string> GetListOfTimeReservations() {
+            List<Reservation_Time> list = db.Reservation_Times.ToList();
+            List<string> listOfTimeReservations = new List<string>();
+
+            foreach (Reservation_Time rt in list) {
+                listOfTimeReservations.Add(rt.Time);
+            }
+
+            return listOfTimeReservations;
+        }
     }
 }

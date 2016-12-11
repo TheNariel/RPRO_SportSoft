@@ -3,15 +3,42 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 1;
 }
 
 <h2>Kurty sportoviště:  @Html.DisplayFor(modelItem => Model.sportName)</h2>
-@foreach (var item in Model.list) {
+
+@foreach (var item in Model.list)
+{
+
     <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
-    foreach (var s in ViewBag.Reservations)
-    {
-        @s
-    }
+    <table border="1">
+        @foreach (var t in ViewBag.Times)
+        {
+            <tr>
+                <td>@t</td>
+                @foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
+                {
+                    if (pairs.Key == item.Name)
+                    {
+                        foreach (int p in pairs.Value)
+                        {
+                            if (p == i)
+                            {
+                                <td style="background-color: red;">Obsazeno</td>
+                            }
+                            else
+                            {
+                                <td>Rezervovat</td>
+                            }
+                            i++;
+                        }
+                    }
+                }
+                </tr>
+        }
+
+    </table>
 
 }
 
@@ -63,7 +90,7 @@
 <br />
 <script>
     $(function () {
-            $("#datepicker").datepicker();
-        });
+        $("#datepicker").datepicker();
+    });
     $("#datepicker").datepicker({ minDate: 0 });
 </script>
