@@ -1,5 +1,7 @@
 ﻿    body {
     background-image: url(http://www.abilenecountryclub.com/Golf/Golf-Calendar/tennis3.aspx?width=2600&height=1347&ext=.jpg);
+    background-repeat:no-repeat;
+    background-attachment:fixed;
     font-family: Verdana, Arial;
     margin: 50px;
 
