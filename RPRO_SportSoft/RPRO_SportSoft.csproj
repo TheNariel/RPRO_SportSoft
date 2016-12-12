@@ -130,6 +130,7 @@
   <ItemGroup>
     <Compile Include="Application\AdditionClasses.cs" />
     <Compile Include="Application\EmailApp.cs" />
+    <Compile Include="Application\ImagesApp.cs" />
     <Compile Include="Application\PriceListsApp.cs" />
     <Compile Include="Application\PriceLists_CourtsApp.cs" />
     <Compile Include="Application\ReservationsApp.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Application\SportsApp.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CourtsController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\PriceListsController.cs" />
     <Compile Include="Controllers\SportsController.cs" />
@@ -182,6 +184,8 @@
     <Content Include="Views\Main\Rules.cshtml" />
     <Content Include="Views\Main\Account.cshtml" />
     <Content Include="Views\Sports\Reservation.cshtml" />
+    <Content Include="Views\Image\Index.cshtml" />
+    <Content Include="Views\Image\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

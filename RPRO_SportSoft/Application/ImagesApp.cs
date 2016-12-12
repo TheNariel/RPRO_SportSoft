@@ -27,7 +27,7 @@ namespace RPRO_SportSoft.Application
             {
                 return false;
             }
-            
+
 
         }
         public IEnumerable<Image> GetList()

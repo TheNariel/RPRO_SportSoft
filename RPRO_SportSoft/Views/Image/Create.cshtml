@@ -1,0 +1,19 @@
+﻿@model RPRO_SportSoft.Image
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm("Create", "Image", FormMethod.Post,
+                                        new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="file" id="file" style="width: 100%;" />
+    <input type="submit" value="Odeslat" class="submit" />
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
