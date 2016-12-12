@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace RPRO_SportSoft.Controllers
 {
-    public class ImagesController : Controller
+    public class ImageController : Controller
     {
         ImagesApp app = new ImagesApp();
         // GET: Images
