@@ -17,7 +17,10 @@
         <hr />
         Čas: @ViewBag.Time
         <br />
-        Datum: @ViewBag.Date<br />
+        @{ 
+            DateTime date = (DateTime)ViewBag.Date;
+        }
+        Datum: @date.ToString("dd.MM.yyyy")<br />
         @Html.Hidden("id", (object)ViewBag.Id)
         @Html.Hidden("time", (object)ViewBag.Time)
         @Html.Hidden("date", (object)ViewBag.Date)
