@@ -29,7 +29,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
+                @{ 
+                    DateTime date = item.Date;
+                }
+                @date.ToString("dd.MM.yyyy")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Courts_Id)

@@ -9,13 +9,15 @@ namespace RPRO_SportSoft.Application
     {
         DataClasses1DataContext db = new DataClasses1DataContext();
 
-        public  Boolean Add(String n)
+        public  Boolean Add(String n, String image)
         {
             Boolean ret;
             if (!CheckIfTaken(n))
             {
                     Sport s = new Sport();
                     s.Name = n.Trim();
+                    ImagesApp a = new ImagesApp();
+                    s.Image_Id = a.GetId(image);
                     db.Sports.InsertOnSubmit(s);
                     db.SubmitChanges();
                     ret = true;
@@ -73,13 +75,16 @@ namespace RPRO_SportSoft.Application
         {
             return db.Courts.Where(Court => Court.Sports_Id == id).ToList();
         }
-        public Boolean Edit(int id,String SportName)
+        public Boolean Edit(int id,String SportName, String image)
         {
             Boolean ret;
             if (!CheckIfTakenEdit(SportName, id))
             {
                 var obj = db.Sports.Single(x => x.Id == id);
                 obj.Name = SportName.Trim();
+                ImagesApp a = new ImagesApp();
+                obj.Image_Id = a.GetId(image);
+
                 db.SubmitChanges();
                 ret = true;
             }

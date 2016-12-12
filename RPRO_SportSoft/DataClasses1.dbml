@@ -14,7 +14,9 @@
     <Type Name="Sport">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Image_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Sport_Court" Member="Courts" ThisKey="Id" OtherKey="Sports_Id" Type="Court" />
+      <Association Name="Image_Sport" Member="Image" ThisKey="Image_Id" OtherKey="Id" Type="Image" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.User" Member="Users">
@@ -62,6 +64,14 @@
       <Association Name="Court_Reservation" Member="Court" ThisKey="Courts_Id" OtherKey="Id" Type="Court" IsForeignKey="true" />
       <Association Name="Reservation_Time_Reservation" Member="Reservation_Time" ThisKey="Time_Id" OtherKey="Id" Type="Reservation_Time" IsForeignKey="true" />
       <Association Name="User_Reservation" Member="User" ThisKey="User_Email" OtherKey="Email" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Image" Member="Images">
+    <Type Name="Image">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ImageName" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ImageBytes" Type="System.Byte[]" DbType="VARBINARY (max)" CanBeNull="false" />
+      <Association Name="Image_Sport" Member="Sports" ThisKey="Id" OtherKey="Image_Id" Type="Sport" />
     </Type>
   </Table>
 </Database>

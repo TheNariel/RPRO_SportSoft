@@ -46,13 +46,13 @@ namespace RPRO_SportSoft.Controllers
 
         // POST: Sports/Create
         [HttpPost]
-        public ActionResult Create(String SportName)
+        public ActionResult Create(String SportName, String image)
         {
             try
             {
                 if (app.CheckForWhiteSpaces(SportName)) 
                 {
-                    if (app.Add(SportName))
+                    if (app.Add(SportName, image))
                     {
                         return RedirectToAction("Index");
                     }
@@ -111,13 +111,13 @@ namespace RPRO_SportSoft.Controllers
             return View(app.Get(id));
         }
         [HttpPost]
-        public ActionResult Edit(int id, String SportName)
+        public ActionResult Edit(int id, String SportName, String image)
         {
             try
             {
                 if (app.CheckForWhiteSpaces(SportName)) {
 
-                    if (app.Edit(id, SportName))
+                    if (app.Edit(id, SportName, image))
                     {
 
                         return RedirectToAction("Index");

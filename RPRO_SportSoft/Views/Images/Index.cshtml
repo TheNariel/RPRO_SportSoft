@@ -1,0 +1,33 @@
+﻿@model IEnumerable<RPRO_SportSoft.Image>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+<table>
+    
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageName)
+                </td>
+                <td>
+                    @{
+                        var base64 = Convert.ToBase64String(item.ImageBytes);
+                        var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                    }
+                    <img src='@imgsrc' style="max-width:100px;max-height:100px" />
+                </td>
+            </tr>
+          }
+           
+</table>
