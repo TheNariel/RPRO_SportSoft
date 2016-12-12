@@ -1,4 +1,4 @@
-﻿@model String
+﻿@model Reservation
 
 @{
     ViewBag.Title = "Reservation";
@@ -17,13 +17,10 @@
         <hr />
         Čas: @ViewBag.Time
         <br />
-        @{ 
-            DateTime date = (DateTime)ViewBag.Date;
-        }
-        Datum: @date.ToString("dd.MM.yyyy")<br />
+        Datum: @ViewBag.DateString<br />
         @Html.Hidden("id", (object)ViewBag.Id)
         @Html.Hidden("time", (object)ViewBag.Time)
-        @Html.Hidden("date", (object)ViewBag.Date)
+        @Html.Hidden("date", (object)ViewBag.DateBinary)
         @Html.Hidden("user", (object)ViewBag.User)
        <input type="submit" value="Rezervovat" />
     </div>

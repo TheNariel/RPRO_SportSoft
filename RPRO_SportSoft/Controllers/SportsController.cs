@@ -144,29 +144,30 @@ namespace RPRO_SportSoft.Controllers
             }
         }
 
-        public ActionResult Reservation(int id, String sport, String time, DateTime date, String user)
+        public ActionResult Reservation(int id, String sport, String time, Int64 date, String user)
         {
             ViewBag.Sport = sport;
             ViewBag.Id = id;
             ViewBag.Time = time;
-            ViewBag.Date = date.ToShortDateString();
+            ViewBag.DateBinary = (Int64)date;
+            ViewBag.DateString = DateTime.FromBinary(date).ToString("dd.MM.yyyy");
             ViewBag.User = user;
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult Reservation(int id, DateTime date, String time, String user)
+        public ActionResult Reservation(int id, String time, Int64 date, String user)
         {
             try
             {
-                if (appR.Add(id, date, time, user))
+                if (appR.Add(id, DateTime.FromBinary(date), time, user))
                 {
                     EmailApp appE = new EmailApp();
                     String body = Properties.Resources.EResHead + "\n" + app.Get(id).Name + "\n" + date + "\n" + Properties.Resources.EResTail;
                     appE.SendEmail("Rezervace", body);
 
-                    return RedirectToAction("IndexR");
+                    return RedirectToAction("IndexR", "Courts");
                 }
                 else
                 {

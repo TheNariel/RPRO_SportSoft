@@ -51,7 +51,8 @@ namespace RPRO_SportSoft.Application
 
         public Boolean CheckIfTakenReservation(int id_court, DateTime date)
         {
-            return db.Reservations.Where(Reservation => Reservation.Courts_Id == id_court && Reservation.Date == date).Any();
+            //return db.Reservations.Where(Reservation => Reservation.Courts_Id == id_court && Reservation.Date == date).Any();
+            return false;
         }
 
         private int GetActualPrice(int id, DateTime date)
