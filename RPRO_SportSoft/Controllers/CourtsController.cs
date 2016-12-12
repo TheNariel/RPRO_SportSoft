@@ -109,7 +109,7 @@ namespace RPRO_SportSoft.Controllers
 
                
             }
-            catch
+            catch(Exception e)
             {
                 ViewBag.MyMessageToUser = "Nelze smazat kurt";
                 return View(app.Get(id));

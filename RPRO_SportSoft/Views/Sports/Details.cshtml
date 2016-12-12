@@ -8,89 +8,98 @@
 
 <h2>Kurty sportoviště:  @Html.DisplayFor(modelItem => Model.sportName)</h2>
 
-@foreach (var item in Model.list)
-{
-
-    <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
-    <table border="1">
-        @foreach (var t in ViewBag.Times)
-        {
-            <tr>
-                <td>@t</td>
-                @foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
-                {
-                    if (pairs.Key == item.Name)
-                    {
-                        foreach (int p in pairs.Value)
-                        {
-                            if (p == i)
-                            {
-                                <td style="background-color: red;">Obsazeno</td>
-                            }
-                            else
-                            {
-                                <td>Rezervovat</td>
-                            }
-                            i++;
-                        }
-                    }
-                }
-                </tr>
-        }
-
-    </table>
-
-}
-
-<table class="table">
-    <tr></tr>
 
     @foreach (var item in Model.list)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @{
-                    String role = Session["Role"].ToString();
-                    if (role.Equals("Owner"))
+
+        <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+        <table border="1">
+            @foreach (var t in ViewBag.Times)
+            {
+                <tr>
+
+                    @foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
                     {
-                        @Html.ActionLink("Upravit", "Edit", "Courts", new { id = item.Id }, null)
-                        String pom = " | ";
-                        @pom.ToString();
-                        @Html.ActionLink("Vymazat", "Delete", "Courts", new { id = item.Id }, null)
-                        @pom.ToString();
+                        if (pairs.Key == item.Name)
+                        {
+                            bool taken = false;
+                            foreach (int p in pairs.Value)
+                            {
+
+                                if (p == t.Id)
+                                {
+                                    taken = true;
+                                }
+
+                            }
+                            if (taken)
+                            {
+                                <td style="background-color: red;">@t.Time</td>
+                            }
+                            else
+                            {
+                                <td style="background-color:green;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { time = t.Time,sport = item.Name }))'">@t.Time</td>
+                            }
+
+                        }
 
                     }
-                }
-                @{
-                    String ro = Session["Role"].ToString();
-                    if (ro.Equals("Customer") || role.Equals("Owner"))
-                    {
-                        @Html.ActionLink("Rezervovat", "Reservation", "Courts", new { id = item.Id }, null)
-                    }
-                }
-            </td>
-        </tr>
-                    }
 
-</table>
-<br />
-@{
-    String r = Session["Role"].ToString();
-    if (r.Equals("Owner"))
-    {
-        <p>
-            @Html.ActionLink("Vytvořit nový kurt", "Create", "Courts", new { sport = Model.sportId }, null)
-        </p>
+                </tr>
+
+            }
+        </table>
     }
-}
 
-<br />
-<script>
-    $(function () {
-        $("#datepicker").datepicker();
-    });
-    $("#datepicker").datepicker({ minDate: 0 });
-</script>
+    <table class="table">
+        <tr></tr>
+
+        @foreach (var item in Model.list)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @{
+                        String role = Session["Role"].ToString();
+                        if (role.Equals("Owner"))
+                        {
+                            @Html.ActionLink("Upravit", "Edit", "Courts", new { id = item.Id }, null)
+                            String pom = " | ";
+                            @pom.ToString();
+                            @Html.ActionLink("Vymazat", "Delete", "Courts", new { id = item.Id }, null)
+                            @pom.ToString();
+
+                        }
+                    }
+                    @{
+                        String ro = Session["Role"].ToString();
+                        if (ro.Equals("Customer") || role.Equals("Owner"))
+                        {
+                            @Html.ActionLink("Rezervovat", "Reservation", "Courts", new { id = item.Id }, null)
+                        }
+                    }
+                </td>
+            </tr>
+                        }
+
+    </table>
+    <br />
+    @{
+        String r = Session["Role"].ToString();
+        if (r.Equals("Owner"))
+        {
+            <p>
+                @Html.ActionLink("Vytvořit nový kurt", "Create", "Courts", new { sport = Model.sportId }, null)
+            </p>
+        }
+    }
+
+    <br />
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+        $("#datepicker").datepicker({ minDate: 0 });
+    </script>

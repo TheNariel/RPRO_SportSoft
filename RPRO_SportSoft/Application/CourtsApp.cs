@@ -82,11 +82,12 @@ namespace RPRO_SportSoft.Application
             bool ret = true;
             if (!CheckForRegistration(id))
             {
-                var item = db.Courts.Where(Court => Court.Id == id).Single();
-                db.Courts.DeleteOnSubmit(item);
+               
                 List<PriceLists_Courts> list = db.PriceLists_Courts.Where(PriceLists_Courts => PriceLists_Courts.Courts_Id == id).ToList();
                 db.PriceLists_Courts.DeleteAllOnSubmit(list);
-                
+                db.SubmitChanges();
+                var item = db.Courts.Where(Court => Court.Id == id).Single();
+                db.Courts.DeleteOnSubmit(item);
                 db.SubmitChanges();
             }
             else {

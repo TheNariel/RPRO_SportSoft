@@ -87,15 +87,9 @@ namespace RPRO_SportSoft.Application
             return listOfReservation;
         }
 
-        public List<string> GetListOfTimeReservations() {
-            List<Reservation_Time> list = db.Reservation_Times.ToList();
-            List<string> listOfTimeReservations = new List<string>();
-
-            foreach (Reservation_Time rt in list) {
-                listOfTimeReservations.Add(rt.Time);
-            }
-
-            return listOfTimeReservations;
+        public List<Reservation_Time> GetListOfTimeReservations() {
+           return db.Reservation_Times.ToList();
+            
         }
     }
 }
