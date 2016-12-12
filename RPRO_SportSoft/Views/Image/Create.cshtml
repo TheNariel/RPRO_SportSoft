@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Přidání obrázku</h2>
 @using (Html.BeginForm("Create", "Image", FormMethod.Post,
                                         new { enctype = "multipart/form-data" }))
 {
@@ -15,5 +15,5 @@
 
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Zpět na obrázky", "Index")
 </div>
