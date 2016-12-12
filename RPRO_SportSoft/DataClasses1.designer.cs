@@ -51,6 +51,9 @@ namespace RPRO_SportSoft
     partial void InsertReservation(Reservation instance);
     partial void UpdateReservation(Reservation instance);
     partial void DeleteReservation(Reservation instance);
+    partial void InsertImage(Image instance);
+    partial void UpdateImage(Image instance);
+    partial void DeleteImage(Image instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -136,6 +139,14 @@ namespace RPRO_SportSoft
 			get
 			{
 				return this.GetTable<Reservation>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Image> Images
+		{
+			get
+			{
+				return this.GetTable<Image>();
 			}
 		}
 	}
@@ -370,7 +381,11 @@ namespace RPRO_SportSoft
 		
 		private string _Name;
 		
+		private int _Image_Id;
+		
 		private EntitySet<Court> _Courts;
+		
+		private EntityRef<Image> _Image;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -380,11 +395,14 @@ namespace RPRO_SportSoft
     partial void OnIdChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
+    partial void OnImage_IdChanging(int value);
+    partial void OnImage_IdChanged();
     #endregion
 		
 		public Sport()
 		{
 			this._Courts = new EntitySet<Court>(new Action<Court>(this.attach_Courts), new Action<Court>(this.detach_Courts));
+			this._Image = default(EntityRef<Image>);
 			OnCreated();
 		}
 		
@@ -428,6 +446,30 @@ namespace RPRO_SportSoft
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image_Id", DbType="Int NOT NULL")]
+		public int Image_Id
+		{
+			get
+			{
+				return this._Image_Id;
+			}
+			set
+			{
+				if ((this._Image_Id != value))
+				{
+					if (this._Image.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnImage_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Image_Id = value;
+					this.SendPropertyChanged("Image_Id");
+					this.OnImage_IdChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sport_Court", Storage="_Courts", ThisKey="Id", OtherKey="Sports_Id")]
 		public EntitySet<Court> Courts
 		{
@@ -438,6 +480,40 @@ namespace RPRO_SportSoft
 			set
 			{
 				this._Courts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Image_Sport", Storage="_Image", ThisKey="Image_Id", OtherKey="Id", IsForeignKey=true)]
+		public Image Image
+		{
+			get
+			{
+				return this._Image.Entity;
+			}
+			set
+			{
+				Image previousValue = this._Image.Entity;
+				if (((previousValue != value) 
+							|| (this._Image.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Image.Entity = null;
+						previousValue.Sports.Remove(this);
+					}
+					this._Image.Entity = value;
+					if ((value != null))
+					{
+						value.Sports.Add(this);
+						this._Image_Id = value.Id;
+					}
+					else
+					{
+						this._Image_Id = default(int);
+					}
+					this.SendPropertyChanged("Image");
+				}
 			}
 		}
 		
@@ -1393,6 +1469,144 @@ namespace RPRO_SportSoft
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Image")]
+	public partial class Image : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _ImageName;
+		
+		private byte[] _ImageBytes;
+		
+		private EntitySet<Sport> _Sports;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnImageNameChanging(string value);
+    partial void OnImageNameChanged();
+    partial void OnImageBytesChanging(byte[] value);
+    partial void OnImageBytesChanged();
+    #endregion
+		
+		public Image()
+		{
+			this._Sports = new EntitySet<Sport>(new Action<Sport>(this.attach_Sports), new Action<Sport>(this.detach_Sports));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageName", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string ImageName
+		{
+			get
+			{
+				return this._ImageName;
+			}
+			set
+			{
+				if ((this._ImageName != value))
+				{
+					this.OnImageNameChanging(value);
+					this.SendPropertyChanging();
+					this._ImageName = value;
+					this.SendPropertyChanged("ImageName");
+					this.OnImageNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageBytes", DbType="VARBINARY (max)", CanBeNull=false)]
+		public byte[] ImageBytes
+		{
+			get
+			{
+				return this._ImageBytes;
+			}
+			set
+			{
+				if ((this._ImageBytes != value))
+				{
+					this.OnImageBytesChanging(value);
+					this.SendPropertyChanging();
+					this._ImageBytes = value;
+					this.SendPropertyChanged("ImageBytes");
+					this.OnImageBytesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Image_Sport", Storage="_Sports", ThisKey="Id", OtherKey="Image_Id")]
+		public EntitySet<Sport> Sports
+		{
+			get
+			{
+				return this._Sports;
+			}
+			set
+			{
+				this._Sports.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Sports(Sport entity)
+		{
+			this.SendPropertyChanging();
+			entity.Image = this;
+		}
+		
+		private void detach_Sports(Sport entity)
+		{
+			this.SendPropertyChanging();
+			entity.Image = null;
 		}
 	}
 }

@@ -1,0 +1,19 @@
+﻿@model RPRO_SportSoft.Image
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Upload obrázku </h2>
+@ViewBag.MessageCreateImage
+<div id="UploadPictureForm"></div>
+@using (Html.BeginForm("Create", "Images", FormMethod.Post, new { @enctype = "multipart/form-data", id = "profilePictureForm" }))
+{
+    <div id="errorMessage"></div>
+    <input type="file" name="file" id="file"/><br />
+    <input type="submit" style="cursor:pointer;margin-top:30px;" id="upload" value="Odeslat" />
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

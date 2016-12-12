@@ -1,5 +1,5 @@
 ﻿@model Sport
-
+@using RPRO_SportSoft.Application;
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,6 +11,7 @@
 {
     <p>
         Název sportoviště: @Html.TextBox("SportName",Model.Name, new { @class = "text", type = "text" , onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
+        Obrázek: @Html.DropDownList("image", new SelectList(new ImagesApp().GetListNames())) <br />
         <input type="submit" value="Vytvořit" />
     </p>
 }

@@ -1,5 +1,5 @@
 ﻿@model RPRO_SportSoft.Sport
-
+@using RPRO_SportSoft.Application;
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -21,7 +21,7 @@
         <div class="form-group">
             <div class="col-md-10">
                 @*Název sportoviště:*@ @Html.TextBox("SportName", Model.Name, new { @class = "form-control", type = "text", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" })
-                
+                Obrázek: @Html.DropDownList("image", new SelectList(new ImagesApp().GetListNames())) <br />
               
             </div>
         </div>
