@@ -24,7 +24,7 @@ namespace RPRO_SportSoft.Application
             return a;
         }
 
-        public Boolean Add(int court_id, DateTime date)
+        public Boolean Add(int court_id, DateTime date, String time, String user)
         {
             Boolean check;
             if (!CheckIfTakenReservation(court_id, date))
@@ -34,6 +34,8 @@ namespace RPRO_SportSoft.Application
                 r.Courts_Id = court_id;
                 r.Date = date;
                 r.Price = this.GetActualPrice(court_id, date);
+                r.User_Email = user;
+                r.Time_Id = GetIdTime(time);
                 db.Reservations.InsertOnSubmit(r);
                 db.SubmitChanges();
 
@@ -90,6 +92,11 @@ namespace RPRO_SportSoft.Application
         public List<Reservation_Time> GetListOfTimeReservations() {
            return db.Reservation_Times.ToList();
             
+        }
+
+        public int GetIdTime(String time) {
+            int id = db.Reservation_Times.Where(Reservation_Time => Reservation_Time.Time == time).First().Id;
+            return id;
         }
     }
 }

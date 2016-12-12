@@ -157,41 +157,6 @@ namespace RPRO_SportSoft.Controllers
             }
         }
 
-        public ActionResult Reservation(int id) {
-            Reservation r = new Reservation();            
-            return View(r);
-        }
-
-        [HttpPost]
-        public ActionResult Reservation(int id, DateTime date)
-        {
-            try
-            {
-                if (appR.Add(id, date))
-                {
-                    EmailApp Eapp = new EmailApp();
-                    String body = Properties.Resources.EResHead + "\n" + app.Get(id).Name +"\n" + date + "\n" + Properties.Resources.EResTail;
-                    Eapp.SendEmail("Rezervace", body);
-
-                    return RedirectToAction("IndexR");
-                }
-                else
-                {
-                    ViewBag.MyMessageToUser = "Tento kurt je již v daný čas rezervován.";
-                    Reservation r = new Reservation();
-                    return View(r);
-                }
-
-            }
-            catch (System.Data.SqlClient.SqlException e)
-            {
-                ViewBag.MyMessageToUser = "Nelze rezervovat kurt.";
-                e.ToString();
-                Reservation r = new Reservation();
-                return View(r);
-            }
-        }
-
         public ActionResult IndexR()
         {
             return View(appR.GetList());

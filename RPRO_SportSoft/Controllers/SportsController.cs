@@ -10,6 +10,7 @@ namespace RPRO_SportSoft.Controllers
     {
         SportsApp app = new SportsApp();
         ReservationsApp appR = new ReservationsApp();
+        EmailApp appE = new EmailApp();
 
         // GET: Sports
         public ActionResult Index()
@@ -33,6 +34,7 @@ namespace RPRO_SportSoft.Controllers
             CourtListP CourtList = new CourtListP(id, app.GetName(id), app.GetCourts(id));
             return View(CourtList);
         }
+
 
         // GET: Sports/Create
         public ActionResult Create()
@@ -142,11 +144,45 @@ namespace RPRO_SportSoft.Controllers
             }
         }
 
-        public ActionResult Reservation(String time,String sport)
+        public ActionResult Reservation(int id, String sport, String time, DateTime date, String user)
         {
-            ViewBag.Time = time;
             ViewBag.Sport = sport;
+            ViewBag.Id = id;
+            ViewBag.Time = time;
+            ViewBag.Date = date.ToShortDateString();
+            ViewBag.User = user;
+
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Reservation(int id, DateTime date, String time, String user)
+        {
+            try
+            {
+                if (appR.Add(id, date, time, user))
+                {
+                    EmailApp appE = new EmailApp();
+                    String body = Properties.Resources.EResHead + "\n" + app.Get(id).Name + "\n" + date + "\n" + Properties.Resources.EResTail;
+                    appE.SendEmail("Rezervace", body);
+
+                    return RedirectToAction("IndexR");
+                }
+                else
+                {
+                    ViewBag.MyMessageToUser = "Tento kurt je již v daný čas rezervován.";
+                    Reservation r = new Reservation();
+                    return View(r);
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException e)
+            {
+                ViewBag.MyMessageToUser = "Nelze rezervovat kurt.";
+                e.ToString();
+                Reservation r = new Reservation();
+                return View(r);
+            }
         }
     }
 }

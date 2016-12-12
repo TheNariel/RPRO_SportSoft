@@ -3,23 +3,29 @@
 @{
     ViewBag.Title = "Reservation";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    String time = ViewBag.Time;
 }
 
-<h2>Reservation</h2>
+<h2>Rezervace</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Reservation", "Sports", FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Reservation</h4>
-        <h2>@ViewBag.Sport</h2>
+        <h4>Rezervace kurtu: @ViewBag.Sport</h4>
         <hr />
-       @ViewBag.Time
-        
+        Čas: @ViewBag.Time
+        <br />
+        Datum: @ViewBag.Date<br />
+        @Html.Hidden("id", (object)ViewBag.Id)
+        @Html.Hidden("time", (object)ViewBag.Time)
+        @Html.Hidden("date", (object)ViewBag.Date)
+        @Html.Hidden("user", (object)ViewBag.User)
+       <input type="submit" value="Rezervovat" />
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Zrušit", "Index")
 </div>
