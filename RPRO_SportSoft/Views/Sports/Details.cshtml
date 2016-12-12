@@ -7,17 +7,19 @@
 }
 
 <h2>Kurty sportoviště:  @Html.DisplayFor(modelItem => Model.sportName)</h2>
+<table border="1">
+    <tr>
+        @foreach (var item in Model.list)
+        {
+            <td>
+                <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+                <table border="1">
+                    @foreach (var t in ViewBag.Times)
+                {
 
-    @foreach (var item in Model.list)
-    {
+                        <tr>
 
-        <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
-        <table border="1">
-            @foreach (var t in ViewBag.Times)
-            {
-                <tr>
-
-                    @foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
+                            @foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
                     {
                         if (pairs.Key == item.Name)
                         {
@@ -33,22 +35,25 @@
                             }
                             if (taken)
                             {
-                                <td style="background-color: red;">@t.Time</td>
-                            }
-                            else
-                            {
-                                <td style="background-color:#33FF00;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = t.Time, sport = item.Name, date = new DateTime(2016, 12, 15).ToBinary(), user = login }))'">@t.Time</td>
+                                        <td style="background-color: red;">@t.Time</td>
+                                    }
+                                    else
+                                    {
+                                        <td style="background-color:#33FF00;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = t.Time, sport = item.Name, date = new DateTime(2016, 12, 15).ToBinary(), user = login }))'">@t.Time</td>
+                                    }
+
+                                }
+
                             }
 
-                        }
+                        </tr>
 
                     }
-
-                </tr>
-
-            }
-        </table>
-    }
+                </table>
+            </td>
+        }
+    </tr>
+</table>
 <br />
     <table class="table">
         <tr></tr>
