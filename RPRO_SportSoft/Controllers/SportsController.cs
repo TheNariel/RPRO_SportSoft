@@ -11,26 +11,27 @@ namespace RPRO_SportSoft.Controllers
         SportsApp app = new SportsApp();
         ReservationsApp appR = new ReservationsApp();
         EmailApp appE = new EmailApp();
-
+        CourtsApp appC = new CourtsApp();
         // GET: Sports
         public ActionResult Index()
         {
+            ViewBag.Date = DateTime.Today.ToShortDateString();
             return View(app.GetList());
         }
 
         // GET: Sports/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int id,String date)
         {
             var Reservations = new Dictionary<string, List<int>>();
             IEnumerable<Court> courts = app.GetCourts(id);
             List<Reservation_Time> times = appR.GetListOfTimeReservations();
 
             foreach (var c in courts) {
-                Reservations[c.Name] = appR.GetReservations(c.Id, new DateTime(2016, 12, 15));
+                Reservations[c.Name] = appR.GetReservations(c.Id,DateTime.Parse(date));
            }
             ViewBag.Reservations = Reservations;
             ViewBag.Times = times;
-
+            ViewBag.Date = date;
             CourtListP CourtList = new CourtListP(id, app.GetName(id), app.GetCourts(id));
             return View(CourtList);
         }
@@ -164,7 +165,7 @@ namespace RPRO_SportSoft.Controllers
                 if (appR.Add(id, DateTime.FromBinary(date), time, user))
                 {
                     EmailApp appE = new EmailApp();
-                    String body = Properties.Resources.EResHead + "\n" + app.Get(id).Name + "\n" + date + "\n" + Properties.Resources.EResTail;
+                    String body = Properties.Resources.EResHead + "\n" + appC.Get(id).Name + "\n" + DateTime.FromBinary(date) + "\n" + Properties.Resources.EResTail;
                     appE.SendEmail("Rezervace", body);
 
                     return RedirectToAction("IndexR", "Courts");

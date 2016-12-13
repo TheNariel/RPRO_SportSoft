@@ -177,7 +177,6 @@
     <Content Include="Views\Main\Create.cshtml" />
     <Content Include="Views\PriceLists\Index.cshtml" />
     <Content Include="Views\PriceLists\Create.cshtml" />
-    <Content Include="Views\Courts\Reservation.cshtml" />
     <Content Include="Views\Courts\IndexR.cshtml" />
     <Content Include="Views\Main\sendEmail.cshtml" />
     <Content Include="Views\Main\Contacts.cshtml" />

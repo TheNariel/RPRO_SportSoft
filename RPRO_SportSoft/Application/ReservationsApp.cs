@@ -26,9 +26,8 @@ namespace RPRO_SportSoft.Application
 
         public Boolean Add(int court_id, DateTime date, String time, String user)
         {
-            Boolean check;
-            if (!CheckIfTakenReservation(court_id, date))
-            {
+            
+           
                 Reservation r = new Reservation();
 
                 r.Courts_Id = court_id;
@@ -39,21 +38,12 @@ namespace RPRO_SportSoft.Application
                 db.Reservations.InsertOnSubmit(r);
                 db.SubmitChanges();
 
-                check = true;
-            }
-            else
-            {
-                check = false;
-            }
+          
 
-            return check;
+            return true;
         }
 
-        public Boolean CheckIfTakenReservation(int id_court, DateTime date)
-        {
-            //return db.Reservations.Where(Reservation => Reservation.Courts_Id == id_court && Reservation.Date == date).Any();
-            return false;
-        }
+       
 
         private int GetActualPrice(int id, DateTime date)
         {

@@ -7,6 +7,15 @@
 }
 
 <h2>Kurty sportoviště:  @Html.DisplayFor(modelItem => Model.sportName)</h2>
+
+@using (Html.BeginForm("Details", "Sports", FormMethod.Get))
+{
+
+<input name="date" date-type="date" id="datepicker" />
+<input type="submit" value="Vyber" />
+    
+}
+ 
 <table border="1">
     <tr>
         @foreach (var item in Model.list)
@@ -16,9 +25,7 @@
                 <table border="1">
                     @foreach (var t in ViewBag.Times)
                 {
-
                         <tr>
-
                             @foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
                     {
                         if (pairs.Key == item.Name)
@@ -31,21 +38,17 @@
                                 {
                                     taken = true;
                                 }
-
-                            }
+                                                        }
                             if (taken)
                             {
                                         <td style="background-color: red;">@t.Time</td>
                                     }
                                     else
                                     {
-                                        <td style="background-color:#33FF00;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = t.Time, sport = item.Name, date = new DateTime(2016, 12, 15).ToBinary(), user = login }))'">@t.Time</td>
+                                        <td style="background-color:#33FF00;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = t.Time, sport = item.Name, date = DateTime.Parse((String)ViewBag.Date).ToBinary(), user = login }))'">@t.Time</td>
                                     }
-
                                 }
-
                             }
-
                         </tr>
 
                     }
