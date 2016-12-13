@@ -58,7 +58,7 @@
                         <h3>@item.Name</h3>
                     </td>
                     <td>
-                        <a href="@Url.Action("Details", new { id = item.Id })">
+                        <a href="@Url.Action("Details", new { id = item.Id,date = (object)ViewBag.Date })">
                             <img src='@imgsrc' width="200" height="200" />
                         </a>
                     </td>
