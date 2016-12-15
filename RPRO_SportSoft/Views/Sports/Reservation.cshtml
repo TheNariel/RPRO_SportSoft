@@ -15,9 +15,10 @@
     <div class="form-horizontal">
         <h4>Rezervace kurtu: @ViewBag.Sport</h4>
         <hr />
+        Datum: @ViewBag.DateString
+        <br />
         Čas: @ViewBag.Time
         <br />
-        Datum: @ViewBag.DateString<br />
         @Html.Hidden("id", (object)ViewBag.Id)
         @Html.Hidden("time", (object)ViewBag.Time)
         @Html.Hidden("date", (object)ViewBag.DateBinary)
