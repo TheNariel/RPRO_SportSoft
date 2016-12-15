@@ -45,7 +45,7 @@
                                     }
                                     else
                                     {
-                                        <td class="hand" style="background-color:#33FF00;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = t.Time, sport = item.Name, date = DateTime.Parse((String)ViewBag.Date).ToBinary(), user = login }))'">@t.Time</td>
+                                        <td style="background-color:#33FF00; cursor: pointer;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = t.Time, sport = item.Name, date = DateTime.Parse((String)ViewBag.Date).ToBinary(), user = login }))'">@t.Time</td>
                                     }
                                 }
                             }
