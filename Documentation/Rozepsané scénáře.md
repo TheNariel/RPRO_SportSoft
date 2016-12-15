@@ -137,8 +137,9 @@ Uživatel je přihlášen a je na úvodní stránce.
 Majitel je přihlášen a je na úvodní stránce.
 
 <b>Basic Flow</b>
-- 1. Majitel zvolí možnost zobrazení statistik.
+- 1. Majitel zvolí možnost zobrazení statistik (souhrnné - všechny kurty a jejich výdělky za určité období, nebo jednotlivé - jednotlivé kurty, přehled jejich rezervací).
 - 2. Aplikace zobrazí statistiku pro všechny kurty.
+- 3. Majitel může statistiky filtrovat (dle data, ceny, apod.).
 
 <hr />
 
@@ -157,6 +158,9 @@ Majitel je přihlášen. Aplikace zobrazí již existující kurty dle zvolenéh
 - 6. Aplikace informace uloží.
 - 7. Aplikace zobrazí seznam kurtů.
 
+<b>Alternative FLow</b>
+- 6a. Kurt se zvoleným názvem již existuje, aplikace zobrazí chybovou hlášku.
+
 <h3>UC4 – Správa sportovišť: Přidání sportoviště majitelem </h3>
 <b>Actor</b>: Majitel  
 
@@ -170,6 +174,9 @@ Majitel je přihlášen. Aplikace zobrazí již existující sportoviště.
 - 4. Majitel potvrdí údaje.
 - 5. Aplikace informace uloží.
 - 6. Aplikace zobrazí seznam sportovišť.
+
+<b>Alternative FLow</b>
+- 5a. Sportoviště se zvoleným názvem již existuje, aplikace zobrazí chybovou hlášku.
 
 <hr />
 
@@ -247,12 +254,14 @@ Uživatel je přihlášen a má zobrazenou úvodní stránku.
 <b>Basic Flow</b>
 - 1. Uživatel vybere dané sportoviště.
 - 2. Aplikace zobrazí kurty pro dané sportoviště.
-- 3. Uživatel zvolí čas, který chce rezervovat.
-- 4. Uživatel vybere kurt.
-- 5. Uživatel potvrdí rezervaci.
-- 6. Aplikace uloží rezervaci.
-- 7. Aplikace odešle potvrzení rezervace na e-mail uživatele.
-- 8. Aplikace zobrazí přehled rezervací uživatele.
+- 3. Uživatel zvolí datum, kdy chce kurt rezervovat.
+- 4. Aplikace zobrazí obsazenost všech kurtů sportoviště pro zvolený den.
+- 5. Uživatel vybere konkrétní čas pro rezervaci kurtu.
+- 6. Aplikace zobrazí souhrn rezervace.
+- 7. Uživatel potvrdí rezervaci.
+- 8. Aplikace uloží rezervaci.
+- 9. Aplikace odešle potvrzení rezervace na e-mail uživatele.
+- 10. Aplikace zobrazí přehled rezervací uživatele.
 
 <h3>UC6 - Rezervace: zobrazení historie rezervací uživatelem</h3>
 <b>Actor</b>: Uživatel
@@ -273,7 +282,7 @@ Uživatel je přihlášen a má zobrazenu úvodní webovou stránku.
 <b>Basic Flow</b>
 - 1. Uživatel vybere dané sportoviště.
 - 2. Aplikace zobrazí kurty pro dané sportoviště.
-- 3. Uživatel zvolí čas, který chce rezervovat.
+- 3. Uživatel zvolí den, kdy chce kurt rezervovat.
 - 4. Uživatel zvolí počet týdnů opakované rezervace.
 - 5. Uživatel vybere kurt.
 - 6. Uživatel potvrdí rezervaci.
@@ -281,20 +290,36 @@ Uživatel je přihlášen a má zobrazenu úvodní webovou stránku.
 - 8. Aplikace odešle potvrzení rezevací na e-mail uživatele.
 - 9. Aplikace zobrazí přehled rezervací uživatele.
 
-<h3>UC6 - Rezervace: zrušení rezervace uživatelem</h3>
-<b>Actor</b>: Uživatel
+<h3>UC6 - Rezervace: zrušení rezervace zákazníkem</h3>
+<b>Actor</b>: Zákazník
 
 <b>Preconditions</b>
-Uživatel je přihlášen a má zobrazenu úvodní webovou stránku. 
+Zákazník je přihlášen a má zobrazenu úvodní webovou stránku. 
 
 <b>Basic Flow</b>
-- 1. Uživatel zvolí možnost zobrazení historie rezervací.
-- 2. Aplikace zobrazí uživatelové rezervace.
-- 3. Uživatel zvolí rezervaci, kterou chce zrušit.
-- 4. Uživatel potvrdí zrušení rezervace.
+- 1. Zákazník zvolí možnost zobrazení historie rezervací.
+- 2. Aplikace zobrazí zákazníkovy rezervace.
+- 3. Zákazník zvolí rezervaci, kterou chce zrušit.
+- 4. Zákazník potvrdí zrušení rezervace.
 - 5. Aplikace zruší rezervaci.
-- 6. Aplikace odešle potvrzení o zrušení rezevace na e-mail uživatele.
-- 7. Aplikace zobrazí přehled rezervací uživatele.
+- 6. Aplikace odešle potvrzení o zrušení rezevace na e-mail zákazníka.
+- 7. Aplikace zobrazí přehled rezervací zákazníka.
 
 <b>Alternative Flow</b>
-- 4a. Zvolená rezervace nejde zrušit, aplikace zobrazí chybovou hlášku.
+- 4a. Zvolená rezervace již nejde zrušit, aplikace zobrazí chybovou hlášku.
+
+<h3>UC6 - Rezervace: zrušení rezervace majtelem</h3>
+<b>Actor</b>: Majitel
+
+<b>Preconditions</b>
+Majitel je přihlášen a má zobrazenu úvodní webovou stránku. 
+
+<b>Basic Flow</b>
+- 1. Majitel zvolí možnost zobrazení historie rezervací.
+- 2. Aplikace zobrazí uživatelové rezervace.
+- 3. Majitel zvolí rezervaci, kterou chce zrušit.
+- 4. Majitel potvrdí zrušení rezervace.
+- 5. Aplikace zruší rezervaci.
+- 6. Aplikace odešle potvrzení o zrušení rezevace na e-mail zákazníka.
+- 7. Aplikace zobrazí přehled rezervací.
+
