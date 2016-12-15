@@ -63,7 +63,12 @@
     padding: 6px;
     }
 
-    tr:nth-child(even){background-color: #c3c3c3}
+    tr.default:nth-child(even){background-color: #c3c3c3}
+
+    tr.pics:nth-child(1n){background-color: none; display:inline}
+    tr.pics:nth-child(2n){background-color: none; display:inline}
+
+
 
     ul {
     list-style-type: none;
