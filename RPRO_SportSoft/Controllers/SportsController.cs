@@ -158,11 +158,17 @@ namespace RPRO_SportSoft.Controllers
         }
 
         [HttpPost]
-        public ActionResult Reservation(int id, String time, Int64 date, String user)
+        public ActionResult Reservation(int id, String time, Int64 date, String user, int number)
         {
+            int timeInt = appR.GetIdTime(time);
+            List<Boolean> listOfBools = new List<bool>();
             try
             {
-                if (appR.Add(id, DateTime.FromBinary(date), time, user))
+                for (int i = 0; i < number; i++) {
+                    timeInt = timeInt + i;
+                    listOfBools.Add(appR.Add(id, DateTime.FromBinary(date), appR.getTime(timeInt) , user));
+                }
+                if (CheckTrue(listOfBools))
                 {
                     EmailApp appE = new EmailApp();
                     String body = Properties.Resources.EResHead + "\n" + appC.Get(id).Name + "\n" + DateTime.FromBinary(date).ToShortDateString() + "\n" + time + "\n" + Properties.Resources.EResTail;
@@ -185,6 +191,14 @@ namespace RPRO_SportSoft.Controllers
                 Reservation r = new Reservation();
                 return View(r);
             }
+        }
+        private bool CheckTrue(List<Boolean> list)
+        {
+            foreach (Boolean b in list)
+            {
+                if (b == false) return false;
+            }
+            return true;
         }
     }
 }

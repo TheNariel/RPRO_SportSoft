@@ -89,5 +89,39 @@ namespace RPRO_SportSoft.Application
             int id = db.Reservation_Times.Where(Reservation_Time => Reservation_Time.Time == time).First().Id;
             return id;
         }
+        public String getTime(int Id)
+        {
+            String time = db.Reservation_Times.Where(Reservation_Time => Reservation_Time.Id == Id).First().Time;
+            return time;
+        }
+        private int GetNumberOfFreeReservations(Int64 date, String court, int time)
+        {
+            Court c = db.Courts.Where(Court => Court.Name == court).First();
+            int pom = 25;
+            List<Reservation> list = db.Reservations.Where(Reservations => Reservations.Date == DateTime.FromBinary(date) && Reservations.Court == c).ToList();
+            foreach (Reservation res in list)
+            {
+                if (res.Time_Id > time)
+                {
+                    if (res.Time_Id < pom)
+                    {
+                        pom = res.Time_Id;
+                    }
+
+                }      
+            }
+            return pom - time;
+        }
+        public List<int> ListOfNumbers(Int64 date, String court, int time)
+        {
+            List<int> list = new List<int>();
+            int x = this.GetNumberOfFreeReservations(date,court,time);
+            for (int i = 1; i <= x; i++)
+            {
+                list.Add(i);
+            }
+
+            return list;
+        }
     }
 }

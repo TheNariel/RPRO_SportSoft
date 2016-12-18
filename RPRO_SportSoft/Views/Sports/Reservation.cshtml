@@ -1,5 +1,5 @@
 ﻿@model Reservation
-
+@using RPRO_SportSoft.Application;
 @{
     ViewBag.Title = "Reservation";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,6 +19,7 @@
         <br />
         Čas: @ViewBag.Time
         <br />
+        Počet půlhodinových intervalů: @Html.DropDownList("number", new SelectList(new ReservationsApp().ListOfNumbers(ViewBag.DateBinary, ViewBag.Sport, ViewBag.Id))) <br />
         @Html.Hidden("id", (object)ViewBag.Id)
         @Html.Hidden("time", (object)ViewBag.Time)
         @Html.Hidden("date", (object)ViewBag.DateBinary)
