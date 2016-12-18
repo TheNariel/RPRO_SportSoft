@@ -45,7 +45,7 @@
                                     }
                                     else
                                     {
-                                        <td style="background-color:#33FF00; cursor: pointer;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = t.Time, sport = item.Name, date = DateTime.ParseExact((String)ViewBag.Date,"dd.mm.yyyy", ViewBag.InvariantCulture).ToBinary(), user = login }))'">@t.Time</td>
+                                        <td style="background-color:#33FF00; cursor: pointer;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = t.Time, sport = item.Name, date = DateTime.ParseExact((String)ViewBag.Date,"dd.MM.yyyy", ViewBag.InvariantCulture).ToBinary(), user = login }))'">@t.Time</td>
                                     }
                                 }
                             }
