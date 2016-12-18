@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using System.Globalization;
 
 namespace RPRO_SportSoft.Controllers
 {
@@ -15,7 +16,7 @@ namespace RPRO_SportSoft.Controllers
         // GET: Sports
         public ActionResult Index()
         {
-            ViewBag.Date = DateTime.Today.ToShortDateString();
+            ViewBag.Date = DateTime.Today.ToString("dd.MM.yyyy");
             return View(app.GetList());
         }
 
@@ -25,9 +26,11 @@ namespace RPRO_SportSoft.Controllers
             var Reservations = new Dictionary<string, List<int>>();
             IEnumerable<Court> courts = app.GetCourts(id);
             List<Reservation_Time> times = appR.GetListOfTimeReservations();
+            CultureInfo provider = CultureInfo.InvariantCulture;
+            String dateformat = "dd.mm.yyyy";
 
             foreach (var c in courts) {
-                Reservations[c.Name] = appR.GetReservations(c.Id,DateTime.Parse(date));
+               Reservations[c.Name] = appR.GetReservations(c.Id,DateTime.ParseExact(date, dateformat, provider));
            }
             ViewBag.Reservations = Reservations;
             ViewBag.Times = times;
