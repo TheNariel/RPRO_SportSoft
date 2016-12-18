@@ -16,7 +16,7 @@ namespace RPRO_SportSoft.Controllers
         // GET: Sports
         public ActionResult Index()
         {
-            ViewBag.Date = DateTime.Today.ToString("dd.MM.yyyy");
+            ViewBag.Date = DateTime.Today.ToString("dd. MM. yyyy");
             return View(app.GetList());
         }
 
@@ -27,7 +27,7 @@ namespace RPRO_SportSoft.Controllers
             IEnumerable<Court> courts = app.GetCourts(id);
             List<Reservation_Time> times = appR.GetListOfTimeReservations();
             CultureInfo provider = CultureInfo.InvariantCulture;
-            String dateformat = "dd.mm.yyyy";
+            String dateformat = "dd. mm. yyyy";
 
             foreach (var c in courts) {
                Reservations[c.Name] = appR.GetReservations(c.Id,DateTime.ParseExact(date, dateformat, provider));
