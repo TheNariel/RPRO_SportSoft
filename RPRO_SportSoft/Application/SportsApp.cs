@@ -69,7 +69,7 @@ namespace RPRO_SportSoft.Application
         }
         public IEnumerable<Sport> GetList()
         {
-            return db.Sports.ToList();
+            return db.Sports.ToList().OrderBy(Sport => Sport.Name);
         }
         public IEnumerable<Court> GetCourts(int id)
         {
