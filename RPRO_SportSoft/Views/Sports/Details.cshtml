@@ -11,7 +11,7 @@
 @using (Html.BeginForm("Details", "Sports", FormMethod.Get))
 {
 
-<input name="date" date-type="date" id="datepicker" />
+<input name="date" date-type="date" id="datepicker" value="@ViewBag.Date"/>
 <input type="submit" value="Vyber" />
     
 }
