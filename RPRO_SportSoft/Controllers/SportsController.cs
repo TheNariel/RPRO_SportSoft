@@ -28,10 +28,12 @@ namespace RPRO_SportSoft.Controllers
             IEnumerable<Court> courts = app.GetCourts(id);
             List<Reservation_Time> times = appR.GetListOfTimeReservations();
             CultureInfo provider = CultureInfo.InvariantCulture;
-            String dateformat = "dd.mm.yyyy";
+            String dateformat = "dd. MM. yyyy";
             ViewBag.InvariantCulture = provider;
+            String[] d = date.Split('.');
+            String dateCons = d[0] + ". " + d[1] + ". " + d[2];
             foreach (var c in courts) {
-               Reservations[c.Name] = appR.GetReservations(c.Id,DateTime.ParseExact(date, dateformat, provider));
+               Reservations[c.Name] = appR.GetReservations(c.Id,DateTime.ParseExact(dateCons, dateformat, provider));
            }
             ViewBag.Reservations = Reservations;
             ViewBag.Times = times;
