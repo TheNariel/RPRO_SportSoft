@@ -162,15 +162,15 @@ namespace RPRO_SportSoft.Controllers
         }
 
         [HttpPost]
-        public ActionResult Reservation(int id, String time, Int64 date, String user, int number)
+        public ActionResult Reservation(int id, String time, Int64 date, String user, String number)
         {
+            int timeIndex = appR.GetNumber(number);
             int timeInt = appR.GetIdTime(time);
             List<Boolean> listOfBools = new List<bool>();
             try
             {
-                for (int i = 0; i < number; i++) {
-                    timeInt = timeInt + i;
-                    listOfBools.Add(appR.Add(id, DateTime.FromBinary(date), appR.getTime(timeInt) , user));
+                for (int i = 0; i <= timeIndex; i++) {
+                    listOfBools.Add(appR.Add(id, DateTime.FromBinary(date), timeInt + i , user));
                 }
                 if (CheckTrue(listOfBools))
                 {

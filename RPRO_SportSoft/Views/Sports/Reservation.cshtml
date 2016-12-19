@@ -19,7 +19,7 @@
         <br />
         Čas: @ViewBag.Time
         <br />
-        Počet půlhodinových intervalů: @Html.DropDownList("number", new SelectList(new ReservationsApp().ListOfNumbers(ViewBag.DateBinary, ViewBag.Sport, ViewBag.Id))) <br />
+        Počet půlhodinových intervalů: @Html.DropDownList("number", new SelectList(new ReservationsApp().ListOfNumbers(ViewBag.DateBinary, ViewBag.Sport, ViewBag.Time))) <br />
         @Html.Hidden("id", (object)ViewBag.Id)
         @Html.Hidden("time", (object)ViewBag.Time)
         @Html.Hidden("date", (object)ViewBag.DateBinary)

@@ -24,7 +24,7 @@ namespace RPRO_SportSoft.Application
             return a;
         }
 
-        public Boolean Add(int court_id, DateTime date, String time, String user)
+        public Boolean Add(int court_id, DateTime date, int time, String user)
         {
             
            
@@ -34,7 +34,7 @@ namespace RPRO_SportSoft.Application
                 r.Date = date;
                 r.Price = this.GetActualPrice(court_id, date);
                 r.User_Email = user;
-                r.Time_Id = GetIdTime(time);
+                r.Time_Id = time;
                 db.Reservations.InsertOnSubmit(r);
                 db.SubmitChanges();
 
@@ -112,16 +112,55 @@ namespace RPRO_SportSoft.Application
             }
             return pom - time;
         }
-        public List<int> ListOfNumbers(Int64 date, String court, int time)
+        public List<String> ListOfNumbers(Int64 date, String court, String time)
         {
-            List<int> list = new List<int>();
-            int x = this.GetNumberOfFreeReservations(date,court,time);
-            for (int i = 1; i <= x; i++)
+            Intervals intervals = new Intervals();
+            int f = intervals.listString.Count;
+            int timeInt = GetIdTime(time);
+            List<String> list = new List<String>();
+            int x = this.GetNumberOfFreeReservations(date, court, timeInt);
+            for (int i = 0; i < x; i++)
             {
-                list.Add(i);
+                list.Add(intervals.listString.ElementAt(i));
             }
 
             return list;
+        }
+        public int GetNumber(String time)
+        {
+            Intervals intervals = new Intervals();
+            return intervals.listString.IndexOf(time);
+        }
+    }
+    public class Intervals
+    {
+        public List<String> listString;
+        public Intervals() {
+            this.listString = new List<string>();
+            listString.Add("0:30");
+            listString.Add("1:00");
+            listString.Add("1:30");
+            listString.Add("2:00");
+            listString.Add("2:30");
+            listString.Add("3:00");
+            listString.Add("3:30");
+            listString.Add("4:00");
+            listString.Add("4:30");
+            listString.Add("5:00");
+            listString.Add("5:30");
+            listString.Add("6:00");
+            listString.Add("6:30");
+            listString.Add("7:00");
+            listString.Add("7:30");
+            listString.Add("8:00");
+            listString.Add("8:30");
+            listString.Add("9:00");
+            listString.Add("9:30");
+            listString.Add("10:00");
+            listString.Add("10:30");
+            listString.Add("11:00");
+            listString.Add("11:30");
+            listString.Add("12:00");
         }
     }
 }
