@@ -47,8 +47,7 @@ namespace RPRO_SportSoft.Application
 
         private int GetActualPrice(int id, DateTime date)
         {
-            DateTime pom = new DateTime();
-            pom.AddYears(0);
+            DateTime pom = new DateTime(1,1,1);
             int result = -1;
             int pomId = 0;
             List<PriceLists_Courts> list = db.PriceLists_Courts.Where(PriceLists_Courts => PriceLists_Courts.Courts_Id == id).ToList();
