@@ -132,18 +132,17 @@
   <data name="EPort" xml:space="preserve">
     <value>587</value>
   </data>
-  <data name="ERegHead" xml:space="preserve">
-    <value>Váš účet </value>
-  </data>
-  <data name="ERegTail" xml:space="preserve">
-    <value>Byl uspěšně vytvořen. 
+  <data name="EReg" xml:space="preserve">
+    <value>Váš účet, 
+Email: {0} 
+Byl uspěšně vytvořen. 
 Děkujeme.</value>
   </data>
-  <data name="EResHead" xml:space="preserve">
-    <value>Vaše rezerace</value>
-  </data>
-  <data name="EResTail" xml:space="preserve">
-    <value>Byla uspěšně vytvořena. 
+  <data name="ERes" xml:space="preserve">
+    <value>Vaše rezerace,
+kurt: {0}
+dne {1}  v  {2} 
+Byla uspěšně vytvořena. 
 Děkujeme.</value>
   </data>
 </root>

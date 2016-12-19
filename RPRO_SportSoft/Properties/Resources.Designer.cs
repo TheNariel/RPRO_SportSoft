@@ -106,40 +106,27 @@ namespace RPRO_SportSoft.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Váš účet .
-        /// </summary>
-        internal static string ERegHead {
-            get {
-                return ResourceManager.GetString("ERegHead", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Byl uspěšně vytvořen. 
+        ///   Looks up a localized string similar to Váš účet, 
+        ///Email: {0} 
+        ///Byl uspěšně vytvořen. 
         ///Děkujeme..
         /// </summary>
-        internal static string ERegTail {
+        internal static string EReg {
             get {
-                return ResourceManager.GetString("ERegTail", resourceCulture);
+                return ResourceManager.GetString("EReg", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vaše rezerace.
-        /// </summary>
-        internal static string EResHead {
-            get {
-                return ResourceManager.GetString("EResHead", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Byla uspěšně vytvořena. 
+        ///   Looks up a localized string similar to Vaše rezerace,
+        ///kurt: {0}
+        ///dne {1}  v  {2} 
+        ///Byla uspěšně vytvořena. 
         ///Děkujeme..
         /// </summary>
-        internal static string EResTail {
+        internal static string ERes {
             get {
-                return ResourceManager.GetString("EResTail", resourceCulture);
+                return ResourceManager.GetString("ERes", resourceCulture);
             }
         }
     }

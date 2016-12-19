@@ -1,6 +1,7 @@
 ﻿using RPRO_SportSoft.Application;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -39,7 +40,8 @@ namespace RPRO_SportSoft.Controllers
                 {
                     if (app.Add(CourtName, Id, Id_P))
                     {
-
+                        ViewBag.InvariantCulture = CultureInfo.InvariantCulture;
+                        ViewBag.Date = DateTime.Today.ToString("dd.MM.yyyy");
                         return RedirectToAction("Details", "Sports", new { id = Id });
                     }
                     else

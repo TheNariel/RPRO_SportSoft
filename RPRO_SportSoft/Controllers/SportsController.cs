@@ -177,10 +177,10 @@ namespace RPRO_SportSoft.Controllers
                 if (CheckTrue(listOfBools))
                 {
                     EmailApp appE = new EmailApp();
-                    String body = Properties.Resources.EResHead + "\n" + appC.Get(id).Name + "\n" + DateTime.FromBinary(date).ToShortDateString() + "\n" + time + "\n" + Properties.Resources.EResTail;
+                    String body = String.Format(Properties.Resources.ERes,appC.Get(id).Name,DateTime.FromBinary(date).ToShortDateString(),time);
                     appE.SendEmail("Rezervace", body);
 
-                    return RedirectToAction("IndexR", "Courts");
+                    return RedirectToAction("Index", "Sports");
                 }
                 else
                 {
