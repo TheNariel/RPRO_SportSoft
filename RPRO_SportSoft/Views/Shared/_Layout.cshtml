@@ -21,23 +21,36 @@
 </head>
 
 <body>
+    @{
+        if (Session["Logged"] == null) {
+            Response.Redirect("~/Main/index");
+        }
+     }
     <div class="header">
        @{
            String log = "";
-           String login = Session["Logged"].ToString();
+           String login;
+           if (Session["Logged"] == null)
+           {
+               login = "";
+
+           }
+           else {
+               login = Session["Logged"].ToString();
+           }
            if (!login.Equals(""))
            {
                log = "Přihlášen: " + Session["Logged"].ToString();
-                @log.ToString()
-                <br />
-                @Html.ActionLink("Odhlásit", "Index", "Main")
+               @log.ToString()
+               <br />
+               @Html.ActionLink("Odhlásit", "Index", "Main")
 
            }
            else
            {
                if (IsSectionDefined("Header"))
                {
-                  @RenderSection("Header")
+                   @RenderSection("Header")
                }
                else
                {
