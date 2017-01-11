@@ -43,7 +43,12 @@ namespace RPRO_SportSoft.Application
             return true;
         }
 
-       
+        public Boolean CheckForReservations(int id_court, DateTime date, int time)
+        {
+            List<int> reservations = this.GetReservations(id_court, date);
+            return reservations.Contains(time);
+        }
+
 
         private int GetActualPrice(int id, DateTime date)
         {
@@ -78,7 +83,7 @@ namespace RPRO_SportSoft.Application
 
             return listOfReservation;
         }
-
+        
         public List<Reservation_Time> GetListOfTimeReservations() {
            return db.Reservation_Times.ToList();
             

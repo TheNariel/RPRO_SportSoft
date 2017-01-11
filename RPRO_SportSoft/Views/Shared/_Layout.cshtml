@@ -23,7 +23,7 @@
 <body>
     @{
         if (Session["Logged"] == null) {
-            Response.Redirect("~/Main/index");
+            Session["Logged"] = "";
         }
      }
     <div class="header">

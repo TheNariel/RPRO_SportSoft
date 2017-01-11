@@ -6,7 +6,7 @@
     String login = "";
     if (Session["Logged"] == null)
     {
-        Response.Redirect("~/Main/index");
+        Session["Logged"] = "";
 
     }
     else

@@ -172,10 +172,14 @@ namespace RPRO_SportSoft.Controllers
             try
             {
                 for (int i = 0; i <= timeIndex; i++) {
-                    listOfBools.Add(appR.Add(id, DateTime.FromBinary(date), timeInt + i , user));
+                    listOfBools.Add(appR.CheckForReservations(id, DateTime.FromBinary(date), timeInt + i));
                 }
                 if (CheckTrue(listOfBools))
                 {
+                    for (int i = 0; i <= timeIndex; i++)
+                    {
+                        appR.Add(id, DateTime.FromBinary(date), timeInt + i, user);
+                    }
                     EmailApp appE = new EmailApp();
                     String body = String.Format(Properties.Resources.ERes,appC.Get(id).Name,DateTime.FromBinary(date).ToShortDateString(),time);
                     appE.SendEmail("Rezervace", body);
