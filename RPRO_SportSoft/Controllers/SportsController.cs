@@ -184,12 +184,12 @@ namespace RPRO_SportSoft.Controllers
                     String body = String.Format(Properties.Resources.ERes,appC.Get(id).Name,DateTime.FromBinary(date).ToShortDateString(),time);
                     appE.SendEmail("Rezervace", body);
 
-                    return RedirectToAction("Index", "Sports");
+                    return RedirectToAction("IndexR", "Main");
                 }
                 else
                 {
                     ViewBag.MyMessageToUser = "Tento kurt je již v daný čas rezervován.";
-                    return RedirectToAction("Details", "Sports", new { id = id });
+                    return RedirectToAction("Details", "Sports", new { id = id, date= date });
                 }
 
             }
