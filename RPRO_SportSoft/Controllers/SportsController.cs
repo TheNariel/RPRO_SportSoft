@@ -189,8 +189,7 @@ namespace RPRO_SportSoft.Controllers
                 else
                 {
                     ViewBag.MyMessageToUser = "Tento kurt je již v daný čas rezervován.";
-                    Reservation r = new Reservation();
-                    return View(r);
+                    return View(id, new SportsApp().GetName(id), time, date, user);
                 }
 
             }

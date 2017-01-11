@@ -46,7 +46,7 @@ namespace RPRO_SportSoft.Application
         public Boolean CheckForReservations(int id_court, DateTime date, int time)
         {
             List<int> reservations = this.GetReservations(id_court, date);
-            return reservations.Contains(time);
+            return !reservations.Contains(time);
         }
 
 
