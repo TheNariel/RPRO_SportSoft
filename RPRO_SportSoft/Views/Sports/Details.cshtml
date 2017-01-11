@@ -3,7 +3,16 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    String login = Session["Logged"].ToString();
+    if (Session["Logged"] == null)
+    {
+        Response.Redirect("~/Main/index");
+
+    }
+    else
+    {
+        String login = Session["Logged"].ToString();
+    }
+
 }
 
 <h2>Kurty sportoviště:  @Html.DisplayFor(modelItem => Model.sportName)</h2>
