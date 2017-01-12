@@ -182,7 +182,7 @@ namespace RPRO_SportSoft.Controllers
                     }
                     EmailApp appE = new EmailApp();
                     String body = String.Format(Properties.Resources.ERes,appC.Get(id).Name,DateTime.FromBinary(date).ToShortDateString(),time);
-                    appE.SendEmail("Rezervace", body);
+                    appE.SendEmail("Rezervace", body, user);
 
                     return RedirectToAction("IndexR", "Courts");
                 }

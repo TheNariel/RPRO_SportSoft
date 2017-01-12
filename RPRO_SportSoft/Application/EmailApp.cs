@@ -11,14 +11,14 @@ namespace RPRO_SportSoft.Application
 {
     public class EmailApp
     {
-        public void SendEmail(String Sub,String Bod)
+        public void SendEmail(String Sub,String Bod,String To)
         {
           
-
+//"noreplysportsoft@gmail.com"
             MailMessage msg = new MailMessage();
 
             msg.From = new MailAddress(Properties.Resources.EFrom);
-            msg.To.Add("noreplysportsoft@gmail.com");
+            msg.To.Add(To);
             msg.Subject = Sub;
             msg.Body = Bod;
             SmtpClient client = new SmtpClient();
