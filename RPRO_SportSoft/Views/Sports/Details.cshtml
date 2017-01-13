@@ -4,6 +4,10 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
     String login = "";
+    if (Session["Role"] == null)
+    {
+        Session["Role"] = "";
+    }
     if (Session["Logged"] == null)
     {
         Session["Logged"] = "";

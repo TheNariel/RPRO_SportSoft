@@ -7,6 +7,10 @@
 
 <h2>Výpis ceníků</h2>
 @{
+    if (Session["Role"] == null)
+    {
+        Session["Role"] = "";
+    }
     String r = Session["Role"].ToString();
     if (r.Equals("Owner"))
     {

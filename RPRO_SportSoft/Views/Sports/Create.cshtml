@@ -6,6 +6,16 @@
 }
 
 <h2>Vytvoření sportoviště</h2>
+@{
+    if (Session["Role"] == null)
+    {
+        Session["Role"] = "";
+    }
+    if ((String)Session["Role"] != "Owner")
+    {
+        Response.Redirect("~/Main/Index");
+    }
+}
 @ViewBag.MessageCreate
 @using (Html.BeginForm("Create", "Sports", FormMethod.Post))
 {

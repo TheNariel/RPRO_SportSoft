@@ -10,6 +10,15 @@
 
 @*<h4>Kurt</h4>
 <hr />*@
+@{
+    if (Session["Role"] == null)
+    {
+        Session["Role"] = "";
+    }
+    if ((String)Session["Role"] != "Owner") {
+        Response.Redirect("~/Main/Index");
+    }
+ }
 @using (Html.BeginForm("Create", "Courts",FormMethod.Post))
 {
     

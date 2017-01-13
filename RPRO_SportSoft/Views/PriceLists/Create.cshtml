@@ -6,7 +6,16 @@
 }
 
 <h2>Vytvoření ceníku</h2>
-
+@{
+    if (Session["Role"] == null)
+    {
+        Session["Role"] = "";
+    }
+    if ((String)Session["Role"] != "Owner")
+    {
+        Response.Redirect("~/Main/Index");
+    }
+}
 
 @ViewBag.MessageCreate
 @using (Html.BeginForm("Create", "PriceLists", FormMethod.Post))

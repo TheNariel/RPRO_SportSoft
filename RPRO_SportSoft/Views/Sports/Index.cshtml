@@ -10,6 +10,9 @@
     @ViewBag.MyMessageToUser
     </br>
     @{
+        if (Session["Role"] == null) {
+            Session["Role"] = "";
+        }
         String role = Session["Role"].ToString();
         if (role.Equals("Owner"))
         {

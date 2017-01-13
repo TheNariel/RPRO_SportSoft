@@ -6,6 +6,16 @@
 }
 
 <h2>Upravit sportoviště</h2>
+@{
+    if (Session["Role"] == null)
+    {
+        Session["Role"] = "";
+    }
+    if ((String)Session["Role"] != "Owner")
+    {
+        Response.Redirect("~/Main/Index");
+    }
+}
 @ViewBag.MyMessageToUser
 @using (Html.BeginForm())
 {
