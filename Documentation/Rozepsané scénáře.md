@@ -288,11 +288,11 @@ Uživatel je přihlášen a má zobrazenu úvodní webovou stránku.
 - 3. Uživatel zvolí den, kdy chce kurt rezervovat.
 - 4. Uživatel zvolí počet týdnů opakované rezervace.
 - 5. Aplikace zobrazí časy, kdy jsou kurty volné a kdy ne(s odůvodněním, proč jsou obsazené).
-- 5. Uživatel vybere kurt.
-- 6. Uživatel potvrdí rezervaci.
-- 7. Aplikace uloží rezervaci.
-- 8. Aplikace odešle potvrzení rezevací na e-mail uživatele.
-- 9. Aplikace zobrazí přehled rezervací uživatele.
+- 6. Uživatel vybere kurt.
+- 7. Uživatel potvrdí rezervaci.
+- 8. Aplikace uloží rezervaci.
+- 9. Aplikace odešle potvrzení rezevací na e-mail uživatele.
+- 10. Aplikace zobrazí přehled rezervací uživatele.
 
 <h3>UC6.4 - Rezervace: Zrušení rezervace zákazníkem</h3>
 <b>Actor</b>: Zákazník
