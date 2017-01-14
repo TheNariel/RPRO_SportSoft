@@ -287,6 +287,7 @@ Uživatel je přihlášen a má zobrazenu úvodní webovou stránku.
 - 2. Aplikace zobrazí kurty pro dané sportoviště.
 - 3. Uživatel zvolí den, kdy chce kurt rezervovat.
 - 4. Uživatel zvolí počet týdnů opakované rezervace.
+- 5. Aplikace zobrazí časy, kdy jsou kurty volné a kdy ne(s odůvodněním, proč jsou obsazené).
 - 5. Uživatel vybere kurt.
 - 6. Uživatel potvrdí rezervaci.
 - 7. Aplikace uloží rezervaci.
