@@ -7,8 +7,21 @@ using System.IO;
 namespace RPRO_SportSoft.Application
 {
     public class ImagesApp
-    {
-        DataClasses1DataContext db = new DataClasses1DataContext();
+    {       
+        DataClasses1DataContext db;
+        String Connection = "";
+        public ImagesApp()
+        {
+            db = new DataClasses1DataContext();
+        }
+
+
+        public ImagesApp(String ConnectionName)
+        {
+            Connection = ConnectionName;
+            db = new DataClasses1DataContext(System.Configuration.ConfigurationManager.ConnectionStrings[Connection].ConnectionString);
+        }
+
         public bool UploadImageToDB(HttpPostedFileBase file)
         {
             if (!this.CheckIfTaken(file.FileName))

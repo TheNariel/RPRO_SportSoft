@@ -7,7 +7,22 @@ namespace RPRO_SportSoft.Application
 {
     public class SportsApp
     {
-        DataClasses1DataContext db = new DataClasses1DataContext();
+      
+        DataClasses1DataContext db;
+        String Connection = "SportSoftDbConnectionString1";
+        public SportsApp()
+        {
+            db = new DataClasses1DataContext();
+        }
+
+
+        public SportsApp(String ConnectionName)
+        {
+            Connection = ConnectionName;
+               db = new DataClasses1DataContext(System.Configuration.ConfigurationManager.ConnectionStrings[Connection].ConnectionString);
+        }
+
+
 
         public  Boolean Add(String n, String image)
         {
@@ -16,7 +31,7 @@ namespace RPRO_SportSoft.Application
             {
                     Sport s = new Sport();
                     s.Name = n.Trim();
-                    ImagesApp a = new ImagesApp();
+                    ImagesApp a = new ImagesApp(Connection);
                     s.Image_Id = a.GetId(image);
                     db.Sports.InsertOnSubmit(s);
                     db.SubmitChanges();

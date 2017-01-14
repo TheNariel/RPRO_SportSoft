@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPRO_SportSoft", "RPRO_SportSoft\RPRO_SportSoft.csproj", "{6DC18222-FE42-4072-A1E9-56C90441E55C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPRO_SportSoft.Tests", "RPRO_SportSoft.Tests\RPRO_SportSoft.Tests.csproj", "{7B1CF0D4-D50F-477B-8E3F-8CCE1AE29E07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPRO_SportSoftTests", "RPRO_SportSoftTests\RPRO_SportSoftTests.csproj", "{9FDC8075-842F-4208-856D-9F4A8EB5D594}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{6DC18222-FE42-4072-A1E9-56C90441E55C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DC18222-FE42-4072-A1E9-56C90441E55C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DC18222-FE42-4072-A1E9-56C90441E55C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7B1CF0D4-D50F-477B-8E3F-8CCE1AE29E07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B1CF0D4-D50F-477B-8E3F-8CCE1AE29E07}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B1CF0D4-D50F-477B-8E3F-8CCE1AE29E07}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B1CF0D4-D50F-477B-8E3F-8CCE1AE29E07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FDC8075-842F-4208-856D-9F4A8EB5D594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FDC8075-842F-4208-856D-9F4A8EB5D594}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FDC8075-842F-4208-856D-9F4A8EB5D594}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FDC8075-842F-4208-856D-9F4A8EB5D594}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

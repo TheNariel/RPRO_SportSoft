@@ -61,8 +61,9 @@ namespace RPRO_SportSoft
 		{
 			OnCreated();
 		}
-		
-		public DataClasses1DataContext(string connection) : 
+       
+
+        public DataClasses1DataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
