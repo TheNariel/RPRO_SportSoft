@@ -7,7 +7,20 @@ namespace RPRO_SportSoft.Application
 {
     public class CourtsApp
     {
-        DataClasses1DataContext db = new DataClasses1DataContext();
+        DataClasses1DataContext db;
+        String Connection = "SportSoftDbConnectionString1";
+        public CourtsApp()
+        {
+            db = new DataClasses1DataContext();
+        }
+
+
+        public CourtsApp(String ConnectionName)
+        {
+            Connection = ConnectionName;
+            db = new DataClasses1DataContext(System.Configuration.ConfigurationManager.ConnectionStrings[Connection].ConnectionString);
+        }
+
         public Boolean Add(String n,int S_Id, int P_Id)
         {
             Boolean ret;

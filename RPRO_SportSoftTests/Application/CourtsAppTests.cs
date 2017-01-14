@@ -11,14 +11,6 @@ namespace RPRO_SportSoft.Application.Tests
     [TestClass()]
     public class CourtsAppTests
     {
-        [TestMethod()]
-        public void CheckForWhiteSpacesTest()
-        {
-          /*  CourtsApp app = new CourtsApp();
-            var ress = app.CheckForWhiteSpaces(" test ");
-            var exp = "test";
-            Assert.AreEqual(exp, ress);*/
-
-        }
+       
     }
 }

@@ -7,9 +7,9 @@ using System.IO;
 namespace RPRO_SportSoft.Application
 {
     public class ImagesApp
-    {       
+    {
         DataClasses1DataContext db;
-        String Connection = "";
+        String Connection = "SportSoftDbConnectionString1";
         public ImagesApp()
         {
             db = new DataClasses1DataContext();

@@ -7,7 +7,20 @@ namespace RPRO_SportSoft.Application
 {
     public class PriceLists_CourtsApp
     {
-        DataClasses1DataContext db = new DataClasses1DataContext();
+        DataClasses1DataContext db;
+        String Connection = "SportSoftDbConnectionString1";
+        public PriceLists_CourtsApp()
+        {
+            db = new DataClasses1DataContext();
+        }
+
+
+        public PriceLists_CourtsApp(String ConnectionName)
+        {
+            Connection = ConnectionName;
+            db = new DataClasses1DataContext(System.Configuration.ConfigurationManager.ConnectionStrings[Connection].ConnectionString);
+        }
+
         public Boolean Add(int Courts_Id, int PriceList_Id, DateTime date)
         {
             PriceLists_Courts pc = new PriceLists_Courts();

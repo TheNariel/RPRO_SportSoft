@@ -7,7 +7,19 @@ namespace RPRO_SportSoft.Application
 {
     public class ReservationsApp
     {
-        DataClasses1DataContext db = new DataClasses1DataContext();
+        DataClasses1DataContext db;
+        String Connection = "SportSoftDbConnectionString1";
+        public ReservationsApp()
+        {
+            db = new DataClasses1DataContext();
+        }
+
+
+        public ReservationsApp(String ConnectionName)
+        {
+            Connection = ConnectionName;
+            db = new DataClasses1DataContext(System.Configuration.ConfigurationManager.ConnectionStrings[Connection].ConnectionString);
+        }
 
         public IEnumerable<Reservation> GetList()
         {

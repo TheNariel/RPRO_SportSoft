@@ -8,7 +8,19 @@ namespace RPRO_SportSoft.Application
 {
     public class UsersApp
     {
-        DataClasses1DataContext db = new DataClasses1DataContext();
+        DataClasses1DataContext db;
+        String Connection = "SportSoftDbConnectionString1";
+        public UsersApp()
+        {
+            db = new DataClasses1DataContext();
+        }
+
+
+        public UsersApp(String ConnectionName)
+        {
+            Connection = ConnectionName;
+            db = new DataClasses1DataContext(System.Configuration.ConfigurationManager.ConnectionStrings[Connection].ConnectionString);
+        }
         public Boolean Add(String e, String p, String r)
         {
             Boolean ret;
