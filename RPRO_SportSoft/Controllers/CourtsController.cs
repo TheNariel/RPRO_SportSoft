@@ -42,7 +42,7 @@ namespace RPRO_SportSoft.Controllers
                     {
                         ViewBag.InvariantCulture = CultureInfo.InvariantCulture;
                         ViewBag.Date = DateTime.Today.ToString("dd.MM.yyyy");
-                        return RedirectToAction("Details", "Sports", new { id = Id });
+                        return RedirectToAction("Details", "Sports", new { id = Id, date= DateTime.Today.ToString("dd.MM.yyyy") });
                     }
                     else
                     {
@@ -101,7 +101,7 @@ namespace RPRO_SportSoft.Controllers
             {
                 if (app.Delete(id))
                 {
-                 return RedirectToAction("Details", "Sports", new { id = sport });
+                 return RedirectToAction("Details", "Sports", new { id = sport, date = DateTime.Today.ToString("dd.MM.yyyy") });
                 }
                 else
                 {
@@ -135,7 +135,7 @@ namespace RPRO_SportSoft.Controllers
 
                     if (app.Edit(Id, CourtName, Sports_Id, Id_P, date))
                     {
-                        return RedirectToAction("Details", "Sports", new { id = Sports_Id });
+                        return RedirectToAction("Details", "Sports", new { id = Sports_Id ,date = DateTime.Today.ToString("dd.MM.yyyy") });
                     }
                     else {
                         ViewBag.MessageEditCourt = "Kurt s tímto názvem již existuje.";
