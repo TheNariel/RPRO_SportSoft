@@ -57,7 +57,7 @@ namespace RPRO_SportSoft
     #endregion
 		
 		public DataClasses1DataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["TestDatabase"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SportSoftDbConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
