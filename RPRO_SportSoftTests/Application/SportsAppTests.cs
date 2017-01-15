@@ -65,28 +65,51 @@ namespace RPRO_SportSoft.Application.Tests
             Assert.AreEqual(exp, result);
         }
 
+
         [TestMethod()]
-        public void CheckIfTakenEditSelf()
+        public void DeleteTest()
         {
             SportsApp app = new SportsApp("TestDatabase");
-            var result = app.CheckIfTakenEdit("DontDeleteThis", 19);
-            var exp = false;
+
+            Sport s = new Sport();
+            s.Name = "TestDeleteData";
+            s.Image_Id = 1;
+            db.Sports.InsertOnSubmit(s);
+            db.SubmitChanges();
+
+            int id = db.Sports.Where(Sport => Sport.Name == "TestDeleteData").Single().Id;
+
+            app.Delete(id);
+
+            Boolean b;
+            try
+            {
+                var item = db.Sports.Where(Sport => Sport.Name == "TestDeleteData").First();
+                b = false;
+            }
+            catch
+            {
+                b = true;
+            }
+            Assert.IsTrue(b);
+
+        }
+
+        [TestMethod()]
+        public void GetTest()
+        {
+            SportsApp app = new SportsApp("TestDatabase");
+            var result = app.Get(19).Name;
+            var exp = "DontDeleteThis";
             Assert.AreEqual(exp, result);
         }
+
         [TestMethod()]
-        public void CheckIfTakenEditTaken()
+        public void GetNameTest()
         {
             SportsApp app = new SportsApp("TestDatabase");
-            var result = app.CheckIfTakenEdit("DontDeleteThis", 10);
-            var exp = true;
-            Assert.AreEqual(exp, result);
-        }
-        [TestMethod()]
-        public void CheckIfTakenEditNotTaken()
-        {
-            SportsApp app = new SportsApp("TestDatabase");
-            var result = app.CheckIfTakenEdit("qwasyx", 19);
-            var exp = false;
+            var result = app.GetName(19);
+            var exp = "DontDeleteThis";
             Assert.AreEqual(exp, result);
         }
     }

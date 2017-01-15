@@ -14,7 +14,6 @@ namespace RPRO_SportSoft.Application
             db = new DataClasses1DataContext();
         }
 
-
         public ReservationsApp(String ConnectionName)
         {
             Connection = ConnectionName;

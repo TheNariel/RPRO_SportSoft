@@ -21,6 +21,7 @@ namespace RPRO_SportSoft.Application
             Connection = ConnectionName;
             db = new DataClasses1DataContext(System.Configuration.ConfigurationManager.ConnectionStrings[Connection].ConnectionString);
         }
+
         public Boolean Add(String e, String p, String r)
         {
             Boolean ret;
@@ -55,7 +56,7 @@ namespace RPRO_SportSoft.Application
             return ret;
 
         }
-        public Boolean CheckIfTaken(String e)
+        private Boolean CheckIfTaken(String e)
         {
             return db.Users.Where(User => User.Email == e).Any();
 

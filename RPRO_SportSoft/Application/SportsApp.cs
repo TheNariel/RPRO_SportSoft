@@ -63,7 +63,7 @@ namespace RPRO_SportSoft.Application
            return db.Sports.Where(Sport => Sport.Name == n).Any();
 
         }
-        public Boolean CheckIfTakenEdit(String n, int id)
+        private Boolean CheckIfTakenEdit(String n, int id)
         {
             return db.Sports.Where(Sport => Sport.Name == n && Sport.Id != id).Any();
 
