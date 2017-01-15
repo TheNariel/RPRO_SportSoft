@@ -126,15 +126,21 @@ namespace RPRO_SportSoft.Controllers
 
         // POST: Courts/Delete/5
         [HttpPost]
-        public ActionResult Edit(int Id, int Sports_Id, String CourtName, String De_P, DateTime date)
+        public ActionResult Edit(int Id, int Sports_Id, String CourtName, String De_P, String date)
         {
+            CultureInfo provider = CultureInfo.InvariantCulture;
+            String dateformat = "dd. MM. yyyy";
+            ViewBag.InvariantCulture = provider;
+            String[] d = date.Split('.');
+            String dateCons = d[0] + ". " + d[1] + ". " + d[2];
+          
             int Id_P = appPL.GetId(De_P);
             int sport = app.GetSportId(Id);
             try
             {
                 if (app.CheckForWhiteSpaces(CourtName)) {
 
-                    if (app.Edit(Id, CourtName, Sports_Id, Id_P, date))
+                    if (app.Edit(Id, CourtName, Sports_Id, Id_P, DateTime.ParseExact(dateCons, dateformat, provider)))
                     {
                         return RedirectToAction("Details", "Sports", new { id = Sports_Id ,date = DateTime.Today.ToString("dd.MM.yyyy") });
                     }
