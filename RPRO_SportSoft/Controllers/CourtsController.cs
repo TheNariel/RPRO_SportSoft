@@ -120,6 +120,7 @@ namespace RPRO_SportSoft.Controllers
 
         public ActionResult Edit(int id)
         {
+            ViewBag.date = DateTime.Today.ToString("dd.MM.yyyy");
             return View(app.Get(id));
         }
 
