@@ -15,17 +15,17 @@
 @*<input id="datepicker">*@
 @section Header {
     <section class="header">
-      <h4>Přihlášení:</h4>
       @ViewBag.MessageLogin
-      @using (Html.BeginForm("Index", "Main", FormMethod.Post))
-       {
+      @using (Html.BeginForm("Index", "Main", FormMethod.Post, new { @class = "login-form"}))
+      {
         <p>
-            Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email", type = "email", placeholder = "jmeno@domena.com", required = "required" }) <br />
-            Heslo: @Html.Password("UserPass", Model.Password, new { @class = "password", required = "required" })<br />
+            Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email", type = "email", placeholder = "jmeno@domena.com", required = "required" }) 
+            Heslo: @Html.Password("UserPass", Model.Password, new { @class = "password", required = "required" })
             <input type="submit" value="Přihlásit" />
+            @Html.ActionLink("Registrace", "Create", "Main")
         </p>
-        }
-        @Html.ActionLink("Registrace", "Create", "Main")
+      }
+       
        </section>
     
     }

@@ -13,6 +13,14 @@
     width: 250px;
     }
 
+    
+    .login-form {
+    padding-top: 5px;
+    padding-bottom: 0px;
+    display: inline;
+    border-style: none;
+    }
+
     .title{
     //border: 1px green solid;
     // margin-top: 10px;
@@ -23,19 +31,21 @@
     }
 
     .header {
+    width: 100%;
+    position: fixed;
     background-color: #e3e3e3;
-    //margin-top: 60px;
+    top: 0px;
+    left: 0px;
     margin-left: auto;
     margin-right: auto;
-    max-width: 960px;
-    border: hidden;
-    border-radius: 7px;
-    padding: 10px;
+    text-align: right;
+    padding-right: 10px;
+    //max-width: 960px;
     }
 
     .main {
     box-shadow: 0 0 60px #000033;
-    margin-top: 20px;
+    margin-top: 80px;
     margin-bottom: 30px;
     margin-left: auto;
     margin-right: auto;
