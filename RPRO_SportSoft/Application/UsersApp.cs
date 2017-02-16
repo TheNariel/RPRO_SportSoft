@@ -22,7 +22,7 @@ namespace RPRO_SportSoft.Application
             db = new DataClasses1DataContext(System.Configuration.ConfigurationManager.ConnectionStrings[Connection].ConnectionString);
         }
 
-        public Boolean Add(String e, String p, String r)
+        public Boolean Add(String e, String p, String r, String name, String surname, int phone)
         {
             Boolean ret;
             if (!CheckIfTaken(e))
@@ -32,6 +32,9 @@ namespace RPRO_SportSoft.Application
                 String salt = CreateSalt();
                 u.Password = CreatePasswordHash(p, salt);
                 u.Salt = salt;
+                u.Name = name.Trim()+ " " + surname.Trim();
+                u.Phone = phone;
+                u.Active = "Yes";
                 if (r.Equals("Majitel"))
                 {
                     u.Role = "Owner";
@@ -94,6 +97,20 @@ namespace RPRO_SportSoft.Application
         public User GetUser(String e)
         {
             return db.Users.Where(User => User.Email == e).First();
+        }
+        public Boolean ActivateUser(String userEmail)
+        {
+            var obj = db.Users.Single(x => x.Email == userEmail);
+            obj.Email = "Yes";
+            db.SubmitChanges();
+            return true;
+        }
+        public Boolean DeactivateUser(String userEmail)
+        {
+            var obj = db.Users.Single(x => x.Email == userEmail);
+            obj.Email = "No";
+            db.SubmitChanges();
+            return false;
         }
     }
 }

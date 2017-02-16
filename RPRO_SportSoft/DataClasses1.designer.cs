@@ -61,9 +61,8 @@ namespace RPRO_SportSoft
 		{
 			OnCreated();
 		}
-       
-
-        public DataClasses1DataContext(string connection) : 
+		
+		public DataClasses1DataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -565,6 +564,12 @@ namespace RPRO_SportSoft
 		
 		private string _Role;
 		
+		private string _Name;
+		
+		private int _Phone;
+		
+		private string _Active;
+		
 		private EntitySet<Reservation> _Reservations;
 		
     #region Extensibility Method Definitions
@@ -579,6 +584,12 @@ namespace RPRO_SportSoft
     partial void OnSaltChanged();
     partial void OnRoleChanging(string value);
     partial void OnRoleChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnPhoneChanging(int value);
+    partial void OnPhoneChanged();
+    partial void OnActiveChanging(string value);
+    partial void OnActiveChanged();
     #endregion
 		
 		public User()
@@ -663,6 +674,66 @@ namespace RPRO_SportSoft
 					this._Role = value;
 					this.SendPropertyChanged("Role");
 					this.OnRoleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="Int NOT NULL")]
+		public int Phone
+		{
+			get
+			{
+				return this._Phone;
+			}
+			set
+			{
+				if ((this._Phone != value))
+				{
+					this.OnPhoneChanging(value);
+					this.SendPropertyChanging();
+					this._Phone = value;
+					this.SendPropertyChanged("Phone");
+					this.OnPhoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Active", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string Active
+		{
+			get
+			{
+				return this._Active;
+			}
+			set
+			{
+				if ((this._Active != value))
+				{
+					this.OnActiveChanging(value);
+					this.SendPropertyChanging();
+					this._Active = value;
+					this.SendPropertyChanged("Active");
+					this.OnActiveChanged();
 				}
 			}
 		}

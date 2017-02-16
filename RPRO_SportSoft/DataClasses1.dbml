@@ -25,6 +25,9 @@
       <Column Name="Password" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
       <Column Name="Salt" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
       <Column Name="Role" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
       <Association Name="User_Reservation" Member="Reservations" ThisKey="Email" OtherKey="User_Email" Type="Reservation" />
     </Type>
   </Table>

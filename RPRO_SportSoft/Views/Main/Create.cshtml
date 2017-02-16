@@ -13,6 +13,9 @@
         Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email", type = "email", placeholder = "jmeno@domena.com", required = "required" }) <br />
         Heslo: @Html.Password("UserPass", Model.Password, new { @class = "password", required = "required" })<br />
         Role: @Html.DropDownList("UserRole", new SelectList(new List<String>() { "Zákazník", "Majitel" }))<br />
+        Jméno: @Html.TextBox(("Name"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
+        Příjmení: @Html.TextBox(("SurName"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
+        Telefon: @Html.TextBox("Phone", Model.Phone)
             <input type="submit" value="Registrovat" />
 </p>
 }
