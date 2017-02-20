@@ -98,6 +98,10 @@ namespace RPRO_SportSoft.Application
         {
             return db.Users.Where(User => User.Email == e).First();
         }
+        public IEnumerable<User> GetUserList()
+        {
+            return db.Users.ToList();
+        }
         public Boolean ActivateUser(String userEmail)
         {
             var obj = db.Users.Single(x => x.Email == userEmail);

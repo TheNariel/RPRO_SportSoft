@@ -93,5 +93,9 @@ namespace RPRO_SportSoft.Controllers
         public ActionResult Account() {
             return View();
         }
+        public ActionResult Users()
+        {
+            return View(app.GetUserList());
+        }
     }
 }

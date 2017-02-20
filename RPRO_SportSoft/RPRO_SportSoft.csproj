@@ -193,6 +193,7 @@
     <Content Include="Views\Sports\Reservation.cshtml" />
     <Content Include="Views\Image\Index.cshtml" />
     <Content Include="Views\Image\Create.cshtml" />
+    <Content Include="Views\Main\Users.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
