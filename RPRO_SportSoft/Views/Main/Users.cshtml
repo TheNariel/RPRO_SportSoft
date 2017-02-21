@@ -27,43 +27,39 @@
         </th>
         <th></th>
     </tr>
-  
-@foreach (var item in Model) {
-    <tr>
-@using (Html.BeginForm("Users", "Main", FormMethod.Post))
-{
-        <td>
-            @Html.Hidden("Email", item.Email)
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Role)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.Hidden("Active", item.Active)
-            <input name="Active" type='checkbox' onclick="location.href = '@(Url.Action("ChangeActive", "Main", new {Email = item.Email, Active = item.Active }))'">
-        </td>
-        @*<td>
-            @Html.CheckBox("Active", item.Active == "Yes", new { @onclick = Url.Action("Users", "Main", new { Active = item.Active, Email = item.Email }) })
-        </td>*@
-        @*<td>            
-            @Html.CheckBox("Active", item.Active=="Yes", new { @onclick = "submitform()" })
-        </td>*@
-}
-      </tr>
- 
-}
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.Hidden("Email", item.Email)
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.Hidden("Active", item.Active)
+                @if (item.Active.Equals("Yes"))
+                {
+                    <input checked name="Active" type='checkbox' onclick="location.href = '@(Url.Action("ChangeActive", "Main", new {Email = item.Email, Active = item.Active }))'">
+
+                }
+                else
+                {
+                    <input name="Active" type='checkbox' onclick="location.href = '@(Url.Action("ChangeActive", "Main", new {Email = item.Email, Active = item.Active }))'">
+
+                }
+            </td>
+
+        </tr>
+
+    }
 
 </table>
-<script>
-    function submitform() {
-        $('form').submit();
-    }
-</script>
-
