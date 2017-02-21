@@ -97,5 +97,17 @@ namespace RPRO_SportSoft.Controllers
         {
             return View(app.GetUserList());
         }
+        public ActionResult ChangeActive(String Email,String Active)
+        {
+            if (Active.Equals("Yes"))
+            {
+                app.DeactivateUser(Email);
+            }
+            else
+            {
+                app.ActivateUser(Email);
+            }
+            return RedirectToAction("Users", "Main");
+        }
     }
 }

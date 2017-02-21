@@ -105,14 +105,14 @@ namespace RPRO_SportSoft.Application
         public Boolean ActivateUser(String userEmail)
         {
             var obj = db.Users.Single(x => x.Email == userEmail);
-            obj.Email = "Yes";
+            obj.Active = "Yes";
             db.SubmitChanges();
             return true;
         }
         public Boolean DeactivateUser(String userEmail)
         {
             var obj = db.Users.Single(x => x.Email == userEmail);
-            obj.Email = "No";
+            obj.Active = "No";
             db.SubmitChanges();
             return false;
         }
