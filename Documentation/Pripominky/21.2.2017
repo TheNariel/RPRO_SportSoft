@@ -1,0 +1,14 @@
+iterační plán v úkolech - úprava modulu - napsat v čem spočívá úprava
+
+jméno telefon email role aktivní- přehodit ve výpisu uživatelů
+výpis uživatelů - seřazení podle emailu a jména
+aktivace deaktivace - udělat to bez refreshu, člověk nemůže deaktivovat sám sebe + ať se to zroluje dolů + nějaké okno o změně (uživatel aktivován atd.)
+aktivaci a deaktivaci v javaScriptu
+validace tel. čísla u registrace, nedělat to přes int
+zjednotit vzhled
+přihlašovací modul - sjednotit vzhled
+db diagram aktualizovat
+class diagram aktualizovat
+doplnit čísla scénářů v iteračním plánu
+aktualizovat stav scénářů
+
