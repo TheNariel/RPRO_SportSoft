@@ -566,7 +566,7 @@ namespace RPRO_SportSoft
 		
 		private string _Name;
 		
-		private int _Phone;
+		private string _Phone;
 		
 		private string _Active;
 		
@@ -586,7 +586,7 @@ namespace RPRO_SportSoft
     partial void OnRoleChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
-    partial void OnPhoneChanging(int value);
+    partial void OnPhoneChanging(string value);
     partial void OnPhoneChanged();
     partial void OnActiveChanging(string value);
     partial void OnActiveChanged();
@@ -698,8 +698,8 @@ namespace RPRO_SportSoft
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="Int NOT NULL")]
-		public int Phone
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string Phone
 		{
 			get
 			{

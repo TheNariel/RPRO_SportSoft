@@ -22,18 +22,20 @@ namespace RPRO_SportSoft.Application
             db = new DataClasses1DataContext(System.Configuration.ConfigurationManager.ConnectionStrings[Connection].ConnectionString);
         }
 
-        public Boolean Add(String e, String p, String r, String name, String surname, int phone)
+        public Boolean Add(String e, String p, String r, String name, String surname, String phone)
         {
             Boolean ret;
-            if (!CheckIfTaken(e))
+            if (!CheckIfTaken(e) && ValidatePhoneNumber(phone))
             {
                 User u = new User();
                 u.Email = e;
                 String salt = CreateSalt();
                 u.Password = CreatePasswordHash(p, salt);
                 u.Salt = salt;
-                u.Name = name.Trim()+ " " + surname.Trim();
-                u.Phone = phone;
+                u.Name = name.Trim() + " " + surname.Trim();
+                u.Phone = phone.Replace(" ", "");
+
+
                 u.Active = "Yes";
                 if (r.Equals("Majitel"))
                 {
@@ -116,5 +118,21 @@ namespace RPRO_SportSoft.Application
             db.SubmitChanges();
             return false;
         }
+        public static Boolean ValidatePhoneNumber(String phone)
+        {
+            phone = phone.Replace(" ", "");
+            Char[] phoneChar = phone.ToCharArray();
+            Boolean ret = true;
+            if (phone.Length != 13 && phone.Length != 9) ret = false;
+
+            if ((phoneChar[0] < '0' || phoneChar[0] > '9') && phoneChar[0] != '+') ret = false;
+            for (int i = 1; i < phone.Length; i++)
+            {
+                if (phoneChar[i] < '0' || phoneChar[i] > '9') ret = false;
+
+            }
+
+            return ret;
+        } 
     }
 }

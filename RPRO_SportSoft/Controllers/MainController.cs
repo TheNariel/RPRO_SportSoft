@@ -32,7 +32,7 @@ namespace RPRO_SportSoft.Controllers
         }
         // POST: Main/Create
         [HttpPost]
-        public ActionResult Create(String UserEmail, String UserPass, String UserRole, String Name, String SurName, int Phone)
+        public ActionResult Create(String UserEmail, String UserPass, String UserRole, String Name, String SurName, String Phone)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace RPRO_SportSoft.Controllers
                 }
                 else
                 {
-                    ViewBag.MessageCreate = "Uživatel s tímto emailem již existuje";
+                    ViewBag.MessageCreate = "Uživatel se nevytvoťil";
                     User u = new User();
                     u.Email = "";
                     return View(u);
