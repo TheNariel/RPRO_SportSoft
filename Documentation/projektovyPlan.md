@@ -17,7 +17,7 @@
 |13.12. - 20.12.2016|E9|Dokončení tvorby rezervace, úprava úvodní stránky, úprava scénářů|Splněno
 <b>20. 12.</b>||		<b>Milník LCA</b>|	<b>Splněno</b>
 |14.2. - 21.2.2017|C1|Implementace aktivace a deaktivace uživatele|Splněno
-|21.2. - 28.2.2017|C2||
+|21.2. - 28.2.2017|C2|Implementace řazení výpisů, vyzkoušení technologie Ajax|
 |28.2. - 7.3.2017|C3||
 |7.3. - 14.3.2017|C4||
 |14.3. - 21.3.2017|C5||
