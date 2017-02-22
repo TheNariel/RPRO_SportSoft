@@ -15,10 +15,17 @@
 |29.11. - 6.12.2016|E7|Přidání rolí uživatelům, modul pro přihlášení, změna způsobu rezervace a přiřazování ceníku|Splněno
 |6.12. - 13.12.2016|E8|Úprava zadávání rezervací|Splněno
 |13.12. - 20.12.2016|E9|Dokončení tvorby rezervace, úprava úvodní stránky, úprava scénářů|Splněno
-<b>20. 12.</b>||		<b>Milník LCA</b>|	Splněno
-|14.2. - 21.2.2017|C1|Implementace aktivace a deaktivace uživatele|
-||||
-||||
+<b>20. 12.</b>||		<b>Milník LCA</b>|	<b>Splněno</b>
+|14.2. - 21.2.2017|C1|Implementace aktivace a deaktivace uživatele|Splněno
+|21.2. - 28.2.2017|C2||
+|28.2. - 7.3.2017|C3||
+|7.3. - 14.3.2017|C4||
+|14.3. - 21.3.2017|C5||
+|21.3. - 28.3.2017|C6||
+|28.3. - 4.4.2017|C7||
+|4.4. - 11.4.2017|C8||
+|11.4. - 18.4.2017|C9||
+|18.4. - 25.4.2017|C10||
 <b>25. 4.</b>||		Milník IOP|	
 ||||
 ||||
