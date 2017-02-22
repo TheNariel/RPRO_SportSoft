@@ -15,7 +15,7 @@
 
     
     .login-form {
-    padding-top: 5px;
+    padding-top: 0px;
     padding-bottom: 0px;
     display: inline;
     border-style: none;
@@ -32,6 +32,7 @@
 
     .header {
     width: 100%;
+    height:60px;
     position: fixed;
     background-color: #e3e3e3;
     top: 0px;
@@ -40,6 +41,7 @@
     margin-right: auto;
     text-align: right;
     padding-right: 10px;
+    z-index: 10;
     //max-width: 960px;
     }
 
@@ -59,6 +61,7 @@
 
     .navbar {
     background-color: #000020;
+    z-index: 5;
     }
 
     h2 {
