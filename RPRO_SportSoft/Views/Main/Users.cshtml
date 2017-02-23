@@ -5,25 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Users</h2>
+<h2>Správa uživatelů</h2>
 
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Jméno
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Role)
+            Telefon
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Phone)
+            Role
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Active)
+            Aktivní
         </th>
         <th></th>
     </tr>
@@ -32,17 +32,19 @@
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Name)
+                
+            </td>
+            <td>
+                
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
                 @Html.Hidden("Email", item.Email)
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Role)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
             </td>
             <td>
                 @Html.Hidden("Active", item.Active)
