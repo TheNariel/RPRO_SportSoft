@@ -35,15 +35,16 @@
                login = "";
 
            }
-           else {
+           else
+           {
                login = Session["Logged"].ToString();
            }
            if (!login.Equals(""))
            {
+               <br />
                log = "Přihlášen: " + Session["Logged"].ToString();
                @log.ToString()
-               <br />
-               @Html.ActionLink("Odhlásit", "Index", "Main")
+               @Html.ActionLink("  Odhlásit", "Index", "Main")
 
            }
            else
@@ -54,9 +55,9 @@
                }
                else
                {
-                   log = "Přihlášen: Nepřihlášený uživatel";
-                   @log.ToString()
                    <br />
+                   log = "Přihlášen: Nepřihlášený uživatel  ";
+                   @log.ToString()
                    @Html.ActionLink("Přihlásit", "Index", "Main")
                 <br />
                }
