@@ -18,11 +18,11 @@
 <b>20. 12.</b>||		<b>Milník LCA</b>|	<b>Splněno</b>
 |14.2. - 21.2.2017|C1|Implementace aktivace a deaktivace uživatele|Splněno
 |21.2. - 28.2.2017|C2|Implementace řazení výpisů, vyzkoušení technologie Ajax|
-|28.2. - 7.3.2017|C3||
-|7.3. - 14.3.2017|C4||
-|14.3. - 21.3.2017|C5||
-|21.3. - 28.3.2017|C6||
-|28.3. - 4.4.2017|C7||
+|28.2. - 7.3.2017|C3|Implementace změny hesla uživatele, implementace změny údajů uživatele|
+|7.3. - 14.3.2017|C4|Implemetace smazání ceníku, implementace úpravy ceníku|
+|14.3. - 21.3.2017|C5|Implemetance opakované rezervace kurtu|
+|21.3. - 28.3.2017|C6|Implementace zobrazení historie rezervací uživateli|
+|28.3. - 4.4.2017|C7|Implemetace zrušení rezerace (majitelem a zákazníkem)|
 |4.4. - 11.4.2017|C8||
 |11.4. - 18.4.2017|C9||
 |18.4. - 25.4.2017|C10||
