@@ -7,61 +7,22 @@
 
 <h2>Správa uživatelů</h2>
 
+<div id="container">
+   
+   
+    <br /><br />
+    <div id="dvUsersList">
+        @{Html.RenderPartial("ListUser", Model);}
+    </div>
+</div>
 
-<table class="table">
-    <tr>
-        <th>
-            Jméno
-        </th>
-        <th>
-            Telefon
-        </th>
-        <th>
-            Email
-        </th>
-        <th>
-            Role
-        </th>
-        <th>
-            Aktivní
-        </th>
-        <th></th>
-    </tr>
+<script type="text/javascript">
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-                
-            </td>
-            <td>
-                
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.Hidden("Email", item.Email)
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
-            <td>
-                @Html.Hidden("Active", item.Active)
-                @if (item.Active.Equals("Yes"))
-                {
-                    <input checked name="Active" type='checkbox' onclick="location.href = '@(Url.Action("ChangeActive", "Main", new {Email = item.Email, Active = item.Active }))'">
-
-                }
-                else
-                {
-                    <input name="Active" type='checkbox' onclick="location.href = '@(Url.Action("ChangeActive", "Main", new {Email = item.Email, Active = item.Active }))'">
-
-                }
-            </td>
-
-        </tr>
-
-    }
-
-</table>
+    $(document).ready(function () {
+        $("#ActiveCB").change(function () {
+            var Email = $("#Email").val();
+            var Active = $("#Active").val();
+            $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + Email);
+        });
+    });
+</script>  

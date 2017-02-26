@@ -194,6 +194,7 @@
     <Content Include="Views\Image\Index.cshtml" />
     <Content Include="Views\Image\Create.cshtml" />
     <Content Include="Views\Main\Users.cshtml" />
+    <Content Include="Views\Main\ListUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

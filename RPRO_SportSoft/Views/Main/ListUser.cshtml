@@ -1,0 +1,63 @@
+﻿@model IEnumerable<RPRO_SportSoft.User>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Jméno
+        </th>
+        <th>
+            Telefon
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Role
+        </th>
+        <th>
+            Aktivní
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+
+        </td>
+        <td>
+
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.Hidden("Email", item.Email)
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role)
+        </td>
+        @*<td>
+            @Html.Hidden("Active", item.Active)
+            @if (item.Active.Equals("Yes"))
+                {
+                <input checked name="Active" type='checkbox' onclick="location.href = '@(Url.Action("ChangeActive", "Main", new {Email = item.Email, Active = item.Active }))'">
+
+            }
+            else
+            {
+                <input name="Active" type='checkbox' onclick="location.href = '@(Url.Action("ChangeActive", "Main", new {Email = item.Email, Active = item.Active }))'">
+
+            }
+        </td>*@
+        <td>
+            @Html.Hidden("Active", item.Active)
+            @Html.CheckBox("ActiveCB", item.Active.Equals("Yes"))
+            
+        </td>
+    </tr>
+}
+
+</table>
