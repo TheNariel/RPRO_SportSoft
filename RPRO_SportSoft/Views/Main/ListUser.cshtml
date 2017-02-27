@@ -54,12 +54,12 @@
                 </td>*@
             <td>
                 @Html.Hidden("Active", item.Active)
-                @Html.CheckBox("ActiveCB"+item.Email, item.Active.Equals("Yes"))
+                @Html.CheckBox("ActiveCB+"+item.Email, item.Active.Equals("Yes"))
 
                 <script type="text/javascript">
 
                     $(document).ready(function () {
-                        $('"#ActiveCB"@item.Email').change(function () {
+                        $("#ActiveCB+@item.Email").change(function () {
                             var Email = $("#Email").val();
 
                             $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + Email);
