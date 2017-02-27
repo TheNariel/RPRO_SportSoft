@@ -23,7 +23,7 @@
                             alert(Email + " druhý");
                             var Email = $("#Email").val();
 
-                            $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + @item.Email);
+                            $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + Email);
                             alert(Email);
                         });
                     });
