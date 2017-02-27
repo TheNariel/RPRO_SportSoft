@@ -61,7 +61,7 @@
                     $(document).ready(function () {
 
                         $("#ActiveCB_e_q_q").change(function () {
-                            var Email = $("#Email").val();
+                            var Email = @item.Email 
 
                             $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + Email);
                             alert(Email);
