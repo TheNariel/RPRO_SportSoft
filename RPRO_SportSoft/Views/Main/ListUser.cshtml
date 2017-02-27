@@ -42,7 +42,7 @@
             <td>
                     @Html.Hidden("Active", item.Active)
                     @if (item.Active.Equals("Yes"))
-                        
+                    { 
                         <input checked name="Active" type='checkbox' onclick="ActiveChange(@item.Email)">
 
                     }
