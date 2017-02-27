@@ -59,7 +59,7 @@
                 <script type="text/javascript">
 
                     $(document).ready(function () {
-                        $("#ActiveCB"+@item.Email).change(function () {
+                        $("#ActiveCB+@item.Email").change(function () {
                             var Email = $("#Email").val();
 
                             $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + Email);
