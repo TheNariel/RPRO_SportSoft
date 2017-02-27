@@ -53,8 +53,9 @@
                     }
                 </td>*@
             <td>
-                @Html.Hidden("Active", item.Active)
-                @Html.CheckBox("ActiveCB+"+item.Email, item.Active.Equals("Yes"))
+                @*@Html.Hidden("Active", item.Active)
+                @Html.CheckBox("ActiveCB+"+item.Email, item.Active.Equals("Yes"))*@
+                <input name="Active" id="ActiveCB+@item.Email" type='checkbox'>
 
                 <script type="text/javascript">
 
