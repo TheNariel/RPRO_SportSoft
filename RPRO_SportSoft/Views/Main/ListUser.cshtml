@@ -39,38 +39,24 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Role)
             </td>
-            @*<td>
+            <td>
                     @Html.Hidden("Active", item.Active)
                     @if (item.Active.Equals("Yes"))
                         {
-                        <input checked name="Active" type='checkbox' onclick="location.href = '@(Url.Action("ChangeActive", "Main", new {Email = item.Email}))'">
+                        <input checked name="Active" type='checkbox' onclick="ActiveChange(@item.Email)">
 
                     }
                     else
                     {
-                        <input name="Active" type='checkbox' onclick="location.href = '@(Url.Action("ChangeActive", "Main", new {Email = item.Email }))'">
+                        <input name="Active" type='checkbox' onclick="ActiveChange(@item.Email)">
 
                     }
-                </td>*@
-            <td>
+             </td>
+            @*<td>
                 @Html.Hidden("Active", item.Active)
                 @Html.CheckBox("ActiveCB+"+item.Email, item.Active.Equals("Yes"))
-                
-                <script type="text/javascript">
-
-                    $(document).ready(function () {
-
-                        $("#ActiveCB_e_q_q").change(function () {
-                            var Email = @item.Email 
-
-                            $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + Email);
-                            alert(Email);
-                        });
-                    });
-                </script>
-
-
-            </td>
+               
+            </td>*@
         </tr>
     }
 

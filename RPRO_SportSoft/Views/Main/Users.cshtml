@@ -8,10 +8,17 @@
 <h2>Správa uživatelů</h2>
 
 <div id="container">
-   
-   
+
+
     <br /><br />
     <div id="dvUsersList">
         @{Html.RenderPartial("ListUser", Model);}
     </div>
 </div>
+<script type="text/javascript">
+    function ActiveChange (Email) {
+
+        $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + Email);
+        alert(Email);
+    }
+</script>
