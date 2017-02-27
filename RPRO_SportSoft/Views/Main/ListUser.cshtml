@@ -56,6 +56,19 @@
                 @Html.Hidden("Active", item.Active)
                 @Html.CheckBox("ActiveCB+"+item.Email, item.Active.Equals("Yes"))
                 
+                <script type="text/javascript">
+
+                    $(document).ready(function () {
+
+                        $("#ActiveCB_e_q_q").change(function () {
+                            var Email = $("#Email").val();
+
+                            $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + Email);
+                            alert(Email);
+                        });
+                    });
+                </script>
+
 
             </td>
         </tr>
