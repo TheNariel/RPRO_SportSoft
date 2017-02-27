@@ -16,14 +16,3 @@
     </div>
 </div>
 
-<script type="text/javascript">
-
-    $(document).ready(function () {
-        $("#ActiveCB").change(function () {
-            var Email = $("#Email").val();
-            var Active = $("#Active").val();
-            $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + Email);
-            alert(Email);
-        });
-    });
-</script>  
