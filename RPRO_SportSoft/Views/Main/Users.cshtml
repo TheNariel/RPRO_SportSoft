@@ -15,4 +15,16 @@
         @{Html.RenderPartial("ListUser", Model);}
     </div>
 </div>
+<script type="text/javascript">
 
+                    $(document).ready(function () {
+                        alert(Email + " První");
+                        $("#ActiveCB"+$("#Email").val()).change(function () {
+                            alert(Email + " druhý");
+                            var Email = $("#Email").val();
+
+                            $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + @item.Email);
+                            alert(Email);
+                        });
+                    });
+</script>
