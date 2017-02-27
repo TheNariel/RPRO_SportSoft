@@ -15,3 +15,49 @@
         @{Html.RenderPartial("ListUser", Model);}
     </div>
 </div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#ActiveCB").change(function () {
+            var Email = $("#Email").val();
+            $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + Email);
+            alert("U učtu s emailem: "+Email+" byl změněn stav");
+        });
+    });
+</script>
+
+@*  flag = 1 pro serazení podle jmena vzestupne
+    flag = 2 pro serazení podle jmena sestupne
+    flag = 3 pro serazení podle emailu vzestupne
+    flag = 4 pro serazení podle emailu sestupne  *@
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#NameUp").change(function () {
+            $("#dvUsersList").load('@(Url.Action("SortUsers", "Main", null, Request.Url.Scheme))?flag=' + 1);
+        });
+    });
+
+    $(document).ready(function () {
+
+        $("#NameDown").change(function () {
+            $("#dvUsersList").load('@(Url.Action("SortUsers", "Main", null, Request.Url.Scheme))?flag=' + 2);
+        });
+    });
+
+    $(document).ready(function () {
+
+        $("#EmailUp").change(function () {
+            $("#dvUsersList").load('@(Url.Action("SortUsers", "Main", null, Request.Url.Scheme))?flag=' + 3);
+        });
+    });
+
+    $(document).ready(function () {
+
+        $("#EmailDown").change(function () {
+            $("#dvUsersList").load('@(Url.Action("SortUsers", "Main", null, Request.Url.Scheme))?flag=' + 4);
+        });
+    });
+</script>

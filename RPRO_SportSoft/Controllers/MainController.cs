@@ -111,5 +111,11 @@ namespace RPRO_SportSoft.Controllers
             IEnumerable<User> model = app.GetUserList();
             return PartialView("ListUser", model); 
         }
+
+        public ActionResult SortUsers(int flag)
+        {
+            IEnumerable<User> model = app.GetUserListSorted(flag);
+            return PartialView("ListUser", model);
+        }
     }
 }

@@ -104,6 +104,33 @@ namespace RPRO_SportSoft.Application
         {
             return db.Users.ToList();
         }
+        public IEnumerable<User> GetUserListSorted(int flag)
+        {
+            IEnumerable<User> ret;
+            switch (flag)
+            {
+                case 1:
+                    ret= db.Users.ToList().OrderBy(User => User.Name);
+                    break;
+                case 2:
+                    ret = db.Users.ToList().OrderByDescending(User => User.Name);
+                    break;
+                case 3:
+                    ret = db.Users.ToList().OrderBy(User => User.Email);
+                    break;
+                case 4:
+                    ret = db.Users.ToList().OrderByDescending(User => User.Email);
+                    break;
+
+                default :
+                    ret = db.Users.ToList().OrderBy(User => User.Name);
+                    break;
+
+            }
+            return ret;
+
+
+        }
         public Boolean ActivateUser(String userEmail)
         {
             var obj = db.Users.Single(x => x.Email == userEmail);
