@@ -19,7 +19,7 @@
 
                     $(document).ready(function () {
                        
-                        $("#ActiveCB").change(function () {
+                        $("#ActiveCB"+$("#Email").val()).change(function () {
                             alert(Email + " druhý");
                             var Email = $("#Email").val();
 

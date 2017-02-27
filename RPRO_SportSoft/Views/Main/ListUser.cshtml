@@ -39,7 +39,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Role)
             </td>
-            <td>
+            @*<td>
                     @Html.Hidden("Active", item.Active)
                     @if (item.Active.Equals("Yes"))
                         {
@@ -51,13 +51,13 @@
                         <input name="Active" type='checkbox' onclick="location.href = '@(Url.Action("ChangeActive", "Main", new {Email = item.Email }))'">
 
                     }
-                </td>
-            @*<td>
+                </td>*@
+            <td>
                 @Html.Hidden("Active", item.Active)
                 @Html.CheckBox("ActiveCB+"+item.Email, item.Active.Equals("Yes"))
-                <input name="ActiveCB+@item.Email" id="ActiveCB+@item.Email" type='checkbox'>
+                
 
-            </td>*@
+            </td>
         </tr>
     }
 
