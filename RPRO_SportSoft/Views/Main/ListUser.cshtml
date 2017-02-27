@@ -42,7 +42,7 @@
             <td>
                     @Html.Hidden("Active", item.Active)
                     @if (item.Active.Equals("Yes"))
-                        {
+                        
                         <input checked name="Active" type='checkbox' onclick="ActiveChange(@item.Email)">
 
                     }
@@ -61,3 +61,10 @@
     }
 
 </table>
+<script type="text/javascript">
+    function ActiveChange (Email) {
+
+        $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + Email);
+        alert(Email);
+    }
+</script>
