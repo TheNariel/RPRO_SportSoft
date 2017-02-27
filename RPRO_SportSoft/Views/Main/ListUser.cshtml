@@ -60,7 +60,9 @@
                 <script type="text/javascript">
 
                     $(document).ready(function () {
+                        alert(Email + " První");
                         $("#ActiveCB+@item.Email").change(function () {
+                            alert(Email + " druhý");
                             var Email = $("#Email").val();
 
                             $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + @item.Email);
