@@ -86,28 +86,28 @@
                 @{
                     if (!login.Equals(""))
                     {
-                            String role = Session["Role"].ToString();
-                            if (role.Equals("Owner"))
-                            {
+                        String role = Session["Role"].ToString();
+                        if (role.Equals("Owner"))
+                        {
                         <ul>
-                            <li>@Html.ActionLink("Správa účtu", "Account", "Main")</li>
+                            <li>@Html.ActionLink("Správa účtu", "Account", "Main", new { email = Session["Logged"].ToString() }, null)</li>
                             <li>@Html.ActionLink("Správa ceníků", "Index", "PriceLists")</li>
                             <li>@Html.ActionLink("Správa rezervací", "IndexR", "Courts")</li>
                             <li>@Html.ActionLink("Správa obrázků", "Index", "Image")</li>
                             <li>@Html.ActionLink("Správa uživatelů", "Users", "Main")</li>
                         </ul>
                             }
-                            else if (role.Equals("Customer"))
-                            {
+                        else if (role.Equals("Customer"))
+                        {
                                 <ul>
-                                    <li>@Html.ActionLink("Správa účtu", "Account", "Main")</li>
+                                    <li>@Html.ActionLink("Správa účtu", "Account", "Main", new { email = Session["Logged"].ToString() }, null)</li>
                                 </ul>
                             }
 
-                                }
-                                else
-                                {
-                                }
+                    }
+                    else
+                    {
+                    }
                             }
         </div>
 

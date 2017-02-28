@@ -46,7 +46,7 @@ namespace RPRO_SportSoft.Controllers
                 }
                 else
                 {
-                    ViewBag.MessageCreate = "Uživatel se nevytvoťil";
+                    ViewBag.MessageCreate = "Uživatel se nevytvořil";
                     User u = new User();
                     u.Email = "";
                     return View(u);
@@ -81,7 +81,6 @@ namespace RPRO_SportSoft.Controllers
             }
         }
 
-       
         public ActionResult Contacts()
         {
             return View();
@@ -90,8 +89,8 @@ namespace RPRO_SportSoft.Controllers
         {
             return View();
         }
-        public ActionResult Account() {
-            return View();
+        public ActionResult Account(String email) {
+            return View(app.GetUser(email));
         }
         public ActionResult Users()
         {

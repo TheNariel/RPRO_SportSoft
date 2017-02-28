@@ -1,8 +1,12 @@
-﻿
-@{
-    ViewBag.Title = "Account";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@model User
 
-<h2>Správa účtu</h2>
+    @{
+        ViewBag.Title = "Account";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
+    <h2>Správa účtu</h2>
+    <br />
+    <b>Jméno:</b> @Html.DisplayFor(model => model.Name)<br />
+    <b>Telefon:</b> @Html.DisplayFor(model => model.Phone)<br />
+    <b>E-mail:</b> @Html.DisplayFor(model => model.Email)<br />
