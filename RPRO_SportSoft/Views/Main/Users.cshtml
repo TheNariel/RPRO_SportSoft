@@ -18,12 +18,13 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $("#ActiveCB").change(function () {
+        $(".ActiveCB").change(function () {
             var Email = $("#Email").val();
             $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + Email);
             alert("U učtu s emailem: "+Email+" byl změněn stav");
         });
     });
+
 </script>
 
 @*  flag = 1 pro serazení podle jmena vzestupne

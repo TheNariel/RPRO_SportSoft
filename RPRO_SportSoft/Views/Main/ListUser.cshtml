@@ -33,8 +33,9 @@
                 @Html.DisplayFor(modelItem => item.Phone)
             </td>
             <td>
-                @Html.Hidden("Email", item.Email)
-                @Html.DisplayFor(modelItem => item.Email)
+
+               @Html.Hidden("Email", item.Email)
+               @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Role)
@@ -44,7 +45,6 @@
                     @if (item.Active.Equals("Yes"))
                     { 
                         <input checked name="Active" type='checkbox' onclick="ActiveChange(@item.Email)">
-
                     }
                     else
                     {
@@ -54,8 +54,9 @@
              </td>*@
             <td>
                 @Html.Hidden("Active", item.Active)
-                @Html.CheckBox("ActiveCB", item.Active.Equals("Yes"))
-               
+                <div class="ActiveCB">
+                    @Html.CheckBox("ACB", item.Active.Equals("Yes"))
+                </div>
             </td>
         </tr>
     }
