@@ -30,6 +30,7 @@
        @{
            String log = "";
            String login;
+           String pom = "\xa0\xa0\xa0\xa0";
            if (Session["Logged"] == null)
            {
                login = "";
@@ -44,7 +45,8 @@
                <br />
                log = "Přihlášen: " + Session["Logged"].ToString();
                @log.ToString()
-               @Html.ActionLink("  Odhlásit", "Index", "Main")
+               @pom.ToString()
+               @Html.ActionLink("Odhlásit", "Index", "Main")
 
            }
            else
@@ -56,7 +58,7 @@
                else
                {
                    <br />
-                   log = "Přihlášen: Nepřihlášený uživatel  ";
+                   log = "Přihlášen: Nepřihlášený uživatel  \xa0\xa0";
                    @log.ToString()
                    @Html.ActionLink("Přihlásit", "Index", "Main")
                 <br />
