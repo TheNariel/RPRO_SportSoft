@@ -32,7 +32,7 @@ namespace RPRO_SportSoft.Controllers
         }
         // POST: Main/Create
         [HttpPost]
-        public ActionResult Create(String UserEmail, String UserPass, String UserRole, String Name, String SurName, String Phone)
+        public ActionResult Create( String UserEmail, String UserPass, String UserRole, String Name, String SurName, String Phone)
         {
             try
             {
@@ -62,6 +62,20 @@ namespace RPRO_SportSoft.Controllers
                 return View(u);
             }
         }
+
+        public ActionResult Edit(String e)
+        {
+            return View(app.GetUser(e));
+        }
+
+        // POST: Main/Edit
+        [HttpPost]
+        public ActionResult Edit(String oldEmail, String UserEmail,String Name, String SurName, String Phone)
+        {
+            app.Edit(oldEmail, UserEmail, Name, SurName, Phone);
+            return View(app.GetUser(oldEmail));
+        }
+
         // POST: Main/Index
         [HttpPost]
         public ActionResult Index(String UserEmail, String UserPass)

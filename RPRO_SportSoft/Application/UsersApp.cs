@@ -61,6 +61,26 @@ namespace RPRO_SportSoft.Application
             return ret;
 
         }
+
+        public Boolean Edit(String oe,String e, String name, String surname, String phone)
+        {
+            Boolean ret;
+            if ((!CheckIfTaken(e) || oe.Equals(e)) && ValidatePhoneNumber(phone))
+            {
+                var obj = db.Users.Single(x => x.Email == oe);
+                obj.Email = e;
+                obj.Name = name.Trim() + " " + surname.Trim();
+                obj.Phone = phone;
+                db.SubmitChanges();
+                ret = true;
+            }
+            else
+            {
+                ret = false;
+            }
+            return ret;
+        }
+
         private Boolean CheckIfTaken(String e)
         {
             return db.Users.Where(User => User.Email == e).Any();

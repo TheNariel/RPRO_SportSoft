@@ -1,22 +1,29 @@
 ﻿@model RPRO_SportSoft.User
-@using RPRO_SportSoft.Application;
+
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@{
+    String[] names = Model.Name.Split(' ');
+    String name = names[0];
+    String surname = names[1];
+}
+
 <h2>Upravit údaje</h2>
 @ViewBag.MessageEditCourt
 @using (Html.BeginForm("Edit", "Main", FormMethod.Post))
+
+
 {
     <p>
+        @Html.Hidden("oldEmail", Model.Email)
         Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email form-control", type = "email", placeholder = "jmeno@domena.com", required = "required" }) <br />
-        Heslo: @Html.Password("UserPass", Model.Password, new { @class = "password form-control", required = "required" })<br />
-
-        Jméno: @Html.TextBox(("Name"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
-        Příjmení: @Html.TextBox(("SurName"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
+        Jméno: @Html.TextBox(("Name"), name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
+        Příjmení: @Html.TextBox(("SurName"), surname, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
         Telefon: @Html.TextBox("Phone", Model.Phone, new { @class = "form-control", required = "required" })<br />
-        Role: @Html.DropDownList("UserRole", new SelectList(new List<String>() { "Zákazník", "Majitel" }))<br /><br />
+        <br />
         <input type="submit" value="Uložit změny" />
     </p>
 }
