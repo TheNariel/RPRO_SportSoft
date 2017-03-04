@@ -72,8 +72,40 @@ namespace RPRO_SportSoft.Controllers
         [HttpPost]
         public ActionResult Edit(String oldEmail, String UserEmail,String Name, String SurName, String Phone)
         {
-            app.Edit(oldEmail, UserEmail, Name, SurName, Phone);
-            return View(app.GetUser(oldEmail));
+            try
+            {
+                if (app.CheckForWhiteSpaces(Name, SurName))
+                {
+
+                    if (app.Edit(oldEmail, UserEmail, Name, SurName, Phone))
+                    {
+                        ViewBag.MyMessageToUser = "Údaje upraveny.";
+                        return View(app.GetUser(oldEmail));
+                    }
+                    else
+                    {
+                        ViewBag.MyMessageToUser = "Pravděpodobně špatně zadané telefónní číslo.";
+                        return View(app.GetUser(oldEmail));
+                    }
+
+                }
+                else
+                {
+                    ViewBag.MyMessageToUser = "Musíte vyplnit všechny pole.";
+                    return View(app.GetUser(oldEmail));
+                }
+
+
+            }
+            catch
+            {
+                ViewBag.MyMessageToUser = "Něco se nepovedlo.";
+                return View(app.GetUser(oldEmail));
+
+
+            }
+            
+            
         }
 
         // POST: Main/Index

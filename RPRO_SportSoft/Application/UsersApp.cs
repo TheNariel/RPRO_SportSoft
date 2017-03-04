@@ -87,6 +87,22 @@ namespace RPRO_SportSoft.Application
 
         }
 
+        public Boolean CheckForWhiteSpaces(String name, String surname)
+        {
+            User u = new User();
+            u.Name = name.Trim();
+            u.Name = surname.Trim();
+
+            if (!string.IsNullOrWhiteSpace(name) && !string.IsNullOrWhiteSpace(surname))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public Boolean Login(String email, String password)
         {
             if (CheckIfTaken(email))
