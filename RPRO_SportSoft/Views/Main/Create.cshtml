@@ -16,12 +16,9 @@
         Jméno: @Html.TextBox(("Name"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
         Příjmení: @Html.TextBox(("SurName"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
         Telefon: @Html.TextBox("Phone", Model.Phone, new { @class = "form-control", required = "required" })<br />
-        Role: @Html.DropDownList("UserRole", new SelectList(new List<String>() { "Zákazník", "Majitel" }))<br /><br />
             <input type="submit" value="Registrovat" />
 
 </p>
 }
 </br>
-<div>
-    @Html.ActionLink("Zpět na přihlášení", "Index")
-</div>
+

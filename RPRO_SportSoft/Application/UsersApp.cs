@@ -22,7 +22,7 @@ namespace RPRO_SportSoft.Application
             db = new DataClasses1DataContext(System.Configuration.ConfigurationManager.ConnectionStrings[Connection].ConnectionString);
         }
 
-        public Boolean Add(String e, String p, String r, String name, String surname, String phone)
+        public Boolean Add(String e, String p, String name, String surname, String phone)
         {
             Boolean ret;
             if (!CheckIfTaken(e) && ValidatePhoneNumber(phone))
@@ -37,17 +37,7 @@ namespace RPRO_SportSoft.Application
 
 
                 u.Active = "Yes";
-                if (r.Equals("Majitel"))
-                {
-                    u.Role = "Owner";
-                } else if (r.Equals("Zákazník"))
-                {
-                    u.Role = "Customer";
-                } else
-                {
-                    u.Role = "Undefined";
-                }
-
+                u.Role = "Customer";
 
                 db.Users.InsertOnSubmit(u);
                 db.SubmitChanges();

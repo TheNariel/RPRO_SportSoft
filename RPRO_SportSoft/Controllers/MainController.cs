@@ -32,11 +32,11 @@ namespace RPRO_SportSoft.Controllers
         }
         // POST: Main/Create
         [HttpPost]
-        public ActionResult Create( String UserEmail, String UserPass, String UserRole, String Name, String SurName, String Phone)
+        public ActionResult Create( String UserEmail, String UserPass, String Name, String SurName, String Phone)
         {
             try
             {
-                if (app.Add(UserEmail, UserPass, UserRole, Name, SurName, Phone))
+                if (app.Add(UserEmail, UserPass, Name, SurName, Phone))
                 {
                     
                     EmailApp Eapp = new EmailApp();
