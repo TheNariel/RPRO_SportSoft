@@ -19,7 +19,6 @@
 {
     <p>
         @Html.Hidden("oldEmail", Model.Email)
-        Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email form-control", type = "email", placeholder = "jmeno@domena.com", required = "required" }) <br />
         Jméno: @Html.TextBox(("Name"), name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
         Příjmení: @Html.TextBox(("SurName"), surname, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
         Telefon: @Html.TextBox("Phone", Model.Phone, new { @class = "form-control", required = "required" })<br />

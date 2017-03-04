@@ -62,13 +62,12 @@ namespace RPRO_SportSoft.Application
 
         }
 
-        public Boolean Edit(String oe,String e, String name, String surname, String phone)
+        public Boolean Edit(String oe,String name, String surname, String phone)
         {
             Boolean ret;
-            if ((!CheckIfTaken(e) || oe.Equals(e)) && ValidatePhoneNumber(phone))
+            if ((!CheckIfTaken(oe) || oe.Equals(oe)) && ValidatePhoneNumber(phone))
             {
                 var obj = db.Users.Single(x => x.Email == oe);
-                obj.Email = e;
                 obj.Name = name.Trim() + " " + surname.Trim();
                 obj.Phone = phone;
                 db.SubmitChanges();

@@ -70,14 +70,14 @@ namespace RPRO_SportSoft.Controllers
 
         // POST: Main/Edit
         [HttpPost]
-        public ActionResult Edit(String oldEmail, String UserEmail,String Name, String SurName, String Phone)
+        public ActionResult Edit(String oldEmail, String Name, String SurName, String Phone)
         {
             try
             {
                 if (app.CheckForWhiteSpaces(Name, SurName))
                 {
 
-                    if (app.Edit(oldEmail, UserEmail, Name, SurName, Phone))
+                    if (app.Edit(oldEmail, Name, SurName, Phone))
                     {
                         ViewBag.MyMessageToUser = "Údaje upraveny.";
                         return View(app.GetUser(oldEmail));
