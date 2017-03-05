@@ -79,8 +79,7 @@ namespace RPRO_SportSoft.Controllers
 
                     if (app.Edit(oldEmail, Name, SurName, Phone))
                     {
-                        ViewBag.MyMessageToUser = "Údaje upraveny.";
-                        return View(app.GetUser(oldEmail));
+                        return RedirectToAction("Account", "Main", app.GetUser(oldEmail));
                     }
                     else
                     {
