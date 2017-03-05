@@ -1,0 +1,25 @@
+﻿@model RPRO_SportSoft.User
+
+@{
+    ViewBag.Title = "EditPass";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EditPass</h2>
+@ViewBag.MessageChangingPassword
+@using (Html.BeginForm("EditPass", "Main", FormMethod.Post))
+{
+    <p>
+        @Html.Hidden("e", Model.Email)
+        Staré heslo: @Html.Password("oldPass", "", new { @class = "password form-control", required = "required" })<br />
+        Nové heslo: @Html.Password("newPass", "", new { @class = "password form-control", required = "required" })<br />
+        Potvrzení hesla: @Html.Password("newPass2", "", new { @class = "password form-control", required = "required" })<br />
+
+        <input type="submit" value="Změnit heslo" />
+
+    </p>
+}
+
+<div>
+    @Html.ActionLink("Zpět", "Account", Model.Email)
+</div>

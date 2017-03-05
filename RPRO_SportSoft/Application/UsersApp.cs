@@ -34,11 +34,8 @@ namespace RPRO_SportSoft.Application
                 u.Salt = salt;
                 u.Name = name.Trim() + " " + surname.Trim();
                 u.Phone = phone.Replace(" ", "");
-
-
                 u.Active = "Yes";
                 u.Role = "Customer";
-
                 db.Users.InsertOnSubmit(u);
                 db.SubmitChanges();
                 ret = true;
@@ -185,6 +182,22 @@ namespace RPRO_SportSoft.Application
             }
 
             return ret;
+        }
+        public Boolean ChangingPassword(String e, String oldPass, String newPass, String newPass2)
+        {
+            User u = this.GetUser(e);
+            if (newPass.Equals(newPass2) && u.Password.Equals(CreatePasswordHash(oldPass, u.Salt)))
+            {
+                var obj = db.Users.Single(x => x.Email == e);
+                obj.Password = CreatePasswordHash(newPass, u.Salt); ;
+                db.SubmitChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         } 
     }
 }

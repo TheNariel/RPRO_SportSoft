@@ -162,5 +162,25 @@ namespace RPRO_SportSoft.Controllers
             IEnumerable<User> model = app.GetUserListSorted(flag);
             return PartialView("ListUser", model);
         }
+        public ActionResult EditPass(String e)
+        {
+            return View(app.GetUser(e));
+        }
+        // POST: Main/EditPass
+        [HttpPost]
+        public ActionResult EditPass(String e, String oldPass, String newPass, String newPass2)
+        {
+            if (app.ChangingPassword(e, oldPass, newPass, newPass2))
+            {
+                ViewBag.MessagePasswordChanged = "Heslo změněno.";
+                return RedirectToAction("Account", "Main", app.GetUser(e));
+            }
+            else {
+                ViewBag.MessageChangingPassword = "Špatně vypsané údaje!";
+                return View(app.GetUser(e));
+            }
+            
+        }
+
     }
 }
