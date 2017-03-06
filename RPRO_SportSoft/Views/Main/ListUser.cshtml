@@ -55,7 +55,7 @@
             <td>
                 @Html.Hidden("Active", item.Active)
                 <div class="ActiveCB">
-                    @Html.CheckBox("ACB", item.Active.Equals("Yes"))
+                    @Html.CheckBox(item.Email, item.Active.Equals("Yes"))
                 </div>
             </td>
         </tr>
