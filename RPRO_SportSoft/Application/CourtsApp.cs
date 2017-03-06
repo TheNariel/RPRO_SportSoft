@@ -32,7 +32,7 @@ namespace RPRO_SportSoft.Application
                 db.Courts.InsertOnSubmit(c);
                 db.SubmitChanges();
                 
-                PriceLists_CourtsApp pc = new PriceLists_CourtsApp();
+                PriceList_CourtsApp pc = new PriceList_CourtsApp();
                 pc.Add(this.Get(n), P_Id);
                 ret = true;
             }
@@ -52,7 +52,7 @@ namespace RPRO_SportSoft.Application
                 obj.Sports_Id = S_Id;
                 obj.Name = n.Trim();
                 db.SubmitChanges();
-                PriceLists_CourtsApp pc = new PriceLists_CourtsApp();
+                PriceList_CourtsApp pc = new PriceList_CourtsApp();
                 Court c = this.Get(n);
                 pc.Add(c.Id, P_Id, date);
 

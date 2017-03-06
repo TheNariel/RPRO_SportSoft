@@ -5,17 +5,17 @@ using System.Web;
 
 namespace RPRO_SportSoft.Application
 {
-    public class PriceLists_CourtsApp
+    public class PriceList_CourtsApp
     {
         DataClasses1DataContext db;
         String Connection = "SportSoftDbConnectionString1";
-        public PriceLists_CourtsApp()
+        public PriceList_CourtsApp()
         {
             db = new DataClasses1DataContext();
         }
 
 
-        public PriceLists_CourtsApp(String ConnectionName)
+        public PriceList_CourtsApp(String ConnectionName)
         {
             Connection = ConnectionName;
             db = new DataClasses1DataContext(System.Configuration.ConfigurationManager.ConnectionStrings[Connection].ConnectionString);
