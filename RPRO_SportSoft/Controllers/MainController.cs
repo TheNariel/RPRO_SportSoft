@@ -13,7 +13,7 @@ namespace RPRO_SportSoft.Controllers
     public class MainController : Controller
     {
         UsersApp app = new UsersApp();
-
+        int flg = 3;
 
         public ActionResult Index()
         {
@@ -139,6 +139,7 @@ namespace RPRO_SportSoft.Controllers
         }
         public ActionResult Users()
         {
+           
             return View(app.GetUserList());
         }
 
@@ -152,12 +153,13 @@ namespace RPRO_SportSoft.Controllers
             {
                 app.ActivateUser(Email);
             }
-            IEnumerable<User> model = app.GetUserList();
+            IEnumerable<User> model = app.GetUserListSorted(flg);
             return PartialView("ListUser", model); 
         }
 
         public ActionResult SortUsers(int flag)
         {
+            flg = flag;
             IEnumerable<User> model = app.GetUserListSorted(flag);
             return PartialView("ListUser", model);
         }

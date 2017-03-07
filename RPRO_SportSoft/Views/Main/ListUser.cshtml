@@ -26,15 +26,11 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
-                
             </td>
             <td>
-
                 @Html.DisplayFor(modelItem => item.Phone)
             </td>
             <td>
-
-               @Html.Hidden("Email", item.Email)
                @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
@@ -53,7 +49,6 @@
                     }
              </td>*@
             <td>
-                @Html.Hidden("Active", item.Active)
                 <div class="ActiveCB">
                     @Html.CheckBox(item.Email, item.Active.Equals("Yes"))
                 </div>
