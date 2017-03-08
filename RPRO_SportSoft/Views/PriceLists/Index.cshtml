@@ -45,6 +45,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Price) Kč
         </td>
+        <td>
+            @Html.ActionLink("Vymazat", "Delete", new { id = item.Id })
+        </td>
         @*<td>
     @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
     @Html.ActionLink("Details", "Details", new { id=item.Id }) |
