@@ -46,7 +46,20 @@
             @Html.DisplayFor(modelItem => item.Price) Kč
         </td>
         <td>
-            @Html.ActionLink("Vymazat", "Delete", new { id = item.Id })
+            @{
+                if (Session["Role"] == null)
+                {
+                    Session["Role"] = "";
+                }
+                String ro = Session["Role"].ToString();
+                if (ro.Equals("Owner"))
+                {
+                    <p>
+                        @Html.ActionLink("Vymazat", "Delete", new { id = item.Id})
+                    </p>
+                }
+            }
+            
         </td>
         @*<td>
     @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

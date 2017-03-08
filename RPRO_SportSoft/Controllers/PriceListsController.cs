@@ -29,5 +29,29 @@ namespace RPRO_SportSoft.Controllers
             app.Add(Description, Price);
             return RedirectToAction("Index");
         }
+
+        // GET: PriceLists/Delete/
+        public ActionResult Delete(int id)
+        {
+            return View(app.GetListId(id));
+        }
+
+        // POST: PriceLists/Delete/
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                app.Delete(id);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                ViewBag.MyMessageToUser = "Tento ceník nelze odstranit, protože byl použit.";
+                return View(app.GetListId(id));
+
+
+            }
+        }
     }
 }

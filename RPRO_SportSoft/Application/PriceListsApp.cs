@@ -39,7 +39,12 @@ namespace RPRO_SportSoft.Application
             PriceList p = db.PriceLists.Where(PriceList => PriceList.Description == d).First();
             return p.Id;
         }
-       
+
+        public PriceList GetListId(int id)
+        {
+            return db.PriceLists.Where(PriceList => PriceList.Id == id).Single();
+            
+        }
         public Boolean Add(String description, int price)
         {
             
@@ -49,6 +54,26 @@ namespace RPRO_SportSoft.Application
             db.PriceLists.InsertOnSubmit(pl);
             db.SubmitChanges();
             return true;
+        }
+
+        public Boolean Delete(int id)
+        {
+            bool ret = true;
+            if (CheckForUsedPriceLists(id))
+            {
+                var item = db.PriceLists.Where(PriceList => PriceList.Id == id).Single();
+                db.PriceLists.DeleteOnSubmit(item);
+                db.SubmitChanges();
+            }
+            else {
+                ret = false;
+            } 
+            return ret;
+        }
+
+        public bool CheckForUsedPriceLists(int id)
+        {
+           return db.PriceLists_Courts.Where(CourtId => CourtId.Id == id).Any();
         }
     }
 }
