@@ -17,9 +17,10 @@
 <div>
 @if (ViewBag.MyMessageToUser == null)
 {
-    <h3>Vážně chcete smazat ceník @Html.DisplayFor(model => model.Description) ?</h3>
+    <br />
+    <h3>Vážně chcete smazat ceník "@Html.DisplayFor(model => model.Description)" ?</h3>
 
-    using (Html.BeginForm())
+    using (Html.BeginForm(new {@class = "noborder-form"}))
     {
         @Html.AntiForgeryToken()
 
@@ -30,4 +31,6 @@
  }
    
 </div>
-@Html.ActionLink("Back to List", "Index")
+<br />
+<br />
+@Html.ActionLink("Zpět na výpis", "Index")

@@ -57,6 +57,7 @@ namespace RPRO_SportSoft.Application
                 var obj = db.Users.Single(x => x.Email == oe);
                 obj.Name = name.Trim() + " " + surname.Trim();
                 obj.Phone = phone;
+                phone.Replace(" ", "");
                 db.SubmitChanges();
                 ret = true;
             }
@@ -172,7 +173,7 @@ namespace RPRO_SportSoft.Application
             phone = phone.Replace(" ", "");
             Char[] phoneChar = phone.ToCharArray();
             Boolean ret = true;
-            if (phone.Length != 13 && phone.Length != 9) ret = false;
+            if (phone.Length != 14 && phone.Length != 13 && phone.Length != 9) ret = false;
 
             if ((phoneChar[0] < '0' || phoneChar[0] > '9') && phoneChar[0] != '+') ret = false;
             for (int i = 1; i < phone.Length; i++)

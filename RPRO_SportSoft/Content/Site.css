@@ -21,6 +21,10 @@
     border-style: none;
     }
 
+    .noborder-form {
+    border-style: none;
+    }
+
     .title{
     //border: 1px green solid;
     // margin-top: 10px;
