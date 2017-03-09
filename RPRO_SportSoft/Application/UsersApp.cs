@@ -56,8 +56,7 @@ namespace RPRO_SportSoft.Application
             {
                 var obj = db.Users.Single(x => x.Email == oe);
                 obj.Name = name.Trim() + " " + surname.Trim();
-                obj.Phone = phone;
-                phone.Replace(" ", "");
+                obj.Phone = phone.Replace(" ", "");
                 db.SubmitChanges();
                 ret = true;
             }
@@ -171,6 +170,7 @@ namespace RPRO_SportSoft.Application
         public static Boolean ValidatePhoneNumber(String phone)
         {
             phone = phone.Replace(" ", "");
+            phone = phone.Trim();
             Char[] phoneChar = phone.ToCharArray();
             Boolean ret = true;
             if (phone.Length != 14 && phone.Length != 13 && phone.Length != 9) ret = false;
