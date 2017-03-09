@@ -98,7 +98,7 @@ namespace RPRO_SportSoft.Controllers
             }
             catch
             {
-                ViewBag.MyMessageToUser = "Něco se nepovedlo.";
+                ViewBag.MyMessageToUser = "Vyplňte všechny údaje správně!";
                 return View(app.GetUser(oldEmail));
 
 
