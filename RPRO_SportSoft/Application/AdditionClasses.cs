@@ -23,3 +23,14 @@ public class CourtListP
         this.sportId = s;
     }
 }
+public static class F
+{
+    private static int flag;
+
+    public static int Mflag
+    {
+        get { return flag; }
+        set { flag = value; }
+    }
+
+}

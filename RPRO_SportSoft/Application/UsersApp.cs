@@ -124,7 +124,7 @@ namespace RPRO_SportSoft.Application
         }
         public IEnumerable<User> GetUserList()
         {
-            return db.Users.ToList();
+            return db.Users.OrderByDescending(User => User.Active).ToList();
         }
         public IEnumerable<User> GetUserListSorted(int flag)
         {
@@ -132,20 +132,20 @@ namespace RPRO_SportSoft.Application
             switch (flag)
             {
                 case 1:
-                    ret= db.Users.ToList().OrderBy(User => User.Name);
+                    ret= db.Users.ToList().OrderByDescending(User => User.Active).ThenBy(User => User.Name);
                     break;
                 case 2:
-                    ret = db.Users.ToList().OrderByDescending(User => User.Name);
+                    ret = db.Users.ToList().OrderByDescending(User => User.Active).ThenByDescending(User => User.Name);
                     break;
                 case 3:
-                    ret = db.Users.ToList().OrderBy(User => User.Email);
+                    ret = db.Users.ToList().OrderByDescending(User => User.Active).ThenBy(User => User.Email);
                     break;
                 case 4:
-                    ret = db.Users.ToList().OrderByDescending(User => User.Email);
+                    ret = db.Users.ToList().OrderByDescending(User => User.Active).ThenByDescending(User => User.Email);
                     break;
 
                 default :
-                    ret = db.Users.ToList().OrderBy(User => User.Name);
+                    ret = db.Users.ToList().OrderByDescending(User => User.Active).ThenBy(User => User.Name);
                     break;
 
             }

@@ -4,13 +4,13 @@
 <table class="table">
     <tr>
         <th>
-            Jméno ↑@Html.CheckBox("NameUp")  ↓@Html.CheckBox("NameDown")
+            Jméno <a href="#" class="myButton" onclick="NameUp()">↑</a> <a href="#" class="myButton" onclick="NameDown()">↓</a>
         </th>
         <th>
             Telefon
         </th>
         <th>
-            Email ↑@Html.CheckBox("EmailUp")  ↓@Html.CheckBox("EmailDown")
+            Email <a href="#" class="myButton" onclick="EmailUp()">↑</a> <a href="#" class="myButton" onclick="EmailDown()">↓</a>
         </th>
         <th>
             Role
@@ -31,23 +31,23 @@
                 @Html.DisplayFor(modelItem => item.Phone)
             </td>
             <td>
-               @Html.DisplayFor(modelItem => item.Email)
+                @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Role)
             </td>
             @*<td>
-                    @Html.Hidden("Active", item.Active)
-                    @if (item.Active.Equals("Yes"))
-                    { 
-                        <input checked name="Active" type='checkbox' onclick="ActiveChange(@item.Email)">
-                    }
-                    else
-                    {
-                        <input name="Active" type='checkbox' onclick="ActiveChange(@item.Email)">
+                       @Html.Hidden("Active", item.Active)
+                       @if (item.Active.Equals("Yes"))
+                       {
+                           <input checked name="Active" type='checkbox' onclick="ActiveChange(@item.Email)">
+                       }
+                       else
+                       {
+                           <input name="Active" type='checkbox' onclick="ActiveChange(@item.Email)">
 
-                    }
-             </td>*@
+                       }
+                </td>*@
             <td>
                 <div class="ActiveCB">
                     @Html.CheckBox(item.Email, item.Active.Equals("Yes"))
@@ -57,3 +57,35 @@
     }
 
 </table>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $(".ActiveCB").change(function (A) {
+            var email = A.target.name;
+            $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + email);
+            alert("U učtu s emailem: " + email + " byl změněn stav");
+        });
+    });
+
+</script>
+<script type="text/javascript">
+
+    function NameUp() {
+        $("#dvUsersList").load('@(Url.Action("SortUsers", "Main", null, Request.Url.Scheme))?flag=' + 1);
+    }
+    function NameDown() {
+        $("#dvUsersList").load('@(Url.Action("SortUsers", "Main", null, Request.Url.Scheme))?flag=' + 2);
+    }
+    function EmailUp() {
+        $("#dvUsersList").load('@(Url.Action("SortUsers", "Main", null, Request.Url.Scheme))?flag=' + 3);
+    }
+    function EmailDown() {
+        $("#dvUsersList").load('@(Url.Action("SortUsers", "Main", null, Request.Url.Scheme))?flag=' + 4);
+    }
+
+</script>
+
+@*  flag = 1 pro serazení podle jmena vzestupne
+    flag = 2 pro serazení podle jmena sestupne
+    flag = 3 pro serazení podle emailu vzestupne
+    flag = 4 pro serazení podle emailu sestupne  *@
