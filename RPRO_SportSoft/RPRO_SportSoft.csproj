@@ -199,6 +199,7 @@
     <Content Include="Views\Main\EditPass.cshtml" />
     <Content Include="Views\PriceLists\Delete.cshtml" />
     <Content Include="Views\PriceLists\Edit.cshtml" />
+    <Content Include="Views\Main\ForgottenPass.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

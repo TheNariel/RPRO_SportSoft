@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "ForgottenPass";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Zapomenuté heslo</h2>
+@ViewBag.MessageForgottenPass
+@using (Html.BeginForm("ForgottenPass", "Main", FormMethod.Post, new { @class = "noborder-form" }))
+{
+    <p>
+        Email: @Html.TextBox("e", "", new { @class = "email form-control", type = "email", placeholder = "jmeno@domena.com", required = "required" }) <br />  
+        <input type="submit" value="Odeslat Email" />
+
+    </p>
+}
+
+
+<div>
+    @Html.ActionLink("Zpět", "Index")
+</div>
