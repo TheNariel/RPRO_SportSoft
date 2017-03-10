@@ -94,7 +94,7 @@ namespace RPRO_SportSoft.Application
             if (CheckIfTaken(email))
             {
                 User u = db.Users.Where(User => User.Email == email).First();
-                if (u.Password.Equals(CreatePasswordHash(password, u.Salt)))
+                if (u.Password.Equals(CreatePasswordHash(password, u.Salt)) && u.Active.Equals("Yes"))
                 {
                     return true;
                 }
