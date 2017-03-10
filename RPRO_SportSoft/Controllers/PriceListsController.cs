@@ -53,5 +53,25 @@ namespace RPRO_SportSoft.Controllers
 
             }
         }
+        public ActionResult Edit(int id)
+        {
+            return View(app.GetListId(id));
+        }
+
+        // POST: PriceLists/Delete/
+        [HttpPost]
+        public ActionResult Edit(int Id, String Description, int Price)
+        {
+            if(app.Edit(Id, Description, Price))
+            {
+                return RedirectToAction("Index", "PriceLists", app.GetList());
+            }
+            else
+            {
+                ViewBag.MyMessageToUserPriceList = "Pravděpodobně špatně zadané údaje.";
+                return View(app.GetListId(Id));
+            }
+        }
+
     }
 }

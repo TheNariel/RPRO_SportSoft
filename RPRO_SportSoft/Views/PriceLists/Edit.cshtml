@@ -1,11 +1,11 @@
 ﻿@model RPRO_SportSoft.PriceList
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Vytvoření ceníku</h2>
+<h2>Úprava ceníku</h2>
 @{
     if (Session["Role"] == null)
     {
@@ -17,17 +17,18 @@
     }
 }
 
-@ViewBag.MessageCreate
-@using (Html.BeginForm("Create", "PriceLists", FormMethod.Post))
+@ViewBag.MyMessageToUserPriceList
+@using (Html.BeginForm("Edit", "PriceLists", FormMethod.Post))
 {
     <p>
+        @Html.Hidden("Id", Model.Id)
         Popis:
         @Html.TextBox("Description", Model.Description)<br />
         Cena: @Html.TextBox("Price", Model.Price) <br />
-        <input type="submit" value="Vytvořit" />
+        <input type="submit" value="Uložit změny" />
     </p>
 }
 
 <div>
-    @Html.ActionLink("Zpět na výpis", "Index")
+    @Html.ActionLink("Zpět", "Index")
 </div>

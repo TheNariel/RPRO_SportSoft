@@ -55,18 +55,22 @@
                 if (ro.Equals("Owner"))
                 {
                     <p>
-                        @Html.ActionLink("Vymazat", "Delete", new { id = item.Id})
+                        @Html.ActionLink("Vymazat", "Delete", new { id = item.Id }) | @Html.ActionLink("Upravit", "Edit", new { id = item.Id })
                     </p>
+
                 }
             }
             
         </td>
-        @*<td>
-    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>*@
-    </tr>
+        <td>
+
+        </td>
+            @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                </td>*@
+</tr>
 }
 
 </table>
