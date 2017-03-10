@@ -181,6 +181,7 @@ namespace RPRO_SportSoft.Application
                 if (phoneChar[i] < '0' || phoneChar[i] > '9') ret = false;
 
             }
+            if (phoneChar[0] == '+' && phone.Length > 13) return ret = false;
 
             return ret;
         }
