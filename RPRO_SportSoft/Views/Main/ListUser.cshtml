@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<RPRO_SportSoft.User>
 
-
 <table class="table">
     <tr>
         <th>
@@ -36,18 +35,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Role)
             </td>
-            @*<td>
-                       @Html.Hidden("Active", item.Active)
-                       @if (item.Active.Equals("Yes"))
-                       {
-                           <input checked name="Active" type='checkbox' onclick="ActiveChange(@item.Email)">
-                       }
-                       else
-                       {
-                           <input name="Active" type='checkbox' onclick="ActiveChange(@item.Email)">
-
-                       }
-                </td>*@
             <td>
                 <div class="ActiveCB">
                     @Html.CheckBox(item.Email, item.Active.Equals("Yes"))
@@ -57,17 +44,41 @@
     }
 
 </table>
+
+<script src="~/Scripts/toastr.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $(".ActiveCB").change(function (A) {
-            var email = A.target.name;
-            $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + email);
-            alert("U učtu s emailem: " + email + " byl změněn stav");
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+       $(".ActiveCB").change(function (A) {
+           var email = A.target.name;
+           $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + email);
+            email = "U učtu s emailem: " + email + " byl změněn stav";
+            toastr.success(email);
+
+
         });
     });
 
-</script>
+</script>$("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + email);
+
 <script type="text/javascript">
 
     function NameUp() {
