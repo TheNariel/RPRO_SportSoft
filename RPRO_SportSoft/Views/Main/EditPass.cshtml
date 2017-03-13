@@ -32,6 +32,7 @@ function checkPass()
     if(pass1.value == pass2.value){
         pass2.style.backgroundColor = goodColor;
         message.style.color = goodColor;
+        message.innerHTML = ""
     }else{
         pass2.style.backgroundColor = badColor;
         message.style.color = badColor;
