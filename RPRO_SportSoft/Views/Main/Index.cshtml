@@ -23,6 +23,7 @@
             Heslo: @Html.Password("UserPass", Model.Password, new { @class = "password", required = "required" })
             <input type="submit" value="Přihlásit" />
             @Html.ActionLink("Registrace", "Create", "Main")
+            @Html.ActionLink("Zapomenuté heslo", "ForgottenPass", "Main")
         </p>
       }
        

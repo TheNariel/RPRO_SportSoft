@@ -71,6 +71,15 @@ namespace RPRO_SportSoft.Application
             return ret;
         }
 
+        internal bool Edit(int id, string description, int price)
+        {
+            var obj = db.PriceLists.Single(x => x.Id == id);
+            obj.Description = description;
+            obj.Price = price;
+            db.SubmitChanges();
+            return true;
+        }
+
         public bool CheckForUsedPriceLists(int id)
         {
            return db.PriceLists_Courts.Where(CourtId => CourtId.Id == id).Any();

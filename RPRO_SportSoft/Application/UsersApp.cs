@@ -200,7 +200,15 @@ namespace RPRO_SportSoft.Application
             {
                 return false;
             }
-
+        }
+        public String ForgottenPass(String e)
+        {
+            String newPass = CreateSalt();
+            User u = this.GetUser(e);
+            var obj = db.Users.Single(x => x.Email == e);
+            obj.Password = CreatePasswordHash(newPass, u.Salt); ;
+            db.SubmitChanges();
+            return newPass;
         } 
     }
 }

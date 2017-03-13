@@ -61,6 +61,17 @@ namespace RPRO_SportSoft.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vaše nové heslo je:
+        ///{0}
+        ///Prosím urychleně si ho změňte!.
+        /// </summary>
+        internal static string EForgPass {
+            get {
+                return ResourceManager.GetString("EForgPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to noreply@gmail.com.
         /// </summary>
         internal static string EFrom {
