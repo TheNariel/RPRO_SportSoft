@@ -30,7 +30,7 @@
 | | | |
 | | | |
 | | | |
-|Květen 2017||		Milník PR|	
+|Květen 2017| |Milník PR|	
 			
 			
 			
