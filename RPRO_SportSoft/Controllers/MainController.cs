@@ -46,7 +46,7 @@ namespace RPRO_SportSoft.Controllers
                 }
                 else
                 {
-                    ViewBag.MessageCreate = "Uživatel se nevytvořil";
+                    ViewBag.MessageCreate = "účet s tímto emailem již existuje";
                     User u = new User();
                     u.Email = "";
                     return View(u);

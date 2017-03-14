@@ -6,19 +6,46 @@
 }
 
 <h2>Registrace </h2>
-@ViewBag.MessageCreate
-@using (Html.BeginForm("Create", "Main", FormMethod.Post, new {@class = "noborder-form"}))
-{
-    <p>
-        Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email form-control", type = "email", placeholder = "jmeno@domena.com", required = "required" }) <br />
-        Heslo: @Html.Password("UserPass", Model.Password, new { @class = "password form-control", required = "required" })<br />
-        
-        Jméno: @Html.TextBox(("Name"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
-        Příjmení: @Html.TextBox(("SurName"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
-        Telefon: @Html.TextBox("Phone", Model.Phone, new { @class = "form-control", required = "required" })<br />
+<div id="regForm" onload="notif()">
+    @using (Html.BeginForm("Create", "Main", FormMethod.Post, new { @class = "noborder-form" }))
+    {
+        <p>
+            Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email form-control", type = "email", placeholder = "jmeno@domena.com", required = "required" }) <br />
+            Heslo: @Html.Password("UserPass", Model.Password, new { @class = "password form-control", required = "required" })<br />
+
+            Jméno: @Html.TextBox(("Name"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
+            Příjmení: @Html.TextBox(("SurName"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
+            Telefon: @Html.TextBox("Phone", Model.Phone, new { @class = "form-control", required = "required" })<br />
             <input type="submit" value="Registrovat" />
 
-</p>
-}
-</br>
+        </p>
+    }
+</div>
 
+<script src="~/Scripts/toastr.js"></script>
+<script type="text/javascript">
+
+    function notif() {
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        toastr.success("asd");
+
+    };
+
+</script>
