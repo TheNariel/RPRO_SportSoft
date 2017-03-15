@@ -20,9 +20,9 @@
     <br />
     <h3>Vážně chcete smazat ceník "@Html.DisplayFor(model => model.Description)" ?</h3>
 
-    using (Html.BeginForm(new {@class = "noborder-form"}))
+    using (Html.BeginForm(new { @class = "noborder-form" }))
     {
-        @Html.AntiForgeryToken()
+        @Html.Hidden("Id", Model.Id) 
 
             <input type="submit" value="Vymazat" class="btn btn-default" />
             

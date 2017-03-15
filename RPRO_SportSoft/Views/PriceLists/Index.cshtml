@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<RPRO_SportSoft.PriceList>
+@using RPRO_SportSoft.Application;
 
 @{
     ViewBag.Title = "Index";
@@ -55,7 +56,9 @@
                 if (ro.Equals("Owner"))
                 {
                     <p>
-                        @Html.ActionLink("Vymazat", "Delete", new { id = item.Id }) | @Html.ActionLink("Upravit", "Edit", new { id = item.Id })
+                      @{
+                          PriceListsApp pl = new PriceListsApp();
+                          if (!pl.CheckForUsedPriceLists(item.Id)) {  @Html.ActionLink("Vymazat", "Delete", new { id = item.Id })}} | @Html.ActionLink("Upravit", "Edit", new { id = item.Id })
                     </p>
 
                 }

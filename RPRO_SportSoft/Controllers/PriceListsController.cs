@@ -31,24 +31,24 @@ namespace RPRO_SportSoft.Controllers
         }
 
         // GET: PriceLists/Delete/
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int Id)
         {
-            return View(app.GetListId(id));
+            return View(app.GetListId(Id));
         }
 
         // POST: PriceLists/Delete/
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int Id, FormCollection a)
         {
             try
             {
-                app.Delete(id);
+                app.Delete(Id);
                 return RedirectToAction("Index");
             }
             catch
             {
                 ViewBag.MyMessageToUser = "Tento ceník nelze odstranit, protože byl použit.";
-                return View(app.GetListId(id));
+                return View(app.GetListId(Id));
 
 
             }

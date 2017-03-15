@@ -59,7 +59,7 @@ namespace RPRO_SportSoft.Application
         public Boolean Delete(int id)
         {
             bool ret = true;
-            if (CheckForUsedPriceLists(id))
+            if (!CheckForUsedPriceLists(id))
             {
                 var item = db.PriceLists.Where(PriceList => PriceList.Id == id).Single();
                 db.PriceLists.DeleteOnSubmit(item);
@@ -71,7 +71,7 @@ namespace RPRO_SportSoft.Application
             return ret;
         }
 
-        internal bool Edit(int id, string description, int price)
+        public bool Edit(int id, string description, int price)
         {
             var obj = db.PriceLists.Single(x => x.Id == id);
             obj.Description = description;
@@ -80,9 +80,9 @@ namespace RPRO_SportSoft.Application
             return true;
         }
 
-        private Boolean CheckForUsedPriceLists(int id)
+        public Boolean CheckForUsedPriceLists(int id)
         {
-           return db.PriceLists_Courts.Where(PriceList_Id => PriceList_Id.Id == id).Any();
+           return db.PriceLists_Courts.Where(PriceLists_Courts => PriceLists_Courts.PriceLists_Id == id).Any();
         }
     }
 }
