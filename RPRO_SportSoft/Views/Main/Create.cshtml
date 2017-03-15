@@ -7,7 +7,7 @@
 
 <h2>Registrace </h2>
 <div id="regForm" onload="notif()">
-    @using (Html.BeginForm("Create", "Main", FormMethod.Post, new { @class = "noborder-form" }))
+    @using (Html.BeginForm("Create", "Main", FormMethod.Post))
     {
         <p>
             Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email form-control", type = "email", placeholder = "jmeno@domena.com", required = "required" }) <br />
