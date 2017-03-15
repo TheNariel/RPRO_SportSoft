@@ -56,9 +56,14 @@
                 if (ro.Equals("Owner"))
                 {
                     <p>
-                      @{
+                      @{  String v = " |";
                           PriceListsApp pl = new PriceListsApp();
-                          if (!pl.CheckForUsedPriceLists(item.Id)) {  @Html.ActionLink("Vymazat", "Delete", new { id = item.Id })}} | @Html.ActionLink("Upravit", "Edit", new { id = item.Id })
+                          if (!pl.CheckForUsedPriceLists(item.Id)) {  @Html.ActionLink("Vymazat", "Delete", new { id = item.Id });
+                              
+                              @v.ToString();
+                          }
+                      } 
+                          @Html.ActionLink("Upravit", "Edit", new { id = item.Id })
                     </p>
 
                 }
