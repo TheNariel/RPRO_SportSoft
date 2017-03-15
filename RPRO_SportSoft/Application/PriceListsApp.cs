@@ -80,9 +80,9 @@ namespace RPRO_SportSoft.Application
             return true;
         }
 
-        public bool CheckForUsedPriceLists(int id)
+        private Boolean CheckForUsedPriceLists(int id)
         {
-           return db.PriceLists_Courts.Where(CourtId => CourtId.Id == id).Any();
+           return db.PriceLists_Courts.Where(PriceList_Id => PriceList_Id.Id == id).Any();
         }
     }
 }
