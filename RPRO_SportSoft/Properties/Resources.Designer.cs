@@ -61,9 +61,15 @@ namespace RPRO_SportSoft.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vaše nové heslo je:
+        ///   Looks up a localized string similar to Vážený zákazniku,
+        ///z Vašeho účtu na http://sportsoft.azurewebsites.net/ byl odeslán požadavek na změnu hesla. 
+        ///
+        ///Vaše nové heslo je:
         ///{0}
-        ///Prosím urychleně si ho změňte!.
+        ///
+        ///Po přihlášení si toto heslo, prosím, změňte.
+        ///
+        ///Děkujeme..
         /// </summary>
         internal static string EForgPass {
             get {
@@ -117,9 +123,10 @@ namespace RPRO_SportSoft.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Váš účet, 
-        ///Email: {0} 
-        ///Byl uspěšně vytvořen. 
+        ///   Looks up a localized string similar to Vážený zákazníku, 
+        ///Váš účet {0} na našich stránkách byl úspěšně vytvořen.
+        ///Nyní se můžete přihlásit na http://sportsoft.azurewebsites.net/. 
+        ///
         ///Děkujeme..
         /// </summary>
         internal static string EReg {
@@ -129,10 +136,10 @@ namespace RPRO_SportSoft.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vaše rezerace,
-        ///kurt: {0}
-        ///dne {1}  v  {2} 
-        ///Byla uspěšně vytvořena. 
+        ///   Looks up a localized string similar to Vážený zákazniku,
+        ///Vaše rezervace kurtu {0} dne {1} v {2} na našem portále byla úspěšně vytvořena.
+        ///Rezervaci můžete zrušit nejpozději 24 hodin před začátkem na webu http://sportsoft.azurewebsites.net/.
+        ///
         ///Děkujeme..
         /// </summary>
         internal static string ERes {

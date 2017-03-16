@@ -118,9 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EForgPass" xml:space="preserve">
-    <value>Vaše nové heslo je:
+    <value>Vážený zákazniku,
+z Vašeho účtu na http://sportsoft.azurewebsites.net/ byl odeslán požadavek na změnu hesla. 
+
+Vaše nové heslo je:
 {0}
-Prosím urychleně si ho změňte!</value>
+
+Po přihlášení si toto heslo, prosím, změňte.
+
+Děkujeme.</value>
   </data>
   <data name="EFrom" xml:space="preserve">
     <value>noreply@gmail.com</value>
@@ -138,16 +144,17 @@ Prosím urychleně si ho změňte!</value>
     <value>587</value>
   </data>
   <data name="EReg" xml:space="preserve">
-    <value>Váš účet, 
-Email: {0} 
-Byl uspěšně vytvořen. 
+    <value>Vážený zákazníku, 
+Váš účet {0} na našich stránkách byl úspěšně vytvořen.
+Nyní se můžete přihlásit na http://sportsoft.azurewebsites.net/. 
+
 Děkujeme.</value>
   </data>
   <data name="ERes" xml:space="preserve">
-    <value>Vaše rezerace,
-kurt: {0}
-dne {1}  v  {2} 
-Byla uspěšně vytvořena. 
+    <value>Vážený zákazniku,
+Vaše rezervace kurtu {0} dne {1} v {2} na našem portále byla úspěšně vytvořena.
+Rezervaci můžete zrušit nejpozději 24 hodin před začátkem na webu http://sportsoft.azurewebsites.net/.
+
 Děkujeme.</value>
   </data>
 </root>

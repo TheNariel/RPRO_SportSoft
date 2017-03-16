@@ -41,7 +41,7 @@ namespace RPRO_SportSoft.Controllers
                     
                     EmailApp Eapp = new EmailApp();
                     String body = String.Format(Properties.Resources.EReg, UserEmail);
-                    Eapp.SendEmail("Registrace", body, UserEmail);
+                    Eapp.SendEmail("Vaše registrace", body, UserEmail);
                     return RedirectToAction("Index");
                 }
                 else
