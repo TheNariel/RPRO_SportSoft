@@ -22,8 +22,8 @@
 {
     <p>
         Popis:
-        @Html.TextBox("Description", Model.Description)<br />
-        Cena: @Html.TextBox("Price", Model.Price) <br />
+        @Html.TextBox("Description", Model.Description, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" })<br />
+        Cena: @Html.TextBox("Price", Model.Price, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
         <input type="submit" value="Vytvořit" />
     </p>
 }

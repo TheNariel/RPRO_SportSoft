@@ -17,18 +17,18 @@
     }
 }
 
-@ViewBag.MyMessageToUserPriceList
+@ViewBag.EditMessage
 @using (Html.BeginForm("Edit", "PriceLists", FormMethod.Post))
 {
     <p>
         @Html.Hidden("Id", Model.Id)
         Popis:
-        @Html.TextBox("Description", Model.Description)<br />
-        Cena: @Html.TextBox("Price", Model.Price) <br />
+        @Html.TextBox("Description", Model.Description, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" })<br />
+        Cena: @Html.TextBox("Price", Model.Price, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
         <input type="submit" value="Uložit změny" />
     </p>
 }
 
 <div>
-    @Html.ActionLink("Zpět", "Index")
+    @Html.ActionLink("Zrušit", "Index")
 </div>

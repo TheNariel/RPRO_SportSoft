@@ -84,5 +84,15 @@ namespace RPRO_SportSoft.Application
         {
            return db.PriceLists_Courts.Where(PriceLists_Courts => PriceLists_Courts.PriceLists_Id == id).Any();
         }
+
+        public Boolean CheckIfTaken(String description)
+        {
+            return db.PriceLists.Where(PriceList => PriceList.Description == description).Any();
+        }
+
+        public Boolean CheckIfTakenEdit(String description, int id)
+        {
+            return db.PriceLists.Where(PriceList => PriceList.Description == description && PriceList.Id != id).Any();
+        }
     }
 }

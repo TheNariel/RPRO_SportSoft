@@ -24,10 +24,29 @@ namespace RPRO_SportSoft.Controllers
         }
         // POST: PriceLists/Create
         [HttpPost]
-        public ActionResult Create(String Description, int Price)
+        public ActionResult Create(String description, int price)
         {
-            app.Add(Description, Price);
-            return RedirectToAction("Index");
+            try
+            {
+                if (!app.CheckIfTaken(description))
+                {
+                    app.Add(description, price);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.MessageCreate = "Ceník s tímto názvem již existuje.";
+                    PriceList p = new PriceList();
+                    return View(p);
+                }
+            }
+            catch
+            {
+                ViewBag.MessageCreate = "Ceník se nepovedlo vytvořit.";
+                PriceList p = new PriceList();
+                return View(p);
+            }
+
         }
 
         // GET: PriceLists/Delete/
@@ -60,18 +79,27 @@ namespace RPRO_SportSoft.Controllers
 
         // POST: PriceLists/Delete/
         [HttpPost]
-        public ActionResult Edit(int Id, String Description, int Price)
+        public ActionResult Edit(int id, String description, int price)
         {
-            if(app.Edit(Id, Description, Price))
+            try
             {
-                return RedirectToAction("Index", "PriceLists", app.GetList());
+                if (!app.CheckIfTakenEdit(description, id))
+                {
+                    app.Edit(id, description, price);
+                    return RedirectToAction("Index", "PriceLists", app.GetList());
+                }
+                else
+                {
+                    ViewBag.EditMessage = "Ceník s tímto názvem již existuje.";
+                    return View(app.GetListId(id));
+                }
             }
-            else
+            catch
             {
-                ViewBag.MyMessageToUserPriceList = "Pravděpodobně špatně zadané údaje.";
-                return View(app.GetListId(Id));
+                ViewBag.MessageCreate = "Údaje se nepovedlo uložit.";
+                PriceList p = new PriceList();
+                return View(p);
             }
         }
-
     }
 }
