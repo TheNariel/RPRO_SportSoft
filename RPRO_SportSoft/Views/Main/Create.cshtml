@@ -6,16 +6,19 @@
 }
 
 <h2>Registrace </h2>
+@ViewBag.MessageCreate
 <div id="regForm" onload="notif()">
     @using (Html.BeginForm("Create", "Main", FormMethod.Post))
     {
         <p>
             Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email form-control", type = "email", placeholder = "jmeno@domena.com", required = "required" }) <br />
-            Heslo: @Html.Password("UserPass", Model.Password, new { @class = "password form-control", required = "required" })<br />
-
+            Heslo: @Html.Password("UserPass", "", new { @class = "password form-control", required = "required", name = "pass1", id = "pass1" })<br />
+            Potvrzení hesla: @Html.Password("UserPass2", "", new { @class = "password form-control", required = "required", name = "pass2", id = "pass2", onkeyup = "checkPass(); return false;" })<br />
+            <span id="confirmMessage" class="confirmMessage"></span><br /><br />
             Jméno: @Html.TextBox(("Name"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
             Příjmení: @Html.TextBox(("SurName"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
             Telefon: @Html.TextBox("Phone", Model.Phone, new { @class = "form-control", required = "required" })<br />
+            
             <input type="submit" value="Registrovat" />
 
         </p>
@@ -48,4 +51,24 @@
 
     };
 
+</script>
+<script>
+function checkPass()
+{
+
+    var pass1 = document.getElementById('pass1');
+    var pass2 = document.getElementById('pass2');
+    var message = document.getElementById('confirmMessage');
+    var goodColor = "#66cc66";
+    var badColor = "#ff6666";
+    if(pass1.value == pass2.value){
+        pass2.style.backgroundColor = goodColor;
+        message.style.color = goodColor;
+        message.innerHTML = ""
+    }else{
+        pass2.style.backgroundColor = badColor;
+        message.style.color = badColor;
+        message.innerHTML = "Hesla se neshodují!"
+    }
+}
 </script>

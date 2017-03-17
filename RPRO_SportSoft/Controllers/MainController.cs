@@ -32,26 +32,34 @@ namespace RPRO_SportSoft.Controllers
         }
         // POST: Main/Create
         [HttpPost]
-        public ActionResult Create( String UserEmail, String UserPass, String Name, String SurName, String Phone)
+        public ActionResult Create( String UserEmail, String UserPass, String UserPass2, String Name, String SurName, String Phone)
         {
             try
             {
-                if (app.Add(UserEmail, UserPass, Name, SurName, Phone))
+                if (app.CheckPassword(UserPass, UserPass2))
                 {
-                    
-                    EmailApp Eapp = new EmailApp();
-                    String body = String.Format(Properties.Resources.EReg, UserEmail);
-                    Eapp.SendEmail("Vaše registrace", body, UserEmail);
-                    return RedirectToAction("Index");
+                    if (app.Add(UserEmail, UserPass, Name, SurName, Phone))
+                    {
+
+                        EmailApp Eapp = new EmailApp();
+                        String body = String.Format(Properties.Resources.EReg, UserEmail);
+                        Eapp.SendEmail("Vaše registrace", body, UserEmail);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.MessageCreate = "Účet s tímto emailem již existuje.";
+                        User u = new User();
+                        u.Email = "";
+                        return View(u);
+                    }
                 }
-                else
-                {
-                    ViewBag.MessageCreate = "účet s tímto emailem již existuje";
+                else {
+                    ViewBag.MessageCreate = "Hesla se neshodují.";
                     User u = new User();
                     u.Email = "";
                     return View(u);
                 }
-
 
             }
             catch
@@ -83,7 +91,7 @@ namespace RPRO_SportSoft.Controllers
                     }
                     else
                     {
-                        ViewBag.MyMessageToUser = "Pravděpodobně špatně zadané telefónní číslo.";
+                        ViewBag.MyMessageToUser = "Pravděpodobně špatně zadané telefnní číslo.";
                         return View(app.GetUser(oldEmail));
                     }
 

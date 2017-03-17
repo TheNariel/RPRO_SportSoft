@@ -201,6 +201,17 @@ namespace RPRO_SportSoft.Application
                 return false;
             }
         }
+
+        public Boolean CheckPassword(String pass1, String pass2) {
+            if (pass1.Equals(pass2))
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
         public String ForgottenPass(String e)
         {
             String newPass = CreateSalt();
