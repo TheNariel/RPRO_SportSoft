@@ -23,7 +23,7 @@
 |14.3. - 21.3.2017|C5|Implementace opakované rezervace kurtu, implementace toastování hlášek, revize aktivace a deaktivace uživatele|
 |21.3. - 28.3.2017|C6|Implementace zobrazení historie rezervací uživateli|
 |28.3. - 4.4.2017|C7|Implementace zrušení rezerace (majitelem a zákazníkem)|
-|4.4. - 11.4.2017|C8||
+|4.4. - 11.4.2017|C8|Implementace zobrazení statistik majiteli|
 |11.4. - 18.4.2017|C9||
 |18.4. - 25.4.2017|C10||
 <b>25. 4.</b>||		<b>Milník IOP</b>|	<b></b>
