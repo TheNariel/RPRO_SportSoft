@@ -42,5 +42,5 @@ function checkPass()
     </script>
 
 <div>
-    @Html.ActionLink("Zpět", "Account", Model.Email)
+    @Html.ActionLink("Zpět", "Account", "Main", new { email = Model.Email }, null)
 </div>
