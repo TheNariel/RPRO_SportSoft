@@ -197,11 +197,15 @@ namespace RPRO_SportSoft.Controllers
         [HttpPost]
         public ActionResult ForgottenPass(String e)
         {
-            String newPass = app.ForgottenPass(e);
-            EmailApp Eapp = new EmailApp();
-            String body = String.Format(Properties.Resources.EForgPass, newPass);
-            Eapp.SendEmail("Zapomenuté heslo", body, e);
-            ViewBag.MessageForgottenPass = "Nové heslo odesláno na email.";
+            UsersApp u = new UsersApp();
+            if (u.CheckIfTaken(e))
+            {
+                String newPass = app.ForgottenPass(e);
+                EmailApp Eapp = new EmailApp();
+                String body = String.Format(Properties.Resources.EForgPass, newPass);
+                Eapp.SendEmail("Zapomenuté heslo", body, e);
+            }   
+            ViewBag.MessageForgottenPass = "Pokud email existuje, tak bylo odesláno nové heslo.";
             return View();
         }
     }

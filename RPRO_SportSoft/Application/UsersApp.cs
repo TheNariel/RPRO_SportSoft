@@ -67,7 +67,7 @@ namespace RPRO_SportSoft.Application
             return ret;
         }
 
-        private Boolean CheckIfTaken(String e)
+        public Boolean CheckIfTaken(String e)
         {
             return db.Users.Where(User => User.Email == e).Any();
 
