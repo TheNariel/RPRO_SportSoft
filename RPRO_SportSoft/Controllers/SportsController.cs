@@ -22,19 +22,30 @@ namespace RPRO_SportSoft.Controllers
         }
 
         // GET: Sports/Details/5
-        public ActionResult Details(int id,String date)
+        public ActionResult Details(int id,String date, int count)
         {
+            if (count <= 0) count = 1;
             var Reservations = new Dictionary<string, List<int>>();
             IEnumerable<Court> courts = app.GetCourts(id);
+            foreach(Court court in courts)
+            {
+                Reservations[court.Name] = new List<int>();
+            }
             List<Reservation_Time> times = appR.GetListOfTimeReservations();
             CultureInfo provider = CultureInfo.InvariantCulture;
             String dateformat = "dd. MM. yyyy";
             ViewBag.InvariantCulture = provider;
             String[] d = date.Split('.');
             String dateCons = d[0] + ". " + d[1] + ". " + d[2];
-            foreach (var c in courts) {
-               Reservations[c.Name] = appR.GetReservations(c.Id,DateTime.ParseExact(dateCons, dateformat, provider));
-           }
+            int plusDays = 0;
+            for (int j = 0; j < count; j++) {
+                foreach (var c in courts)
+                {
+                    Reservations[c.Name].AddRange(appR.GetReservations(c.Id, DateTime.ParseExact(dateCons, dateformat, provider).AddDays(plusDays)));
+                }
+                plusDays += 7;
+            }
+            ViewBag.Count = count;          
             ViewBag.Reservations = Reservations;
             ViewBag.Times = times;
             ViewBag.Date = date;
@@ -113,10 +124,12 @@ namespace RPRO_SportSoft.Controllers
 
             }
         }
+
         public ActionResult Edit(int id)
         {
             return View(app.Get(id));
         }
+
         [HttpPost]
         public ActionResult Edit(int id, String SportName, String image)
         {
@@ -151,7 +164,7 @@ namespace RPRO_SportSoft.Controllers
             }
         }
 
-        public ActionResult Reservation(int id, String sport, String time, Int64 date, String user)
+        public ActionResult Reservation(int id, String sport, String time, Int64 date, String user, int weekCount)
         {
             ViewBag.Sport = sport;
             ViewBag.Id = id;
@@ -159,29 +172,41 @@ namespace RPRO_SportSoft.Controllers
             ViewBag.DateBinary = (Int64)date;
             ViewBag.DateString = DateTime.FromBinary(date).ToString("dd.MM.yyyy");
             ViewBag.User = user;
+            ViewBag.Count = (int)weekCount;
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult Reservation(int id, String time, Int64 date, String user, String number)
+        public ActionResult Reservation(int id, String time, Int64 date, String user, String number, int weekCount)
         {
+            int plusDays = 0;
             int timeIndex = appR.GetNumber(number);
             int timeInt = appR.GetIdTime(time);
             List<Boolean> listOfBools = new List<bool>();
             try
             {
-                for (int i = 0; i <= timeIndex; i++) {
-                    listOfBools.Add(appR.CheckForReservations(id, DateTime.FromBinary(date), timeInt + i));
-                }
-                if (CheckTrue(listOfBools))
+                for (int j = 0; j < weekCount; j++)
                 {
                     for (int i = 0; i <= timeIndex; i++)
                     {
-                        appR.Add(id, DateTime.FromBinary(date), timeInt + i, user);
+                        listOfBools.Add(appR.CheckForReservations(id, DateTime.FromBinary(date).AddDays(plusDays), timeInt + i));
+                    }
+                    plusDays += 7;
+                }   
+                if (CheckTrue(listOfBools))
+                {
+                    plusDays = 0;
+                    for (int j = 0; j < weekCount; j++)
+                    {
+                        for (int i = 0; i <= timeIndex; i++)
+                        {
+                            appR.Add(id, DateTime.FromBinary(date).AddDays(plusDays), timeInt + i, user);
+                        }
+                        plusDays += 7;
                     }
                     EmailApp appE = new EmailApp();
-                    String body = String.Format(Properties.Resources.ERes,appC.Get(id).Name,DateTime.FromBinary(date).ToShortDateString(),time);
+                    String body = String.Format(Properties.Resources.ERes,appC.Get(id).Name,DateTime.FromBinary(date).ToShortDateString(),time, weekCount);
                     appE.SendEmail("Rezervace", body, user);
 
                     return RedirectToAction("IndexR", "Courts");
@@ -201,6 +226,7 @@ namespace RPRO_SportSoft.Controllers
                 return View(r);
             }
         }
+
         private bool CheckTrue(List<Boolean> list)
         {
             foreach (Boolean b in list)

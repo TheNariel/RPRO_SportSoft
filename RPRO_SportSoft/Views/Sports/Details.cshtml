@@ -24,8 +24,8 @@
 
 @using (Html.BeginForm("Details", "Sports", FormMethod.Get))
 {
-<input name="date" date-type="date" id="datepicker" value="@ViewBag.Date"  onchange="submitform()"/>
-    
+<input name="date" date-type="date" id="datepicker" value="@ViewBag.Date"  onchange="submitform()"/><br>
+<input name="count" type="number" value=@ViewBag.Count  onchange="submitform()"/>    
 }
  
 <table border="1">
@@ -57,7 +57,7 @@
                                     }
                                     else
                                     {
-                                        <td style="background-color:#33FF00; cursor: pointer;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = t.Time, sport = item.Name, date = DateTime.ParseExact((String)ViewBag.Date,"dd.MM.yyyy", ViewBag.InvariantCulture).ToBinary(), user = login }))'">@t.Time</td>
+                                        <td style="background-color:#33FF00; cursor: pointer;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = t.Time, sport = item.Name, date = DateTime.ParseExact((String)ViewBag.Date,"dd.MM.yyyy", ViewBag.InvariantCulture).ToBinary(), user = login, weekCount = @ViewBag.Count }))'">@t.Time</td>
                                     }
                                 }
                             }
