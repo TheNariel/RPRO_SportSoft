@@ -25,7 +25,7 @@
 @using (Html.BeginForm("Details", "Sports", FormMethod.Get))
 {
 <input name="date" date-type="date" id="datepicker" value="@ViewBag.Date"  onchange="submitform()"/><br>
-<input name="count" type="number" value=@ViewBag.Count  onchange="submitform()"/>    
+<label>Počet týdenních opakování:</label> <input name="count" type="number" size="2" value=@ViewBag.Count  onchange="submitform()"/>    
 }
  
 <table border="1">
