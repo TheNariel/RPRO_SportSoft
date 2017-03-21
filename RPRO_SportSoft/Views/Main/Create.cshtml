@@ -53,22 +53,41 @@
 
 </script>
 <script>
-function checkPass()
-{
+    function checkPass() {
 
-    var pass1 = document.getElementById('pass1');
-    var pass2 = document.getElementById('pass2');
-    var message = document.getElementById('confirmMessage');
-    var goodColor = "#66cc66";
-    var badColor = "#ff6666";
-    if(pass1.value == pass2.value){
-        pass2.style.backgroundColor = goodColor;
-        message.style.color = goodColor;
-        message.innerHTML = ""
-    }else{
-        pass2.style.backgroundColor = badColor;
-        message.style.color = badColor;
-        message.innerHTML = "Hesla se neshodují!"
+        var pass1 = document.getElementById('pass1');
+        var pass2 = document.getElementById('pass2');
+        //var message = document.getElementById('confirmMessage');
+        var goodColor = "#66cc66";
+        var badColor = "#ff6666";
+        if (pass1.value == pass2.value) {
+            pass2.style.backgroundColor = goodColor;
+            //message.style.color = goodColor;
+            //message.innerHTML = ""
+            toastr.clear()
+        } else {
+            pass2.style.backgroundColor = badColor;
+            //message.style.color = badColor;
+            //message.innerHTML = "Hesla se neshodují!"
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+
+            toastr.error("Hesla se neshodují!");
+        }
     }
-}
 </script>
