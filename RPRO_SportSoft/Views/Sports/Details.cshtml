@@ -28,11 +28,11 @@
 <div>Počet týdenních opakování:</div> <input name="count" type="number" min="1" value=@ViewBag.Count  onchange="submitform()"/>    
 }
  
-<table border="1">
+<table border="0">
     <tr>
         @foreach (var item in Model.list)
         {
-            <td>
+            <td class="default">
                 <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
                 <table border="1">
                     @foreach (var t in ViewBag.Times)
