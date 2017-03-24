@@ -18,6 +18,14 @@
         if (role.Equals("Owner"))
         {
 
+    String r = Session["Role"].ToString();
+    if (r.Equals("Owner"))
+    {
+        <p>
+            @Html.ActionLink("Vytvořit nové sportoviště", "Create", new { boo = true, sport = "" })
+        </p>
+    }
+
     <table class="table">
         <tr>
             <th>
@@ -77,15 +85,7 @@
 
 
     <br />
-@{
-    String r = Session["Role"].ToString();
-    if (r.Equals("Owner"))
-    {
-    <p>
-        @Html.ActionLink("Vytvořit nové sportoviště", "Create", new { boo = true, sport = "" })
-    </p>
-    }
-}
+
     <br />
 
 

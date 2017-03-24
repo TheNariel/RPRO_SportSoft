@@ -15,31 +15,28 @@
     String r = Session["Role"].ToString();
     if (r.Equals("Owner"))
     {
-<p>
-    @Html.ActionLink("Vytvořit ceník", "Create")
-</p>
+        <p>
+            @Html.ActionLink("Vytvořit ceník", "Create")
+        </p>
     }
 }
 
 <table class="table">
     <tr class="default">
         <th>
-           ID
-        </th>
-        <th>
             Popis
         </th>
         <th>
             Cena
         </th>
-        <th></th>
+        <th>
+            Správa ceníku
+        </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr class="default">
-        <td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
