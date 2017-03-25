@@ -109,7 +109,11 @@ namespace RPRO_SportSoft.Application
             }
             return ret;
         }
+        public Boolean CheckIfUsed(int id)
+        {
+            return db.Courts.Where(Court => Court.Sports_Id == id).Any();
+        }
 
     }
 
-      }
+}
