@@ -13,6 +13,9 @@
     width: 250px;
     }
 
+    table {
+        border-radius: 5px;
+    }
     
     .login-form {
     padding-top: 0px;
@@ -81,7 +84,8 @@
     tr.pics:nth-child(1n){background-color: none; display:inline}
     tr.pics:nth-child(2n){background-color: none; display:inline}
 
-    td.default:nth-child(even){background-color: #c3c3c3}
+    td.default:nth-child(1n){background-color: #c3c3c3}
+    td.default:nth-child(2n){background-color: rgba(128, 128, 128, 0.70)}
 
     ul {
     list-style-type: none;
