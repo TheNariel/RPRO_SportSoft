@@ -20,7 +20,7 @@
       {
         <p>
             Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email", type = "email", placeholder = "jmeno@domena.com", required = "required" }) 
-            Heslo: @Html.Password("UserPass", Model.Password, new { @class = "password", required = "required" })
+            Heslo: @Html.Password("UserPass", Model.Password, new { @class = "password", required = "required"})
             <input type="submit" value="Přihlásit" />
             @Html.ActionLink("Registrace", "Create", "Main")
             @Html.ActionLink("Zapomenuté heslo", "ForgottenPass", "Main")
