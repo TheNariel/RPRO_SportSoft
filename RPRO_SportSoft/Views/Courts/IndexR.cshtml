@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RPRO_SportSoft.Reservation>
+﻿@model  List<ReservationFormated>
 
 @{
     ViewBag.Title = "Výpis rezervací";
@@ -16,38 +16,32 @@
             Kurt
         </th>
         <th>
-            Cena
-        </th>
-        <th>
             Čas
         </th>
         <th>
-            Zákazník
+            Cena
         </th>
-    </tr>
+   </tr>
 
     @foreach (var item in Model)
     {
         <tr class="default">
             <td>
                 @{ 
-                    DateTime date = item.Date;
+                    DateTime date = item.date;
                 }
                 @date.ToString("dd.MM.yyyy")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Courts_Id)
+                @ViewBag.MapedCourts[item.courtId]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @Html.DisplayFor(modelItem => item.time)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Time_Id)
+                @Html.DisplayFor(modelItem => item.price)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User_Email)
-            </td>
-        </tr>
+         </tr>
     }
 
 </table>

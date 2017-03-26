@@ -25,6 +25,11 @@ namespace RPRO_SportSoft.Application
             return db.Reservations.ToList();
         }
 
+        public IEnumerable<Reservation> GetListByEmail(String email)
+        {
+            return db.Reservations.Where(Reservation => Reservation.User_Email == email).OrderByDescending(Reservation => Reservation.Date).ToList();
+        }
+
         public List<int> GetListId()
         {
             List<int> a = new List<int>();

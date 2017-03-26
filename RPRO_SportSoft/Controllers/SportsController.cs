@@ -209,7 +209,7 @@ namespace RPRO_SportSoft.Controllers
                     String body = String.Format(Properties.Resources.ERes,appC.Get(id).Name,DateTime.FromBinary(date).ToShortDateString(),time, weekCount);
                     appE.SendEmail("Rezervace", body, user);
 
-                    return RedirectToAction("IndexR", "Courts");
+                    return RedirectToAction("IndexR", "Courts", new { email = user});
                 }
                 else
                 {

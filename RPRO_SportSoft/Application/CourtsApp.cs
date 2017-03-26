@@ -119,6 +119,10 @@ namespace RPRO_SportSoft.Application
         {
             return db.Courts.Where(Court => Court.Id == id).Single();
         }
+        public IEnumerable<Court> GetList()
+        {
+            return db.Courts.ToList();
+        }
         public Court Get(String name)
         {
             return db.Courts.Where(Court => Court.Name == name).Single();

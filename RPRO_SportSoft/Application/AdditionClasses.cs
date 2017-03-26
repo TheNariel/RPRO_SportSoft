@@ -23,6 +23,20 @@ public class CourtListP
         this.sportId = s;
     }
 }
+public class ReservationFormated
+{
+    public DateTime date;
+    public int courtId;
+    public int price;
+    public String time;
+    public ReservationFormated(DateTime d, int cId, int price, String time)
+    {
+        this.date = d;
+        this.courtId = cId;
+        this.price = price;
+        this.time = time;
+    }
+}
 public static class F
 {
     private static int flag;

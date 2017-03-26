@@ -31,18 +31,18 @@ namespace RPRO_SportSoft.Controllers
 
         // POST: Courts/Create
         [HttpPost]
-        public ActionResult Create(String CourtName,int Id, String De_P)
+        public ActionResult Create(String CourtName, int Id, String De_P)
         {
             int Id_P = appPL.GetId(De_P);
             try
             {
-                if (app.CheckForWhiteSpaces(CourtName)) 
+                if (app.CheckForWhiteSpaces(CourtName))
                 {
                     if (app.Add(CourtName, Id, Id_P))
                     {
                         ViewBag.InvariantCulture = CultureInfo.InvariantCulture;
                         ViewBag.Date = DateTime.Today.ToString("dd.MM.yyyy");
-                        return RedirectToAction("Details", "Sports", new { id = Id, date= DateTime.Today.ToString("dd.MM.yyyy"), count = 1});
+                        return RedirectToAction("Details", "Sports", new { id = Id, date = DateTime.Today.ToString("dd.MM.yyyy"), count = 1 });
                     }
                     else
                     {
@@ -52,7 +52,7 @@ namespace RPRO_SportSoft.Controllers
                         c.Sports_Id = Id;
                         return View(c);
                     }
-                    
+
                 }
                 else
                 {
@@ -63,9 +63,9 @@ namespace RPRO_SportSoft.Controllers
                     return View(c);
 
                 }
-               
+
             }
-            catch(System.Data.SqlClient.SqlException e )
+            catch (System.Data.SqlClient.SqlException e)
             {
                 ViewBag.MyMessageToUser = "Nelze přidat kurt";
                 e.ToString();
@@ -76,7 +76,7 @@ namespace RPRO_SportSoft.Controllers
             }
         }
 
-       
+
 
         // GET: Courts/Delete/5
         public ActionResult Delete(int id)
@@ -86,22 +86,23 @@ namespace RPRO_SportSoft.Controllers
                 ViewBag.MyMessageToUser = "Nelze smazat kurt, který byl použit.";
                 return View(app.Get(id));
             }
-            else {
+            else
+            {
                 return View(app.Get(id));
             }
-            
+
         }
 
         // POST: Courts/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            int sport=app.GetSportId(id);
+            int sport = app.GetSportId(id);
             try
             {
                 if (app.Delete(id))
                 {
-                 return RedirectToAction("Details", "Sports", new { id = sport, date = DateTime.Today.ToString("dd.MM.yyyy"), count = 1});
+                    return RedirectToAction("Details", "Sports", new { id = sport, date = DateTime.Today.ToString("dd.MM.yyyy"), count = 1 });
                 }
                 else
                 {
@@ -109,9 +110,9 @@ namespace RPRO_SportSoft.Controllers
                     return View(app.Get(id));
                 }
 
-               
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 ViewBag.MyMessageToUser = "Nelze smazat kurt";
                 return View(app.Get(id));
@@ -133,18 +134,20 @@ namespace RPRO_SportSoft.Controllers
             ViewBag.InvariantCulture = provider;
             String[] d = date.Split('.');
             String dateCons = d[0] + ". " + d[1] + ". " + d[2];
-          
+
             int Id_P = appPL.GetId(De_P);
             int sport = app.GetSportId(Id);
             try
             {
-                if (app.CheckForWhiteSpaces(CourtName)) {
+                if (app.CheckForWhiteSpaces(CourtName))
+                {
 
                     if (app.Edit(Id, CourtName, Sports_Id, Id_P, DateTime.ParseExact(dateCons, dateformat, provider)))
                     {
-                        return RedirectToAction("Details", "Sports", new { id = Sports_Id ,date = DateTime.Today.ToString("dd.MM.yyyy"), count = 1});
+                        return RedirectToAction("Details", "Sports", new { id = Sports_Id, date = DateTime.Today.ToString("dd.MM.yyyy"), count = 1 });
                     }
-                    else {
+                    else
+                    {
                         ViewBag.MessageEditCourt = "Kurt s tímto názvem již existuje.";
                         return View(app.Get(Id));
                     }
@@ -166,10 +169,71 @@ namespace RPRO_SportSoft.Controllers
             }
         }
 
-        public ActionResult IndexR()
+        public ActionResult IndexR(String email)
         {
-            return View(appR.GetList());
+            SportsApp appS = new SportsApp();
+            var MapedCourts = new Dictionary<int, string>();
+            IEnumerable<Court> CList = app.GetList();
+            foreach (Court c in CList)
+            {
+                MapedCourts[c.Id] = appS.GetName(c.Sports_Id) + ": " + c.Name;
+            }
+
+            Reservation[] ResList = appR.GetListByEmail(email).ToArray();
+
+            ViewBag.MapedCourts = MapedCourts;
+            return View(ReformatReservations(ResList));
         }
 
+        private List<ReservationFormated> ReformatReservations(Reservation[] ResList)
+        {
+            List<ReservationFormated> ret = new List<ReservationFormated>();
+            int i = 0;
+            DateTime date;
+            int court;
+            int price;
+            int startTime;
+            int endTime;
+            String LengthText="";
+            int length;
+            Boolean same = true;
+            while (i < ResList.Length)
+            {
+                date = ResList[i].Date;
+                court = ResList[i].Courts_Id;
+                price = ResList[i].Price;
+                startTime = ResList[i].Time_Id;
+                length = 0;
+                while (same)
+                {
+                    if ( i < ResList.Length-1 && 
+                        date == ResList[i + 1].Date &&
+                        court == ResList[i + 1].Courts_Id &&
+                        price == ResList[i + 1].Price &&
+                        startTime + length + 1 == ResList[i + 1].Time_Id)
+                    {
+                        length++;
+                        i++;
+                        if (i== ResList.Length-1)
+                        {
+                            same = false;
+                        }
+                    }
+                    else
+                    {
+                        same = false;
+                    }
+                }
+                i++;
+                same = true;
+                endTime = startTime + length+1;
+                LengthText = appR.getTime(startTime) + "-" + appR.getTime(endTime);
+                ret.Add(new ReservationFormated(date,court,price, LengthText));
+            }
+            
+        
+
+            return ret;
+        }
     }
 }
