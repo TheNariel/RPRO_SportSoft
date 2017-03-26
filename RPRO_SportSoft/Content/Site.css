@@ -182,4 +182,6 @@ textarea {
 	position:relative;
 	top:1px;
 }
-
+input[type="number"] {
+   width:50px;
+}

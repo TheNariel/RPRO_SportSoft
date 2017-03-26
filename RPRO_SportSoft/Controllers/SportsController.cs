@@ -22,9 +22,18 @@ namespace RPRO_SportSoft.Controllers
         }
 
         // GET: Sports/Details/5
-        public ActionResult Details(int id,String date, int count)
+        public ActionResult Details(int id,String date, int count, String radio)
         {
-            if (count <= 0) count = 1;
+            int weekCount = 0;
+            if (radio.Equals("one"))
+            {
+                weekCount = 1;
+            }
+            else if (radio.Equals("more")) {
+                if (count <= 0) count = 1;
+                weekCount = count;
+            }
+            
             var Reservations = new Dictionary<string, List<int>>();
             IEnumerable<Court> courts = app.GetCourts(id);
             foreach(Court court in courts)
@@ -38,7 +47,7 @@ namespace RPRO_SportSoft.Controllers
             String[] d = date.Split('.');
             String dateCons = d[0] + ". " + d[1] + ". " + d[2];
             int plusDays = 0;
-            for (int j = 0; j < count; j++) {
+            for (int j = 0; j < weekCount; j++) {
                 foreach (var c in courts)
                 {
                     Reservations[c.Name].AddRange(appR.GetReservations(c.Id, DateTime.ParseExact(dateCons, dateformat, provider).AddDays(plusDays)));
@@ -49,6 +58,7 @@ namespace RPRO_SportSoft.Controllers
             ViewBag.Reservations = Reservations;
             ViewBag.Times = times;
             ViewBag.Date = date;
+            ViewBag.Radio = radio;
             CourtListP CourtList = new CourtListP(id, app.GetName(id), app.GetCourts(id));
             return View(CourtList);
         }
@@ -164,7 +174,7 @@ namespace RPRO_SportSoft.Controllers
             }
         }
 
-        public ActionResult Reservation(int id, String sport, String time, Int64 date, String user, int weekCount)
+        public ActionResult Reservation(int id, String sport, String time, Int64 date, String user, int weekCount, String radio)
         {
             ViewBag.Sport = sport;
             ViewBag.Id = id;
@@ -172,7 +182,11 @@ namespace RPRO_SportSoft.Controllers
             ViewBag.DateBinary = (Int64)date;
             ViewBag.DateString = DateTime.FromBinary(date).ToString("dd.MM.yyyy");
             ViewBag.User = user;
+            if (radio.Equals("one")) {
+                weekCount = 1;
+            }
             ViewBag.Count = (int)weekCount;
+            ViewBag.Radio = radio;
 
             return View();
         }

@@ -21,11 +21,24 @@
 }
 
 <h2>Kurty sportoviště:  @Html.DisplayFor(modelItem => Model.sportName)</h2>
-
 @using (Html.BeginForm("Details", "Sports", FormMethod.Get))
 {
-<input class="myInput" name="date" date-type="date" id="datepicker" value="@ViewBag.Date"  onchange="submitform()"/><br>
-<div>Počet týdenních opakování:</div> <input class="myInput" name="count" type="number" min="1" value=@ViewBag.Count  onchange="submitform()"/>    
+    <table>
+        <tr>
+            <td>Datum:
+            <td><input class="myInput" name="date"  size="10"  date-type="date" id="datepicker" value="@ViewBag.Date" onchange="submitform()" /></td>
+            <td>Jedna</td>
+            <td> rezervace:</td>
+            <td> @Html.RadioButton("radio", "one", new { onchange = "this.form.submit();" })</td>
+            <td>Opakovaná</td>
+            <td>rezervace:</td>
+            <td> @Html.RadioButton("radio", "more", new { onchange = "this.form.submit();" })</td>
+            <td>Počet</td>
+            <td>opakování:</td>
+            <td><input class="myInput" name="count" size="10"  type="number" min="1" value=@ViewBag.Count onchange="submitform()" /></td>
+        </tr>
+    </table>
+
 }
  
 <table border="0">
@@ -57,7 +70,7 @@
                                     }
                                     else
                                     {
-                                        <td style="background-color:#33FF00; cursor: pointer;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = t.Time, sport = item.Name, date = DateTime.ParseExact((String)ViewBag.Date,"dd.MM.yyyy", ViewBag.InvariantCulture).ToBinary(), user = login, weekCount = @ViewBag.Count }))'">@t.Time</td>
+                                        <td style="background-color:#33FF00; cursor: pointer;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = t.Time, sport = item.Name, date = DateTime.ParseExact((String)ViewBag.Date,"dd.MM.yyyy", ViewBag.InvariantCulture).ToBinary(), user = login, weekCount = @ViewBag.Count, radio = @ViewBag.Radio }))'">@t.Time</td>
                                     }
                                 }
                             }
