@@ -50,61 +50,67 @@
 }
 
 <table border="0">
-@foreach (var item in Model.list)
-    {<tr>
-            <td> <h3>@Html.DisplayFor(modelItem => item.Name)</h3></td>
-        </tr>
-        <tr>
-            @for(int i=0;i< ViewBag.Times.Length; i+=2)
-            {foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
-                {if (pairs.Key == item.Name)
-                    {bool taken = false;
-                        foreach (int p in pairs.Value)
-                        {if (p == ViewBag.Times[i].Id)
-                            {
-                                taken = true;
-                            }
-                        }
-                        if (taken)
-                        {
-                            <td style="background-color: red;">@ViewBag.Times[i].Time</td>
-                        }
-                        else
-                        {
-                            <td style="background-color:#33FF00; cursor: pointer;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = ViewBag.Times[i].Time, sport = item.Name, date = DateTime.ParseExact((String)ViewBag.Date,"dd.MM.yyyy", ViewBag.InvariantCulture).ToBinary(), user = login, weekCount = @ViewBag.Count, radio = @ViewBag.Radio }))'">@ViewBag.Times[i].Time</td>
-                        }
-                    }
-                }
-            }
-        </tr>
-        <tr>
-            @for (int i = 1; i < ViewBag.Times.Length; i += 2)
-            {
-                foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
+    @foreach (var item in Model.list)
+    {
+        <tbody>
+            <tr>
+                <td> <h3>@Html.DisplayFor(modelItem => item.Name)</h3></td>
+            </tr>
+            <tr>
+                @for (int i = 0; i < ViewBag.Times.Length; i += 2)
                 {
-                    if (pairs.Key == item.Name)
+                    foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
                     {
-                        bool taken = false;
-                        foreach (int p in pairs.Value)
-                        {
-                            if (p == ViewBag.Times[i].Id)
+                        if (pairs.Key == item.Name)
+                        { bool taken = false;
+                            foreach (int p in pairs.Value)
                             {
-                                taken = true;
+                                if (p == ViewBag.Times[i].Id)
+                                {
+                                    taken = true;
+                                }
                             }
-                        }
-                        if (taken)
-                        {
-                            <td style="background-color: red;">@ViewBag.Times[i].Time</td>
-                        }
-                        else
-                        {
-                            <td style="background-color:#33FF00; cursor: pointer;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = ViewBag.Times[i].Time, sport = item.Name, date = DateTime.ParseExact((String)ViewBag.Date,"dd.MM.yyyy", ViewBag.InvariantCulture).ToBinary(), user = login, weekCount = @ViewBag.Count, radio = @ViewBag.Radio }))'">@ViewBag.Times[i].Time</td>
+                            if (taken)
+                            {
+                                <td style="background-color: red;">@ViewBag.Times[i].Time</td>
+                            }
+                            else
+                            {
+                                <td style="background-color:#33FF00; cursor: pointer;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = ViewBag.Times[i].Time, sport = item.Name, date = DateTime.ParseExact((String)ViewBag.Date,"dd.MM.yyyy", ViewBag.InvariantCulture).ToBinary(), user = login, weekCount = @ViewBag.Count, radio = @ViewBag.Radio }))'">@ViewBag.Times[i].Time</td>
+                            }
                         }
                     }
                 }
+            </tr>
+            <tr>
+                @for (int i = 1; i < ViewBag.Times.Length; i += 2)
+                {
+                    foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
+                    {
+                        if (pairs.Key == item.Name)
+                        {
+                            bool taken = false;
+                            foreach (int p in pairs.Value)
+                            {
+                                if (p == ViewBag.Times[i].Id)
+                                {
+                                    taken = true;
+                                }
+                            }
+                            if (taken)
+                            {
+                                <td style="background-color: red;">@ViewBag.Times[i].Time</td>
+                            }
+                            else
+                            {
+                                <td style="background-color:#33FF00; cursor: pointer;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = ViewBag.Times[i].Time, sport = item.Name, date = DateTime.ParseExact((String)ViewBag.Date,"dd.MM.yyyy", ViewBag.InvariantCulture).ToBinary(), user = login, weekCount = @ViewBag.Count, radio = @ViewBag.Radio }))'">@ViewBag.Times[i].Time</td>
+                            }
+                        }
+                    }
+                }
+            </tr>
+        </tbody>
             }
-        </tr>
-}
 </table>
 
 <br />
