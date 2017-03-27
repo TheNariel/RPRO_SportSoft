@@ -91,9 +91,10 @@
     // font-style: ;
     }
 
-    th, td {
+    tr, td {
     text-align: center;
     padding: 6px;
+    margin: 6px;
     }
 
     tr.default:nth-child(even){background-color: #c3c3c3}
