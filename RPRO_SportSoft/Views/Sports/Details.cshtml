@@ -33,10 +33,17 @@
             <td>Opakovaná</td>
             <td>rezervace:</td>
             <td> @Html.RadioButton("radio", "more", new { onchange = "this.form.submit();" })</td>
-            <td>Počet</td>
-            <td>opakování:</td>
-            <td><input class="myInput" name="count" size="10"  type="number" min="1" value=@ViewBag.Count onchange="submitform()" /></td>
-        </tr>
+            @if ("more".Equals(ViewBag.Radio))
+            {
+                <td>Počet</td>
+                <td>opakování:</td>
+                <td><input class="myInput" name="count" size="10" type="number" min="1" value=@ViewBag.Count onchange="submitform()" /></td>
+            }
+            else
+            {
+                <td><input class="myInput" name="count" type="hidden" value="1"></td>
+            }
+</tr>
     </table>
 
 }
