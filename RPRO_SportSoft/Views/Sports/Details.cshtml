@@ -51,10 +51,10 @@
 
 <table border="0">
 @foreach (var item in Model.list)
-    {<tr class="color">
+    {<tr>
             <td> <h3>@Html.DisplayFor(modelItem => item.Name)</h3></td>
         </tr>
-        <tr class="color">
+        <tr>
             @for(int i=0;i< ViewBag.Times.Length; i+=2)
             {foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
                 {if (pairs.Key == item.Name)
@@ -77,7 +77,7 @@
                 }
             }
         </tr>
-        <tr class="color">
+        <tr>
             @for (int i = 1; i < ViewBag.Times.Length; i += 2)
             {
                 foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
