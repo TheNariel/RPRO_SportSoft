@@ -26,7 +26,7 @@
     <table>
         <tr>
             <td>Datum:
-            <td><input class="myInput" name="date"  size="10"  date-type="date" id="datepicker" value="@ViewBag.Date" onchange="submitform()" /></td>
+            <td><input class="myInput" name="date" size="10" date-type="date" id="datepicker" value="@ViewBag.Date" onchange="submitform()" /></td>
             <td>Jedna</td>
             <td> rezervace:</td>
             <td> @Html.RadioButton("radio", "one", new { onchange = "this.form.submit();" })</td>
@@ -43,101 +43,90 @@
             {
                 <td><input class="myInput" name="count" type="hidden" value="1"></td>
             }
-</tr>
+        </tr>
     </table>
 
 }
- 
+
 <table border="0">
-    <tr>
-        @foreach (var item in Model.list)
-        {
-            <td class="default">
-                <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
-                <table border="1">
-                    @foreach (var t in ViewBag.Times)
-                {
-                        <tr>
-                            @foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
-                    {
-                        if (pairs.Key == item.Name)
-                        {
-                            bool taken = false;
-                            foreach (int p in pairs.Value)
+@foreach (var item in Model.list)
+    {<tr>
+            <td> <h3>@Html.DisplayFor(modelItem => item.Name)</h3></td>
+        </tr>
+        <tr>
+            @for(int i=0;i< ViewBag.Times.Length; i+=2)
+            {foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
+                {if (pairs.Key == item.Name)
+                    {bool taken = false;
+                        foreach (int p in pairs.Value)
+                        {if (p == ViewBag.Times[i].Id)
                             {
-
-                                if (p == t.Id)
-                                {
-                                    taken = true;
-                                }
-                                                        }
-                            if (taken)
-                            {
-                                        <td style="background-color: red;">@t.Time</td>
-                                    }
-                                    else
-                                    {
-                                        <td style="background-color:#33FF00; cursor: pointer;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = t.Time, sport = item.Name, date = DateTime.ParseExact((String)ViewBag.Date,"dd.MM.yyyy", ViewBag.InvariantCulture).ToBinary(), user = login, weekCount = @ViewBag.Count, radio = @ViewBag.Radio }))'">@t.Time</td>
-                                    }
-                                }
+                                taken = true;
                             }
-                        </tr>
-
-                    }
-                </table>
-            </td>
-        }
-    </tr>
-</table>
-<br />
-    <table class="table">
-        <tr></tr>
-
-        @foreach (var item in Model.list)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @{
-                        String role = Session["Role"].ToString();
-                        if (role.Equals("Owner"))
+                        }
+                        if (taken)
                         {
-                            @Html.ActionLink("Upravit", "Edit", "Courts", new { id = item.Id }, null)
-                            String pom = " | ";
-                            @pom.ToString();
-                            @Html.ActionLink("Vymazat", "Delete", "Courts", new { id = item.Id }, null)
-                            @pom.ToString();
-
+                            <td style="background-color: red;">@ViewBag.Times[i].Time</td>
+                        }
+                        else
+                        {
+                            <td style="background-color:#33FF00; cursor: pointer;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = ViewBag.Times[i].Time, sport = item.Name, date = DateTime.ParseExact((String)ViewBag.Date,"dd.MM.yyyy", ViewBag.InvariantCulture).ToBinary(), user = login, weekCount = @ViewBag.Count, radio = @ViewBag.Radio }))'">@ViewBag.Times[i].Time</td>
                         }
                     }
-                    
-                </td>
-            </tr>
+                }
+            }
+        </tr>
+        <tr>
+            @for (int i = 1; i < ViewBag.Times.Length; i += 2)
+            {
+                foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
+                {
+                    if (pairs.Key == item.Name)
+                    {
+                        bool taken = false;
+                        foreach (int p in pairs.Value)
+                        {
+                            if (p == ViewBag.Times[i].Id)
+                            {
+                                taken = true;
+                            }
                         }
+                        if (taken)
+                        {
+                            <td style="background-color: red;">@ViewBag.Times[i].Time</td>
+                        }
+                        else
+                        {
+                            <td style="background-color:#33FF00; cursor: pointer;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = ViewBag.Times[i].Time, sport = item.Name, date = DateTime.ParseExact((String)ViewBag.Date,"dd.MM.yyyy", ViewBag.InvariantCulture).ToBinary(), user = login, weekCount = @ViewBag.Count, radio = @ViewBag.Radio }))'">@ViewBag.Times[i].Time</td>
+                        }
+                    }
+                }
+            }
+        </tr>
+}
+</table>
 
-    </table>
-    <br />
-    @{
-        String r = Session["Role"].ToString();
-        if (r.Equals("Owner"))
-        {
-            <p>
-                @Html.ActionLink("Vytvořit nový kurt", "Create", "Courts", new { sport = Model.sportId }, null)
-            </p>
-        }
+<br />
+
+@{
+    String r = Session["Role"].ToString();
+    if (r.Equals("Owner"))
+    {
+        <p>
+            @Html.ActionLink("Vytvořit nový kurt", "Create", "Courts", new { sport = Model.sportId }, null)
+        </p>
     }
+}
 
-    <br />
-    <script>
-        $(function () {
-            $("#datepicker").datepicker();
-        });
-        $("#datepicker").datepicker({ minDate: 0 });
-       
-        function submitform() {
-            $('form').submit();
-        }
-    </script>
+<br />
+<script>
+    $(function () {
+        $("#datepicker").datepicker();
+    });
+    $("#datepicker").datepicker({ minDate: 0 });
+
+    function submitform() {
+        $('form').submit();
+    }
+</script>
 

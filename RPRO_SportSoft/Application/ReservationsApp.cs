@@ -27,7 +27,7 @@ namespace RPRO_SportSoft.Application
 
         public IEnumerable<Reservation> GetListByEmail(String email)
         {
-            return db.Reservations.Where(Reservation => Reservation.User_Email == email).OrderByDescending(Reservation => Reservation.Date).ToList();
+            return db.Reservations.Where(Reservation => Reservation.User_Email == email).OrderByDescending(Reservation => Reservation.Date).ThenBy(Reservation => Reservation.Courts_Id).ThenBy(Reservation => Reservation.Time_Id).ToList();
         }
 
         public List<int> GetListId()
@@ -101,7 +101,7 @@ namespace RPRO_SportSoft.Application
         }
         
         public List<Reservation_Time> GetListOfTimeReservations() {
-           return db.Reservation_Times.ToList();
+           return db.Reservation_Times.Where(Reservation_Time => Reservation_Time.Id >=19 && Reservation_Time.Id < 43).ToList();
             
         }
 

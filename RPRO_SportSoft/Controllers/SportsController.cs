@@ -56,7 +56,7 @@ namespace RPRO_SportSoft.Controllers
             }
             ViewBag.Count = count;          
             ViewBag.Reservations = Reservations;
-            ViewBag.Times = times;
+            ViewBag.Times = times.ToArray();
             ViewBag.Date = date;
             ViewBag.Radio = radio;
             CourtListP CourtList = new CourtListP(id, app.GetName(id), app.GetCourts(id));
