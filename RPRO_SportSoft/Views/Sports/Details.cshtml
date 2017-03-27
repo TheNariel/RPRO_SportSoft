@@ -51,7 +51,7 @@
 <table border="0">
 @foreach (var item in Model.list)
     {<tr>
-            <td> <h3>@Html.DisplayFor(modelItem => item.Name)</h3></td>
+            <td class="default"> <h3>@Html.DisplayFor(modelItem => item.Name)</h3></td>
         </tr>
         <tr>
             @for(int i=0;i< ViewBag.Times.Length; i+=2)
