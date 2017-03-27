@@ -91,10 +91,9 @@
     // font-style: ;
     }
 
-    tr, td {
+    th, td {
     text-align: center;
     padding: 6px;
-    margin: 6px;
     }
 
     tr.default:nth-child(even){background-color: #c3c3c3}
@@ -102,8 +101,8 @@
     tr.pics:nth-child(1n){background-color: none; display:inline}
     tr.pics:nth-child(2n){background-color: none; display:inline}
 
-    tr.color:nth-child(1n){background-color: #c3c3c3}
-    tr.color:nth-child(2n){background-color: rgba(128, 128, 128, 0.70)}
+    td.default:nth-child(1n){background-color: #c3c3c3}
+    td.default:nth-child(2n){background-color: rgba(128, 128, 128, 0.70)}
 
     ul {
     list-style-type: none;
