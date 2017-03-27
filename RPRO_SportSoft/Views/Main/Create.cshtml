@@ -6,28 +6,10 @@
 }
 
 <h2>Registrace </h2>
-@ViewBag.MessageCreate
-<div id="regForm" onload="notif()">
-    @using (Html.BeginForm("Create", "Main", FormMethod.Post))
-    {
-        <p>
-            Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email form-control", type = "email", placeholder = "jmeno@domena.com", required = "required" }) <br />
-            Heslo: @Html.Password("UserPass", "", new { @class = "password form-control", required = "required", name = "pass1", id = "pass1" })<br />
-            Potvrzení hesla: @Html.Password("UserPass2", "", new { @class = "password form-control", required = "required", name = "pass2", id = "pass2", onkeyup = "checkPass(); return false;" })<br />
-            Jméno: @Html.TextBox(("Name"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
-            Příjmení: @Html.TextBox(("SurName"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
-            Telefon: @Html.TextBox("Phone", Model.Phone, new { @class = "form-control", required = "required" })<br />
-            
-            <input type="submit" value="Registrovat" />
-
-        </p>
-    }
-</div>
-
-<script src="~/Scripts/toastr.js"></script>
-<script type="text/javascript">
-
-    function notif() {
+@if (ViewData["MessageCreate"] != null)
+{
+    <script src="~/Scripts/toastr.js"></script>
+    <script language="javascript">
         toastr.options = {
             "closeButton": false,
             "debug": false,
@@ -45,12 +27,27 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         }
+        toastr.warning('@ViewData["MessageCreate"]');
+    </script>
+}
+<div id="regForm">
+    @using (Html.BeginForm("Create", "Main", FormMethod.Post))
+    {
+        <p>
+            Email: @Html.TextBox("UserEmail", Model.Email, new { @class = "email form-control", type = "email", placeholder = "jmeno@domena.com", required = "required" }) <br />
+            Heslo: @Html.Password("UserPass", "", new { @class = "password form-control", required = "required", name = "pass1", id = "pass1" })<br />
+            Potvrzení hesla: @Html.Password("UserPass2", "", new { @class = "password form-control", required = "required", name = "pass2", id = "pass2", onkeyup = "checkPass(); return false;" })<br />
+            Jméno: @Html.TextBox(("Name"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
+            Příjmení: @Html.TextBox(("SurName"), Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
+            Telefon: @Html.TextBox("Phone", Model.Phone, new { @class = "form-control", required = "required" })<br />
+            
+            <input type="submit" value="Registrovat" />
 
-        toastr.success("asd");
+        </p>
+    }
+</div>
 
-    };
 
-</script>
 <script>
     function checkPass() {
 

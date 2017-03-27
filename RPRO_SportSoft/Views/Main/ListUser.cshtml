@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<RPRO_SportSoft.User>
 
+
 <table class="table">
     <tr>
         <th>
@@ -72,9 +73,7 @@
            $("#dvUsersList").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + email);
             email = "U učtu s emailem: " + email + " byl změněn stav";
             toastr.success(email);
-
-
-        });
+ });
     });
 
 </script>

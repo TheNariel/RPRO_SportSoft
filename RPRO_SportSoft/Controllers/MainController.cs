@@ -13,7 +13,7 @@ namespace RPRO_SportSoft.Controllers
     public class MainController : Controller
     {
         UsersApp app = new UsersApp();
-       
+
 
         public ActionResult Index()
         {
@@ -32,7 +32,7 @@ namespace RPRO_SportSoft.Controllers
         }
         // POST: Main/Create
         [HttpPost]
-        public ActionResult Create( String UserEmail, String UserPass, String UserPass2, String Name, String SurName, String Phone)
+        public ActionResult Create(String UserEmail, String UserPass, String UserPass2, String Name, String SurName, String Phone)
         {
             try
             {
@@ -48,14 +48,15 @@ namespace RPRO_SportSoft.Controllers
                     }
                     else
                     {
-                        ViewBag.MessageCreate = "Účet s tímto emailem již existuje.";
+                        ViewData["MessageCreate"] = "Účet s tímto emailem již existuje.";
                         User u = new User();
                         u.Email = "";
                         return View(u);
                     }
                 }
-                else {
-                    ViewBag.MessageCreate = "Hesla se neshodují.";
+                else
+                {
+                    ViewData["MessageCreate"] = "Hesla se neshodují.";
                     User u = new User();
                     u.Email = "";
                     return View(u);
@@ -64,7 +65,7 @@ namespace RPRO_SportSoft.Controllers
             }
             catch
             {
-                ViewBag.MessageCreate = "Uživatele se nepovedlo vytvořit";
+                ViewData["MessageCreate"] = "Uživatele se nepovedlo vytvořit";
                 User u = new User();
                 u.Email = "";
                 return View(u);
@@ -111,8 +112,8 @@ namespace RPRO_SportSoft.Controllers
 
 
             }
-            
-            
+
+
         }
 
         // POST: Main/Index
@@ -142,7 +143,8 @@ namespace RPRO_SportSoft.Controllers
         {
             return View();
         }
-        public ActionResult Account(String email) {
+        public ActionResult Account(String email)
+        {
             return View(app.GetUser(email));
         }
         public ActionResult Users()
@@ -151,7 +153,7 @@ namespace RPRO_SportSoft.Controllers
             return View(app.GetUserList());
         }
 
-        public  ActionResult ChangeActive(String Email)
+        public ActionResult ChangeActive(String Email)
         {
             if (app.GetUser(Email).Active.Equals("Yes"))
             {
@@ -162,7 +164,7 @@ namespace RPRO_SportSoft.Controllers
                 app.ActivateUser(Email);
             }
             IEnumerable<User> model = app.GetUserListSorted(F.Mflag);
-            return PartialView("ListUser", model); 
+            return PartialView("ListUser", model);
         }
 
         public ActionResult SortUsers(int flag)
@@ -184,11 +186,12 @@ namespace RPRO_SportSoft.Controllers
                 ViewBag.MessagePasswordChanged = "Heslo změněno.";
                 return RedirectToAction("Account", "Main", app.GetUser(e));
             }
-            else {
+            else
+            {
                 ViewBag.MessageChangingPassword = "Špatně vypsané údaje!";
                 return View(app.GetUser(e));
             }
-            
+
         }
         public ActionResult ForgottenPass()
         {
@@ -204,7 +207,7 @@ namespace RPRO_SportSoft.Controllers
                 EmailApp Eapp = new EmailApp();
                 String body = String.Format(Properties.Resources.EForgPass, newPass);
                 Eapp.SendEmail("Zapomenuté heslo", body, e);
-            }   
+            }
             ViewBag.MessageForgottenPass = "Pokud email existuje, tak bylo odesláno nové heslo.";
             return View();
         }
