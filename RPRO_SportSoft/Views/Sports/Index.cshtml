@@ -45,17 +45,18 @@
                     <td>
                         @*  @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
                         @Html.ActionLink("Kurty", "Details", new { id = item.Id, date = (object)ViewBag.Date, count = 1, radio = "one" })
-
+                        |
+                        @Html.ActionLink("Správa kurtů", "CourtDetails", new { id = item.Id })
 
                         |
-                        @Html.ActionLink("Upravit", "Edit", new { id = item.Id })
+                        @Html.ActionLink("Upravit sportoviště", "Edit", new { id = item.Id })
                         @{  
-                            String v = " |";
+                            String v = " | ";
                             SportsApp s = new SportsApp();
                             if (!s.CheckIfUsed(item.Id))
                             {
                                 @v.ToString();
-                                @Html.ActionLink("Vymazat", "Delete", new { id = item.Id });
+                                @Html.ActionLink("Vymazat sportoviště", "Delete", new { id = item.Id });
                             }
                         }
 

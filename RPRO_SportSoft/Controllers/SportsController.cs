@@ -63,7 +63,11 @@ namespace RPRO_SportSoft.Controllers
             return View(CourtList);
         }
 
-
+        public ActionResult CourtDetails(int id)
+        {
+            CourtListP CourtList = new CourtListP(id, app.GetName(id), app.GetCourts(id));
+            return View(CourtList);
+        }
         // GET: Sports/Create
         public ActionResult Create()
         {
