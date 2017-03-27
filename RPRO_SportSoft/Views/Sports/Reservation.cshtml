@@ -8,10 +8,10 @@
 
 <h2>Rezervace</h2>
 
-@using (Html.BeginForm("Reservation", "Sports", FormMethod.Post)) 
+@using (Html.BeginForm("Reservation", "Sports", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Rezervace kurtu: @ViewBag.Sport</h4>
         <hr />
@@ -32,5 +32,9 @@
 }
 
 <div>
-    @Html.ActionLink("Zrušit", "Index")
+    @{ 
+        CourtsApp cApp = new CourtsApp();
+        int SportId = cApp.GetSportId(ViewBag.Id);
+    }
+    @Html.ActionLink("Zrušit", "Details", new { id = SportId, date = ViewBag.Time, count = 1, radio = "one" })
 </div>
