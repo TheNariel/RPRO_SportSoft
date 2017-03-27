@@ -117,7 +117,7 @@ namespace RPRO_SportSoft.Application
         private int GetNumberOfFreeReservations(Int64 date, String court, int time)
         {
             Court c = db.Courts.Where(Court => Court.Name == court).First();
-            int pom = 25;
+            int pom = 43;
             List<Reservation> list = db.Reservations.Where(Reservations => Reservations.Date == DateTime.FromBinary(date) && Reservations.Court == c).ToList();
             foreach (Reservation res in list)
             {
