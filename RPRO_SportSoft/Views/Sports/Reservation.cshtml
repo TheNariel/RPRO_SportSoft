@@ -31,10 +31,3 @@
     </div>
 }
 
-<div>
-    @{ 
-        CourtsApp cApp = new CourtsApp();
-        int SportId = cApp.GetSportId(ViewBag.Id);
-    }
-    @Html.ActionLink("Zrušit", "Details", new { id = SportId, date = ViewBag.Time, count = 1, radio = "one" })
-</div>
