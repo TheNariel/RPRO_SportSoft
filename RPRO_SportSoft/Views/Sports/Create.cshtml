@@ -20,8 +20,8 @@
 @using (Html.BeginForm("Create", "Sports", FormMethod.Post))
 {
     <p>
-        Název sportoviště: @Html.TextBox("SportName",Model.Name, new { @class = "text", type = "text" , onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
-        Obrázek: @Html.DropDownList("image", new SelectList(new ImagesApp().GetListNames())) <br />
+        Název sportoviště: @Html.TextBox("SportName",Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
+        Obrázek: @Html.DropDownList("image", new SelectList(new ImagesApp().GetListNames()), new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
         <input type="submit" value="Vytvořit" />
     </p>
 }
