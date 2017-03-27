@@ -21,6 +21,7 @@
 }
 
 <h2>Kurty sportoviště:  @Html.DisplayFor(modelItem => Model.sportName)</h2>
+
 @using (Html.BeginForm("Details", "Sports", FormMethod.Get))
 {
     <table>
@@ -108,15 +109,7 @@
 
 <br />
 
-@{
-    String r = Session["Role"].ToString();
-    if (r.Equals("Owner"))
-    {
-        <p>
-            @Html.ActionLink("Vytvořit nový kurt", "Create", "Courts", new { sport = Model.sportId }, null)
-        </p>
-    }
-}
+
 
 <br />
 <script>

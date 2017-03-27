@@ -38,4 +38,4 @@
     }
 </div>
 <br />
-@Html.ActionLink("Zpět na výpis", "Index", "Sports")
+@Html.ActionLink("Zpět na výpis", "CourtDetails", "Sports", new { id = Model.Sports_Id, date = DateTime.Today.ToString("dd.MM.yyyy"), count = 1 }, null)

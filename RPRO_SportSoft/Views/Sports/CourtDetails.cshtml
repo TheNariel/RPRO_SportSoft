@@ -1,0 +1,44 @@
+﻿@model CourtListP
+
+@{
+    ViewBag.Title = "Kurty";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    String login = "";
+    if (Session["Role"] == null)
+    {
+        Session["Role"] = "";
+    }
+    if (Session["Logged"] == null)
+    {
+        Session["Logged"] = "";
+
+    }
+    else
+    {
+        login = Session["Logged"].ToString();
+    }
+
+}
+
+<h2>Kurty sportoviště:  @Html.DisplayFor(modelItem => Model.sportName)</h2>
+
+<p>
+    @Html.ActionLink("Vytvořit nový kurt", "Create", "Courts", new { sport = Model.sportId }, null)
+</p>
+
+<table class="table">
+
+    @foreach (var item in Model.list) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Upravit", "Edit", "Courts", new { id = item.Id }, null)
+                |
+                @Html.ActionLink("Vymazat", "Delete", "Courts", new { id = item.Id }, null)
+            </td>
+        </tr>
+    }
+</table>
+
