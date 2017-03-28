@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/Scripts/toastr.js"></script>
 <h2>Registrace </h2>
 @if (ViewData["MessageCreate"] != null)
 {
-    <script src="~/Scripts/toastr.js"></script>
     <script language="javascript">
         toastr.options = {
             "closeButton": false,
