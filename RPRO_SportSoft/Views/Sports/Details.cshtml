@@ -24,28 +24,30 @@
 
 @using (Html.BeginForm("Details", "Sports", FormMethod.Get))
 {
-    <table>
-        <tr>
-            <td>Datum:
-            <td><input class="myInput" name="date" size="10" date-type="date" id="datepicker" value="@ViewBag.Date" onchange="submitform()" /></td>
-            <td>Jedna</td>
-            <td> rezervace:</td>
-            <td> @Html.RadioButton("radio", "one", new { onchange = "this.form.submit();" })</td>
-            <td>Opakovaná</td>
-            <td>rezervace:</td>
-            <td> @Html.RadioButton("radio", "more", new { onchange = "this.form.submit();" })</td>
+    String m = "\xa0\xa0";
+    String m2 = "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0";
+    String o = "Opakovaná rezervace:";
+    String p = "Počet opakování:";
+    <div style="display:inline-block; white-space: nowrap;">
+    Datum: <input class="myInput" name="date" size="10" date-type="date" id="datepicker" value="@ViewBag.Date" onchange="submitform()" />
+    @m.ToString()
+    Jedna rezervace: @Html.RadioButton("radio", "one", new { onchange = "this.form.submit();" })
+    </div>
+    <div style="display:inline-block; white-space: nowrap;">
+            @m2.ToString()
+            @o.ToString()
+            @Html.RadioButton("radio", "more", new { onchange = "this.form.submit();" })
             @if ("more".Equals(ViewBag.Radio))
             {
-                <td>Počet</td>
-                <td>opakování:</td>
-                <td><input class="myInput" name="count" size="10" type="number" min="1" value=@ViewBag.Count onchange="submitform()" /></td>
+                @m.ToString()
+                @p.ToString()
+                <input class="myInput" name="count" size="10" type="number" min="1" value=@ViewBag.Count onchange="submitform()" />
             }
             else
             {
-                <td><input class="myInput" name="count" type="hidden" value="1"></td>
+                <input class="myInput" name="count" type="hidden" value="1">
             }
-        </tr>
-    </table>
+    </div>
 
 }
 
