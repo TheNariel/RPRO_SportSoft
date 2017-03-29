@@ -23,6 +23,6 @@
         Příjmení: @Html.TextBox(("SurName"), surname, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
         Telefon: @Html.TextBox("Phone", Model.Phone, new { @class = "form-control", required = "required" })<br />
         <br />
-        <input type="submit" value="Uložit změny" />
+        <input type="submit" value="Uložit změny" class="btn btn-default"/>
     </p>
 }

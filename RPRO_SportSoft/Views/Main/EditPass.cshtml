@@ -15,7 +15,7 @@
         Nové heslo: @Html.Password("newPass", "", new { @class = "password form-control", required = "required", name = "pass1", id = "pass1" })<br />
         Potvrzení hesla: @Html.Password("newPass2", "", new { @class = "password form-control", required = "required" , name = "pass2", id = "pass2", onkeyup = "checkPass(); return false;" })<br />
         <span id="confirmMessage" class="confirmMessage"></span>
-        <input type="submit" value="Změnit heslo" />
+        <input type="submit" value="Změnit heslo" class="btn btn-default" />
 
     </p>
 }

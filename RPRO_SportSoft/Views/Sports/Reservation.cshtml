@@ -19,15 +19,16 @@
         <br />
         Čas: @ViewBag.Time
         <br />
-        Počet opakování rezervace: @ViewBag.Count
-        <br />
-        Doba rezervace: @Html.DropDownList("number", new SelectList(new ReservationsApp().ListOfNumbers(ViewBag.DateBinary, ViewBag.Sport, ViewBag.Time))) <br />
+        
+        Délka rezervace: @Html.DropDownList("number", new SelectList(new ReservationsApp().ListOfNumbers(ViewBag.DateBinary, ViewBag.Sport, ViewBag.Time))) <br />
         @Html.Hidden("id", (object)ViewBag.Id)
         @Html.Hidden("time", (object)ViewBag.Time)
         @Html.Hidden("date", (object)ViewBag.DateBinary)
         @Html.Hidden("user", (object)ViewBag.User)
         @Html.Hidden("weekCount", (object)ViewBag.Count)
-       <input type="submit" value="Rezervovat" />
+        Počet opakování rezervace: @ViewBag.Count 
+        <br />
+       <input type="submit" value="Rezervovat" class="btn btn-default"/>
     </div>
 }
 

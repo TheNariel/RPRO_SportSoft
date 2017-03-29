@@ -24,10 +24,10 @@
         Popis:
         @Html.TextBox("Description", Model.Description, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" })<br />
         Cena: @Html.TextBox("Price", Model.Price, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required", type = "number", min = "0"}) <br />
-        <input type="submit" value="Vytvořit" />
+        <input type="submit" value="Vytvořit" class="btn btn-default" />
     </p>
 }
 
 <div>
-    @Html.ActionLink("Zpět na výpis", "Index")
+    @Html.ActionLink("Zpět", "Index")
 </div>

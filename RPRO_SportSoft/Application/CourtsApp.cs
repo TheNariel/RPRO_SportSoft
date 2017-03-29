@@ -131,5 +131,10 @@ namespace RPRO_SportSoft.Application
         public int GetSportId(int id) {
             return db.Courts.Where(Court => Court.Id == id).Single().Sports_Id;
         }
+
+        public Boolean CheckIfUsed(int id)
+        {
+            return db.Reservations.Where(Court => Court.Courts_Id == id).Any();
+        }
     }
 }

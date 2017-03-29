@@ -5,15 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Přidání obrázku</h2>
+<h2>Přidat obrázek</h2>
 @using (Html.BeginForm("Create", "Image", FormMethod.Post,
                                         new { enctype = "multipart/form-data" }))
 {
-    <input type="file" name="file" id="file" style="width: 100%;" />
-    <input type="submit" value="Odeslat" class="submit" />
+    <input type="file" name="file" id="file" style="width: 100%;" class="btn btn-default"/>
+    <input type="submit" value="Odeslat" class="submit btn btn-default" />
 }
 
 
 <div>
-    @Html.ActionLink("Zpět na obrázky", "Index")
+    @Html.ActionLink("Zpět", "Index")
 </div>

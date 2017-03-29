@@ -22,10 +22,10 @@
     <p>
         Název sportoviště: @Html.TextBox("SportName",Model.Name, new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
         Obrázek: @Html.DropDownList("image", new SelectList(new ImagesApp().GetListNames()), new { @class = "form-control", onkeydown = "return validateTextBox(event, this);", placeholder = "", required = "required" }) <br />
-        <input type="submit" value="Vytvořit" />
+        <input type="submit" value="Vytvořit" class="btn btn-default" />
     </p>
 }
 
 <div>
-    @Html.ActionLink("Zpět na výpis", "Index")
+    @Html.ActionLink("Zpět", "Index")
 </div>
