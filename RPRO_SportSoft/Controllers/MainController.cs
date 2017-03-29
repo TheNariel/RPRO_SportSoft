@@ -92,7 +92,7 @@ namespace RPRO_SportSoft.Controllers
                     }
                     else
                     {
-                        ViewBag.MyMessageToUser = "Pravděpodobně špatně zadané telefnní číslo.";
+                        ViewBag.MyMessageToUser = "Pravděpodobně špatně zadané telefonní číslo.";
                         return View(app.GetUser(oldEmail));
                     }
 
