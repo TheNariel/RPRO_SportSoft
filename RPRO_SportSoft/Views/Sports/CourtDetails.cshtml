@@ -20,7 +20,7 @@
 
 }
 
-<h2>Kurty sportoviště:  @Html.DisplayFor(modelItem => Model.sportName)</h2>
+<h2>Správa kurtů pro:  @Html.DisplayFor(modelItem => Model.sportName)</h2>
 
 <p>
     @Html.ActionLink("Vytvořit nový kurt", "Create", "Courts", new { sport = Model.sportId }, null)
@@ -49,4 +49,6 @@
         </tr>
     }
 </table>
+
+@Html.ActionLink("Zpět","Index")
 
