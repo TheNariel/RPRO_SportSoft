@@ -29,6 +29,7 @@
 
      using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
+        @Html.Hidden("sportId", Model.Sports_Id)
 
         <div class="form-actions no-color">
             <input type="submit" value="Vymazat" class="btn btn-default" />

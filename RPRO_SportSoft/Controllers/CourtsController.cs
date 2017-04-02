@@ -95,20 +95,26 @@ namespace RPRO_SportSoft.Controllers
 
         // POST: Courts/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id,int sportId)
         {
-            int sport = app.GetSportId(id);
             try
             {
-                if (app.Delete(id))
+                if (app.CheckIfExist(id))
                 {
-                    return RedirectToAction("CourtDetails", "Sports", new { id = sport, date = DateTime.Today.ToString("dd.MM.yyyy"), count = 1 });
+                    if (app.Delete(id))
+                    {
+                        return RedirectToAction("CourtDetails", "Sports", new { id = sportId, date = DateTime.Today.ToString("dd.MM.yyyy"), count = 1 });
+                    }
+                    else
+                    {
+                        ViewBag.MyMessageToUser = "Nelze smazat kurt, který byl použit.";
+                        return View(app.Get(id));
+                    }
                 }
-                else
-                {
-                    ViewBag.MyMessageToUser = "Nelze smazat kurt, který byl použit.";
-                    return View(app.Get(id));
+                else {
+                    return RedirectToAction("CourtDetails", "Sports", new { id = sportId, date = DateTime.Today.ToString("dd.MM.yyyy"), count = 1 });
                 }
+                
 
 
             }

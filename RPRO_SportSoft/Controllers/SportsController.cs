@@ -127,7 +127,9 @@ namespace RPRO_SportSoft.Controllers
         {
             try
             {
-                app.Delete(id);
+                if (app.CheckIfExist(id)) {
+                    app.Delete(id);
+                }
                 return RedirectToAction("Index");
             }
             catch

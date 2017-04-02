@@ -94,5 +94,10 @@ namespace RPRO_SportSoft.Application
         {
             return db.PriceLists.Where(PriceList => PriceList.Description == description && PriceList.Id != id).Any();
         }
+
+        public Boolean CheckIfExist(int id)
+        {
+            return db.PriceLists.Where(PriceList => PriceList.Id == id).Any();
+        }
     }
 }

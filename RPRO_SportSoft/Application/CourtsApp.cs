@@ -136,5 +136,9 @@ namespace RPRO_SportSoft.Application
         {
             return db.Reservations.Where(Court => Court.Courts_Id == id).Any();
         }
+        public Boolean CheckIfExist(int id)
+        {
+            return db.Courts.Where(Court => Court.Id == id).Any();
+        }
     }
 }

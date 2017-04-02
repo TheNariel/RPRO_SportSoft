@@ -7,7 +7,7 @@ namespace RPRO_SportSoft.Application
 {
     public class SportsApp
     {
-      
+
         DataClasses1DataContext db;
         String Connection = "SportSoftDbConnectionString1";
         public SportsApp()
@@ -19,29 +19,29 @@ namespace RPRO_SportSoft.Application
         public SportsApp(String ConnectionName)
         {
             Connection = ConnectionName;
-               db = new DataClasses1DataContext(System.Configuration.ConfigurationManager.ConnectionStrings[Connection].ConnectionString);
+            db = new DataClasses1DataContext(System.Configuration.ConfigurationManager.ConnectionStrings[Connection].ConnectionString);
         }
 
 
 
-        public  Boolean Add(String n, String image)
+        public Boolean Add(String n, String image)
         {
             Boolean ret;
             if (!CheckIfTaken(n))
             {
-                    Sport s = new Sport();
-                    s.Name = n.Trim();
-                    ImagesApp a = new ImagesApp(Connection);
-                    s.Image_Id = a.GetId(image);
-                    db.Sports.InsertOnSubmit(s);
-                    db.SubmitChanges();
-                    ret = true;
+                Sport s = new Sport();
+                s.Name = n.Trim();
+                ImagesApp a = new ImagesApp(Connection);
+                s.Image_Id = a.GetId(image);
+                db.Sports.InsertOnSubmit(s);
+                db.SubmitChanges();
+                ret = true;
             }
             else {
                 ret = false;
             }
 
-            return ret; 
+            return ret;
 
 
         }
@@ -60,7 +60,7 @@ namespace RPRO_SportSoft.Application
 
         private Boolean CheckIfTaken(String n)
         {
-           return db.Sports.Where(Sport => Sport.Name == n).Any();
+            return db.Sports.Where(Sport => Sport.Name == n).Any();
 
         }
         private Boolean CheckIfTakenEdit(String n, int id)
@@ -90,7 +90,7 @@ namespace RPRO_SportSoft.Application
         {
             return db.Courts.Where(Court => Court.Sports_Id == id).ToList();
         }
-        public Boolean Edit(int id,String SportName, String image)
+        public Boolean Edit(int id, String SportName, String image)
         {
             Boolean ret;
             if (!CheckIfTakenEdit(SportName, id))
@@ -113,7 +113,10 @@ namespace RPRO_SportSoft.Application
         {
             return db.Courts.Where(Court => Court.Sports_Id == id).Any();
         }
-
+        public Boolean CheckIfExist(int Id)
+        {
+            return db.Sports.Where(Sport => Sport.Id == Id).Any();
+        }
     }
 
 }
