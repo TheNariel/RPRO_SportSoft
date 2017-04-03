@@ -6,7 +6,7 @@
 }
 
 <h2>Výpis rezervací</h2>
-
+<h3>Budoucí rezervace</h3>
 <table class="table">
     <tr class="default">
         <th>
@@ -19,7 +19,7 @@
             Čas
         </th>
         <th>
-            Cena
+            Cena za půl hodiny
         </th>
    </tr>
 
@@ -47,3 +47,42 @@
 </table>
 
 <br />
+<h3>Uplynulé rezervace</h3>
+<table class="table">
+    <tr class="default">
+        <th>
+            Datum
+        </th>
+        <th>
+            Kurt
+        </th>
+        <th>
+            Čas
+        </th>
+        <th>
+            Cena za půl hodiny
+        </th>
+    </tr>
+
+    @foreach (var item in ViewBag.PastReservations)
+    {
+        <tr class="default">
+            <td>
+                @{
+                    DateTime date = item.date;
+                }
+                @date.ToString("dd.MM.yyyy")
+            </td>
+            <td>
+                @ViewBag.MapedCourts[item.courtId]
+            </td>
+            <td>
+                 @item.time
+            </td>
+            <td>
+                @item.price
+            </td>
+        </tr>
+                    }
+
+</table>

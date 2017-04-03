@@ -186,8 +186,10 @@ namespace RPRO_SportSoft.Controllers
             }
 
             Reservation[] ResList = appR.GetListByEmail(email).ToArray();
-
+            Reservation[] PastReservations = appR.GetPastListByEmail(email).ToArray();
             ViewBag.MapedCourts = MapedCourts;
+
+            ViewBag.PastReservations = ReformatReservations(PastReservations);
             return View(ReformatReservations(ResList));
         }
 

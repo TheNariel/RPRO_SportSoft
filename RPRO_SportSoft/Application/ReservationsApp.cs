@@ -27,7 +27,7 @@ namespace RPRO_SportSoft.Application
 
         public IEnumerable<Reservation> GetListByEmail(String email)
         {
-            return db.Reservations.Where(Reservation => Reservation.User_Email == email).OrderByDescending(Reservation => Reservation.Date).ThenBy(Reservation => Reservation.Courts_Id).ThenBy(Reservation => Reservation.Time_Id).ToList();
+            return db.Reservations.Where(Reservation => Reservation.User_Email == email && Reservation.Date.CompareTo(System.DateTime.Now) >= 0).OrderBy(Reservation => Reservation.Date).ThenBy(Reservation => Reservation.Courts_Id).ThenBy(Reservation => Reservation.Time_Id).ToList();
         }
 
         public List<int> GetListId()
@@ -150,6 +150,11 @@ namespace RPRO_SportSoft.Application
         {
             Intervals intervals = new Intervals();
             return intervals.listString.IndexOf(time);
+        }
+
+        public IEnumerable<Reservation> GetPastListByEmail(string email)
+        {
+            return db.Reservations.Where(Reservation => Reservation.User_Email == email && Reservation.Date.CompareTo(System.DateTime.Now)==-1).OrderByDescending(Reservation => Reservation.Date).ThenBy(Reservation => Reservation.Courts_Id).ThenBy(Reservation => Reservation.Time_Id).ToList();
         }
     }
     public class Intervals
