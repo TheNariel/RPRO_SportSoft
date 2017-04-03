@@ -92,7 +92,7 @@ namespace RPRO_SportSoft.Controllers
                     }
                     else
                     {
-                        ViewBag.MyMessageToUser = "Pravděpodobně špatně zadané telefonní číslo.";
+                        ViewBag.MyMessageToUser = "Špatný formát telefonního čísla.";
                         return View(app.GetUser(oldEmail));
                     }
 
@@ -208,7 +208,7 @@ namespace RPRO_SportSoft.Controllers
                 String body = String.Format(Properties.Resources.EForgPass, newPass);
                 Eapp.SendEmail("Zapomenuté heslo", body, e);
             }
-            ViewBag.MessageForgottenPass = "Pokud email existuje, tak bylo odesláno nové heslo.";
+            ViewBag.MessageForgottenPass = "Pokud je e-mail registrován, bylo zasláno nové heslo.";
             return View();
         }
     }

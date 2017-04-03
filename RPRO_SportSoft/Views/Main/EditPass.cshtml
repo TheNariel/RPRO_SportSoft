@@ -4,9 +4,31 @@
     ViewBag.Title = "Změna hesla";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="~/Scripts/toastr.js"></script>
 <h2>Změna hesla</h2>
-@ViewBag.MessageChangingPassword
+@if (ViewData["MessageChangingPassword"] != null)
+{
+    <script language="javascript">
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.warning('@ViewData["MessageChangingPassword"]');
+    </script>
+}
 @using (Html.BeginForm("EditPass", "Main", FormMethod.Post))
 {
     <p>
@@ -14,32 +36,51 @@
         Staré heslo: @Html.Password("oldPass", "", new { @class = "password form-control", required = "required"})<br />
         Nové heslo: @Html.Password("newPass", "", new { @class = "password form-control", required = "required", name = "pass1", id = "pass1" })<br />
         Potvrzení hesla: @Html.Password("newPass2", "", new { @class = "password form-control", required = "required" , name = "pass2", id = "pass2", onkeyup = "checkPass(); return false;" })<br />
-        <span id="confirmMessage" class="confirmMessage"></span>
+        
         <input type="submit" value="Změnit heslo" class="btn btn-default" />
 
     </p>
 }
 
 <script>
-function checkPass()
-{
-    
-    var pass1 = document.getElementById('pass1');
-    var pass2 = document.getElementById('pass2');
-    var message = document.getElementById('confirmMessage');
-    var goodColor = "#66cc66";
-    var badColor = "#ff6666";
-    if(pass1.value == pass2.value){
-        pass2.style.backgroundColor = goodColor;
-        message.style.color = goodColor;
-        message.innerHTML = ""
-    }else{
-        pass2.style.backgroundColor = badColor;
-        message.style.color = badColor;
-        message.innerHTML = "Hesla se neshodují!"
+    function checkPass() {
+
+        var pass1 = document.getElementById('pass1');
+        var pass2 = document.getElementById('pass2');
+        //var message = document.getElementById('confirmMessage');
+        var goodColor = "#66cc66";
+        var badColor = "#ff6666";
+        if (pass1.value == pass2.value) {
+            pass2.style.backgroundColor = goodColor;
+            //message.style.color = goodColor;
+            //message.innerHTML = ""
+            toastr.clear()
+        } else {
+            pass2.style.backgroundColor = badColor;
+            //message.style.color = badColor;
+            //message.innerHTML = "Hesla se neshodují!"
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+
+            toastr.error("Hesla se neshodují!");
+        }
     }
-}
-    </script>
+</script>
 
 <div>
     @Html.ActionLink("Zpět", "Account", "Main", new { email = Model.Email }, null)

@@ -3,9 +3,32 @@
     ViewBag.Title = "Zapomenuté heslo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="~/Scripts/toastr.js"></script>
 <h2>Zapomenuté heslo</h2>
-@ViewBag.MessageForgottenPass
+@if (ViewData["MessageForgottenPass"] != null)
+{
+    <script language="javascript">
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.success('@ViewData["MessageForgottenPass"]');
+    </script>
+}
+
 @using (Html.BeginForm("ForgottenPass", "Main", FormMethod.Post, new { @class = "noborder-form" }))
 {
     <p>

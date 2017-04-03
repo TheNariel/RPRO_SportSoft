@@ -5,10 +5,32 @@
         ViewBag.Title = "Správa účtu";
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
-
+<script src="~/Scripts/toastr.js"></script>
     <h2>Správa účtu</h2>
     <br />
-@ViewBag.MessagePasswordChanged
+@if (ViewData["MessagePasswordChanged"] != null)
+{
+    <script language="javascript">
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.success('@ViewData["MessagePasswordChanged"]');
+    </script>
+}
     <b>Jméno:</b> @Html.DisplayFor(model => model.Name)<br />
     <b>Telefon:</b> @Html.DisplayFor(model => model.Phone)<br />
     <b>E-mail:</b> @Html.DisplayFor(model => model.Email)<br />

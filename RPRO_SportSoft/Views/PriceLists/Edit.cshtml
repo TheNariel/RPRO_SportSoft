@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="~/Scripts/toastr.js"></script>
 <h2>Úprava ceníku</h2>
 @{
     if (Session["Role"] == null)
@@ -16,8 +16,30 @@
         Response.Redirect("~/Main/Index");
     }
 }
+@if (ViewData["EditMessage"] != null)
+{
+    <script language="javascript">
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.error('@ViewData["EditMessage"]');
+    </script>
+}
 
-@ViewBag.EditMessage
 @using (Html.BeginForm("Edit", "PriceLists", FormMethod.Post))
 {
     <p>

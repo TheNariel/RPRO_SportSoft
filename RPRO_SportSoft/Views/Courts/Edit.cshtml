@@ -4,9 +4,32 @@
     ViewBag.Title = "Úprava kurtu";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="~/Scripts/toastr.js"></script>
 <h2>Upravit kurt</h2>
-@ViewBag.MessageEditCourt
+@if (ViewData["MessageEditCourt"] != null)
+{
+    <script language="javascript">
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.error('@ViewData["MessageEditCourt"]');
+    </script>
+}
+
 @using (Html.BeginForm("Edit", "Courts", FormMethod.Post))
 {
     <p>
