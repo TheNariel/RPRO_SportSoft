@@ -156,6 +156,13 @@ namespace RPRO_SportSoft.Application
         {
             return db.Reservations.Where(Reservation => Reservation.User_Email == email && Reservation.Date.CompareTo(System.DateTime.Now)==-1).OrderByDescending(Reservation => Reservation.Date).ThenBy(Reservation => Reservation.Courts_Id).ThenBy(Reservation => Reservation.Time_Id).ToList();
         }
+        public void Delete(int id)
+        {
+            var item = db.Reservations.Where(Reservations => Reservations.Id == id).Single();
+            db.Reservations.DeleteOnSubmit(item);
+            db.SubmitChanges();
+        }
+
     }
     public class Intervals
     {

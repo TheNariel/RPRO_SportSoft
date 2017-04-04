@@ -21,6 +21,9 @@
         <th>
             Cena za půl hodiny
         </th>
+        <th>
+            
+        </th>
    </tr>
 
     @foreach (var item in Model)
@@ -40,6 +43,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.ActionLink("Zrušit", "CancelReservation", new {d= item.date, cId= item.courtId, price= item.price, time = item.time, ids = item.ids })
             </td>
          </tr>
     }
@@ -62,7 +68,7 @@
         <th>
             Cena za půl hodiny
         </th>
-    </tr>
+        </tr>
 
     @foreach (var item in ViewBag.PastReservations)
     {

@@ -207,6 +207,7 @@
     <Content Include="Views\PriceLists\Edit.cshtml" />
     <Content Include="Views\Main\ForgottenPass.cshtml" />
     <Content Include="Views\Sports\CourtDetails.cshtml" />
+    <Content Include="Views\Courts\CancelReservation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

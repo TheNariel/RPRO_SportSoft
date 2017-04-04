@@ -95,7 +95,7 @@ namespace RPRO_SportSoft.Controllers
 
         // POST: Courts/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id,int sportId)
+        public ActionResult Delete(int id, int sportId)
         {
             try
             {
@@ -111,10 +111,11 @@ namespace RPRO_SportSoft.Controllers
                         return View(app.Get(id));
                     }
                 }
-                else {
+                else
+                {
                     return RedirectToAction("CourtDetails", "Sports", new { id = sportId, date = DateTime.Today.ToString("dd.MM.yyyy"), count = 1 });
                 }
-                
+
 
 
             }
@@ -184,10 +185,10 @@ namespace RPRO_SportSoft.Controllers
             {
                 MapedCourts[c.Id] = appS.GetName(c.Sports_Id) + ": " + c.Name;
             }
-
+ ViewBag.MapedCourts = MapedCourts;
             Reservation[] ResList = appR.GetListByEmail(email).ToArray();
             Reservation[] PastReservations = appR.GetPastListByEmail(email).ToArray();
-            ViewBag.MapedCourts = MapedCourts;
+           
 
             ViewBag.PastReservations = ReformatReservations(PastReservations);
             return View(ReformatReservations(ResList));
@@ -202,19 +203,21 @@ namespace RPRO_SportSoft.Controllers
             int price;
             int startTime;
             int endTime;
-            String LengthText="";
+            String LengthText = "";
             int length;
             Boolean same = true;
+            String ids = "";
             while (i < ResList.Length)
             {
                 date = ResList[i].Date;
                 court = ResList[i].Courts_Id;
                 price = ResList[i].Price;
                 startTime = ResList[i].Time_Id;
+                ids = ResList[i].Id.ToString();
                 length = 0;
                 while (same)
                 {
-                    if ( i < ResList.Length-1 && 
+                    if (i < ResList.Length - 1 &&
                         date == ResList[i + 1].Date &&
                         court == ResList[i + 1].Courts_Id &&
                         price == ResList[i + 1].Price &&
@@ -222,10 +225,12 @@ namespace RPRO_SportSoft.Controllers
                     {
                         length++;
                         i++;
-                        if (i== ResList.Length-1)
+                        ids += "\\" + ResList[i].Id.ToString();
+                        if (i == ResList.Length - 1)
                         {
                             same = false;
                         }
+                       
                     }
                     else
                     {
@@ -234,14 +239,39 @@ namespace RPRO_SportSoft.Controllers
                 }
                 i++;
                 same = true;
-                endTime = startTime + length+1;
+                endTime = startTime + length + 1;
                 LengthText = appR.getTime(startTime) + "-" + appR.getTime(endTime);
-                ret.Add(new ReservationFormated(date,court,price, LengthText));
+                ret.Add(new ReservationFormated(date, court, price, LengthText, ids));
             }
-            
-        
+
+
 
             return ret;
         }
+        public ActionResult CancelReservation(DateTime d, int cId, int price, String time, String ids)
+        {
+            SportsApp appS = new SportsApp();
+            var MapedCourts = new Dictionary<int, string>();
+            IEnumerable<Court> CList = app.GetList();
+            foreach (Court c in CList)
+            {
+                MapedCourts[c.Id] = appS.GetName(c.Sports_Id) + ": " + c.Name;
+            }
+            ViewBag.MapedCourts = MapedCourts;
+            ViewBag.reservation = new ReservationFormated(d, cId, price,time, ids);
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CancelReservation(String ids,String email)
+        {
+            String[] idField = ids.Split('\\');
+            foreach (String id in idField)
+            {
+                appR.Delete(int.Parse(id));
+            }
+            return RedirectToAction("IndexR", "Courts", new {email = email });
+          
+        }
+
     }
 }

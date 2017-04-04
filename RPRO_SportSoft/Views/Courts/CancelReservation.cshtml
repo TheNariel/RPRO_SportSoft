@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Zrušení rezervace";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Zrušení rezervace</h2>
+
+<h3>Opravdu chcete zrušit rezervaci ?</h3>
+<div>
+    @using (Html.BeginForm("CancelReservation", "Courts", FormMethod.Post))
+    {<p>
+    @{
+        DateTime date = ViewBag.reservation.date;
+        String id = ViewBag.reservation.ids;
+        String email = Session["Logged"].ToString();
+    }
+        Datum: @date.ToString("dd.MM.yyyy") <br />
+        Čas: @ViewBag.reservation.time <br />
+        Kurt: @ViewBag.MapedCourts[ViewBag.reservation.courtId] <br />
+        Cena za půl hodiny: @ViewBag.reservation.price <br />
+         @Html.Hidden("ids",id)
+         @Html.Hidden("email", email)
+    </p>
+     <input type="submit" value="Zrušit" class="btn btn-default" />
+}
+
+
+</div>
