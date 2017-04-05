@@ -140,5 +140,23 @@ namespace RPRO_SportSoft.Application
         {
             return db.Courts.Where(Court => Court.Id == id).Any();
         }
+
+        public double getGain(int Id)
+        {
+            double ret = 0;
+            List<Reservation> list = db.Reservations.Where(Reservation => Reservation.Courts_Id == Id).ToList();
+            foreach (Reservation r in list)
+            {
+                ret += r.Price;
+            }
+            return ret;
+        }
+
+        public int getCountOfReservations(int Id)
+        {
+            List<Reservation> list = db.Reservations.Where(Reservation => Reservation.Courts_Id == Id).ToList();
+
+            return list.Count;
+        }
     }
 }

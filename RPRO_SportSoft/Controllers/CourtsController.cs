@@ -273,5 +273,11 @@ namespace RPRO_SportSoft.Controllers
           
         }
 
+        public ActionResult Stats()
+        {
+            return View(app.GetList());
+        }
+
+
     }
 }

@@ -1,38 +1,50 @@
 ﻿@model IEnumerable<RPRO_SportSoft.Court>
+@using RPRO_SportSoft.Application;
 
 @{
     ViewBag.Title = "Stats";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Stats</h2>
+<h2>Statistiky</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Kurt
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Sports_Id)
+            Počet rezervací
         </th>
-        <th></th>
+        <th>
+            Výnos
+        </th>
+        <th>
+            Průměrný výnos 
+        </th>
     </tr>
-
+@{ 
+    CourtsApp app = new CourtsApp();
+}
 @foreach (var item in Model) {
     <tr>
+        @{
+            int count = app.getCountOfReservations(item.Id);
+            double gain = app.getGain(item.Id);
+            double mean = gain / count;
+            if (Double.IsNaN(mean)) { mean = 0; }
+        }
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Sports_Id)
+            @count
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @gain Kč
+        </td>
+        <td>
+            @mean Kč
         </td>
     </tr>
 }
