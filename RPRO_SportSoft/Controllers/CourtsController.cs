@@ -156,6 +156,7 @@ namespace RPRO_SportSoft.Controllers
                     else
                     {
                         ViewBag.MessageEditCourt = "Kurt s tímto názvem již existuje.";
+                        ViewBag.date = DateTime.Today.ToString("dd.MM.yyyy");
                         return View(app.Get(Id));
                     }
 
@@ -163,6 +164,7 @@ namespace RPRO_SportSoft.Controllers
                 else
                 {
                     ViewBag.MessageEditCourt = "Musíte vyplnit název kurtu.";
+                    ViewBag.date = DateTime.Today.ToString("dd.MM.yyyy");
                     return View(app.Get(Id));
 
                 }
