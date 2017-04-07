@@ -31,6 +31,7 @@ namespace RPRO_SportSoft.Controllers
                 if (!app.CheckIfTaken(description))
                 {
                     app.Add(description, price);
+                    TempData["MessageCreatePriceList"] = "Ceník byl vytvořen.";
                     return RedirectToAction("Index");
                 }
                 else
@@ -64,6 +65,7 @@ namespace RPRO_SportSoft.Controllers
                 if (app.CheckIfExist(Id)) {
                     app.Delete(Id);
                 }
+                TempData["MessageDeletePriceList"] = "Ceník byl odstraněn.";
                 return RedirectToAction("Index");
             }
             catch
