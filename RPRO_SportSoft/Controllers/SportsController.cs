@@ -86,6 +86,7 @@ namespace RPRO_SportSoft.Controllers
                 {
                     if (app.Add(SportName, image))
                     {
+                        TempData["MessageCreateSport"] = "Sportoviště bylo vytvořeno.";
                         return RedirectToAction("Index");
                     }
                     else
@@ -130,6 +131,7 @@ namespace RPRO_SportSoft.Controllers
                 if (app.CheckIfExist(id)) {
                     app.Delete(id);
                 }
+                TempData["MessageDeleteSport"] = "Sportoviště bylo vymazáno.";
                 return RedirectToAction("Index");
             }
             catch
@@ -229,6 +231,7 @@ namespace RPRO_SportSoft.Controllers
                     String body = String.Format(Properties.Resources.ERes,appC.Get(id).Name,DateTime.FromBinary(date).ToShortDateString(),time, weekCount);
                     appE.SendEmail("Rezervace", body, user);
 
+                    TempData["MessageCreateReservation"] = "Kurt byl rezervován.";
                     return RedirectToAction("IndexR", "Courts", new { email = user});
                 }
                 else

@@ -42,6 +42,8 @@ namespace RPRO_SportSoft.Controllers
                     {
                         ViewBag.InvariantCulture = CultureInfo.InvariantCulture;
                         ViewBag.Date = DateTime.Today.ToString("dd.MM.yyyy");
+
+                        TempData["MessageCreateCourt"] = "Kurt byl vytvořen.";
                         return RedirectToAction("CourtDetails", "Sports", new { id = Id, date = DateTime.Today.ToString("dd.MM.yyyy"), count = 1 });
                     }
                     else
@@ -103,6 +105,7 @@ namespace RPRO_SportSoft.Controllers
                 {
                     if (app.Delete(id))
                     {
+                        TempData["MessageDeleteCourt"] = "Kurt byl vymazán.";
                         return RedirectToAction("CourtDetails", "Sports", new { id = sportId, date = DateTime.Today.ToString("dd.MM.yyyy"), count = 1 });
                     }
                     else
@@ -187,7 +190,7 @@ namespace RPRO_SportSoft.Controllers
             {
                 MapedCourts[c.Id] = appS.GetName(c.Sports_Id) + ": " + c.Name;
             }
- ViewBag.MapedCourts = MapedCourts;
+            ViewBag.MapedCourts = MapedCourts;
             Reservation[] ResList = appR.GetListByEmail(email).ToArray();
             Reservation[] PastReservations = appR.GetPastListByEmail(email).ToArray();
            
@@ -271,6 +274,7 @@ namespace RPRO_SportSoft.Controllers
             {
                 appR.Delete(int.Parse(id));
             }
+            TempData["MessageCancelReservation"] = "Rezervace byla zrušena.";
             return RedirectToAction("IndexR", "Courts", new {email = email });
           
         }
