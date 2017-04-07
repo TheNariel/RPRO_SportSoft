@@ -80,6 +80,20 @@ namespace RPRO_SportSoft.Application
             return true;
         }
 
+        public Boolean CheckForWhiteSpaces(String d)
+        {
+            PriceList p = new PriceList();
+            p.Description = d.Trim();
+            if (!string.IsNullOrWhiteSpace(d))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public Boolean CheckForUsedPriceLists(int id)
         {
            return db.PriceLists_Courts.Where(PriceLists_Courts => PriceLists_Courts.PriceLists_Id == id).Any();

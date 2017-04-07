@@ -79,12 +79,14 @@ namespace RPRO_SportSoft.Controllers
             return View(app.GetListId(id));
         }
 
-        // POST: PriceLists/Delete/
+        // POST: PriceLists/Edit/
         [HttpPost]
         public ActionResult Edit(int id, String description, int price)
         {
             try
             {
+               if (app.CheckForWhiteSpaces(description))
+                { 
                 if (!app.CheckIfTakenEdit(description, id))
                 {
                     app.Edit(id, description, price);
@@ -92,7 +94,13 @@ namespace RPRO_SportSoft.Controllers
                 }
                 else
                 {
-                    ViewBag.EditMessage = "Ceník s tímto názvem již existuje.";
+                    ViewBag.EditMessage = "Ceník s tímto popisem již existuje.";
+                    return View(app.GetListId(id));
+                }
+               }
+                else
+                {
+                    ViewBag.EditMessage = "Musíte vyplnit popis ceníku.";
                     return View(app.GetListId(id));
                 }
             }
