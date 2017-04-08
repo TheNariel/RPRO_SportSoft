@@ -281,9 +281,27 @@ namespace RPRO_SportSoft.Controllers
 
         public ActionResult Stats()
         {
-            return View(app.GetList());
+            CultureInfo provider = CultureInfo.InvariantCulture;
+            ViewBag.InvariantCulture = provider;
+            ViewBag.dateFrom = DateTime.Today.ToString("dd.MM.yyyy");
+            ViewBag.dateTo = DateTime.Today.ToString("dd.MM.yyyy");
+            List<String> sportList = new SportsApp().GetListNames();
+            ViewBag.Sport = sportList.ElementAt(0).ToString();
+            SportsApp sport = new SportsApp();
+
+            return View(sport.GetCourts(sport.GetId(sportList.ElementAt(0).ToString())));
         }
+        [HttpPost]
+        public ActionResult Stats(String Sport, DateTime dateFrom, DateTime dateTo)
+        {
+            CultureInfo provider = CultureInfo.InvariantCulture;
+            ViewBag.InvariantCulture = provider;
+            ViewBag.dateFrom = dateFrom.ToString("dd.MM.yyyy");
+            ViewBag.dateTo = dateTo.ToString("dd.MM.yyyy");
+            ViewBag.Sport = Sport;
+            SportsApp sport = new SportsApp();
 
-
+            return View(sport.GetCourts(sport.GetId(Sport)));
+        }
     }
 }

@@ -96,8 +96,8 @@
                             <li>@Html.ActionLink("Správa rezervací", "IndexR", "Courts", new { email = Session["Logged"].ToString() }, null)</li>
                             <li>@Html.ActionLink("Správa obrázků", "Index", "Image")</li>
                             <li>@Html.ActionLink("Správa uživatelů", "Users", "Main")</li>
+                            <li>@Html.ActionLink("Statistiky", "Stats", "Courts")</li>
                             <li>@Html.ActionLink("Správa účtu", "Account", "Main", new { email = Session["Logged"].ToString() }, null)</li>
-                            <li>@Html.ActionLink("Statistiky", "Stats", "Courts", new { email = Session["Logged"].ToString() }, null)</li>
                         </ul>
                             }
                         else if (role.Equals("Customer"))
@@ -182,6 +182,10 @@
         <script>
        $( function() {
            $("#datepicker").datepicker({
+               altField: "#alternate",
+               altFormat: "DD, MM, yyyy"
+           });
+           $("#datepicker2").datepicker({
                altField: "#alternate",
                altFormat: "DD, MM, yyyy"
            });

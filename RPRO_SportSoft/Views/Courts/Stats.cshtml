@@ -2,12 +2,21 @@
 @using RPRO_SportSoft.Application;
 
 @{
-    ViewBag.Title = "Stats";
+    ViewBag.Title = "Statistika";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Statistiky</h2>
-
+@using (Html.BeginForm("Stats", "Courts", FormMethod.Post))
+{
+    <p>
+        Sportoviště: @Html.DropDownList("Sport", new SelectList(new SportsApp().GetListNames())) <br />
+        Od: <input class="myInput" name="dateFrom" date-type="date" id="datepicker" value=@ViewBag.dateFrom /><br />
+        Do: <input class="myInput" name="dateTo" date-type="date" id="datepicker2" value=@ViewBag.dateTo /><br />
+        <input type="submit" value="Odeslat" class="btn btn-default" />
+    </p>
+} 
+<h3>@ViewBag.Sport</h3>
 <table class="table">
     <tr>
         <th>
@@ -29,8 +38,10 @@
 @foreach (var item in Model) {
     <tr>
         @{
-            int count = app.getCountOfReservations(item.Id);
-            double gain = app.getGain(item.Id);
+            int count = app.getCountOfReservations(item.Id, DateTime.ParseExact((String)ViewBag.dateFrom, "dd.MM.yyyy", ViewBag.InvariantCulture),
+                DateTime.ParseExact((String)ViewBag.dateTo, "dd.MM.yyyy", ViewBag.InvariantCulture));
+            double gain = app.getGain(item.Id, DateTime.ParseExact((String)ViewBag.dateFrom, "dd.MM.yyyy", ViewBag.InvariantCulture),
+                DateTime.ParseExact((String)ViewBag.dateTo, "dd.MM.yyyy", ViewBag.InvariantCulture));
             double mean = gain / count;
             if (Double.IsNaN(mean)) { mean = 0; }
         }
@@ -50,3 +61,4 @@
 }
 
 </table>
+

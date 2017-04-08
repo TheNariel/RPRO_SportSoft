@@ -141,22 +141,32 @@ namespace RPRO_SportSoft.Application
             return db.Courts.Where(Court => Court.Id == id).Any();
         }
 
-        public double getGain(int Id)
+        public double getGain(int Id, DateTime from, DateTime to)
         {
             double ret = 0;
             List<Reservation> list = db.Reservations.Where(Reservation => Reservation.Courts_Id == Id).ToList();
             foreach (Reservation r in list)
             {
-                ret += r.Price;
+                if (r.Date >= from && r.Date <= to)
+                {
+                    ret += r.Price;
+                }
             }
             return ret;
         }
 
-        public int getCountOfReservations(int Id)
+        public int getCountOfReservations(int Id, DateTime from, DateTime to)
         {
             List<Reservation> list = db.Reservations.Where(Reservation => Reservation.Courts_Id == Id).ToList();
-
-            return list.Count;
+            List<Reservation> listOfReservation = new List<Reservation>();
+            foreach (Reservation r in list)
+            {
+                if (r.Date >= from && r.Date <= to)
+                {
+                    listOfReservation.Add(r);
+                }
+            }
+            return listOfReservation.Count;
         }
     }
 }

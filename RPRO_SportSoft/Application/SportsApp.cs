@@ -117,6 +117,20 @@ namespace RPRO_SportSoft.Application
         {
             return db.Sports.Where(Sport => Sport.Id == Id).Any();
         }
+        public List<String> GetListNames()
+        {
+            List<String> a = new List<String>();
+            foreach (Sport sport in db.Sports.ToList())
+            {
+                a.Add(sport.Name);
+            }
+            return a;
+        }
+        public int GetId(String name)
+        {
+            Sport s = db.Sports.Where(Sport => Sport.Name == name).First();
+            return s.Id;
+        }
     }
 
 }
