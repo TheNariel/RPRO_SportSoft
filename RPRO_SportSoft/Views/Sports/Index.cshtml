@@ -72,12 +72,6 @@
         }
 
         <table class="table">
-            <tr>
-                <th>
-                    @*@Html.DisplayNameFor(model => model.Name)*@
-                </th>
-                <th></th>
-            </tr>
 
             @foreach (var item in Model)
             {
@@ -93,7 +87,7 @@
                     }
                     <td>
 
-                        <img src='@imgsrc' width="25" height="25" />
+                        <img src='@imgsrc' width="50" height="50" />
                     </td>
                     <td>
                         @*  @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
