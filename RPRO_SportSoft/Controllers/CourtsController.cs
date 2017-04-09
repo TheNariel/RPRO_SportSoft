@@ -111,7 +111,7 @@ namespace RPRO_SportSoft.Controllers
                     else
                     {
                         ViewBag.MyMessageToUser = "Nelze smazat kurt, který byl použit.";
-                        return View(app.Get(id));
+                        return RedirectToAction("CourtDetails", "Sports", new { id = sportId, date = DateTime.Today.ToString("dd.MM.yyyy"), count = 1 });
                     }
                 }
                 else
@@ -145,38 +145,47 @@ namespace RPRO_SportSoft.Controllers
             String[] d = date.Split('.');
             String dateCons = d[0] + ". " + d[1] + ". " + d[2];
 
-            int Id_P = appPL.GetId(De_P);
-            int sport = app.GetSportId(Id);
+            
             try
             {
-                if (app.CheckForWhiteSpaces(CourtName))
+                if (app.CheckIfExist(Id))
                 {
-
-                    if (app.Edit(Id, CourtName, Sports_Id, Id_P, DateTime.ParseExact(dateCons, dateformat, provider)))
+                    int Id_P = appPL.GetId(De_P);
+                    int sport = app.GetSportId(Id);
+                    if (app.CheckForWhiteSpaces(CourtName))
                     {
-                        return RedirectToAction("CourtDetails", "Sports", new { id = Sports_Id, date = DateTime.Today.ToString("dd.MM.yyyy"), count = 1 });
+
+                        if (app.Edit(Id, CourtName, Sports_Id, Id_P, DateTime.ParseExact(dateCons, dateformat, provider)))
+                        {
+                            return RedirectToAction("CourtDetails", "Sports", new { id = Sports_Id, date = DateTime.Today.ToString("dd.MM.yyyy"), count = 1 });
+                        }
+                        else
+                        {
+                            ViewBag.MessageEditCourt = "Kurt s tímto názvem již existuje.";
+                            ViewBag.date = DateTime.Today.ToString("dd.MM.yyyy");
+                            return View(app.Get(Id));
+                        }
+
                     }
                     else
                     {
-                        ViewBag.MessageEditCourt = "Kurt s tímto názvem již existuje.";
+                        ViewBag.MessageEditCourt = "Musíte vyplnit název kurtu.";
                         ViewBag.date = DateTime.Today.ToString("dd.MM.yyyy");
                         return View(app.Get(Id));
+
                     }
+
 
                 }
                 else
                 {
-                    ViewBag.MessageEditCourt = "Musíte vyplnit název kurtu.";
-                    ViewBag.date = DateTime.Today.ToString("dd.MM.yyyy");
-                    return View(app.Get(Id));
-
+                    ViewBag.MessageEditCourt = "Nelze změnit kurt";
+                    return RedirectToAction("CourtDetails", "Sports", new { id = Sports_Id, date = DateTime.Today.ToString("dd.MM.yyyy"), count = 1 });
                 }
-
-
             }
             catch
             {
-                ViewBag.MessageEditCourt = "Nelze smazat změnit";
+                ViewBag.MessageEditCourt = "Nelze změnit kurt";
                 return View(app.Get(Id));
             }
         }

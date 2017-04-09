@@ -87,23 +87,31 @@ namespace RPRO_SportSoft.Controllers
         {
             try
             {
-               if (app.CheckForWhiteSpaces(description))
-                { 
-                if (!app.CheckIfTakenEdit(description, id))
+                if (app.CheckIfExist(id))
                 {
-                    app.Edit(id, description, price);
+                    if (app.CheckForWhiteSpaces(description))
+                    {
+                        if (!app.CheckIfTakenEdit(description, id))
+                        {
+                            app.Edit(id, description, price);
+                            return RedirectToAction("Index", "PriceLists", app.GetList());
+                        }
+                        else
+                        {
+                            ViewBag.EditMessage = "Ceník s tímto popisem již existuje.";
+                            return View(app.GetListId(id));
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.EditMessage = "Musíte vyplnit popis ceníku.";
+                        return View(app.GetListId(id));
+                    }
+                }
+                else {
+                    ViewBag.MessageCreate = "Údaje se nepovedlo uložit.";
+                    PriceList p = new PriceList();
                     return RedirectToAction("Index", "PriceLists", app.GetList());
-                }
-                else
-                {
-                    ViewBag.EditMessage = "Ceník s tímto popisem již existuje.";
-                    return View(app.GetListId(id));
-                }
-               }
-                else
-                {
-                    ViewBag.EditMessage = "Musíte vyplnit popis ceníku.";
-                    return View(app.GetListId(id));
                 }
             }
             catch

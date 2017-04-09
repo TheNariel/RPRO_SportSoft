@@ -153,25 +153,36 @@ namespace RPRO_SportSoft.Controllers
         {
             try
             {
-                if (app.CheckForWhiteSpaces(SportName)) {
-
-                    if (app.Edit(id, SportName, image))
+                if (app.CheckIfExist(id))
+                {
+                    if (app.CheckForWhiteSpaces(SportName))
                     {
 
-                        return RedirectToAction("Index");
+                        if (app.Edit(id, SportName, image))
+                        {
+
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            ViewBag.MyMessageToUser = "Název musí být unikátní.";
+                            return View(app.Get(id));
+                        }
+
                     }
-                    else {
-                        ViewBag.MyMessageToUser = "Název musí být unikátní.";
+                    else
+                    {
+                        ViewBag.MyMessageToUser = "Musíte vyplnit název sportoviště.";
                         return View(app.Get(id));
                     }
 
+
                 }
-                else {
-                    ViewBag.MyMessageToUser = "Musíte vyplnit název sportoviště.";
-                    return View(app.Get(id));
+                else
+                {
+                    ViewBag.MyMessageToUser = "Toto sportoviště nelze editovat.";
+                    return RedirectToAction("Index");
                 }
-                
-                
             }
             catch
             {
