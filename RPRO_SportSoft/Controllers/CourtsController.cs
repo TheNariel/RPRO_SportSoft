@@ -301,12 +301,12 @@ namespace RPRO_SportSoft.Controllers
             return View(sport.GetCourts(sport.GetId(sportList.ElementAt(0).ToString())));
         }
         [HttpPost]
-        public ActionResult Stats(String Sport, DateTime dateFrom, DateTime dateTo)
+        public ActionResult Stats(String Sport, String dateFrom, String dateTo)
         {
             CultureInfo provider = CultureInfo.InvariantCulture;
             ViewBag.InvariantCulture = provider;
-            ViewBag.dateFrom = dateFrom.ToString("dd.MM.yyyy");
-            ViewBag.dateTo = dateTo.ToString("dd.MM.yyyy");
+            ViewBag.dateFrom = dateFrom;
+            ViewBag.dateTo = dateTo;
             ViewBag.Sport = Sport;
             SportsApp sport = new SportsApp();
 
