@@ -59,13 +59,13 @@
             Datum
         </th>
         <th>
-            Kurt
-        </th>
-        <th>
             Čas
         </th>
         <th>
-            Cena za půl hodiny
+            Kurt
+        </th>
+        <th>
+            Cena
         </th>
         <th>
             
@@ -82,17 +82,21 @@
                 @date.ToString("dd.MM.yyyy")
             </td>
             <td>
-                @ViewBag.MapedCourts[item.courtId]
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.time)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.price)
+                @ViewBag.MapedCourts[item.courtId]
             </td>
             <td>
-                @Html.ActionLink("Zrušit", "CancelReservation", new {d= item.date, cId= item.courtId, price= item.price, time = item.time, ids = item.ids })
+                @Html.DisplayFor(modelItem => item.price) Kč
             </td>
+            <td>
+                @if (date.CompareTo(DateTime.Now.AddDays(0.5)) >= 0)
+                {
+                @Html.ActionLink("Zrušit", "CancelReservation", new { d = item.date, cId = item.courtId, price = item.price, time = item.time, ids = item.ids })
+                }
+            </td>
+
          </tr>
     }
 
@@ -106,13 +110,13 @@
             Datum
         </th>
         <th>
-            Kurt
-        </th>
-        <th>
             Čas
         </th>
         <th>
-            Cena za půl hodiny
+            Kurt
+        </th>
+        <th>
+            Cena
         </th>
         </tr>
 
@@ -126,13 +130,13 @@
                 @date.ToString("dd.MM.yyyy")
             </td>
             <td>
+               @item.time
+            </td>
+            <td>
                 @ViewBag.MapedCourts[item.courtId]
             </td>
             <td>
-                 @item.time
-            </td>
-            <td>
-                @item.price
+                @item.price Kč
             </td>
         </tr>
                     }

@@ -211,13 +211,15 @@ namespace RPRO_SportSoft.Controllers
         private List<ReservationFormated> ReformatReservations(Reservation[] ResList)
         {
             List<ReservationFormated> ret = new List<ReservationFormated>();
-            int i = 0;
+            int i = 0,h =0;
             DateTime date;
             int court;
             int price;
             int startTime;
             int endTime;
-            String LengthText = "";
+            String LengthText = "",dateHelp="";
+            String[] datetime;
+            float hour;
             int length;
             Boolean same = true;
             String ids = "";
@@ -229,6 +231,7 @@ namespace RPRO_SportSoft.Controllers
                 startTime = ResList[i].Time_Id;
                 ids = ResList[i].Id.ToString();
                 length = 0;
+                h = 1;
                 while (same)
                 {
                     if (i < ResList.Length - 1 &&
@@ -239,6 +242,7 @@ namespace RPRO_SportSoft.Controllers
                     {
                         length++;
                         i++;
+                        h++;
                         ids += "\\" + ResList[i].Id.ToString();
                         if (i == ResList.Length - 1)
                         {
@@ -255,7 +259,14 @@ namespace RPRO_SportSoft.Controllers
                 same = true;
                 endTime = startTime + length + 1;
                 LengthText = appR.getTime(startTime) + "-" + appR.getTime(endTime);
-                ret.Add(new ReservationFormated(date, court, price, LengthText, ids));
+                dateHelp = appR.getTime(startTime);
+                datetime = dateHelp.Split(':');
+                hour = float.Parse(datetime[0]);
+                if (datetime[1].Equals("30"))
+                {
+                    hour = hour + 0.5f;
+                }
+                ret.Add(new ReservationFormated(date.AddHours(hour), court, price*h, LengthText, ids));
             }
 
 
