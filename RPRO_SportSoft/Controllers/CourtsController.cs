@@ -297,6 +297,9 @@ namespace RPRO_SportSoft.Controllers
             List<String> sportList = new SportsApp().GetListNames();
             ViewBag.Sport = sportList.ElementAt(0).ToString();
             SportsApp sport = new SportsApp();
+            ViewBag.Times = appR.GetListOfTimeReservations();
+
+            ViewBag.ListOfReserv = app.getListOfDays(sport.GetId(sportList.ElementAt(0).ToString()), ViewBag.dateFrom, ViewBag.dateTo);
 
             return View(sport.GetCourts(sport.GetId(sportList.ElementAt(0).ToString())));
         }
@@ -309,6 +312,8 @@ namespace RPRO_SportSoft.Controllers
             ViewBag.dateTo = dateTo;
             ViewBag.Sport = Sport;
             SportsApp sport = new SportsApp();
+            ViewBag.Times = appR.GetListOfTimeReservations();
+            ViewBag.ListOfReserv = app.getListOfDays(sport.GetId(Sport), dateFrom, dateTo);
 
             return View(sport.GetCourts(sport.GetId(Sport)));
         }

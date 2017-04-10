@@ -35,7 +35,8 @@
 @{ 
     CourtsApp app = new CourtsApp();
 }
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         @{
             int count = app.getCountOfReservations(item.Id, DateTime.ParseExact(ViewBag.DateFrom, "dd.MM.yyyy", ViewBag.InvariantCulture),
@@ -61,4 +62,56 @@
 }
 
 </table>
+
+ @{ 
+     List<List<List<Reservation>>> ListOfDays = new List<List<List<Reservation>>>();
+     ListOfDays = ViewBag.ListOfReserv;
+     List<Reservation_Time> times = new List<Reservation_Time>();
+     times = ViewBag.Times;
+     int i = 0;
+     int j = 0;
+ }
+@foreach (List<List<Reservation>> ListOfCourtsRes in ListOfDays)
+{
+    DateTime d = DateTime.ParseExact(ViewBag.DateFrom, "dd.MM.yyyy", ViewBag.InvariantCulture);
+    d = d.AddDays(i);
+    <div>Den: @d.ToString("dd.MM.yyyy")</div>
+    i++;
+    <table border="0">
+        <tr>
+            <td>
+            </td>
+        @foreach (Reservation_Time t in times)
+                {
+                <td style="writing-mode:sideways-lr">@t.Time</td>
+        }
+            </tr>
+        @foreach (List<Reservation> ListOfReserv in ListOfCourtsRes)
+        {
+            <tr>
+                <td>
+                    @{
+                        @app.GetActualName(Model, j);
+                        j++;
+                     }
+                </td>
+                @foreach (Reservation_Time time in times)
+                {
+                    if (app.Contains(ListOfReserv, time))
+                    {
+                        <td style="background-color: red;"></td>
+                    }
+                    else
+                    {
+                        <td  style="background-color:#33FF00;"></td>
+                    }
+                    
+                }
+            </tr>
+        }
+
+    </table>
+    <br/>
+    <br/>
+}
 

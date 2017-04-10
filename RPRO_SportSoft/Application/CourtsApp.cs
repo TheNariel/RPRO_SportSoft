@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -168,5 +169,81 @@ namespace RPRO_SportSoft.Application
             }
             return listOfReservation.Count;
         }
+        public List<List<List<Reservation>>> getListOfDays(int idSport, String dateFrom, String dateTo)
+        {
+            CultureInfo provider = CultureInfo.InvariantCulture;
+            DateTime dFrom = DateTime.ParseExact(dateFrom, "dd.MM.yyyy", provider);
+            DateTime dTo = DateTime.ParseExact(dateTo, "dd.MM.yyyy", provider);
+            List<List<List<Reservation>>> ret = new List<List<List<Reservation>>>();
+            double countOfDays = (dTo - dFrom).TotalDays;
+            for (int i = 0; i <= countOfDays; i++)
+            {
+                DateTime pom = dFrom;
+                ret.Add(getListOfCourtsRes(idSport, pom.AddDays(i)));
+            }
+            return ret;
+        }
+        private List<List<Reservation>> getListOfCourtsRes(int idSport, DateTime date)
+        {
+            List<List<Reservation>> ret = new List<List<Reservation>>();
+            SportsApp sport = new SportsApp();
+            IEnumerable<Court> courts = sport.GetCourts(idSport);
+            foreach (Court c in courts)
+            {
+                ret.Add(getListOfReserv(c.Id, date));
+            }
+            return ret;
+        }
+        private List<Reservation> getListOfReserv(int idCourt, DateTime date)
+        {   
+            List<Reservation> ret = new List<Reservation>();
+            List<Reservation> pom = db.Reservations.Where(Reservation => Reservation.Courts_Id == idCourt).ToList();
+            foreach (Reservation r in pom)
+            {
+                if (r.Date == date)
+                {
+                    ret.Add(r);
+                }
+            }
+            return ret;
+        }
+        public Boolean Contains(List<Reservation> list, Reservation_Time time)
+        {
+            foreach (Reservation r in list)
+            {
+                if (r.Time_Id == time.Id) return true;
+            }
+            return false;
+        }
+        public String GetActualName(IEnumerable<Court> courts, int j)
+        {
+            j = j % courts.Count();
+            return courts.ElementAt(j).Name;
+        }
+
+
+        public String getPriceList(int Id)
+        {
+            DateTime pom = new DateTime(1, 1, 1);
+            DateTime now = DateTime.Today;
+            String result = "None";
+            int pomId = 0;
+            List<PriceLists_Courts> list = db.PriceLists_Courts.Where(PriceLists_Courts => PriceLists_Courts.Courts_Id == Id).ToList();
+            foreach (PriceLists_Courts pc in list)
+            {
+                if (pc.Date <= now)
+                {
+                    if (pc.Date >= pom)
+                    {
+                        pom = pc.Date;
+                        pomId = pc.PriceLists_Id;
+                    }
+                }
+            }
+            PriceList pl = db.PriceLists.Where(PriceList => PriceList.Id == pomId).First();
+            result = pl.Description;
+            return result;
+        }
+
     }
 }

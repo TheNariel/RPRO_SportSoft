@@ -1,5 +1,5 @@
 ﻿@model CourtListP
-
+@using RPRO_SportSoft.Application;
 @{
     ViewBag.Title = "Kurty";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -67,7 +67,9 @@
         toastr.success('@TempData["MessageCreateCourt"]');
     </script>
 }
-
+@{
+    CourtsApp app = new CourtsApp();
+ }
 
 <p>
     @Html.ActionLink("Vytvořit nový kurt", "Create", "Courts", new { sport = Model.sportId }, null)
@@ -79,6 +81,9 @@
             Kurt
         </th>
         <th>
+            Ceník
+        </th>
+        <th>
             Možnosti
         </th>
     </tr>
@@ -86,6 +91,9 @@
         <tr class="default">
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @app.getPriceList(item.Id)
             </td>
             <td>
                 @Html.ActionLink("Upravit", "Edit", "Courts", new { id = item.Id }, null)
