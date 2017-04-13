@@ -23,8 +23,8 @@
 |14.3. - 21.3.2017|C5|Implementace opakované rezervace kurtu, implementace toastování hlášek, revize aktivace a deaktivace uživatele|Splněno
 |21.3. - 28.3.2017|C6|Implementace zobrazení historie rezervací uživateli, revize změny hesla, revize úpravy údajů, revize vytvoření sportoviště, revize smazání sportoviště|Splněno
 |28.3. - 4.4.2017|C7|Implementace zrušení rezerace (majitelem a zákazníkem), revize vytvoření kurtu, revize smazání kurtu, revize změny parametrů sportoviště, revize změny parametrů kurtu|Splněno
-|4.4. - 11.4.2017|C8|Implementace zobrazení statistik majiteli, revize vytvoření ceníku, revize úpravy ceníku, revize smazání ceníku, revize vytvoření rezervace, revize opakované rezervace|
-|11.4. - 18.4.2017|C9||
+|4.4. - 11.4.2017|C8|Implementace zobrazení statistik majiteli, revize vytvoření ceníku, revize úpravy ceníku, revize smazání ceníku, revize vytvoření rezervace, revize opakované rezervace|Splněno
+|11.4. - 18.4.2017|C9|Revize zobrazení kurtů, revize zrušení rezervace, revize zobrazení historie rezervací|
 |18.4. - 25.4.2017|C10||
 <b>25. 4.</b>||		<b>Milník IOP</b>|	<b></b>
 | | | |
