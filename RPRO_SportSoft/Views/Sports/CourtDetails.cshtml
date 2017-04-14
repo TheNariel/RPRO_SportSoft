@@ -96,13 +96,18 @@
                 @app.getPriceList(item.Id)
             </td>
             <td>
-                @Html.ActionLink("Upravit", "Edit", "Courts", new { id = item.Id }, null)
-                |
-                @Html.ActionLink("Vymazat", "Delete", "Courts", new { id = item.Id }, null)
+                @{  String v = " |";
+                    CourtsApp c = new CourtsApp();
+                    if (!c.CheckForRegistration(item.Id))
+                    {  @Html.ActionLink("Vymazat", "Delete", "Courts", new { id = item.Id }, null)
 
+                        @v.ToString();
+                    }
+                }
+                @Html.ActionLink("Upravit", "Edit", "Courts", new { id = item.Id }, null)
             </td>
         </tr>
-    }
+                }
 </table>
 
 @Html.ActionLink("Zpět","Index")
