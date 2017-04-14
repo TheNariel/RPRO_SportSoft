@@ -312,6 +312,16 @@ namespace RPRO_SportSoft.Controllers
 
             ViewBag.ListOfReserv = app.getListOfDays(sport.GetId(sportList.ElementAt(0).ToString()), ViewBag.dateFrom, ViewBag.dateTo);
 
+            List<CrateCurtGain> listCurtsGain = new List<CrateCurtGain>();
+            IEnumerable<Court> courtList = sport.GetCourts(sport.GetId(sportList.ElementAt(0).ToString()));
+            foreach (Court c in courtList) {
+                int count = app.getCountOfReservations(c.Id, DateTime.ParseExact(ViewBag.DateFrom, "dd.MM.yyyy", ViewBag.InvariantCulture),
+                DateTime.ParseExact(ViewBag.DateTo, "dd.MM.yyyy", ViewBag.InvariantCulture));
+                double gain = app.getGain(c.Id, DateTime.ParseExact(ViewBag.DateFrom, "dd.MM.yyyy", ViewBag.InvariantCulture),
+                DateTime.ParseExact(ViewBag.DateTo, "dd.MM.yyyy", ViewBag.InvariantCulture));
+                listCurtsGain.Add(new CrateCurtGain(c.Name, count, gain));
+            }
+            ViewBag.CrateList = listCurtsGain;
             return View(sport.GetCourts(sport.GetId(sportList.ElementAt(0).ToString())));
         }
         [HttpPost]
@@ -325,6 +335,18 @@ namespace RPRO_SportSoft.Controllers
             SportsApp sport = new SportsApp();
             ViewBag.Times = appR.GetListOfTimeReservations();
             ViewBag.ListOfReserv = app.getListOfDays(sport.GetId(Sport), dateFrom, dateTo);
+
+            List<CrateCurtGain> listCurtsGain = new List<CrateCurtGain>();
+            IEnumerable<Court> courtList = sport.GetCourts(sport.GetId(Sport));
+            foreach (Court c in courtList)
+            {
+                int count = app.getCountOfReservations(c.Id, DateTime.ParseExact(ViewBag.DateFrom, "dd.MM.yyyy", ViewBag.InvariantCulture),
+                DateTime.ParseExact(ViewBag.DateTo, "dd.MM.yyyy", ViewBag.InvariantCulture));
+                double gain = app.getGain(c.Id, DateTime.ParseExact(ViewBag.DateFrom, "dd.MM.yyyy", ViewBag.InvariantCulture),
+                DateTime.ParseExact(ViewBag.DateTo, "dd.MM.yyyy", ViewBag.InvariantCulture));
+                listCurtsGain.Add(new CrateCurtGain(c.Name, count, gain));
+            }
+            ViewBag.CrateList = listCurtsGain;
 
             return View(sport.GetCourts(sport.GetId(Sport)));
         }

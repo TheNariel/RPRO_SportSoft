@@ -35,27 +35,23 @@
 @{ 
     CourtsApp app = new CourtsApp();
 }
-@foreach (var item in Model)
+@foreach (CrateCurtGain item in ViewBag.CrateList)
 {
     <tr>
-        @{
-            int count = app.getCountOfReservations(item.Id, DateTime.ParseExact(ViewBag.DateFrom, "dd.MM.yyyy", ViewBag.InvariantCulture),
-                DateTime.ParseExact(ViewBag.DateTo, "dd.MM.yyyy", ViewBag.InvariantCulture));
-            double gain = app.getGain(item.Id, DateTime.ParseExact(ViewBag.DateFrom, "dd.MM.yyyy", ViewBag.InvariantCulture),
-                DateTime.ParseExact(ViewBag.DateTo, "dd.MM.yyyy", ViewBag.InvariantCulture));
-            double mean = gain / count;
-            if (Double.IsNaN(mean)) { mean = 0; }
-        }
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @item.name
         </td>
         <td>
-            @count
+            @item.count
         </td>
         <td>
-            @gain Kč
+            @item.gain
         </td>
         <td>
+            @{
+                double mean = item.gain / item.count;
+                if (Double.IsNaN(mean)) {mean = 0;}
+             }
             @mean Kč
         </td>
     </tr>

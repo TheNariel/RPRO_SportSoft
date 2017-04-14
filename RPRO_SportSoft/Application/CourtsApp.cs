@@ -246,4 +246,17 @@ namespace RPRO_SportSoft.Application
         }
 
     }
+    public class CrateCurtGain
+    {
+        public String name;
+        public int count;
+        public double gain;
+        public CrateCurtGain(String name, int count, double gain)
+        {
+            this.name = name;
+            this.count = count;
+            this.gain = gain;
+        }
+    }
+
 }
