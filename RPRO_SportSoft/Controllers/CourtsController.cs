@@ -203,9 +203,30 @@ namespace RPRO_SportSoft.Controllers
             Reservation[] ResList = appR.GetListByEmail(email).ToArray();
             Reservation[] PastReservations = appR.GetPastListByEmail(email).ToArray();
            
+            List<ReservationFormated> futureRes =ReformatReservations(ResList);
+            List<ReservationFormated> pastRes = ReformatReservations(PastReservations);
+            ReservationFormated[] hF = futureRes.ToArray();
+            int i = 0;
+            while (true)
+            {
+                
+                if (hF[i].date.CompareTo(DateTime.Now)==-1)
+                {
+                    pastRes.Reverse();
+                    pastRes.Add(futureRes.First());
+                    pastRes.Reverse();
+                    futureRes.RemoveAt(0);
+                    i++;
+                }
+                else {
+                    break;
+                }
+            }
+            pastRes= pastRes.OrderByDescending(o => o.date).ThenBy(o => o.time).ToList();
 
-            ViewBag.PastReservations = ReformatReservations(PastReservations);
-            return View(ReformatReservations(ResList));
+            futureRes = futureRes.OrderBy(o => o.date).ThenBy(o => o.time).ToList();
+            ViewBag.PastReservations = pastRes;
+            return View(futureRes);
         }
 
         private List<ReservationFormated> ReformatReservations(Reservation[] ResList)
@@ -259,6 +280,7 @@ namespace RPRO_SportSoft.Controllers
                 same = true;
                 endTime = startTime + length + 1;
                 LengthText = appR.getTime(startTime) + "-" + appR.getTime(endTime);
+
                 dateHelp = appR.getTime(startTime);
                 datetime = dateHelp.Split(':');
                 hour = float.Parse(datetime[0]);
@@ -266,6 +288,7 @@ namespace RPRO_SportSoft.Controllers
                 {
                     hour = hour + 0.5f;
                 }
+
                 ret.Add(new ReservationFormated(date.AddHours(hour), court, price*h, LengthText, ids));
             }
 
