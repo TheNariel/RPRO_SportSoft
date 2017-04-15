@@ -29,11 +29,9 @@ namespace RPRO_SportSoft.Application
         {
             //id je id kurtu
             List<String> a = new List<String>();
-            PriceLists_Courts pl_Id = db.PriceLists_Courts.Where(PriceLists_Courts => PriceLists_Courts.Courts_Id == id).First();
-            int idPL = pl_Id.PriceLists_Id;
-            PriceList pl = db.PriceLists.Where(PriceList => PriceList.Id == idPL).First();
-            //tohle je popis ceniku
-            string des = pl.Description;
+            CourtsApp appC = new CourtsApp();
+
+            string des = appC.getPriceList(id);
 
             foreach (PriceList priceList in db.PriceLists.ToList())
             {
