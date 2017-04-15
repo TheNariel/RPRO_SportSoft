@@ -25,15 +25,42 @@ namespace RPRO_SportSoft.Application
         {
             return db.PriceLists.ToList();
         }
-        public List<String> GetListDescrioptions()
+        public List<String> GetListDescrioptionsEdit(int id)
         {
+            //id je id kurtu
             List<String> a = new List<String>();
+            PriceLists_Courts pl_Id = db.PriceLists_Courts.Where(PriceLists_Courts => PriceLists_Courts.Courts_Id == id).First();
+            int idPL = pl_Id.PriceLists_Id;
+            PriceList pl = db.PriceLists.Where(PriceList => PriceList.Id == idPL).First();
+            //tohle je popis ceniku
+            string des = pl.Description;
+
             foreach (PriceList priceList in db.PriceLists.ToList())
             {
-                a.Add(priceList.Description);
+                if (priceList.Description.Equals(des)) {
+                    a.Add(priceList.Description);
+                }
+            }
+            foreach (PriceList priceList in db.PriceLists.ToList())
+            {
+                if (!priceList.Description.Equals(des))
+                {
+                    a.Add(priceList.Description);
+                }
             }
             return a;
         }
+        public List<String> GetListDescrioptionsCreate()
+        {
+            List<String> a = new List<String>();
+           
+            foreach (PriceList priceList in db.PriceLists.ToList())
+            {
+                    a.Add(priceList.Description);
+            }
+            return a;
+        }
+
         public int GetId(String d)
         {
             PriceList p = db.PriceLists.Where(PriceList => PriceList.Description == d).First();
