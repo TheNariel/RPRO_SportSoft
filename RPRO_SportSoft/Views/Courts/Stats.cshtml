@@ -11,10 +11,15 @@
 {
     <p>
         Sportoviště: @Html.DropDownList("Sport", new SelectList(new SportsApp().GetListNames())) <br />
-        Od: <input class="myInput" name="dateFrom" date-type="date" id="datepicker" value=@ViewBag.dateFrom /><br />
-        Do: <input class="myInput" name="dateTo" date-type="date" id="datepicker2" value=@ViewBag.dateTo /><br />
-        <input type="submit" value="Odeslat" class="btn btn-default" />
-    </p>
+        <table border="0">
+            <tr><td>Od:</td>
+                <td><input class="myInput" name="dateFrom" date-type="date" id="datepicker" value=@ViewBag.dateFrom /></td>
+                <td>Do:</td>
+                <td> <input class="myInput" name="dateTo" date-type="date" id="datepicker2" value=@ViewBag.dateTo /></td>
+            </tr>
+        </table>
+    <input type="submit" value="Odeslat" class="btn btn-default" />
+</p>
 } 
 <h3>@ViewBag.Sport</h3>
 <table class="table">
@@ -50,7 +55,7 @@
         <td>
             @{
                 double mean = item.gain / item.count;
-                if (Double.IsNaN(mean)) {mean = 0;}
+                if (Double.IsNaN(mean)) { mean = 0; }
              }
             @mean.ToString("F") Kč
         </td>
@@ -58,16 +63,36 @@
 }
 
 </table>
-
- 
+<h2>Využití jednotlivých kurtů</h2>
+ @{ 
+     int k = 0;
+ }
 @foreach (ReservationByDay item in Model)
 {
-    <table border="0">
-       @for(int j = 0; j < 7; j++) {
+    int[] counts = app.GetSumOfReservations(item);
+    <h3>@app.GetActualName(ViewBag.Courts, k)</h3>
+    k++;
+
+    <table border="1">
+        <tr>
+            <td></td>
+            @foreach (Reservation_Time time in ViewBag.Times)
+            {
+                <td><span style="writing-mode: tb-rl">@time.Time</span></td>
+            }
+            <td><span style="writing-mode: tb-rl">Suma</span></td>
+        </tr>
+       @for (int j = 0; j < 7; j++)
+       {
            <tr>
+               @{ 
+                   String pom = app.getActualDay(j);
+               }
+               <td>@pom</td>
                @for(int i = 19;i<43;i++) {
                    <td>@item.allDays[j][i]</td>
                }
+               <td>@counts[j]</td>
            </tr>
        }
     </table>

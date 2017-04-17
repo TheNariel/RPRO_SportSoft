@@ -22,7 +22,7 @@ namespace RPRO_SportSoft.Application
             db = new DataClasses1DataContext(System.Configuration.ConfigurationManager.ConnectionStrings[Connection].ConnectionString);
         }
 
-        public Boolean Add(String n,int S_Id, int P_Id)
+        public Boolean Add(String n, int S_Id, int P_Id)
         {
             Boolean ret;
             if (!CheckIfTaken(n, S_Id))
@@ -32,7 +32,7 @@ namespace RPRO_SportSoft.Application
                 c.Sports_Id = S_Id;
                 db.Courts.InsertOnSubmit(c);
                 db.SubmitChanges();
-                
+
                 PriceList_CourtsApp pc = new PriceList_CourtsApp();
                 pc.Add(this.Get(n), P_Id);
                 ret = true;
@@ -96,7 +96,7 @@ namespace RPRO_SportSoft.Application
             bool ret = true;
             if (!CheckForRegistration(id))
             {
-               
+
                 List<PriceLists_Courts> list = db.PriceLists_Courts.Where(PriceLists_Courts => PriceLists_Courts.Courts_Id == id).ToList();
                 db.PriceLists_Courts.DeleteAllOnSubmit(list);
                 db.SubmitChanges();
@@ -107,13 +107,13 @@ namespace RPRO_SportSoft.Application
             else {
                 ret = false;
             }
-            
+
             return ret;
         }
 
         public bool CheckForRegistration(int id)
         {
-            return  db.Reservations.Where(Reservation => Reservation.Courts_Id == id).Any();
+            return db.Reservations.Where(Reservation => Reservation.Courts_Id == id).Any();
         }
 
         public Court Get(int id)
@@ -187,7 +187,7 @@ namespace RPRO_SportSoft.Application
                 }
                 ret.Add(resByDay);
             }
-            
+
             return ret;
         }
 
@@ -208,6 +208,26 @@ namespace RPRO_SportSoft.Application
             return courts.ElementAt(j).Name;
         }
 
+        public int[] GetSumOfReservations(ReservationByDay list)
+        {
+            int[] ret = new int[7];
+            ret[0] = sum(list.allDays[0]);
+            ret[1] = sum(list.allDays[1]);
+            ret[2] = sum(list.allDays[2]);
+            ret[3] = sum(list.allDays[3]);
+            ret[4] = sum(list.allDays[4]);
+            ret[5] = sum(list.allDays[5]);
+            ret[6] = sum(list.allDays[6]);
+            return ret;
+        }
+        private int sum(ushort[] list)
+        {
+            int ret = 0;
+            foreach (ushort u in list) {
+                ret += u;
+            }
+            return ret;
+        }
 
         public String getPriceList(int Id)
         {
@@ -232,6 +252,29 @@ namespace RPRO_SportSoft.Application
             return result;
         }
 
+        public String getActualDay(int i)
+        {
+            int pom = i % 7;
+            switch (pom)
+            {
+                case 0:
+                    return "Po";
+                case 1:
+                    return "Út";
+                case 2:
+                    return "St";
+                case 3:
+                    return "Čt";
+                case 4:
+                    return "Pá";
+                case 5:
+                    return "So";
+                case 6:
+                    return "Ne";
+                default:
+                    return "None";
+            }
+        }
     }
     public class CrateCurtGain
     {

@@ -335,6 +335,7 @@ namespace RPRO_SportSoft.Controllers
             
             List<CrateCurtGain> listCurtsGain = new List<CrateCurtGain>();
             IEnumerable<Court> courtList = sport.GetCourts(sport.GetId(sportList.ElementAt(0).ToString()));
+            ViewBag.Courts = courtList;
             foreach (Court c in courtList) {
                 int count = app.getCountOfReservations(c.Id, DateTime.ParseExact(ViewBag.DateFrom, "dd.MM.yyyy", ViewBag.InvariantCulture),
                 DateTime.ParseExact(ViewBag.DateTo, "dd.MM.yyyy", ViewBag.InvariantCulture));
@@ -359,6 +360,7 @@ namespace RPRO_SportSoft.Controllers
 
             List<CrateCurtGain> listCurtsGain = new List<CrateCurtGain>();
             IEnumerable<Court> courtList = sport.GetCourts(sport.GetId(Sport));
+            ViewBag.Courts = courtList;
             foreach (Court c in courtList)
             {
                 int count = app.getCountOfReservations(c.Id, DateTime.ParseExact(ViewBag.DateFrom, "dd.MM.yyyy", ViewBag.InvariantCulture),
