@@ -332,9 +332,7 @@ namespace RPRO_SportSoft.Controllers
             ViewBag.Sport = sportList.ElementAt(0).ToString();
             SportsApp sport = new SportsApp();
             ViewBag.Times = appR.GetListOfTimeReservations();
-
-            ViewBag.ListOfReserv = app.getListOfDays(sport.GetId(sportList.ElementAt(0).ToString()), ViewBag.dateFrom, ViewBag.dateTo);
-
+            
             List<CrateCurtGain> listCurtsGain = new List<CrateCurtGain>();
             IEnumerable<Court> courtList = sport.GetCourts(sport.GetId(sportList.ElementAt(0).ToString()));
             foreach (Court c in courtList) {
@@ -345,7 +343,8 @@ namespace RPRO_SportSoft.Controllers
                 listCurtsGain.Add(new CrateCurtGain(c.Name, count, gain));
             }
             ViewBag.CrateList = listCurtsGain;
-            return View(sport.GetCourts(sport.GetId(sportList.ElementAt(0).ToString())));
+            List<ReservationByDay> list = app.getListOfDays(sport.GetId(sportList.ElementAt(0).ToString()), ViewBag.dateFrom, ViewBag.dateTo);
+            return View(list);
         }
         [HttpPost]
         public ActionResult Stats(String Sport, String dateFrom, String dateTo)
@@ -357,7 +356,6 @@ namespace RPRO_SportSoft.Controllers
             ViewBag.Sport = Sport;
             SportsApp sport = new SportsApp();
             ViewBag.Times = appR.GetListOfTimeReservations();
-            ViewBag.ListOfReserv = app.getListOfDays(sport.GetId(Sport), dateFrom, dateTo);
 
             List<CrateCurtGain> listCurtsGain = new List<CrateCurtGain>();
             IEnumerable<Court> courtList = sport.GetCourts(sport.GetId(Sport));
@@ -370,8 +368,8 @@ namespace RPRO_SportSoft.Controllers
                 listCurtsGain.Add(new CrateCurtGain(c.Name, count, gain));
             }
             ViewBag.CrateList = listCurtsGain;
-
-            return View(sport.GetCourts(sport.GetId(Sport)));
+            List<ReservationByDay> list = app.getListOfDays(sport.GetId(Sport), dateFrom, dateTo);
+            return View(list);
         }
     }
 }

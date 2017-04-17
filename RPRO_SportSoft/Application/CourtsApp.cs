@@ -169,52 +169,39 @@ namespace RPRO_SportSoft.Application
             }
             return listOfReservation.Count;
         }
-        public List<List<List<Reservation>>> getListOfDays(int idSport, String dateFrom, String dateTo)
+        public List<ReservationByDay> getListOfDays(int idSport, String dateFrom, String dateTo)
         {
+            List<ReservationByDay> ret = new List<ReservationByDay>();
             CultureInfo provider = CultureInfo.InvariantCulture;
             DateTime dFrom = DateTime.ParseExact(dateFrom, "dd.MM.yyyy", provider);
             DateTime dTo = DateTime.ParseExact(dateTo, "dd.MM.yyyy", provider);
-            List<List<List<Reservation>>> ret = new List<List<List<Reservation>>>();
+            IEnumerable<Court> courts = new SportsApp().GetCourts(idSport);
             double countOfDays = (dTo - dFrom).TotalDays;
-            for (int i = 0; i <= countOfDays; i++)
-            {
-                DateTime pom = dFrom;
-                ret.Add(getListOfCourtsRes(idSport, pom.AddDays(i)));
-            }
-            return ret;
-        }
-        private List<List<Reservation>> getListOfCourtsRes(int idSport, DateTime date)
-        {
-            List<List<Reservation>> ret = new List<List<Reservation>>();
-            SportsApp sport = new SportsApp();
-            IEnumerable<Court> courts = sport.GetCourts(idSport);
             foreach (Court c in courts)
             {
-                ret.Add(getListOfReserv(c.Id, date));
-            }
-            return ret;
-        }
-        private List<Reservation> getListOfReserv(int idCourt, DateTime date)
-        {   
-            List<Reservation> ret = new List<Reservation>();
-            List<Reservation> pom = db.Reservations.Where(Reservation => Reservation.Courts_Id == idCourt).ToList();
-            foreach (Reservation r in pom)
-            {
-                if (r.Date == date)
+                ReservationByDay resByDay = new ReservationByDay();
+                for (int i = 0; i <= countOfDays; i++)
                 {
-                    ret.Add(r);
+                    DateTime pom = dFrom.AddDays(i);
+                    resByDay = addReservations(resByDay, c.Id, pom);
                 }
+                ret.Add(resByDay);
+            }
+            
+            return ret;
+        }
+
+        private ReservationByDay addReservations(ReservationByDay resByDay, int id, DateTime pom)
+        {
+            ReservationByDay ret = resByDay;
+            List<Reservation> res = db.Reservations.Where(Reservation => Reservation.Courts_Id == id && Reservation.Date == pom).ToList();
+            foreach (Reservation r in res)
+            {
+                ret.addReserv(r);
             }
             return ret;
         }
-        public Boolean Contains(List<Reservation> list, Reservation_Time time)
-        {
-            foreach (Reservation r in list)
-            {
-                if (r.Time_Id == time.Id) return true;
-            }
-            return false;
-        }
+
         public String GetActualName(IEnumerable<Court> courts, int j)
         {
             j = j % courts.Count();
@@ -256,6 +243,61 @@ namespace RPRO_SportSoft.Application
             this.name = name;
             this.count = count;
             this.gain = gain;
+        }
+    }
+    public class ReservationByDay
+    {
+        public int[][] allDays = new int[7][];
+        private int[] mon = new int[48];
+        private int[] tue = new int[48];
+        private int[] wed = new int[48];
+        private int[] thu = new int[48];
+        private int[] fri = new int[48];
+        private int[] sat = new int[48];
+        private int[] sun = new int[48];
+        public ReservationByDay() {
+            for (int i = 1; i <= 48;) {
+                mon[i] = 0;
+                tue[i] = 0;
+                wed[i] = 0;
+                thu[i] = 0;
+                fri[i] = 0;
+                sat[i] = 0;
+                sun[i] = 0;
+            }
+            allDays[0] = mon;
+            allDays[1] = tue;
+            allDays[2] = wed;
+            allDays[3] = thu;
+            allDays[4] = fri;
+            allDays[5] = sat;
+            allDays[6] = sun;
+        }
+        public void addReserv(Reservation r) {
+            switch (r.Date.DayOfWeek.ToString())
+            {
+                case "Monday":
+                    this.allDays[0][r.Time_Id] += 1;
+                    break;
+                case "Tuesday":
+                    this.allDays[1][r.Time_Id] += 1;
+                    break;
+                case "Wednesday":
+                    this.allDays[2][r.Time_Id] += 1;
+                    break;
+                case "Thursday":
+                    this.allDays[3][r.Time_Id] += 1;
+                    break;
+                case "Friday":
+                    this.allDays[4][r.Time_Id] += 1;
+                    break;
+                case "Saturday":
+                    this.allDays[5][r.Time_Id] += 1;
+                    break;
+                case "Sunday":
+                    this.allDays[6][r.Time_Id] += 1;
+                    break;
+            }
         }
     }
 

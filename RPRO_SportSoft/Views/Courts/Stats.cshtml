@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RPRO_SportSoft.Court>
+﻿@model List<ReservationByDay>
 @using RPRO_SportSoft.Application;
 
 @{
@@ -42,70 +42,34 @@
             @item.name
         </td>
         <td>
-            @item.count
+            @item.count.ToString("F")
         </td>
         <td>
-            @item.gain
+            @item.gain.ToString("F")
         </td>
         <td>
             @{
                 double mean = item.gain / item.count;
                 if (Double.IsNaN(mean)) {mean = 0;}
              }
-            @mean Kč
+            @mean.ToString("F") Kč
         </td>
     </tr>
 }
 
 </table>
 
- @{ 
-     List<List<List<Reservation>>> ListOfDays = new List<List<List<Reservation>>>();
-     ListOfDays = ViewBag.ListOfReserv;
-     List<Reservation_Time> times = new List<Reservation_Time>();
-     times = ViewBag.Times;
-     int i = 0;
-     int j = 0;
- }
-@foreach (List<List<Reservation>> ListOfCourtsRes in ListOfDays)
+ 
+@foreach (ReservationByDay item in Model)
 {
-    DateTime d = DateTime.ParseExact(ViewBag.DateFrom, "dd.MM.yyyy", ViewBag.InvariantCulture);
-    d = d.AddDays(i);
-    <div>Den: @d.ToString("dd.MM.yyyy")</div>
-    i++;
     <table border="0">
-        <tr>
-            <td>
-            </td>
-        @foreach (Reservation_Time t in times)
-                {
-                <td style="writing-mode:sideways-lr">@t.Time</td>
-        }
-            </tr>
-        @foreach (List<Reservation> ListOfReserv in ListOfCourtsRes)
-        {
-            <tr>
-                <td>
-                    @{
-                        @app.GetActualName(Model, j);
-                        j++;
-                     }
-                </td>
-                @foreach (Reservation_Time time in times)
-                {
-                    if (app.Contains(ListOfReserv, time))
-                    {
-                        <td style="background-color: red;"></td>
-                    }
-                    else
-                    {
-                        <td  style="background-color:#33FF00;"></td>
-                    }
-                    
-                }
-            </tr>
-        }
-
+       @for(int j = 0; j < 7; j++) {
+           <tr>
+               @for(int i = 19;i<43;i++) {
+                   <td>@item.allDays[j][i]</td>
+               }
+           </tr>
+       }
     </table>
     <br/>
     <br/>
