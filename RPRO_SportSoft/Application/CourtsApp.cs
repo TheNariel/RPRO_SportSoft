@@ -247,24 +247,15 @@ namespace RPRO_SportSoft.Application
     }
     public class ReservationByDay
     {
-        public int[][] allDays = new int[7][];
-        private int[] mon = new int[48];
-        private int[] tue = new int[48];
-        private int[] wed = new int[48];
-        private int[] thu = new int[48];
-        private int[] fri = new int[48];
-        private int[] sat = new int[48];
-        private int[] sun = new int[48];
+        public ushort[][] allDays = new ushort[7][];
+        private ushort[] mon = new ushort[48];
+        private ushort[] tue = new ushort[48];
+        private ushort[] wed = new ushort[48];
+        private ushort[] thu = new ushort[48];
+        private ushort[] fri = new ushort[48];
+        private ushort[] sat = new ushort[48];
+        private ushort[] sun = new ushort[48];
         public ReservationByDay() {
-            for (int i = 1; i <= 48;) {
-                mon[i] = 0;
-                tue[i] = 0;
-                wed[i] = 0;
-                thu[i] = 0;
-                fri[i] = 0;
-                sat[i] = 0;
-                sun[i] = 0;
-            }
             allDays[0] = mon;
             allDays[1] = tue;
             allDays[2] = wed;
