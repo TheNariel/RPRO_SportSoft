@@ -269,5 +269,12 @@ namespace RPRO_SportSoft.Controllers
             }
             return true;
         }
+
+        public ActionResult ExtractOfPriceLists(int id)
+        {
+            PriceList_CourtsApp appL = new PriceList_CourtsApp();
+            ViewBag.Court = appC.Get(id).Name;
+            return View(appL.ListOfPrices(id));
+        }
     }
 }

@@ -276,63 +276,6 @@ namespace RPRO_SportSoft.Application
             }
         }
     }
-    public class CrateCurtGain
-    {
-        public String name;
-        public int count;
-        public double gain;
-        public CrateCurtGain(String name, int count, double gain)
-        {
-            this.name = name;
-            this.count = count;
-            this.gain = gain;
-        }
-    }
-    public class ReservationByDay
-    {
-        public ushort[][] allDays = new ushort[7][];
-        private ushort[] mon = new ushort[48];
-        private ushort[] tue = new ushort[48];
-        private ushort[] wed = new ushort[48];
-        private ushort[] thu = new ushort[48];
-        private ushort[] fri = new ushort[48];
-        private ushort[] sat = new ushort[48];
-        private ushort[] sun = new ushort[48];
-        public ReservationByDay() {
-            allDays[0] = mon;
-            allDays[1] = tue;
-            allDays[2] = wed;
-            allDays[3] = thu;
-            allDays[4] = fri;
-            allDays[5] = sat;
-            allDays[6] = sun;
-        }
-        public void addReserv(Reservation r) {
-            switch (r.Date.DayOfWeek.ToString())
-            {
-                case "Monday":
-                    this.allDays[0][r.Time_Id] += 1;
-                    break;
-                case "Tuesday":
-                    this.allDays[1][r.Time_Id] += 1;
-                    break;
-                case "Wednesday":
-                    this.allDays[2][r.Time_Id] += 1;
-                    break;
-                case "Thursday":
-                    this.allDays[3][r.Time_Id] += 1;
-                    break;
-                case "Friday":
-                    this.allDays[4][r.Time_Id] += 1;
-                    break;
-                case "Saturday":
-                    this.allDays[5][r.Time_Id] += 1;
-                    break;
-                case "Sunday":
-                    this.allDays[6][r.Time_Id] += 1;
-                    break;
-            }
-        }
-    }
+
 
 }

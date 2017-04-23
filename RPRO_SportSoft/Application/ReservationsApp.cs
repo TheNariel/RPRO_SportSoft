@@ -164,35 +164,5 @@ namespace RPRO_SportSoft.Application
         }
 
     }
-    public class Intervals
-    {
-        public List<String> listString;
-        public Intervals() {
-            this.listString = new List<string>();
-            listString.Add("0:30");
-            listString.Add("1:00");
-            listString.Add("1:30");
-            listString.Add("2:00");
-            listString.Add("2:30");
-            listString.Add("3:00");
-            listString.Add("3:30");
-            listString.Add("4:00");
-            listString.Add("4:30");
-            listString.Add("5:00");
-            listString.Add("5:30");
-            listString.Add("6:00");
-            listString.Add("6:30");
-            listString.Add("7:00");
-            listString.Add("7:30");
-            listString.Add("8:00");
-            listString.Add("8:30");
-            listString.Add("9:00");
-            listString.Add("9:30");
-            listString.Add("10:00");
-            listString.Add("10:30");
-            listString.Add("11:00");
-            listString.Add("11:30");
-            listString.Add("12:00");
-        }
-    }
+    
 }

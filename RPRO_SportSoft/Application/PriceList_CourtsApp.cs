@@ -41,5 +41,23 @@ namespace RPRO_SportSoft.Application
             db.SubmitChanges();
             return true;
         }
+        public List<PriceLists_Courts> toList(int CourtId)
+        {
+            return db.PriceLists_Courts.Where(PriceLists_Courts => PriceLists_Courts.Courts_Id == CourtId).OrderByDescending(PriceLists_Courts => PriceLists_Courts.Date).ToList();
+        }
+
+        public List<CratePriceLists> ListOfPrices(int CourtId)
+        {
+            List<CratePriceLists> ret = new List<CratePriceLists>();
+            List<PriceLists_Courts> list = toList(CourtId);
+            PriceListsApp app = new PriceListsApp();
+            foreach (PriceLists_Courts p in list)
+            {
+                PriceList pl = app.GetListId(p.PriceLists_Id);
+                CratePriceLists crate = new CratePriceLists(p.Date,pl.Description, pl.Price);
+                ret.Add(crate);
+            }
+            return ret;
+        }
     }
 }

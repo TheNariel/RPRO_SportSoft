@@ -209,6 +209,7 @@
     <Content Include="Views\Main\Rules.cshtml" />
     <Content Include="Views\Main\SendEmail.cshtml" />
     <Content Include="Views\Main\Users.cshtml" />
+    <Content Include="Views\Sports\ExtractOfPriceLists.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

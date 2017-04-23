@@ -1,0 +1,26 @@
+﻿@model List<CratePriceLists>
+
+@{
+    ViewBag.Title = "Výpis ceníků";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Výpis ceníků pro @ViewBag.Court</h2>
+
+<table class="table">
+    <tr>
+        <td>Datum platnosti</td>
+        <td>Název ceníku</td>
+        <td>Cena</td>
+    </tr>
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.date</td>
+        <td>@item.description</td>
+        <td>@item.price</td>
+    </tr>
+}
+
+</table>
+
+<a href="javascript:history.go(-1)">Zpět</a>

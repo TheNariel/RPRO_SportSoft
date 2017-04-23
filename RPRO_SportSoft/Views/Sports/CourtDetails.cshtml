@@ -105,6 +105,8 @@
                     }
                 }
                 @Html.ActionLink("Upravit", "Edit", "Courts", new { id = item.Id }, null)
+                |
+                @Html.ActionLink("Výpis ceníků", "ExtractOfPriceLists", new { id = item.Id })
             </td>
         </tr>
                 }
