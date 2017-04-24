@@ -42,7 +42,7 @@
 }
 @foreach (CrateCurtGain item in ViewBag.CrateList)
 {
-    <tr>
+    <tr class="default">
         <td>
             @item.name
         </td>
@@ -84,7 +84,7 @@
         </tr>
        @for (int j = 0; j < 7; j++)
        {
-           <tr>
+           <tr class="default">
                @{ 
                    String pom = app.getActualDay(j);
                }
