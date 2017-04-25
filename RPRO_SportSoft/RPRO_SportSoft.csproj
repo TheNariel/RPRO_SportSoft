@@ -211,7 +211,6 @@
     <Content Include="Views\Main\Users.cshtml" />
     <Content Include="Views\Sports\ExtractOfPriceLists.cshtml" />
     <Content Include="Views\Courts\IndexRMaster.cshtml" />
-    <Content Include="Views\Sports\DetailsTable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
