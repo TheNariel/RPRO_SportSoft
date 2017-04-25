@@ -30,14 +30,16 @@ public class ReservationFormated
     public int courtId;
     public int price;
     public String time;
+    public String email;
     public String ids;
-    public ReservationFormated(DateTime d, int cId, int price, String time,String ids)
+    public ReservationFormated(DateTime d, int cId, int price, String time,String ids,String email)
     {
         this.date = d;
         this.courtId = cId;
         this.price = price;
         this.time = time;
         this.ids = ids;
+        this.email = email;
     }
 }
 public static class F

@@ -29,7 +29,10 @@ namespace RPRO_SportSoft.Application
         {
             return db.Reservations.Where(Reservation => Reservation.User_Email == email && Reservation.Date.CompareTo(System.DateTime.Now) >= 0).OrderBy(Reservation => Reservation.Date).ThenBy(Reservation => Reservation.Courts_Id).ThenBy(Reservation => Reservation.Time_Id).ToList();
         }
-
+        public IEnumerable<Reservation> GetListFuture()
+        {
+            return db.Reservations.Where(Reservation =>Reservation.Date.CompareTo(System.DateTime.Now) >= 0).OrderBy(Reservation => Reservation.Date).ThenBy(Reservation => Reservation.Courts_Id).ThenBy(Reservation => Reservation.Time_Id).ToList();
+        }
         public List<int> GetListId()
         {
             List<int> a = new List<int>();

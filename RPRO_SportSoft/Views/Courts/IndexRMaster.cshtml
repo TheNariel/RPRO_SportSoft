@@ -1,0 +1,84 @@
+﻿@model  List<ReservationFormated>
+
+@{
+    ViewBag.Title = "Výpis rezervací";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/toastr.js"></script>
+<h2>Výpis rezervací</h2>
+@if (TempData["MessageCancelReservation"] != null)
+{
+    <script language="javascript">
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.success('@TempData["MessageCancelReservation"]');
+    </script>
+}
+
+<h3>Nadcházející rezervace</h3>
+<table class="table">
+    <tr class="default">
+        <th>
+            Datum
+        </th>
+        <th>
+            Čas
+        </th>
+        <th>
+            Kurt
+        </th>
+        <th>
+            Cena
+        </th>
+        <th>
+            email
+        </th>
+        <th>
+            
+        </th>
+   </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="default">
+            <td>
+                @{ 
+                    DateTime date = item.date;
+                }
+                @date.ToString("dd.MM.yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.time)
+            </td>
+            <td>
+                @ViewBag.MapedCourts[item.courtId]
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price) Kč
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.ActionLink("Zrušit", "CancelReservation", new { d = item.date, cId = item.courtId, price = item.price, time = item.time, ids = item.ids,email= Session["Logged"] })
+            </td>
+
+         </tr>
+    }
+
+</table>

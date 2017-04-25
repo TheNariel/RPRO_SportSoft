@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ECan" xml:space="preserve">
+    <value>Vážený zákazniku,
+Vaše rezervace kurtu {0} dne {1} v {2} na našem portále byla zrušena.
+
+Děkujeme.</value>
+  </data>
   <data name="EForgPass" xml:space="preserve">
     <value>Vážený zákazniku,
 z Vašeho účtu na http://sportsoft.azurewebsites.net/ byl odeslán požadavek na změnu hesla. 
@@ -129,7 +135,7 @@ Po přihlášení si toto heslo, prosím, změňte.
 Děkujeme.</value>
   </data>
   <data name="EFrom" xml:space="preserve">
-    <value>noreply@gmail.com</value>
+    <value>noreplysportsoft@gmail.com</value>
   </data>
   <data name="EHost" xml:space="preserve">
     <value>smtp.gmail.com</value>
@@ -154,7 +160,7 @@ Děkujeme.</value>
     <value>Vážený zákazniku,
 Vaše rezervace kurtu {0} dne {1} v {2} na našem portále byla úspěšně vytvořena.
 Rezervace proběhla pro {3} týden/týdnů.
-Rezervaci můžete zrušit nejpozději 24 hodin před začátkem na webu http://sportsoft.azurewebsites.net/.
+Rezervaci můžete zrušit nejpozději 12 hodin před začátkem na webu http://sportsoft.azurewebsites.net/.
 
 Děkujeme.</value>
   </data>
