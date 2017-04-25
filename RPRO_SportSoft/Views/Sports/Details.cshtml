@@ -42,7 +42,7 @@
             {
                 @m.ToString()
                 @p.ToString()
-                <input class="myInput" name="count" size="10" type="number" min="1" value="@ViewBag.Count" oninput="submitform()" />
+                <input class="myInput" name="count" size="10" type="number" min="1" value="@ViewBag.Count" oninput="submitdateform()" />
             }
             else
             {
@@ -51,71 +51,9 @@
     </div>
 
 }
-
-<table border="0">
-    @foreach (var item in Model.list)
-    {
-        <tbody class="reserv">
-            <tr>
-                <td colspan="12"> <h3 style="text-align:left">@Html.DisplayFor(modelItem => item.Name)</h3></td>
-            </tr>
-            <tr>
-                @for (int i = 0; i < ViewBag.Times.Length; i += 2)
-                {
-                    foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
-                    {
-                        if (pairs.Key == item.Name)
-                        { bool taken = false;
-                            foreach (int p in pairs.Value)
-                            {
-                                if (p == ViewBag.Times[i].Id)
-                                {
-                                    taken = true;
-                                }
-                            }
-                            if (taken)
-                            {
-                                <td style="background-color: red;">@ViewBag.Times[i].Time</td>
-                            }
-                            else
-                            {
-                                <td style="background-color:#33FF00; cursor: pointer;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = ViewBag.Times[i].Time, sport = item.Name, date = DateTime.ParseExact((String)ViewBag.Date,"dd.MM.yyyy", ViewBag.InvariantCulture).ToBinary(), user = login, weekCount = @ViewBag.Count, radio = @ViewBag.Radio }))'">@ViewBag.Times[i].Time</td>
-                            }
-                        }
-                    }
-                }
-            </tr>
-            <tr>
-                @for (int i = 1; i < ViewBag.Times.Length; i += 2)
-                {
-                    foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
-                    {
-                        if (pairs.Key == item.Name)
-                        {
-                            bool taken = false;
-                            foreach (int p in pairs.Value)
-                            {
-                                if (p == ViewBag.Times[i].Id)
-                                {
-                                    taken = true;
-                                }
-                            }
-                            if (taken)
-                            {
-                                <td style="background-color: red;">@ViewBag.Times[i].Time</td>
-                            }
-                            else
-                            {
-                                <td style="background-color:#33FF00; cursor: pointer;" onclick="location.href = '@(Url.Action("Reservation", "Sports", new { id = item.Id, time = ViewBag.Times[i].Time, sport = item.Name, date = DateTime.ParseExact((String)ViewBag.Date,"dd.MM.yyyy", ViewBag.InvariantCulture).ToBinary(), user = login, weekCount = @ViewBag.Count, radio = @ViewBag.Radio }))'">@ViewBag.Times[i].Time</td>
-                            }
-                        }
-                    }
-                }
-            </tr>
-        </tbody>
-            }
-</table>
-
+<div id="DTable">
+    @{Html.RenderPartial("DetailsTable", Model);}
+</div>
 <br />
 @Html.ActionLink("Zpět", "Index")
 
@@ -127,8 +65,8 @@
     });
     $("#datepicker").datepicker({ minDate: 0 });
 
-    function submitform() {
-        $('form').submit();
+    function submitdateform() {
+        $("#DTable").load('@(Url.Action("ChangeActive", "Main", null, Request.Url.Scheme))?Email=' + email);
     }
 </script>
 
