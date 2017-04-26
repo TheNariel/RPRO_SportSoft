@@ -21,7 +21,6 @@
 }
 
 <h2>Kurty sportoviště:  @Html.DisplayFor(modelItem => Model.sportName)</h2>
-@DateTime.Now.AddHours(4)
 @using (Html.BeginForm("Details", "Sports", FormMethod.Get))
 {
     String m = "\xa0\xa0";
@@ -75,11 +74,12 @@
                                 }
                             }
                             String date = ViewBag.Date;
-                            var dateString = DateTime.Now.ToString("HH:mm");
+                            var dateString = DateTime.Now.AddHours(2).ToString("HH:mm");
                             var usertime = DateTime.ParseExact(dateString, "HH:mm", ViewBag.InvariantCulture);
                             DateTime dateOfRes = DateTime.ParseExact(date, "dd.MM.yyyy", ViewBag.InvariantCulture);
+
                             DateTime resTime = DateTime.ParseExact(ViewBag.Times[i].Time, "HH:mm", ViewBag.InvariantCulture);
-                            if (dateOfRes < DateTime.Today || (date.Equals(DateTime.Now.AddHours(2).ToString("dd.MM.yyyy")) && (resTime < usertime)))
+                            if (dateOfRes < DateTime.Today || (date.Equals(DateTime.Now.ToString("dd.MM.yyyy")) && (resTime < usertime)))
                             {
                                 <td style="background-color: silver;">@ViewBag.Times[i].Time</td>
                             }
@@ -111,12 +111,12 @@
                                 }
                             }
                             String date = ViewBag.Date;
-                            var dateString = DateTime.Now.ToString("HH:mm");
+                            var dateString = DateTime.Now.AddHours(2).ToString("HH:mm");
                             var usertime = DateTime.ParseExact(dateString, "HH:mm", ViewBag.InvariantCulture);
                             DateTime dateOfRes = DateTime.ParseExact(date, "dd.MM.yyyy", ViewBag.InvariantCulture);
                             DateTime resTime = DateTime.ParseExact(ViewBag.Times[i].Time, "HH:mm", ViewBag.InvariantCulture);
 
-                            if (dateOfRes < DateTime.Today || (date.Equals(DateTime.Now.AddHours(2).ToString("dd.MM.yyyy")) && (resTime < usertime)))
+                            if (dateOfRes < DateTime.Today || (date.Equals(DateTime.Now.ToString("dd.MM.yyyy")) && (resTime < usertime)))
                             {
                                 <td style="background-color: silver;">@ViewBag.Times[i].Time</td>
                             }
