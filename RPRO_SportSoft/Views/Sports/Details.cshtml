@@ -75,11 +75,11 @@
                                 }
                             }
                             String date = ViewBag.Date;
-                            //var time = ViewBag.Times[i].Time;
-                            //var resTime = DateTime.Parse(time);
-                            //var dateString = DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss");
-                            //var usertime = DateTime.Parse(dateString);
-                            if (date.Equals(DateTime.Now.ToString("dd.MM.yyyy")) /*&& (resTime < usertime)*/)
+                            var dateString = DateTime.Now.ToString("HH:mm");
+                            var usertime = DateTime.ParseExact(dateString, "HH:mm", ViewBag.InvariantCulture);
+                            DateTime dateOfRes = DateTime.ParseExact(date, "dd.MM.yyyy", ViewBag.InvariantCulture);
+                            DateTime resTime = DateTime.ParseExact(ViewBag.Times[i].Time, "HH:mm", ViewBag.InvariantCulture);
+                            if (dateOfRes < DateTime.Today || (date.Equals(DateTime.Now.ToString("dd.MM.yyyy")) && (resTime < usertime)))
                             {
                                 <td style="background-color: silver;">@ViewBag.Times[i].Time</td>
                             }
@@ -111,11 +111,12 @@
                                 }
                             }
                             String date = ViewBag.Date;
-                            //var time = ViewBag.Times[i].Time;
-                            //var resTime = DateTime.Parse(time);
-                            //var dateString = DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss");
-                            //var usertime = DateTime.Parse(dateString);
-                            if (date.Equals(DateTime.Now.ToString("dd.MM.yyyy")) /*&& (resTime < usertime)*/)
+                            var dateString = DateTime.Now.ToString("HH:mm");
+                            var usertime = DateTime.ParseExact(dateString, "HH:mm", ViewBag.InvariantCulture);
+                            DateTime dateOfRes = DateTime.ParseExact(date, "dd.MM.yyyy", ViewBag.InvariantCulture);
+                            DateTime resTime = DateTime.ParseExact(ViewBag.Times[i].Time, "HH:mm", ViewBag.InvariantCulture);
+
+                            if (dateOfRes < DateTime.Today || (date.Equals(DateTime.Now.ToString("dd.MM.yyyy")) && (resTime < usertime)))
                             {
                                 <td style="background-color: silver;">@ViewBag.Times[i].Time</td>
                             }
