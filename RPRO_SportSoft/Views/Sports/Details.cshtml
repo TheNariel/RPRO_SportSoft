@@ -65,7 +65,8 @@
                     foreach (KeyValuePair<string, List<int>> pairs in ViewBag.Reservations)
                     {
                         if (pairs.Key == item.Name)
-                        { bool taken = false;
+                        {
+                            bool taken = false;
                             foreach (int p in pairs.Value)
                             {
                                 if (p == ViewBag.Times[i].Id)
@@ -73,7 +74,16 @@
                                     taken = true;
                                 }
                             }
-                            if (taken)
+                            String date = ViewBag.Date;
+                            var time = ViewBag.Times[i].Time;
+                            var resTime = DateTime.Parse(time);
+                            var dateString = DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss");
+                            var usertime = DateTime.Parse(dateString);
+                            if (date.Equals(DateTime.Now.ToString("dd.MM.yyyy")) && (resTime < usertime))
+                            {
+                                <td style="background-color: silver;">@ViewBag.Times[i].Time</td>
+                            }
+                            else if (taken)
                             {
                                 <td style="background-color: red;">@ViewBag.Times[i].Time</td>
                             }
@@ -100,7 +110,16 @@
                                     taken = true;
                                 }
                             }
-                            if (taken)
+                            String date = ViewBag.Date;
+                            var time = ViewBag.Times[i].Time;
+                            var resTime = DateTime.Parse(time);
+                            var dateString = DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss");
+                            var usertime = DateTime.Parse(dateString);
+                            if (date.Equals(DateTime.Now.ToString("dd.MM.yyyy")) && (resTime < usertime))
+                            {
+                                <td style="background-color: silver;">@ViewBag.Times[i].Time</td>
+                            }
+                            else if (taken)
                             {
                                 <td style="background-color: red;">@ViewBag.Times[i].Time</td>
                             }
