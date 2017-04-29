@@ -203,10 +203,14 @@ namespace RPRO_SportSoft.Controllers
             UsersApp u = new UsersApp();
             if (u.CheckIfTaken(e))
             {
-                String newPass = app.ForgottenPass(e);
+                if (!u.CheckIfOwner(e))
+                {
+   String newPass = app.ForgottenPass(e);
                 EmailApp Eapp = new EmailApp();
                 String body = String.Format(Properties.Resources.EForgPass, newPass);
                 Eapp.SendEmail("Zapomenuté heslo", body, e);
+                }
+             
             }
             ViewBag.MessageForgottenPass = "Pokud je e-mail registrován, bylo zasláno nové heslo.";
             return View();
