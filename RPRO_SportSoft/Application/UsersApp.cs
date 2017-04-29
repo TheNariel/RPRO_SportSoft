@@ -72,6 +72,11 @@ namespace RPRO_SportSoft.Application
             return db.Users.Where(User => User.Email == e).Any();
 
         }
+        public Boolean CheckIfOwner(String e)
+        {
+            return db.Users.Where(User => User.Email == e).First().Role.Equals("Owner");
+
+        }
 
         public Boolean CheckForWhiteSpaces(String name, String surname)
         {
