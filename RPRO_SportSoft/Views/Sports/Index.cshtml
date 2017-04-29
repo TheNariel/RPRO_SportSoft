@@ -91,7 +91,7 @@
                     </td>
                     <td style="vertical-align:middle">
                         @*  @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
-                        @Html.ActionLink("Rezervace", "Details", new { id = item.Id, date = (object)ViewBag.Date, count = 1, radio = "one" })
+                        @Html.ActionLink("Rezervace", "Details", new { id = item.Id, date = (object)ViewBag.Date, date2 = (object)ViewBag.Date, radio = "one" })
                         |
                         @Html.ActionLink("Správa kurtů", "CourtDetails", new { id = item.Id })
 
@@ -130,7 +130,7 @@
                                                         <h3>@item.Name</h3>
                                                     </td>*@
                                                 <td>
-                                                    <a href="@Url.Action("Details", new { id = item.Id,date = (object)ViewBag.Date, count=1, radio = "one" })">
+                                                    <a href="@Url.Action("Details", new { id = item.Id,date = (object)ViewBag.Date, date2 = (object)ViewBag.Date, radio = "one" })">
                                                         <img src='@imgsrc' width="200" height="200" />
                                                     </a>
                                                     <h3>@item.Name</h3>

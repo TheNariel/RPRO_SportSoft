@@ -25,8 +25,8 @@
         @Html.Hidden("time", (object)ViewBag.Time)
         @Html.Hidden("date", (object)ViewBag.DateBinary)
         @Html.Hidden("user", (object)ViewBag.User)
-        @Html.Hidden("weekCount", (object)ViewBag.Count)
-        Počet opakování rezervace: @ViewBag.Count 
+        @Html.Hidden("date2", (object)ViewBag.DateTo)
+        Rezervace do: @DateTime.FromBinary(ViewBag.DateTo).ToShortDateString()
         <br /><br />
        <input type="submit" value="Rezervovat" class="btn btn-default"/>
     </div>

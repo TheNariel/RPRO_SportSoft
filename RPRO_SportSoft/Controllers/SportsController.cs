@@ -22,18 +22,12 @@ namespace RPRO_SportSoft.Controllers
         }
 
         // GET: Sports/Details/5
-        public ActionResult Details(int id,String date, int count, String radio)
+        public ActionResult Details(int id,String date, String date2, String radio)
         {
-            int weekCount = 0;
             if (radio.Equals("one"))
             {
-                weekCount = 1;
-            }
-            else if (radio.Equals("more")) {
-                if (count <= 0) count = 1;
-                weekCount = count;
-            }
-            
+                date2 = date;
+            }     
             var Reservations = new Dictionary<string, List<int>>();
             IEnumerable<Court> courts = app.GetCourts(id);
             foreach(Court court in courts)
@@ -47,14 +41,33 @@ namespace RPRO_SportSoft.Controllers
             String[] d = date.Split('.');
             String dateCons = d[0] + ". " + d[1] + ". " + d[2];
             int plusDays = 0;
-            for (int j = 0; j < weekCount; j++) {
+            DateTime dateFrom = DateTime.ParseExact(date, "dd.MM.yyyy", provider);
+            DateTime dateTo = DateTime.ParseExact(date2, "dd.MM.yyyy", provider);
+            DateTime datePom = new DateTime();
+            datePom = dateFrom;
+            if (dateFrom  < DateTime.Today) {
+                dateFrom = DateTime.ParseExact(DateTime.Today.ToString(), "dd.MM.yyyy", provider);
+            }
+            if (dateTo < DateTime.Today)
+            {
+                dateTo = DateTime.ParseExact(DateTime.Today.ToString(), "dd.MM.yyyy", provider); ;
+            }
+            if (dateFrom > dateTo) {
+                dateFrom = dateTo;
+                dateTo = datePom;
+                datePom = dateFrom;
+            }
+            do
+            {
                 foreach (var c in courts)
                 {
                     Reservations[c.Name].AddRange(appR.GetReservations(c.Id, DateTime.ParseExact(dateCons, dateformat, provider).AddDays(plusDays)));
                 }
                 plusDays += 7;
-            }
-            ViewBag.Count = count;          
+                datePom = dateFrom.AddDays(plusDays);
+            } while (datePom <= dateTo);
+
+            ViewBag.DateTo = dateTo.ToString("dd.MM.yyyy");          
             ViewBag.Reservations = Reservations;
             ViewBag.Times = times.ToArray();
             ViewBag.Date = date;
@@ -193,7 +206,7 @@ namespace RPRO_SportSoft.Controllers
             }
         }
 
-        public ActionResult Reservation(int id, String sport, String time, Int64 date, String user, int weekCount, String radio)
+        public ActionResult Reservation(int id, String sport, String time, Int64 date, String user, Int64 date2, String radio)
         {
             ViewBag.Sport = sport;
             ViewBag.Id = id;
@@ -202,44 +215,47 @@ namespace RPRO_SportSoft.Controllers
             ViewBag.DateString = DateTime.FromBinary(date).ToString("dd.MM.yyyy");
             ViewBag.User = user;
             if (radio.Equals("one")) {
-                weekCount = 1;
+                date2 = date;
             }
-            ViewBag.Count = (int)weekCount;
+            ViewBag.DateTo = date2;
             ViewBag.Radio = radio;
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult Reservation(int id, String time, Int64 date, String user, String number, int weekCount)
+        public ActionResult Reservation(int id, String time, Int64 date, String user, String number, Int64 date2)
         {
             int plusDays = 0;
             int timeIndex = appR.GetNumber(number);
             int timeInt = appR.GetIdTime(time);
+            DateTime dateFrom = DateTime.FromBinary(date);
+            DateTime dateTo = DateTime.FromBinary(date2);
             List<Boolean> listOfBools = new List<bool>();
             try
             {
-                for (int j = 0; j < weekCount; j++)
+                do
                 {
                     for (int i = 0; i <= timeIndex; i++)
                     {
                         listOfBools.Add(appR.CheckForReservations(id, DateTime.FromBinary(date).AddDays(plusDays), timeInt + i));
                     }
                     plusDays += 7;
-                }   
+                } while (dateFrom.AddDays(plusDays) <= dateTo);
                 if (CheckTrue(listOfBools))
                 {
                     plusDays = 0;
-                    for (int j = 0; j < weekCount; j++)
+                    dateFrom = DateTime.FromBinary(date);
+                    do
                     {
                         for (int i = 0; i <= timeIndex; i++)
                         {
                             appR.Add(id, DateTime.FromBinary(date).AddDays(plusDays), timeInt + i, user);
                         }
                         plusDays += 7;
-                    }
+                    } while (dateFrom.AddDays(plusDays) <= dateTo);
                     EmailApp appE = new EmailApp();
-                    String body = String.Format(Properties.Resources.ERes,appC.Get(id).Name,DateTime.FromBinary(date).ToShortDateString(),time, weekCount);
+                    String body = String.Format(Properties.Resources.ERes,appC.Get(id).Name,DateTime.FromBinary(date).ToShortDateString(),time, DateTime.FromBinary(date2).ToString("dd.MM.yyyy"));
                     appE.SendEmail("Rezervace", body, user);
 
                     TempData["MessageCreateReservation"] = "Kurt byl rezervován.";

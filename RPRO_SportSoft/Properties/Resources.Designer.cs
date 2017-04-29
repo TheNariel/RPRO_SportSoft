@@ -150,7 +150,7 @@ namespace RPRO_SportSoft.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Vážený zákazniku,
         ///Vaše rezervace kurtu {0} dne {1} v {2} na našem portále byla úspěšně vytvořena.
-        ///Rezervace proběhla pro {3} týden/týdnů.
+        ///Rezervace proběhla do {3}.
         ///Rezervaci můžete zrušit nejpozději 12 hodin před začátkem na webu http://sportsoft.azurewebsites.net/.
         ///
         ///Děkujeme..
