@@ -217,6 +217,7 @@ namespace RPRO_SportSoft.Controllers
             if (radio.Equals("one")) {
                 date2 = date;
             }
+            ViewBag.DateToString = DateTime.FromBinary(date2).ToString("dd.MM.yyyy");
             ViewBag.DateTo = date2;
             ViewBag.Radio = radio;
 
