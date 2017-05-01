@@ -18,7 +18,7 @@
         Datum: @date.ToString("dd.MM.yyyy") <br />
         Čas: @ViewBag.reservation.time <br />
         Kurt: @ViewBag.MapedCourts[ViewBag.reservation.courtId] <br />
-        Cena za půl hodiny: @ViewBag.reservation.price Kč<br />
+        Cena: @ViewBag.reservation.price Kč<br />
          @Html.Hidden("ids", id)
          @Html.Hidden("email", email)
     </p>
