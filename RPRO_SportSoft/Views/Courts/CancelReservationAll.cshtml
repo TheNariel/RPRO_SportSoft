@@ -8,7 +8,7 @@
 
 <h3>Opravdu chcete zrušit rezervaci ?</h3>
 <div>
-    @using (Html.BeginForm("CancelReservation", "Courts", FormMethod.Post))
+    @using (Html.BeginForm("CancelReservationAll", "Courts", FormMethod.Post))
     {<p>
     @{
         DateTime date = ViewBag.reservation.date;

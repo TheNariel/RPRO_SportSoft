@@ -313,21 +313,41 @@ namespace RPRO_SportSoft.Controllers
 
             return ret;
         }
-        public ActionResult CancelReservation(DateTime d, int cId, int price, String time, String ids,String email)
+        public ActionResult EditReservation( String ids,String time)
+        {
+            List<Reservation> res = new List<Reservation>();
+            String[] idField = ids.Split('\\');
+            var MapedTime = new Dictionary<int, string>();
+            foreach (String id in idField)
+            {
+                Reservation re = appR.getReservation(int.Parse(id));
+                res.Add(re);
+                MapedTime[re.Time_Id]= appR.getTime(re.Time_Id);
+            }
+
+            ViewBag.MapedTime = MapedTime;
+            ViewBag.Date = res[0].Date;
+            ViewBag.Cid = res[0].Courts_Id;
+            ViewBag.Price = res[0].Price * res.Count;
+            ViewBag.Time = time;
+            ViewBag.Ids = ids;
+            return View(res);
+        }
+        public ActionResult CancelReservationAll(DateTime d, int cId, int price, String time, String ids,String email)
         {
             SportsApp appS = new SportsApp();
             var MapedCourts = new Dictionary<int, string>();
             IEnumerable<Court> CList = app.GetList();
             foreach (Court c in CList)
             {
-                MapedCourts[c.Id] = appS.GetName(c.Sports_Id) + ": " + c.Name;
+                MapedCourts[c.Id] =  c.Name;
             }
             ViewBag.MapedCourts = MapedCourts;
             ViewBag.reservation = new ReservationFormated(d, cId, price,time, ids, email);
             return View();
         }
         [HttpPost]
-        public ActionResult CancelReservation(String ids,String email)
+        public ActionResult CancelReservationAll(String ids,String email)
         {
             String[] idField = ids.Split('\\');
             foreach (String id in idField)
@@ -338,7 +358,14 @@ namespace RPRO_SportSoft.Controllers
             return RedirectToAction("IndexR", "Courts", new {email = email });
           
         }
+        public ActionResult CancelReservation(String id, String email)
+        {
+            appR.Delete(int.Parse(id));
+          
+            TempData["MessageCancelReservation"] = "Rezervace byla zrušena.";
+            return RedirectToAction("IndexR", "Courts", new { email = email });
 
+        }
         public ActionResult Stats()
         {
             CultureInfo provider = CultureInfo.InvariantCulture;

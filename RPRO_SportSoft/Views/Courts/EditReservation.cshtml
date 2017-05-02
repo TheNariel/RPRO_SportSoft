@@ -1,0 +1,59 @@
+﻿@model List<Reservation>
+@{
+    ViewBag.Title = "Zrušení rezervace";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Zrušení rezervace</h2>
+
+<h3>Opravdu chcete zrušit rezervaci ?</h3>
+<div>
+
+    <table class="table">
+        <tr class="default">
+            <th>
+                Datum
+            </th>
+            <th>
+                Čas
+            </th>
+            <th>
+                Cena
+            </th>
+            <th>
+
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="default">
+                <td>
+                    @{
+                        DateTime date = item.Date;
+                    }
+                    @date.ToString("dd.MM.yyyy")
+                </td>
+                <td>
+                    @ViewBag.MapedTime[item.Time_Id]
+                </td>
+                 <td>
+                    @Html.DisplayFor(modelItem => item.Price) Kč
+                </td>
+                <td>
+                    @if (date.CompareTo(DateTime.Now.AddDays(0.5)) >= 0)
+                {
+                        @Html.ActionLink("Zrušit", "CancelReservation", new {  id = item.Id, email = Session["Logged"] })
+               }
+                </td>
+
+            </tr>
+                        }
+
+    </table>
+
+</div>
+<input type="button" class="btn btn-info" value="Zrušit všechny" onclick="location.href='@Url.Action("CancelReservationAll", "Courts", new { d = ViewBag.Date, cId = ViewBag.Cid, price = ViewBag.Price, time = ViewBag.Time, ids = ViewBag.Ids, email = Session["Logged"] })'" />
+
+<br />
+<a href="javascript:history.go(-1)">Zpět</a>

@@ -165,6 +165,11 @@ namespace RPRO_SportSoft.Application
             db.Reservations.DeleteOnSubmit(item);
             db.SubmitChanges();
         }
+        public Reservation getReservation(int id)
+        {
+            return db.Reservations.Where(Reservations => Reservations.Id == id).Single();
+           
+        }
 
     }
     

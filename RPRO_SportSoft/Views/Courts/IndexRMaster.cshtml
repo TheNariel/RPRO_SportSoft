@@ -75,7 +75,7 @@
                 @Html.DisplayFor(modelItem => item.email)
             </td>
             <td>
-                @Html.ActionLink("Zrušit", "CancelReservation", new { d = item.date, cId = item.courtId, price = item.price, time = item.time, ids = item.ids,email= Session["Logged"] })
+                @Html.ActionLink("Zrušit", "CancelReservationAll", new { d = item.date, cId = item.courtId, price = item.price, time = item.time, ids = item.ids,email= Session["Logged"] })
             </td>
 
          </tr>

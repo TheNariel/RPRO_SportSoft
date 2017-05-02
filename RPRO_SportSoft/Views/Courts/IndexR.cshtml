@@ -93,7 +93,7 @@
             <td>
                 @if (date.CompareTo(DateTime.Now.AddDays(0.5)) >= 0)
                 {
-                @Html.ActionLink("Zrušit", "CancelReservation", new { d = item.date, cId = item.courtId, price = item.price, time = item.time, ids = item.ids })
+                @Html.ActionLink("Upravit", "EditReservation", new {ids = item.ids,time= item.time })
                 }
             </td>
 

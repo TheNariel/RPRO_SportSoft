@@ -196,7 +196,7 @@
     <Content Include="Views\PriceLists\Delete.cshtml" />
     <Content Include="Views\PriceLists\Edit.cshtml" />
     <Content Include="Views\Sports\CourtDetails.cshtml" />
-    <Content Include="Views\Courts\CancelReservation.cshtml" />
+    <Content Include="Views\Courts\CancelReservationAll.cshtml" />
     <Content Include="Views\Courts\Stats.cshtml" />
     <Content Include="Views\Main\Account.cshtml" />
     <Content Include="Views\Main\Contacts.cshtml" />
@@ -211,6 +211,7 @@
     <Content Include="Views\Main\Users.cshtml" />
     <Content Include="Views\Sports\ExtractOfPriceLists.cshtml" />
     <Content Include="Views\Courts\IndexRMaster.cshtml" />
+    <Content Include="Views\Courts\EditReservation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
