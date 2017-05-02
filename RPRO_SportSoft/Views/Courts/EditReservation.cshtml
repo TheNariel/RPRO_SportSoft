@@ -53,7 +53,7 @@
     </table>
 
 </div>
-<input type="button" class="btn btn-info" value="Zrušit všechny" onclick="location.href='@Url.Action("CancelReservationAll", "Courts", new { d = ViewBag.Date, cId = ViewBag.Cid, price = ViewBag.Price, time = ViewBag.Time, ids = ViewBag.Ids, email = Session["Logged"] })'" />
+<input type="button" class="btn btn-default" value="Zrušit všechny" onclick="location.href='@Url.Action("CancelReservationAll", "Courts", new { d = ViewBag.Date, cId = ViewBag.Cid, price = ViewBag.Price, time = ViewBag.Time, ids = ViewBag.Ids, email = Session["Logged"] })'" />
 
 <br />
 <a href="javascript:history.go(-1)">Zpět</a>
