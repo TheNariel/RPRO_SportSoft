@@ -37,9 +37,13 @@
                 @Html.DisplayFor(modelItem => item.Role)
             </td>
             <td>
-                <div class="ActiveCB">
-                    @Html.CheckBox(item.Email, item.Active.Equals("Yes"))
-                </div>
+                @if (!item.Email.Equals(Session["Logged"].ToString()))
+                {
+                    <div class="ActiveCB">
+                        @Html.CheckBox(item.Email, item.Active.Equals("Yes"))
+                    </div>
+                }
+                
             </td>
         </tr>
     }
