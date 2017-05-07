@@ -82,3 +82,49 @@
     }
 
 </table>
+<br />
+<h3>Uplynulé rezervace</h3>
+<table class="table">
+    <tr class="default">
+        <th>
+            Datum
+        </th>
+        <th>
+            Čas
+        </th>
+        <th>
+            Kurt
+        </th>
+        <th>
+            Cena
+        </th>
+        <th>
+            email
+        </th>
+    </tr>
+
+    @foreach (var item in ViewBag.PastReservations)
+    {
+        <tr class="default">
+            <td>
+                @{
+                    DateTime date = item.date;
+                }
+                @date.ToString("dd.MM.yyyy")
+            </td>
+            <td>
+                @item.time
+            </td>
+            <td>
+                @ViewBag.MapedCourts[item.courtId]
+            </td>
+            <td>
+                @item.price Kč
+            </td>
+            <td>
+                @item.email
+            </td>
+        </tr>
+                    }
+
+</table>

@@ -145,7 +145,7 @@ namespace RPRO_SportSoft.Controllers
             String[] d = date.Split('.');
             String dateCons = d[0] + ". " + d[1] + ". " + d[2];
 
-            
+
             try
             {
                 if (app.CheckIfExist(Id))
@@ -202,15 +202,18 @@ namespace RPRO_SportSoft.Controllers
             ViewBag.MapedCourts = MapedCourts;
             Reservation[] ResList = appR.GetListByEmail(email).ToArray();
             Reservation[] PastReservations = appR.GetPastListByEmail(email).ToArray();
-           
-            List<ReservationFormated> futureRes =ReformatReservations(ResList);
+
+            List<ReservationFormated> futureRes = ReformatReservations(ResList);
             List<ReservationFormated> pastRes = ReformatReservations(PastReservations);
+            pastRes = pastRes.OrderByDescending(o => o.date).ThenBy(o => o.time).ToList();
+
+            futureRes = futureRes.OrderBy(o => o.date).ThenBy(o => o.time).ToList();
             ReservationFormated[] hF = futureRes.ToArray();
             int i = 0;
             while (true)
             {
-                
-                if (hF[i].date.CompareTo(DateTime.Now)==-1)
+
+                if (hF[i].date.CompareTo(DateTime.Now) == -1)
                 {
                     pastRes.Reverse();
                     pastRes.Add(futureRes.First());
@@ -218,13 +221,12 @@ namespace RPRO_SportSoft.Controllers
                     futureRes.RemoveAt(0);
                     i++;
                 }
-                else {
+                else
+                {
                     break;
                 }
             }
-            pastRes= pastRes.OrderByDescending(o => o.date).ThenBy(o => o.time).ToList();
 
-            futureRes = futureRes.OrderBy(o => o.date).ThenBy(o => o.time).ToList();
             ViewBag.PastReservations = pastRes;
             return View(futureRes);
         }
@@ -239,29 +241,53 @@ namespace RPRO_SportSoft.Controllers
             }
             ViewBag.MapedCourts = MapedCourts;
             Reservation[] ResList = appR.GetListFuture().ToArray();
+            Reservation[] PastReservations = appR.GetPastList().ToArray();
 
             List<ReservationFormated> futureRes = ReformatReservations(ResList);
-                    
+            List<ReservationFormated> pastRes = ReformatReservations(PastReservations);
+            pastRes = pastRes.OrderByDescending(o => o.date).ThenBy(o => o.time).ToList();
+
             futureRes = futureRes.OrderBy(o => o.date).ThenBy(o => o.time).ToList();
+            ReservationFormated[] hF = futureRes.ToArray();
+            int i = 0;
+            while (true)
+            {
+
+                if (hF[i].date.CompareTo(DateTime.Now) == -1)
+                {
+                    pastRes.Reverse();
+                    pastRes.Add(futureRes.First());
+                    pastRes.Reverse();
+                    futureRes.RemoveAt(0);
+                    i++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            ViewBag.PastReservations = pastRes;
             return View(futureRes);
         }
         private List<ReservationFormated> ReformatReservations(Reservation[] ResList)
         {
             List<ReservationFormated> ret = new List<ReservationFormated>();
-            int i = 0,h =0;
+            int i = 0, h = 0;
             DateTime date;
             int court;
             int price;
             int startTime;
             int endTime;
-            String LengthText = "",dateHelp="",email;
+            String LengthText = "", dateHelp = "", email;
             String[] datetime;
             float hour;
             int length;
             Boolean same = true;
             String ids = "";
             while (i < ResList.Length)
-            {   email = ResList[i].User_Email;
+            {
+                email = ResList[i].User_Email;
                 date = ResList[i].Date;
                 court = ResList[i].Courts_Id;
                 price = ResList[i].Price;
@@ -276,7 +302,7 @@ namespace RPRO_SportSoft.Controllers
                         court == ResList[i + 1].Courts_Id &&
                         price == ResList[i + 1].Price &&
                         startTime + length + 1 == ResList[i + 1].Time_Id &&
-                        email == ResList[i+1].User_Email)
+                        email == ResList[i + 1].User_Email)
                     {
                         length++;
                         i++;
@@ -286,7 +312,7 @@ namespace RPRO_SportSoft.Controllers
                         {
                             same = false;
                         }
-                       
+
                     }
                     else
                     {
@@ -298,7 +324,7 @@ namespace RPRO_SportSoft.Controllers
                 endTime = startTime + length + 1;
                 LengthText = appR.getTime(startTime) + "-" + appR.getTime(endTime);
 
-                dateHelp = appR.getTime(startTime);
+                dateHelp = appR.getTime(endTime);
                 datetime = dateHelp.Split(':');
                 hour = float.Parse(datetime[0]);
                 if (datetime[1].Equals("30"))
@@ -306,14 +332,14 @@ namespace RPRO_SportSoft.Controllers
                     hour = hour + 0.5f;
                 }
 
-                ret.Add(new ReservationFormated(date.AddHours(hour), court, price*h, LengthText, ids,email));
+                ret.Add(new ReservationFormated(date.AddHours(hour), court, price * h, LengthText, ids, email));
             }
 
 
 
             return ret;
         }
-        public ActionResult EditReservation( String ids,String time)
+        public ActionResult EditReservation(String ids, String time)
         {
             List<Reservation> res = new List<Reservation>();
             String[] idField = ids.Split('\\');
@@ -322,7 +348,7 @@ namespace RPRO_SportSoft.Controllers
             {
                 Reservation re = appR.getReservation(int.Parse(id));
                 res.Add(re);
-                MapedTime[re.Time_Id]= appR.getTime(re.Time_Id);
+                MapedTime[re.Time_Id] = appR.getTime(re.Time_Id);
             }
 
             ViewBag.MapedTime = MapedTime;
@@ -333,21 +359,21 @@ namespace RPRO_SportSoft.Controllers
             ViewBag.Ids = ids;
             return View(res);
         }
-        public ActionResult CancelReservationAll(DateTime d, int cId, int price, String time, String ids,String email)
+        public ActionResult CancelReservationAll(DateTime d, int cId, int price, String time, String ids, String email)
         {
             SportsApp appS = new SportsApp();
             var MapedCourts = new Dictionary<int, string>();
             IEnumerable<Court> CList = app.GetList();
             foreach (Court c in CList)
             {
-                MapedCourts[c.Id] =  c.Name;
+                MapedCourts[c.Id] = c.Name;
             }
             ViewBag.MapedCourts = MapedCourts;
-            ViewBag.reservation = new ReservationFormated(d, cId, price,time, ids, email);
+            ViewBag.reservation = new ReservationFormated(d, cId, price, time, ids, email);
             return View();
         }
         [HttpPost]
-        public ActionResult CancelReservationAll(String ids,String email)
+        public ActionResult CancelReservationAll(String ids, String email)
         {
             String[] idField = ids.Split('\\');
             foreach (String id in idField)
@@ -355,13 +381,13 @@ namespace RPRO_SportSoft.Controllers
                 appR.Delete(int.Parse(id));
             }
             TempData["MessageCancelReservation"] = "Rezervace byla zrušena.";
-            return RedirectToAction("IndexR", "Courts", new {email = email });
-          
+            return RedirectToAction("IndexR", "Courts", new { email = email });
+
         }
         public ActionResult CancelReservation(String id, String email)
         {
             appR.Delete(int.Parse(id));
-          
+
             TempData["MessageCancelReservation"] = "Rezervace byla zrušena.";
             return RedirectToAction("IndexR", "Courts", new { email = email });
 
@@ -376,11 +402,12 @@ namespace RPRO_SportSoft.Controllers
             ViewBag.Sport = sportList.ElementAt(0).ToString();
             SportsApp sport = new SportsApp();
             ViewBag.Times = appR.GetListOfTimeReservations();
-            
+
             List<CrateCurtGain> listCurtsGain = new List<CrateCurtGain>();
             IEnumerable<Court> courtList = sport.GetCourts(sport.GetId(sportList.ElementAt(0).ToString()));
             ViewBag.Courts = courtList;
-            foreach (Court c in courtList) {
+            foreach (Court c in courtList)
+            {
                 int count = app.getCountOfReservations(c.Id, DateTime.ParseExact(ViewBag.DateFrom, "dd.MM.yyyy", ViewBag.InvariantCulture),
                 DateTime.ParseExact(ViewBag.DateTo, "dd.MM.yyyy", ViewBag.InvariantCulture));
                 double gain = app.getGain(c.Id, DateTime.ParseExact(ViewBag.DateFrom, "dd.MM.yyyy", ViewBag.InvariantCulture),
