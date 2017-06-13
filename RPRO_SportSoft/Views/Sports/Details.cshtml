@@ -24,21 +24,32 @@
 @using (Html.BeginForm("Details", "Sports", FormMethod.Get))
 {
     String m = "\xa0\xa0";
-    String m2 = "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0";
-    String o = "Opakovaná rezervace:";
+    String o = "Opakovaná rezervace";
     String p = "Opakovat do:";
 
-    <div style="display:inline-block; white-space: nowrap;">
-    Datum: <input class="myInput" name="date" size="10" date-type="date" id="datepicker" value="@ViewBag.Date" onchange="submitform()" />
-    @m.ToString()
-    Jedna rezervace: @Html.RadioButton("radio", "one", new { onchange = "this.form.submit();" })
+    <div style="display:table-row; white-space: nowrap;">
+        <div style="display:table-cell">
+            Datum: <input class="myInput" name="date" size="10" date-type="date" id="datepicker" value="@ViewBag.Date" onchange="submitform()" />
+        </div>
+        <div style="display:table-cell">
+            @m.ToString()
+            @Html.RadioButton("radio", "one", new { onchange = "this.form.submit();" }) Jedna rezervace
+        </div>
+        <div style="display:table-cell">
+        </div>
     </div>
-    <div style="display:inline-block; white-space: nowrap;">
-            @m2.ToString()
-            @o.ToString()
+    <div style="display:table-row; white-space: nowrap;">
+        <div style="display:table-cell">
+        </div>           
+        <div style="display:table-cell">
+            @m.ToString()
             @Html.RadioButton("radio", "more", new { onchange = "this.form.submit();" })
+            @o.ToString()
+        </div>
+        <div style="display:table-cell">
             @if ("more".Equals(ViewBag.Radio))
             {
+                @m.ToString()
                 @m.ToString()
                 @p.ToString()
                 <input class="myInput" name="date2" size="10" date-type="date" id="datepicker2" value="@ViewBag.DateTo" onchange="submitform()" />
@@ -47,6 +58,7 @@
             {
                 <input class="myInput" name="date2" type="hidden" value="@ViewBag.Date">
             }
+        </div>
     </div>
 
 }
