@@ -162,7 +162,7 @@
     $(function () {
         $("#datepicker2").datepicker();
     });
-    $("#datepicker2").datepicker({ minDate: 0 });
+    $("#datepicker2").datepicker({ minDate: '@ViewBag.Date' });
 
     function submitform() {
         $('form').submit();
