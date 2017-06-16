@@ -123,7 +123,9 @@
     padding: 14px 16px;
     text-decoration: none;
     }
-
+        li a:hover {
+            color: white;
+        }
     li a:hover:not(.active) {
     background-color: #111;
     }
@@ -185,4 +187,8 @@ textarea {
 }
 input[type="number"] {
    width:100px;
+}
+my_footer{
+    color: white;
+    text-align: center;
 }
