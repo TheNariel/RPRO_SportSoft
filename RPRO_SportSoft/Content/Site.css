@@ -127,7 +127,7 @@
             color: white;
         }
     li a:hover:not(.active) {
-    background-color: #111;
+    background-color: blue;
     }
 
     .active {
