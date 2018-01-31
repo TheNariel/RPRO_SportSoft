@@ -1,9 +1,4 @@
-# RPRO_SportSoft
+#Project for RPRO (year long project) class at University of Ostrava.
 
-OSU
 
-RPRO
-
-Ročníkový projekt 
-
-http://sportsoft.azurewebsites.net/
+http://sportsoft.azurewebsites.net/  (not working anymore)
